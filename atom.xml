@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-03T13:53:38.571Z</updated>
+  <updated>2016-03-03T13:56:58.571Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://yoursite.com/2016/03/02/miss/"/>
     <id>http://yoursite.com/2016/03/02/miss/</id>
     <published>2016-03-02T14:45:06.000Z</published>
-    <updated>2016-03-03T13:53:38.571Z</updated>
+    <updated>2016-03-03T13:56:58.571Z</updated>
     
     <content type="html">&lt;h2 id=&quot;开始使用markdown书写blog&quot;&gt;&lt;a href=&quot;#开始使用markdown书写blog&quot; class=&quot;headerlink&quot; title=&quot;开始使用markdown书写blog&quot;&gt;&lt;/a&gt;开始使用markdown书写blog&lt;/h2&gt;&lt;p&gt;有点小激动&lt;/p&gt;
 &lt;h2 id=&quot;献给我的大学朋友&quot;&gt;&lt;a href=&quot;#献给我的大学朋友&quot; class=&quot;headerlink&quot; title=&quot;献给我的大学朋友&quot;&gt;&lt;/a&gt;献给我的大学朋友&lt;/h2&gt;&lt;p&gt;祝大家身体健康，事业有成&lt;/p&gt;
-&lt;h2 id=&quot;附图&quot;&gt;&lt;a href=&quot;#附图&quot; class=&quot;headerlink&quot; title=&quot;附图&quot;&gt;&lt;/a&gt;附图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/alex1504/blog/gh-pages/src/img/post/&quot; alt=&quot;Member&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;附图&quot;&gt;&lt;a href=&quot;#附图&quot; class=&quot;headerlink&quot; title=&quot;附图&quot;&gt;&lt;/a&gt;附图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://github.com/alex1504/blog/blob/gh-pages/src/img/post/2016-3-2-member.jpg&quot; alt=&quot;Member&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
