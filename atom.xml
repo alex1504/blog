@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Jerry&#39;s blog</title>
   <subtitle>发现世界的美</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://huzerui.com/blog/"/>
   <updated>2016-03-02T15:04:11.887Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://huzerui.com/blog/</id>
   
   <author>
     <name>Jerry</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Miss my friends</title>
-    <link href="http://yoursite.com/2016/03/02/miss/"/>
-    <id>http://yoursite.com/2016/03/02/miss/</id>
+    <link href="http://huzerui.com/blog/2016/03/02/miss/"/>
+    <id>http://huzerui.com/blog/2016/03/02/miss/</id>
     <published>2016-03-02T14:45:06.000Z</published>
     <updated>2016-03-02T15:04:11.887Z</updated>
     
@@ -34,16 +34,16 @@
     </summary>
     
     
-      <category term="大学" scheme="http://yoursite.com/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="大学" scheme="http://huzerui.com/blog/tags/%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://huzerui.com/blog/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2016/03/02/hello-world/"/>
-    <id>http://yoursite.com/2016/03/02/hello-world/</id>
+    <link href="http://huzerui.com/blog/2016/03/02/hello-world/"/>
+    <id>http://huzerui.com/blog/2016/03/02/hello-world/</id>
     <published>2016-03-02T11:56:57.542Z</published>
     <updated>2016-03-02T11:56:57.542Z</updated>
     
