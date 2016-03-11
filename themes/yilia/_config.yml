@@ -3,6 +3,7 @@ menu:
   主页: /
   所有文章: /archives
   随笔: /tags/随笔
+  CV: "http://huzerui.com/cv"
   Sitemap: "/sitemap.xml"
   # 随笔: /tags/随笔
 
@@ -11,7 +12,7 @@ subnav:
   github: "https://github.com/alex1504"
   weibo: "http://weibo.com/alex1504"
   rss: "/atom.xml"
-  douban: "http://www.douban.com/people/alex1504/"
+  douban: "http://www.douban.com/people/alex1504/" 
   #douban: "#"
   #mail: "#"
   #facebook: "#"
