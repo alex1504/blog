@@ -33,7 +33,7 @@ animate: true
 open_in_new: false
 
 # Miscellaneous
-google_analytics: ''
+# google_analytics: ''
 favicon: /favicon.png
 
 #你的头像url
@@ -49,15 +49,15 @@ tagcloud: true
 
 #是否开启友情链接
 #不开启——
-#friends: false
+friends: false
 #开启——
-friends:
-  W3CFuns: http://www.w3cfuns.com/
-  W3CTech: http://www.w3ctech.com/
-  Jquery之家: http://www.htmleaf.com/
-  Stackoverflow: http://stackoverflow.com/
-  Segmentfault: https://segmentfault.com/
-  优设: http://www.uisdc.com/
+# friends:
+# W3CFuns: http://www.w3cfuns.com/
+# W3CTech: http://www.w3ctech.com/
+# Jquery之家: http://www.htmleaf.com/
+# Stackoverflow: http://stackoverflow.com/
+# Segmentfault: https://segmentfault.com/
+# 优设: http://www.uisdc.com/
 
 #是否开启“关于我”。
 #不开启——
