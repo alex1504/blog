@@ -1,7 +1,7 @@
 ---
 title: Sass使用指南
 date: 2016-03-05 22:46:44
-tags: [Sass用法]
+tags: [css,sass]
 ---
 随着对CSS的用法了解比较熟悉，觉得有必要学习一下CSS预编译的语言。有一种是Less，另一种是Sass。科普了一下，两种语言的主要不同是他们的实现方式，Less是基于javascript在客户端处理的，而Sass是基于Ruby在服务端处理的。但它们之间也有共同点
 * 混入(Mixins)——class中的class；

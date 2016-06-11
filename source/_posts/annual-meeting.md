@@ -1,7 +1,7 @@
 ---
 title: 汉服秀
 date: 2016-03-015 22:46:44
-tags: [视频,年会,汉服秀]
+tags: [年会]
 ---
 有章服之美谓之华；有礼仪之大故称夏。
 ![预览](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F3%2F15%2Fpreview.jpg/w640)

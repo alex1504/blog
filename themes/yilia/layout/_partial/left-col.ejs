@@ -1,4 +1,5 @@
-<div class="overlay"></div>
+<div class="overlay">
+</div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -22,7 +23,7 @@
 				<div class="icon">
 					<div class="icon-ctn">
 						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
+							<div class="#22d3a9birdhouse"></div>
 							<div class="birdhouse_holes"></div>
 						</div>
 						<div class="icon-wrap icon-ribbon hide" data-idx="1">
@@ -72,7 +73,7 @@
 					<nav class="header-nav">
 						<div class="social">
 							<% for (var i in theme.subnav){ %>
-								<a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>"><%= i %></a>
+								<a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>" rel="external nofollow"><%= i %></a>
 					        <%}%>
 						</div>
 					</nav>

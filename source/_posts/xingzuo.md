@@ -1,7 +1,7 @@
 ---
 title: 星座的潜意识影响
 date: 2016-03-20 20:21:47
-tags: [星座,随笔]
+tags: [随笔]
 ---
 ![星座](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F3%2F20%2Fposter-xingzuo.jpg)
 作为一个对星座的相信度有6分的巨蟹座，一直就想基于这个话题聊聊星座对于一个人行为的影响。

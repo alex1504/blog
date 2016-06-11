@@ -2,6 +2,7 @@
   <%if(post.noDate != "true"){%>
     <div class="article-meta">
       <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+
     </div>
   <%}%>
   <div class="article-inner">
@@ -10,7 +11,7 @@
     <% } %>
     <% if (post.link || post.title){ %>
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        <%- partial('post/title', {class_name: 'article-title'}) %>    
       </header>
       <% if (!index){ %>
       <div class="article-info article-info-post">
@@ -18,6 +19,11 @@
         <%- partial('post/category') %>
         <div class="clearfix"></div>
       </div>
+      <!--不蒜子-->
+      <div id="busuanzi_container_page_pv" class="article-info article-info-post" style="font-size:12px;color:#aaa;verticle-align:middle;">
+        <img src="../../../../img/icon-eye.png" title="view" alt="view"><span id="busuanzi_value_page_pv" style="padding:4px;position:relative;top:-3px;"></span>
+      </div>
+      <!--End不蒜子-->
       <% } %>
     <% } %>
     <div class="article-entry" itemprop="articleBody">

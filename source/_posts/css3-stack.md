@@ -1,7 +1,7 @@
 ---
 title: CSS3实现的图片堆叠分散效果
 date: 2016-03-11 21:54:11
-tags: [HTML5,CSS3,图片堆叠]
+tags: [CSS]
 ---
 随着浏览器对CSS3的支持和完善，使用transform、animation、transition制作一些简单的页面动画能达到良好的交互效果。今天通过CSS3的新属性，制作了一个图片堆叠散开的效果。
 #### 堆叠效果：

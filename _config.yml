@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Blog of Zerui Hu
-subtitle: 发现世界的美
+title: 博客|Blog|Hexo|Yilia|生活|技术|想法
+subtitle: 一个不尽如人意的今天，都有一个不曾尽力的昨天
 description: 
 author: Jerry
 language: zh-CN
@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.huzerui.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -71,13 +71,17 @@ theme: yilia
 #sitemap
 sitemap:
   path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
 
+duoshuo_shortname: blog-jerry
 
 #Feed Atom
 feed:
   type: atom
   path: atom.xml
   limit: 20
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

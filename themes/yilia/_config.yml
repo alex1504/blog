@@ -1,6 +1,7 @@
 # Header
 menu:
-  主页: "http://huzerui.com/"
+  主页: "http://blog.huzerui.com/"
+  导航: "http://huzerui.com/"
   所有文章: /archives
   CV: "http://huzerui.com/cv"
   Sitemap: "/sitemap.xml"
@@ -41,10 +42,10 @@ avatar: /img/avatar.jpg
 #是否开启分享
 share_jia: true
 share_addthis: false
-#是否开启多说评论，填写你在多说申请的项目名称 duoshuo: duoshuo-key
+#是否开启多说评论，填写你在多说申请的项目名称 duoshuo: duoshuo_shortname （去掉.duoshuo.com的部分）
 #若使用disqus，请在博客config文件中填写disqus_shortname，并关闭多说评论
-duoshuo: true
-#是否开启云标签
+duoshuo: blog-jerry
+
 tagcloud: true
 
 #是否开启友情链接
@@ -63,7 +64,7 @@ friends: false
 #不开启——
 #aboutme: false
 #开启——
-aboutme: 品味简单的生活，爱的执着，像点聚成线，将生活变成艺术的勾勒。
+#aboutme: 简单才是生活的本质
 
 #开启百度统计
 baidu_tongji: true
