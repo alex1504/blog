@@ -3,7 +3,6 @@ menu:
   主页: "http://blog.huzerui.com/"
   导航: "http://huzerui.com/"
   所有文章: /archives
-  CV: "http://huzerui.com/cv"
   Sitemap: "/sitemap.xml"
   # 随笔: /tags/随笔
 
@@ -68,3 +67,9 @@ friends: false
 
 #开启百度统计
 baidu_tongji: true
+
+#开启百度主动推送，当用户访问页面时
+baidu_js_push: true
+
+#开启360主动推送
+three_js_push: true
