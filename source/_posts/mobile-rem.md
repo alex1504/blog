@@ -11,7 +11,7 @@ flex布局、弹性flex布局在移动端会出现一些支持的兼容问题。
 W3C官网描述是“font size of the root element”，即rem是相对于根元素。
 我们只需要在HTML根元素确定一个参考值，css中其他使用rem作为单位的值都基于这个值进行计算。
 # 2、淘宝的案例 #
-![淘宝案例](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F6%2F16%2Ftaobao.jpg)
+![淘宝案例](http://7xrw48.com1.z0.glb.clouddn.com/images/2016%2F6%2F16%2Ftaobao.jpg)
 ## rem实现宽度自适应的原理 ##
 通过JS使页面<html>的fontsize会根据屏幕的宽度自动调整。
 具体是根据屏幕宽度和所设字体大小的比值是固定的，获取屏幕宽度后，按照固定比例缩小后作为rem的单位长度实现自适应。
@@ -73,7 +73,7 @@ rem就是根元素（即：html）的字体大小。html中的所有标签样式
 
 ## 怎么计算出不同分辨率下font-size的值？ ##
 假设页面设计稿是按照640的标准尺寸设计的，（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格。
-![rem](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F6%2F16%2Frem.jpg)
+![rem](http://7xrw48.com1.z0.glb.clouddn.com/images%2F2016%2F6%2F16%2Frem.jpg)
 
 以640的宽度去切的，怎么计算不同宽度下font-site的值，大家看表格上面的数值变化应该能明白。举个例子：384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。
 

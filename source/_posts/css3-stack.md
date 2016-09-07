@@ -5,9 +5,9 @@ tags: [css]
 ---
 随着浏览器对CSS3的支持和完善，使用transform、animation、transition制作一些简单的页面动画能达到良好的交互效果。今天通过CSS3的新属性，制作了一个图片堆叠散开的效果。
 #### 堆叠效果：
-![示例图片](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F3%2F11%2F1.jpg)
+![示例图片](http://7xrw48.com1.z0.glb.clouddn.com/images%2F2016%2F3%2F11%2F1.jpg)
 #### 鼠标悬浮分散效果：
-![示例图片](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F3%2F11%2F2.jpg)
+![示例图片](http://7xrw48.com1.z0.glb.clouddn.com/images%2F2016%2F3%2F11%2F2.jpg)
 
 > 效果演示：http://huzerui.com/photostack
 

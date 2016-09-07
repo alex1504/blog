@@ -4,7 +4,7 @@ date: 2016-06-15 12:46:43
 tags: [js,dom]
 ---
 JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：
-![大小、位置属性](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F6%2F15%2Fproperty.jpg)
+![大小、位置属性](http://7xrw48.com1.z0.glb.clouddn.com/images%2F2016%2F6%2F15%2Fproperty.jpg)
 这些属性的笼统特征：
 client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分    
 offset：元素内容+内边距+边框  不包括外边距和滚动条部分
@@ -25,7 +25,7 @@ scroll：与元素的滚动相关
 **屏幕分辨率的高：**window.screen.height
 **屏幕分辨率的宽：**window.screen.width
 **屏幕可用工作区高度：**window.screen.availHeight（即除去windows任务栏的高度剩余的高度,如图）
-![availHeight说明](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F6%2F15%2FavailHeight.jpg)
+![availHeight说明](http://7xrw48.com1.z0.glb.clouddn.com/images%2F2016%2F6%2F15%2FavailHeight.jpg)
 **屏幕可用工作区宽度：**window.screen.availWidth=屏幕分辨率的宽
 ## 获取视口大小 ##
 **在声明了DOCTYPE的浏览器中：**
@@ -57,7 +57,7 @@ document.body.offsetHeight
 ### 窗口相对于屏幕的位置 ###
 **窗口相对于屏幕的X坐标：**window.screenLeft（通常为0）
 **窗口相对于屏幕的Y坐标：**window.screenTop（如图）
-![screenTop说明](http://7xrw48.com1.z0.glb.clouddn.com/%40%2Fimages%2F2016%2F6%2F15%2FscrollTop.jpg)
+![screenTop说明](http://7xrw48.com1.z0.glb.clouddn.com/images%2F2016%2F6%2F15%2FscrollTop.jpg)
 
 # jQuery对于尺寸和位置封装的函数 #
 使用原生的js方法获取DOM尺寸大小和元素位置仍然不太方便，比如兼容性，jQuery封装的函数就很好的解决了这个问题。

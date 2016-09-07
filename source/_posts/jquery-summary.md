@@ -4,7 +4,7 @@ date: 2016-04-10 22:29:19
 tags: [jQuery]
 ---
 
-![jQuery](http://7xrw48.com1.z0.glb.clouddn.com/@/images/2016/4/10/jquery-poster.jpg?imageView2/2/w/640/q/75)
+![jQuery](http://7xrw48.com1.z0.glb.clouddn.com/images/2016/4/10/jquery-poster.jpg?imageView2/2/w/640/q/75)
 最近，重温了《锋利的Jquery》这本书，受益匪浅。初入Jquery的时候觉得Jquery是Js的框架，因此在学习Jquery的过程也先读了《Dom编程艺术》，如今正在看《JS高级程序设计》一书。
 
 但其实对于一个初入前端的新手来说，如果觉得js入门曲线太陡峭，那么在不了解js的情况下就可以与Jquery摩拳擦掌了，原因在于这个框架简单、实用、入门快，领悟高的话一个月内就能上手做项目。以下是自己最近几天总结的一些Jquery的核心知识（不涵盖所有）
@@ -13,7 +13,7 @@ tags: [jQuery]
 
 **根据用户交互的基本流程，通常代码是获取元素，然后绑定相应的事件，接着触发这个事件后可以选择不同的交互方式。**比如增加节点改变Dom，或者对某个元素设置动画、亦或者进行Ajax与后台进行数据交互。
 
-![知识点串联图](http://7xrw48.com1.z0.glb.clouddn.com/@/images/2016/4/10/jquery-knowledge-connect.jpg?imageView2/2/w/640/q/75)
+![知识点串联图](http://7xrw48.com1.z0.glb.clouddn.com/images/2016/4/10/jquery-knowledge-connect.jpg?imageView2/2/w/640/q/75)
 *Jquery知识点串联图*
 
 一、Jquery 选择器总结（继承CSS风格）
