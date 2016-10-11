@@ -24,12 +24,12 @@ tags: [css,sass]
 
 Sass用法指南
 
-### 一、什么是Sass
+# 什么是Sass
 SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。
 
-### 二、安装和使用
-2.1 安装
+# 安装和使用
+## 安装
 SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
 假定你已经安装好了Ruby，接着在命令行输入下面的命令：
 
@@ -37,7 +37,7 @@ SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照�
 gem install sass
 ```
 然后，就可以使用了。
-2.2 使用
+## 使用
 SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
 ```sass
@@ -66,8 +66,8 @@ sass --watch input.scss:output.css
 sass --watch app/sass:public/stylesheets
 ```
 SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
-### 三、基本用法
-3.1 变量
+# 基本用法
+## 变量
 SASS允许使用变量，所有变量以$开头。
 ```sass
 $blue : #1875e7;　
@@ -82,7 +82,7 @@ $side : left;
   border-#{$side}-radius: 5px;
 }
 ```
-3.2 计算功能
+## 计算功能
 SASS允许在代码中使用算式：
 ```sass
 body {
@@ -91,7 +91,7 @@ body {
   right: $var * 10%;
 }
 ```
-3.3 嵌套
+## 嵌套
 SASS允许选择器嵌套。比如，下面的CSS代码：
 ```sass
 div h1 {
@@ -121,7 +121,7 @@ a {
   &:hover { color: #ffb3ff; }
 }
 ```
-3.4 注释
+## 注释
 SASS共有两种注释风格。
 标准的CSS注释 /* comment */ ，会保留到编译后的文件。
 单行注释 // comment，只保留在SASS源文件中，编译后被省略。
@@ -131,8 +131,8 @@ SASS共有两种注释风格。
   重要注释！
 */
 ```
-### 四、代码的重用
-4.1 继承
+# 代码的重用
+## 继承
 SASS允许一个选择器，继承另一个选择器。比如，现有class1：
 ```sass
 .class1 {
@@ -146,7 +146,7 @@ class2 {
   font-size:120%;
 }
 ```
-4.2 Mixin
+## Mixin
 Mixin有点像C语言的宏（macro），是可以重用的代码块。
 使用@mixin命令，定义一个代码块。
 ```sass
@@ -187,7 +187,7 @@ div {
 #navbar li { @include rounded(top, left); }
 #footer { @include rounded(top, left, 5px); }
 ```
-4.3 颜色函数
+## 颜色函数
 SASS提供了一些内置的颜色函数，以便生成系列颜色。
 ```sass
 lighten(#cc3, 10%) // #d6d65c
@@ -195,7 +195,7 @@ darken(#cc3, 10%) // #a3a329
 grayscale(#cc3) // #808080
 complement(#cc3) // #33c
 ```
-4.4 插入文件
+## 插入文件
 @import命令，用来插入外部文件。
 ```sass
 @import "path/filename.scss";
@@ -204,8 +204,8 @@ complement(#cc3) // #33c
 ```sass
 @import "foo.css";
 ```
-### 五、高级用法
-5.1 条件语句
+# 高级用法
+## 条件语句
 @if可以用来判断：
 ```sass
 p {
@@ -221,7 +221,7 @@ p {
   background-color: #fff;
 }
 ```
-5.2 循环语句
+## 循环语句
 SASS支持for循环：
 ```sass
 @for $i from 1 to 10 {
@@ -246,7 +246,7 @@ each命令，作用与for类似：
   }
 }
 ```
-5.3 自定义函数
+## 自定义函数
 SASS允许用户编写自己的函数。
 ```sass
 @function double($n) {
