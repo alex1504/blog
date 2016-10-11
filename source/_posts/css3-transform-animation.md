@@ -1,14 +1,12 @@
 ---
-title: css3动画属性总结
+title: CSS3变换及CSS3动画
 date: 2016-06-16 22:21:23
 tags: [css3]
 ---
-# transform  #
+# CSS3变换动画 #
 ## 指定三维视角 ##
 perspective 属性定义 3D 元素距视图的距离，以像素计。
 当为元素定义 perspective 属性时，其子元素会获得透视效果，而不是元素本身。
-
-
 ## 三维变形 ##
 三维变形的变形方式：四种方法 
 旋转——缩放——平移——扭曲——指定变形基点
@@ -28,18 +26,9 @@ transform:skew(30deg,0deg);
 在使用transform方法进行文字或图像的变形时，是以元素的中心点为基准点进行的。使用transform-orign属性，可以改变变形的基准点。
 transorm-origin:left bottom;
 left和bottom是基准点在元素水平方向和垂直方向上的位置。
-
-# 背对屏幕元素是否可见 #
-backface-visibility: visible | hidden;  定义当元素不面向屏幕时是否可见。
-
-# CSS3过渡transition #
-transition属性是一个简写属性，用于设置四个过渡属性：
-transition-property  哪个属性实现过渡如：width
-transition-duration  完成过渡效果需要多少秒/毫秒
-transition-timing-function  速度效果的运动曲线，如linear 、ase-in 、ease 、 ease-out 、ease-in-out 、 cube-bezier（贝塞尔曲线） 
-transition-delay  规定过渡开始前等待几秒
-
-# CSS3动画 animation  #
+## 形成过渡动画 ##
+元素在定义了变化终点状态之后，在元素本身设置transition即可形成过渡动画。
+# Animation动画 #
 animation属性值：
 
 | 属性       | 说明     | 
@@ -55,22 +44,10 @@ animation属性值：
 | animation-play-state | 规定动画是否正在运行或暂停。默认是 "running"，暂停时pause    |  
 | animation-fill-mode | 规定对象动画时间之外的状态。forwards：设置对象状态为动画结束时的状态；backwards：设置对象状态为动画开始时的状态；both：设置对象状态为动画开始或结束的状态      |  
 
-# CSS3过渡与动画的区别 #
-1、animation多两个参数，循环和动画的方式
-2、transition不能自行触发，通过hover等动作或结合JS进行触发。anmiation可以自行运行。
-3、transition可控性较弱，只能指定起始状态和结束状态，而animation可以定义多个关键帧。
-4、动画在运行结束之后，需要回到初始状态
-5、transition的作用在于平滑的改变CSS样式
-
-# 推荐样式书写顺序 #
-显示属性-->自身属性-->文本属性
-**显示属性 ：**display，list-style，position，float，clear [注意按照横着的顺序]
-**自身属性（合模型）：**width，height，margin，padding，border，background（第3点）
-**背景：**background
-**行高：**line-height
-**文本属性：**color,font，text-decoration，text-align，vertical-align，white-space，content
-**其他** cursor/z-index/zoom
-**css3属性：**trandsform/transition/animation/box-shadow/border-radius
-**链接的样式顺序：**a:link-->a:visited-->a:hover-->a:active
-
+# 两者区别 #
+1、变换动画不能自行触发，通过hover等动作或结合JS进行触发。anmiation可以自行运行。
+2、变换动画可控性较弱，只能指定起始状态和结束状态，而animation可以定义多个关键帧。
+3、变换动画在运行结束之后，需要回到初始状态
+4、变换动画的作用在于平滑的改变CSS样式
+5、animation多两个参数，循环和动画的方式。
 

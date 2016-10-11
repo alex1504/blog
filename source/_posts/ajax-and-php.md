@@ -1,11 +1,9 @@
 ---
-title: Ajax与php交互测试记录
+title: ajax请求数据（后台PHP）
 date: 2016-05-25 15:12:19
 tags: [js,ajax]
 ---
-以下基于jQuery封装ajax（）方法实现前后端数据交互
-
-1、表单数据提交
+表单数据提交
 --------
 
 核心方法：serialize（）：可以将表单中的数据序列化成key=value&key=value...的形式
@@ -26,7 +24,7 @@ tags: [js,ajax]
             return false;                   // 阻止表单默认提交事件，防止页面跳转
     });
 ```
-2、ajax提交的data数据与PHP获取数据的关系
+PHP获取数据的方式
 --------------------------
 
 ajax中data可以提交的数据方式：
@@ -59,7 +57,7 @@ ajax中data可以提交的数据方式：
         }
     });                
 ```
-3、PHP输出json字符串数据
+PHP输出json字符串数据
 ----------------
 
 在PHP中比较常用的是数组，而PHP中json不是标准数据格式，所以PHP提供了对json数据进行编码和解码的函数。

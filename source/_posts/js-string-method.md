@@ -4,7 +4,7 @@ date: 2016-06-14 16:04:41
 tags: [js,string]
 ---
 # 字符方法 #
-### chatAt()和chatCodeAt ###
+## chatAt()和chatCodeAt ##
 charAt()和charCodeAt()
 这两个方法接收一个参数，即基于0的字符位置。
 chatAt()以单字符字符串的形式返回给定位置的那个字符。
@@ -15,10 +15,10 @@ stringValue.chatAt(1);      //"e"
 stringValue.chatCodeAt(1);  //"101"
 ```
 # 字符串操作方法 #
-### concat() ###
+## concat() ##
 concat()用于将一个或多个字符串拼接起来，返回拼接得到的新创建的字符串。
 但实践中大多数情况还是使用(+)加号操作符，比concat()简单易行。
-### slice()、substring()、substr() ###
+## slice()、substring()、substr() ##
 三个基于子字符串创建新字符串的方法，创建并返回被操作字符串的子字符串。**注意方法名称都是小写**
 **共同点：**
 参数1：必选，指定子字符串开始位置。
@@ -58,7 +58,7 @@ stringValue.substring(3,-4);    //"hel"
 stringValue.substr(3,-4);       //""
 ```
 # 字符串位置方法 #
-### indexOf()和lastIndexOf ###
+## indexOf()和lastIndexOf ##
 从字符串中查找子字符串的位置，如果找到返回子字符串的位置；找不到返回-1
 参数1：指定检索的子字符串
 参数2：可选，指定开始检索的位置
@@ -81,7 +81,7 @@ stringValue;                //" hellow world  ";
 toLowerCase()和toUpperCase()
 
 # 字符串模式匹配方法 #
-### match() ###
+## match() ##
 在字符串调用这个方法，本质上与调用RegExp对象的exec()方法相同。
 参数：match()接收一个参数，要么是正则表达式，要么是正则对象。
 返回值：matches返回一个数组，数组的第一项是与整个模式匹配的字符串，之后的每一项（如果有）保存着与正则表达式中捕获组匹配的字符串。
@@ -93,7 +93,7 @@ matches.index              //0
 matches[0]                 //"cat"
 pattern.lastIndex          //0
 ```
-### search() ###
+## search() ##
 参数：search()接收一个参数，要么是正则表达式，要么是正则对象。
 返回值：返回字符串中第一个匹配项的索引，如果没有找到匹配项，则返回-1.
 注意：search()方法始终从字符串开头向后查找模式
@@ -102,7 +102,7 @@ pattern.lastIndex          //0
 var text="cat,bat,hat";
 var pos=text.search(/cat/);    //0
 ```
-### replace() ###
+## replace() ##
 诞生原因：为了简化替换子字符串的操作，ECMAScript提供了replace()方法
 参数：第一个参数正则对象或者字符串，第二个参数是一个字符串或者函数。
 返回值：生成的替换后的字符串
@@ -135,7 +135,7 @@ function htmlEscape(text){
 htmlEscape("<p class=\"desc\">hellow</p>")  
 //输出 &lt;p class=&quot;desc;&quot;&gt;hellow&lt;/p&gt;
 ```
-### split() ###
+## split() ##
 基于指定的分割符将字符串分割成多个子字符串，并将结果存放在一个数组中。
 参数：第一个参数是字符串或者正则表达式,匹配的项将作为分隔符
 	  第二个参数可选，用于指定数组的大小

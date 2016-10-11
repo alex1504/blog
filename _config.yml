@@ -4,18 +4,21 @@
 
 # Site
 title: Hexo|Jerry
-subtitle: 一个不尽如人意的今天，都有一个不曾尽力的昨天
+subtitle: 小小的程序有大大的梦想
 description: 
 author: Jerry
-language: zh-CN
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.huzerui.com
-root: /
+url: http://huzerui.com/blog
+root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+
+# Avatar
+avatar: /img/avatar.jpg
 
 # Directory
 source_dir: source
@@ -66,7 +69,7 @@ Plugins:
 - hexo-generator-feed
 - hexo-generator-sitemap
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 #sitemap
 sitemap:
@@ -82,6 +85,8 @@ feed:
   path: atom.xml
   limit: 20
 
+# Baidu Analytics
+baidu_analytics: 1e11d2f2589bccbdb30499db84c40bfe
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

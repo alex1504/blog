@@ -3,15 +3,9 @@ title: 省、市、区三级联动菜单Demo
 date: 2016-06-08 17:12:19
 tags: [js,jQuery]
 ---
-前端用变量直接列出数据，省略请求数据
-[点击查看Demo](http://huzerui.com/relatedMenu/)
-[点击下载源文件](http://huzerui.com/relatedMenu/relatedMenu.zip)
-
-已封装成jQuery插件形式，方便单个页面多次调用
-![展示1](http://7xrw48.com1.z0.glb.clouddn.com/images/2016/6/8/related-menu-1.jpg/w400)
-
-完成省、市、区选择弹出浮层信息
-![展示2](http://7xrw48.com1.z0.glb.clouddn.com/images/2016/6/8/related-menu-2.jpg/w400)
+- 前端模拟数据，省略请求数据
+- 封装成jQuery插件形式
+- 省、市、区选择弹出浮层信息
 
 核心代码：
 ```javascript
