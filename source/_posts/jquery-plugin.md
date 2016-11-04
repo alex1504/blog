@@ -1,6 +1,7 @@
 ---
 title: 使用jQuery封装插件
 date: 2016-06-12 18:10:19
+categories: 前端
 tags: [js,jQuery]
 ---
 jQuery封装插件的方法有三种：封装对象方法的插件、封装全局函数的插件、选择器插件

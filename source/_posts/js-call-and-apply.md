@@ -1,6 +1,7 @@
 ---
 title: javascript中的call()和apply()方法
 date: 2016-06-15 09:29:53
+categories: 前端
 tags: [js]
 ---
 我们知道函数调用有四种方式：**直接调用、作为对象的方法调用、构造函数调用、间接调用**。

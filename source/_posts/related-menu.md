@@ -1,6 +1,7 @@
 ---
 title: 省、市、区三级联动菜单Demo
 date: 2016-06-08 17:12:19
+categories: 前端
 tags: [js,jQuery]
 ---
 - 前端模拟数据，省略请求数据

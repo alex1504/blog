@@ -1,6 +1,7 @@
 ---
 title: javascript字符串对象方法
 date: 2016-06-14 16:04:41
+categories: 前端
 tags: [js,string]
 ---
 # 字符方法 #

@@ -1,6 +1,7 @@
 ---
 title: IcoMoon将图标转换成web字体
 date: 2016-06-16 11:22:52
+categories: 前端
 tags: [css, 图标]
 ---
 本文总结一款免费开源的Web应用程序[IcoMoon](https://icomoon.io/app/#/select)制作web图标字体。

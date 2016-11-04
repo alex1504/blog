@@ -1,6 +1,7 @@
 ---
 title: Javascript数组方法
 date: 2016-06-14 12:00:10
+categories: 前端
 tags: [js,数组]
 ---
 # ECMAScript3定义的数组方法 #

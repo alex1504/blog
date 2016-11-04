@@ -1,6 +1,7 @@
 ---
 title: ajax请求数据（后台PHP）
 date: 2016-05-25 15:12:19
+categories: 前端
 tags: [js,ajax]
 ---
 表单数据提交

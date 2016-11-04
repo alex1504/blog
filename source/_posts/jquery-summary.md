@@ -1,6 +1,7 @@
 ---
 title: jQuery核心总结
 date: 2016-04-10 22:29:19
+categories: 前端
 tags: [jQuery]
 ---
 

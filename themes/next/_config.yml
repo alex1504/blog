@@ -29,7 +29,7 @@ canonical: true
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  #categories: /categories
+  categories: categories
   #about: /about
   archives: archives
   tags: tags
@@ -73,22 +73,22 @@ scheme: Pisces
 # - Introduce in 5.0.1
 # ---------------------------------------------------------------
 font:
-  enable: true
+  enable: false
 
   # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
-  host:
+  host: 
 
   # Global font settings used on <body> element.
   global:
     # external: true will load this font family from host.
     external: true
-    family: Lato
+    family: Droid Serif
 
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
   # Fallback to `global` font settings.
   headings:
     external: true
-    family:
+    family: 
 
   # Font settings for posts
   # Fallback to `global` font settings.
@@ -310,9 +310,9 @@ facebook_comments_plugin:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz
+  app_key: v6hzlSojKgLf2oDjC1gNPuf8
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
@@ -333,10 +333,10 @@ busuanzi_count:
   page_pv_footer:
 
 # Tencent analytics ID
-# tencent_analytics:
+tencent_analytics: 58945240
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: false
+baidu_push: true
 
 
 

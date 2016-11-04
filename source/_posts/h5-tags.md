@@ -1,6 +1,7 @@
 ---
 title: HTML5新增input类型
 date: 2016-06-16 21:50:32
+categories: 前端
 tags: [html5]
 ---
 # HTML5表单新增input类型 #

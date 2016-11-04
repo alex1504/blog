@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo|Jerry
-subtitle: 小小的程序有大大的梦想
-description: 
-author: Jerry
+title: 晚晴铭悦轩
+subtitle: 听食茗赏，山土月日
+description: 借笔墨纸砚，成铭悦之轩，伴余生之梦。
+author: 前端空城师
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://huzerui.com/blog
+url: http://huzerui.com
 root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -71,22 +71,33 @@ Plugins:
 ## Themes: https://hexo.io/themes/
 theme: next
 
-#sitemap
-sitemap:
-  path: sitemap.xml
-baidusitemap:
-  path: baidusitemap.xml
+# 生成百度站点地图
+#sitemap:
+  #path: sitemap.xml
+#baidusitemap:
+  #path: baidusitemap.xml
 
+# 多说评论及分享功能
 duoshuo_shortname: blog-jerry
+duoshuo_share: true
+
+# 谷歌站点管理工具-用于提交sitemap
+google_site_verification: 5zegIGyHLF9Qs-4RGG3VU8CKUML9omsUu7OOsQRJhbY
+
+# 谷歌分析
+google_analytics: UA-85595036-1
 
 #Feed Atom
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
+#feed:
+  #type: atom
+  #path: atom.xml
+  #limit: 20
 
 # Baidu Analytics
 baidu_analytics: 1e11d2f2589bccbdb30499db84c40bfe
+
+# Swiftype Search Key
+swiftype_key: SBDWyUSRDv5yPwFJsD5h
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

@@ -1,6 +1,7 @@
 ---
 title: 完美的犯罪，触目惊心的微笑
 date: 2016-03-13 20:09:46
+categories: 电影
 tags: [电影]
 ---
 ![唐人街探案](http://huzerui.com/blog/img/post/2016-3-13-film-tanrenjie-poster.jpg)

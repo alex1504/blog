@@ -1,6 +1,7 @@
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="description" content="前端开发博客，专注前端技术/资源分享，记载关于电影/旅行/生活等轶事，记录经验总结/人生思考；借笔墨纸砚，成铭悦之轩，伴余生之梦。">
 
 
 {# #238, Disable Baidu tranformation #}
