@@ -76,34 +76,44 @@ rem就是根元素（即：html）的字体大小。html中的所有标签样式
 
 以640的宽度去切的，怎么计算不同宽度下font-site的值，大家看表格上面的数值变化应该能明白。举个例子：384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。
 
-除了上面通过JS去动态计算根元素的font-size，也可采用媒体查询。一般我们在做web app都会先统计自己网站有哪些主流的屏幕设备，然后去针对那些设备去做media query设置也可以实现适配，例如下面这样：
+除了上面通过JS去动态计算根元素的font-size，也可采用媒体查询。一般我们在做web app都会先统计自己网站有哪些主流的屏幕设备，然后去针对那些设备去做media query设置也可以实现适配，例如下面这样(参考)：
 ```css
-html {
-    font-size : 20px;
-}
-@media only screen and (min-width: 401px){
-    html {
-        font-size: 25px !important;
+html{
+    font-size:10px
+} 
+@media screen and (min-width:321px) and (max-width:375px){
+    html{
+        font-size:11px
+    }   
+} 
+@media screen and (min-width:376px) and (max-width:414px){
+    html{
+        font-size:12px
     }
-}
-@media only screen and (min-width: 428px){
-    html {
-        font-size: 26.75px !important;
+} 
+@media screen and (min-width:415px) and (max-width:639px){
+    html{
+        font-size:15px
     }
-}
-@media only screen and (min-width: 481px){
-    html {
-        font-size: 30px !important; 
+} 
+@media screen and (min-width:640px) and (max-width:719px){
+    html{
+        font-size:20px
     }
-}
-@media only screen and (min-width: 569px){
-    html {
-        font-size: 35px !important; 
+} 
+@media screen and (min-width:720px) and (max-width:749px){
+    html{
+        font-size:22.5px
     }
-}
-@media only screen and (min-width: 641px){
-    html {
-        font-size: 40px !important; 
+} 
+@media screen and (min-width:750px) and (max-width:799px){
+    html{
+        font-size:23.5px
+    }
+} 
+@media screen and (min-width:800px){
+    html{
+        font-size:25px
     }
 }
 ```
