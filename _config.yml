@@ -97,7 +97,15 @@ google_analytics: UA-85595036-1
 baidu_analytics: 1e11d2f2589bccbdb30499db84c40bfe
 
 # Swiftype Search Key
-swiftype_key: SBDWyUSRDv5yPwFJsD5h
+# swiftype_key: SBDWyUSRDv5yPwFJsD5h
+
+# Algolia 搜索集成
+algolia:
+  applicationID: 'H80XSRPO94'
+  apiKey: 'c1794c537df72190f8c5cb2016fe4ef0'
+  adminApiKey: '40c77b5edf661ba766061e20667977eb'
+  indexName: 'blog'
+  chunkSize: 5000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
