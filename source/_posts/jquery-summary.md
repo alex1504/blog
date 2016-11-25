@@ -481,11 +481,11 @@ $.before()    或$.insertBefore()
 
 
 ### 删除节点有三个方法 ###
+#### remove()、detach()、empty()
 
-```javascript
-remove()、detach()、empty()  //empty()不是真正意义上的删除，只是清空节点内部内容
-```             
-remove()、detach()   
+empty()不是真正意义上的删除，只是清空节点内部内容
+          
+#### remove()、detach()   
 
 相同点：清除后会返回该节点的引用，即可以继续插入该节点到Dom
 
@@ -586,7 +586,7 @@ $.children()                 //与$.parent()相反
 
 这里还有一个$.parents()的方法，获得每个匹配元素的祖先元素，与parent()不同，获得第一个父节点时并没有停止查找，而是继续查找最后返回多个节点
 
-另一个$.closet([匹配])与$.parent()类似，不同的是closet()返回匹配元素的最近的一个父节点
+另一个$.closet()与$.parent()类似，不同的是closet()返回匹配元素的最近的一个父节点
 
 ### 取得匹配元素后面紧邻的同辈元素 ###         
 ```javascript
@@ -730,18 +730,18 @@ if(! $(element).is(":animated")){
 delay(毫秒)
 ```
 
-# jQuery-Ajax # 
+# jQuery-ajax # 
 说明：ajax仅做简要总结，更多可参考[jQuery中文参考文档](http://www.jquery123.com/),包含了所有新版API或弃用API的说明。
 
 ## jQuery.ajax([setting])方法 ##
 ### 1.5.0以前版本
 返回的是XHR对象 
-- type：类型， "POST"或“GET”，默认为“Get”
-- url：发送请求的地址
-- data：是一个对象，连同请求发送到服务器的数据
-- dataType： 预期服务器返回的数据类型。如果不指定，jQuery将自动根据HTTP包MIME信息来只能判断，一般采用j- son格式，可以设置为"json"
-- success：是一个方法，请求成功后的回调函数。传入返回后的数据，以及包含成功代码的字符串
-- error：是一个方法，请求失败时调用此函数。传入XMLHttpRequest对象
+- **type**：类型， "POST"或“GET”，默认为“Get”
+- **url**：发送请求的地址
+- **data**：是一个对象，连同请求发送到服务器的数据
+- **dataType**： 预期服务器返回的数据类型。如果不指定，jQuery将自动根据HTTP包MIME信息来只能判断，一般采用j- son格式，可以设置为"json"
+- **success**：是一个方法，请求成功后的回调函数。传入返回后的数据，以及包含成功代码的字符串
+- **error**：是一个方法，请求失败时调用此函数。传入XMLHttpRequest对象
 
 
 ### 1.5.0及更新版本
