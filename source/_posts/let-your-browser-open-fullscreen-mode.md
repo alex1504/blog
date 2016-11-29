@@ -17,11 +17,23 @@ var screenChange = 'webkitfullscreenchange' || 'mozfullscreenchange' || 'fullscr
 ```
 
 # 判断当前是否处于全屏状态
+**非标准(避免使用)：**
 ```javascript
 var isFullScreen = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
 ```
+**标准：**
+fullscreenElement 属性会告诉你当前全屏显示的 element。 如果该值为非空，则document进入了全屏模式。如果为空则不在全屏模式。
+```javascript
+var isFullScreen = document.fullscreenElement || document.mozFullScreenElement ||document.webkitFullscreenElement
+```
+
+# 判断是否可以进入请求全屏状态
+```javascript
+var isFullScreenAvailable = document.fullScreenEnabled || document.mozFullScreenEnabled || document.webkitFullscreenEnabled;
+```
 
 # 开启全屏模式
+参数：element为想要全屏展示的元素比如video，如果想要浏览器全屏展示，则传入document.documentElement即可。
 ```javascript
 function launchFullScreen(element) {
     if (element.requestFullscreen) {
@@ -46,6 +58,7 @@ function exitFullscreen() {
         document.mozCancelFullScreen();
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
+    }
 }
 ```
 
@@ -69,7 +82,7 @@ document.addEventListener("keydown", function(e) {
     //IE中，只有keyCode属性，而FireFox中有which和charCode属性，Opera中有keyCode和which属性
     var currKey = e.keyCode || e.which || e.charCode;
     if (currKey == 112) {
-        launchFullScreen();
+        launchFullScreen(document.documentElement);
     }
 }, false);
 ```
@@ -121,8 +134,8 @@ document.addEventListener("keydown", function(e) {
 | Alt       | 18   | Left Arrow | 37   | =+          | 187  | ]}   | 221  |
 | Cape Lock | 20   | Up Arrow   | 38   | ,<          | 188  | '"   | 222  |
 
-# 避免使用非标准化的方法
-非标准化的方法指的是进入草案前浏览器实现的一些方法，避免使用。
+# 其他非标准化的方法
+**非标准化的方法指的是进入草案前浏览器实现的一些方法。有的目前仍保留，有的已废除，避免使用。**
 ~~window.fullScreen(Firefox)~~
 ~~HTMLMediaElement.webkitDisplayingFullscreen~~
 ~~HTMLMediaElement.webkitEnterFullscreen~~
