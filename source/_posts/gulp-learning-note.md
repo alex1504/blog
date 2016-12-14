@@ -177,15 +177,6 @@ gulp.task('default', ['dist']);
 		...
 ```
 # 品味Gulp
-“老妈从她的房间里拿来**一堆作业**，让我在**我的房间**完成后放到**她的房间**，在此过程中，她会一直**监督**我看看我到底有没有偷懒，如果我偷懒了她就...”
-- "一堆作业"：gulp.task()
-- "我的房间": gulp.src()
-- "她的房间": gulp.dist()
-- "监督": gulp.watch()
-
-怎么少了gulp.pipe()？
-生活中我们每天都在搞事情，事情等同于任务，但这个任务中不同的环节是有依赖关系的，比如完成一幅画涂颜料需要在绘画完成后才能开始，于是gulp.pipe()相当于提供一个管道，让我们将这些环节连接起来，最终完成一个完整的任务。
-
 ## Gulp-API
 以下为API介绍，[]中的参数为可选，options参数不太常用，故不作详细介绍。
 
@@ -224,6 +215,10 @@ gulp.watch('js/**/*.js', function(event) {
   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 });
 ```
+
+怎么少了gulp.pipe()？
+生活中我们每天都在搞事情，事情等同于任务，但这个任务中不同的环节是有依赖关系的，比如完成一幅画涂颜料需要在绘画完成后才能开始，于是gulp.pipe()相当于提供一个管道，让我们将这些环节连接起来，最终完成一个完整的任务。
+
 ## 关于glob参数匹配规则
 发起一项任务需要寻找文件对象，这就需要一些规则用于匹配文件。
 ### 匹配规则
@@ -246,7 +241,7 @@ gulp.watch('js/**/*.js', function(event) {
 ** 能匹配 abc,a/b.js,a/b/c.js,x/y/z,x/y/z/a.b,能用来匹配所有的目录和文件
 **/*.js 能匹配 foo.js,a/foo.js,a/b/foo.js,a/b/c/foo.js
 a/**/z 能匹配 a/z,a/b/z,a/b/c/z,a/d/g/h/j/k/z
-a/**b/z 能匹配 a/b/z,a/sb/z,但不能匹配a/x/sb/z,因为只有单**单独出现才能匹配多级目录
+a/**b/z 能匹配 a/b/z,a/sb/z,但不能匹配a/x/sb/z,因为只有**单独出现才能匹配多级目录
 ?.js 能匹配 a.js,b.js,c.js
 a?? 能匹配 a.b,abc,但不能匹配ab/,因为它不会匹配路径分隔符
 [xyz].js 只能匹配 x.js,y.js,z.js,不会匹配xy.js,xyz.js等,整个中括号只代表一个字符
