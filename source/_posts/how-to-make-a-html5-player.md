@@ -22,8 +22,8 @@ tags: [html5,player]
 
 这段时间公司一直在做一个PC的教育类单页应用，庞大复杂，涉及非常多H5的知识，音频就是其中的一部分。闲暇时写了一个移动音乐播放器，除了将之作为练手项目，对于音乐的喜爱也是促使自己想写个播放器的原因。
 
-在线地址：请猛击[这里](http://coding.huzerui.com/player/)
-源码：请猛击[这里](https://coding.net/u/alex1504/p/demo/git/tree/coding-pages/player)
+在线地址：请猛击[这里](http://alex1504.oschina.io/demo/player/)
+源码：请猛击[这里](https://git.oschina.net/alex1504/demo/tree/osc-pages/player?dir=1&filepath=player&oid=4c10643c235593569490e3da0d2ff7f613ece98e&sha=ec2e4efea87ee25ee0818481a8cf1f5893c5947c)
 
 注意：使用PC浏览最好打开**移动设备模式**，使用移动设备浏览需要关闭无痕浏览模式（否则无法使用本地存储，一般浏览器都是默认不开启），项目需要在**本地服务器**或**线上服务器**运行，以file:///形式的地址打开是无法进行ajax请求的，从而无法看到音乐数据。
 ![UI图](http://huzerui.com/blog/img/post/2016-10-30-how-to-make-a-mobile-html5-player.jpg)
@@ -57,13 +57,13 @@ var Settings = {
 
 // ============================工具函数================================
 var Util = (function() {
-	return {
+    return {
 
-	}
+    }
 })()
 // ============================Dom选择器================================
 var Dom = {
-	
+    
 }
 
 // ============================全局变量================================
@@ -83,7 +83,7 @@ var formatTimeArr = []; //当前歌曲时间数组(格式化为秒数)
 
 // ============================入口函数================================
 function main() {
-	initUIFrame();
+    initUIFrame();
     var initModel = PlayerModel();
 
     var songListUI = ModelUIFrame(Dom.songListContainer);
@@ -111,15 +111,15 @@ function initUIFrame() {
 }
 // ============================实现数据交互方法================================
 function PlayerModel() {
-	
+    
 }
 // ============================模型动态UI模块================================
 function ModelUIFrame(container) {
-	
+    
 }
 // ============================事件绑定模块================================
 function EventHandler() {
-	
+    
 }
 // 调用入口函数
  main();
@@ -135,16 +135,16 @@ function EventHandler() {
 {{#each this}}
 {{#isInitData this @index}}
 <li class="song btm-line" data-src={{songSrc}} data-index={{id}}>
-	<div class="poster">
-		<img src={{poster.thumbnail}}>
-	</div>
-	<div class="songinfo">
-		<h2 class="lsongname">{{songName}}</h2>
-		<sub class="lsinger">{{singer}}</sub>
-	</div>
-	<div class="loveflag">
-		<i class="icon icon-love {{#if loveFlag}}active{{/if}}"></i>
-	</div>
+    <div class="poster">
+        <img src={{poster.thumbnail}}>
+    </div>
+    <div class="songinfo">
+        <h2 class="lsongname">{{songName}}</h2>
+        <sub class="lsinger">{{singer}}</sub>
+    </div>
+    <div class="loveflag">
+        <i class="icon icon-love {{#if loveFlag}}active{{/if}}"></i>
+    </div>
 </li>
 {{/isInitData}}
 {{/each}}
@@ -244,23 +244,23 @@ function rescale() {
 经过这样的处理之后，临时数组的元素格式不再有区别了，此时再进行字符串截取，将截取到的时间点放入timeArr，将截取的歌词放入lyricArr，并以返回保存着这两个变量的对象。
 ```javascript
 function createArrMap(lyric) {
-	var timeArr = [],
-	    lyricArr = [];
-	var tempArr = lyric.split("\n");
-	tempArr.splice(-1, 1);
-	var tempStr = "";
-	$(tempArr).each(function(index) {
-	    tempStr = this;
-	    if (tempStr.charAt(9).match(/\d/) !== null) {
-	        tempStr = tempStr.substring(0, 9) + tempStr.substring(10);
-	    }
-	    timeArr.push(tempStr.substring(0, 10));
-	    lyricArr.push(tempStr.substring(10));
-	});
-	return {
-	    timeArr: timeArr,
-	    lyricArr: lyricArr
-	};
+    var timeArr = [],
+        lyricArr = [];
+    var tempArr = lyric.split("\n");
+    tempArr.splice(-1, 1);
+    var tempStr = "";
+    $(tempArr).each(function(index) {
+        tempStr = this;
+        if (tempStr.charAt(9).match(/\d/) !== null) {
+            tempStr = tempStr.substring(0, 9) + tempStr.substring(10);
+        }
+        timeArr.push(tempStr.substring(0, 10));
+        lyricArr.push(tempStr.substring(10));
+    });
+    return {
+        timeArr: timeArr,
+        lyricArr: lyricArr
+    };
 }
 ```
 
