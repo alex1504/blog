@@ -1,11 +1,11 @@
 ---
 title: Vuejs2.0 Demo
-date: 2017-03-04 15:12:19
+date: 2017-02-04 15:12:19
 categories: 前端
 tags: [js,vuejs]
 ---
-前段时间利用闲暇时间学习Vuejs并且做了一个简易示例，发现前端真是越来越有趣了。
-![预览图](https://camo.githubusercontent.com/2a1d85bbd59b99c1f958f2cb447e76a9f0f43da3/687474703a2f2f68757a657275692e636f6d2f767565322e302d64656d6f2f737461746963732f696d672f726561646d652f646573632d312e676966)
+前段时间利用闲暇时间学习Vuejs并且做了一个实例，主要使用vue-router实现路由控制，vuex对程序进行状态管理，axios发送http请求。对数据在组件间的传递、webpack打包工具、数据的双向绑定有更深刻的了解和认识。
+![预览图](http://huzerui.com/blog/img/post/2017-02-04-vue2.0-demo-poster.gif)
 
 项目在线地址：http://www.huzerui.com/vue2.0-demo/
 Github地址：https://github.com/alex1504/vue2.0-demo

@@ -95,6 +95,7 @@ asyncFun().then(asyncFun2).then(asyncFun3)
 - then方法其实有两个参数，**第一个参数**作为上一步操作**resolve时的回调函数**，如果上一步操作后**状态变为rejected**，则以**第二个参数作为回调函数**
 
 # 使用ES7关键字async/await——异步终极解决方案
+
 ES7 中有了更加标准的解决方案，新增了**async/await**两个关键词，async可以声明一个异步函数，此函数需要返回一个 Promise对象。await 可以等待一个 Promise 对象 resolve，并拿到结果。
 现在要实现上面的需求，可以这样：
 
@@ -102,6 +103,7 @@ ES7 中有了更加标准的解决方案，新增了**async/await**两个关键�
 - async 表示这是一个async函数，await只能用在这个函数里面。
 - await 表示在这里等待promise返回结果了，再继续执行。
 - await 后面跟着的应该是一个promise对象（当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义）
+
 ```javascript
 function getData(){
 	return new Promise(function(resolve,reject){
@@ -121,12 +123,11 @@ async function asyncFun(){
 	}
 }
 ```
-# 总结：
-1. 从回调到promise再到async/await解决步式操作需求的问题，可以看到代码易读性明显增强了，async/await不仅去除了嵌套问题，也不用再用链式写法的then了。
-2、ES7 async/await仍未成标准，最新版谷歌已经支持，但大部分浏览器仍没有实现，要使用它可以用babel编译成浏览器支持的ES5。
-3. 这里在说下捕获异步操作中的异常问题，既然then不用写，那么catch也可以不用了，可以直接用标准的try/catch语法捕捉错误。
 
-常犯的错误是使用try/catch捕获异步函数的异常，这时候因为try/catch块执行完了，异步函数很可能还没有完成，异常还没有被实际抛出。当异常被抛出的时候，由于catch块已经执行完了，此时就会导致进程崩溃。
+# 使用async/await捕获异常
+这里说下捕获异步操作中的异常问题，既然then不用写，那么catch也可以不用了，可以直接用标准的try/catch语法捕捉错误。
+
+常犯的错误是使用try/catch捕获异步函数的异常，这时候因为try/catch块执行完了，异步函数很可能还没有完成，异常还没有被实际抛出。当异常被抛出的时候，由于catch块已经执行完了，此时就会导致进程崩溃。如下：
 ```javascript
 // 错误的示例
 function getData(){
@@ -149,7 +150,7 @@ try{
 // Uncaught TypeError: null is not a function
 ```
 
-可以看到异步请求中的异常无法被正常捕获,'error'并没有被打印出来，console.log('我会被打印')仍然执行了，下面使用async/await来解决这个问题
+可以看到异步请求中的异常无法被正常捕获,'error'并没有被打印出来，console.log('我会被打印')仍然执行了，使用async/await可以很容易解决这个问题
 
 ```javascript
 function getData(){
@@ -176,6 +177,10 @@ async();       // Promise{}
 			   // error
 ```
 
+# 总结：
+1. 从回调到promise再到async/await解决步式操作需求的问题，可以看到代码易读性明显增强了，async/await不仅去除了嵌套问题，也不用再用链式写法的then了。
+2. async/await只是一套语法糖，其他语言的async/await可能是协程或者多线程编程的语法糖，JS本身是单线程的，async/await与传统的callback或者promise执行起来并无两样
+3. ES7 async/await仍未成标准，最新版谷歌已经支持，但大部分浏览器仍没有实现，要使用它可以用babel编译成浏览器支持的ES5。
 
 
 
