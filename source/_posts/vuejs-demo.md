@@ -11,7 +11,7 @@ tags: [js,vuejs]
 Github地址：https://github.com/alex1504/vue2.0-demo
 
 扫描二维码预览：
-![二维码地址](http://huzerui.com/blog/img/post/2017-03-04-vuejs-demo-qrcode.png)
+![二维码地址](/blog/img/post/2017-03-04-vuejs-demo-qrcode.png)
 
 # 更新记录：
 2017.1.13 主导航电影、音乐、图书、图片使用router跳转电影模块使用tab菜单切换各个列表模块下拉滚动加载图片模块使用flex布局实现瀑布流效果
