@@ -1,0 +1,870 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="description" content="前端开发博客，专注前端技术/资源分享，记载关于电影/旅行/生活等轶事，记录经验总结/人生思考；借笔墨纸砚，成铭悦之轩，伴余生之梦。">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5zegIGyHLF9Qs-4RGG3VU8CKUML9omsUu7OOsQRJhbY" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js,jQuery," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="晚晴铭悦轩" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="jQuery封装插件的方法有三种：封装对象方法的插件、封装全局函数的插件、选择器插件 对象方法的插件这种插件是将对象方法封装起来，用于对通过选择器获取的jQuery对象进行操作，是最常见的一种插件。此类插件可以发挥出jQuery选择器的强大优势，有相当一部分的jQuery的方法，都是在jQuery脚本库内部通过这种形式“插”在内核上的，例如parent()方法，appendTo()方法等。 添加一">
+<meta name="keywords" content="js,jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用jQuery封装插件">
+<meta property="og:url" content="http://www.huzerui.com/2016/06/12/jquery-plugin/index.html">
+<meta property="og:site_name" content="晚晴铭悦轩">
+<meta property="og:description" content="jQuery封装插件的方法有三种：封装对象方法的插件、封装全局函数的插件、选择器插件 对象方法的插件这种插件是将对象方法封装起来，用于对通过选择器获取的jQuery对象进行操作，是最常见的一种插件。此类插件可以发挥出jQuery选择器的强大优势，有相当一部分的jQuery的方法，都是在jQuery脚本库内部通过这种形式“插”在内核上的，例如parent()方法，appendTo()方法等。 添加一">
+<meta property="og:updated_time" content="2017-04-29T07:02:21.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用jQuery封装插件">
+<meta name="twitter:description" content="jQuery封装插件的方法有三种：封装对象方法的插件、封装全局函数的插件、选择器插件 对象方法的插件这种插件是将对象方法封装起来，用于对通过选择器获取的jQuery对象进行操作，是最常见的一种插件。此类插件可以发挥出jQuery选择器的强大优势，有相当一部分的jQuery的方法，都是在jQuery脚本库内部通过这种形式“插”在内核上的，例如parent()方法，appendTo()方法等。 添加一">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.huzerui.com/2016/06/12/jquery-plugin/"/>
+
+
+  <title> 使用jQuery封装插件 | 晚晴铭悦轩 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85595036-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1e11d2f2589bccbdb30499db84c40bfe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58945240";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">晚晴铭悦轩</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">听食茗赏，山土月日</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用jQuery封装插件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-12T18:10:19+08:00" content="2016-06-12">
+              2016-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/06/12/jquery-plugin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/12/jquery-plugin/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/06/12/jquery-plugin/" class="leancloud_visitors" data-flag-title="使用jQuery封装插件">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>jQuery封装插件的方法有三种：封装对象方法的插件、封装全局函数的插件、选择器插件</p>
+<h1 id="对象方法的插件"><a href="#对象方法的插件" class="headerlink" title="对象方法的插件"></a>对象方法的插件</h1><p>这种插件是将对象方法封装起来，用于对通过选择器获取的jQuery对象进行操作，是最常见的一种插件。此类插件可以发挥出jQuery选择器的强大优势，有相当一部分的jQuery的方法，都是在jQuery脚本库内部通过这种形式“插”在内核上的，例如parent()方法，appendTo()方法等。</p>
+<h2 id="添加一个对象扩展方法"><a href="#添加一个对象扩展方法" class="headerlink" title="添加一个对象扩展方法"></a>添加一个对象扩展方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> $.fn.changeColor= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.css( <span class="string">"color"</span>, <span class="string">"red"</span> );</div><div class="line">&#125;;</div><div class="line">   $.fn.changeFont= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.css( <span class="string">"font-size"</span>, <span class="string">"24px"</span> );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="添加多个对象扩展方法"><a href="#添加多个对象扩展方法" class="headerlink" title="添加多个对象扩展方法"></a>添加多个对象扩展方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">   $.fn.changeColor= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.css( <span class="string">"color"</span>, <span class="string">"red"</span> );</div><div class="line">&#125;;</div><div class="line">   $.fn.changeFont=<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.css( <span class="string">"font-size"</span>, <span class="string">"24px"</span> );</div><div class="line">&#125;;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+<h2 id="使用-fn-extend-obj-方法"><a href="#使用-fn-extend-obj-方法" class="headerlink" title="使用$.fn.extend(obj)方法"></a>使用$.fn.extend(obj)方法</h2><p>插件中不需要默认参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    $.fn.extend(&#123;</div><div class="line">        <span class="string">"pluginName"</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="comment">//这里放置插件代码</span></div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure></p>
+<p>插件中需要设置一些默认参数，可以使用\$.extend()进行扩展。在后面将对\$.fn.extend()和$.extend()进行详解<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    $.fn.extend(&#123;</div><div class="line">        <span class="string">"pluginName"</span>:<span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">            options=$.extend(&#123;</div><div class="line">                <span class="comment">//放置默认参数</span></div><div class="line">            &#125;,options);</div><div class="line">            <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="comment">//这里放置插件代码</span></div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure></p>
+<h1 id="全局函数的插件"><a href="#全局函数的插件" class="headerlink" title="全局函数的插件"></a>全局函数的插件</h1><p>可以将独立的函数加到jQuery命名空间下。如常用的jQuery.ajax()方去首尾空格的jQuery.trim()方法，都是jQuery内部作为全局函数的插件附加到内核上去的。 </p>
+<h2 id="添加单个全局函数"><a href="#添加单个全局函数" class="headerlink" title="添加单个全局函数"></a>添加单个全局函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.ltrim = <span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="添加多个全局函数"><a href="#添加多个全局函数" class="headerlink" title="添加多个全局函数"></a>添加多个全局函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.ltrim = <span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">$.rtrim = <span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace( <span class="regexp">/\s+$/</span>, <span class="string">""</span> );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="使用-extend-进行扩展-适合全局函数比较多的情况"><a href="#使用-extend-进行扩展-适合全局函数比较多的情况" class="headerlink" title="使用$.extend()进行扩展(适合全局函数比较多的情况)"></a>使用$.extend()进行扩展(适合全局函数比较多的情况)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123;</div><div class="line">  <span class="attr">ltrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">rtrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> str.replace( <span class="regexp">/\s+$/</span>, <span class="string">""</span> );</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="独立的命名空间"><a href="#独立的命名空间" class="headerlink" title="独立的命名空间"></a>独立的命名空间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.myPlugin=&#123;</div><div class="line">   <span class="attr">ltrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">   &#125;,</div><div class="line">   <span class="attr">rtrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> str.replace( <span class="regexp">/\s+$/</span>, <span class="string">""</span> );</div><div class="line">   &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="选择器插件"><a href="#选择器插件" class="headerlink" title="选择器插件"></a>选择器插件</h1><p>虽然jQuery的选择器十分强大，但在少数情况下，还是会需要用到选择器插件来扩充一些自己喜欢的选择器。 </p>
+<h2 id="编写jQuery选择器需要知道jQuery选择器的参数。"><a href="#编写jQuery选择器需要知道jQuery选择器的参数。" class="headerlink" title="编写jQuery选择器需要知道jQuery选择器的参数。"></a>编写jQuery选择器需要知道jQuery选择器的参数。</h2><p>jQuery选择器函数一共接收3个参数，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a,i,m</span>)</span>&#123;</div><div class="line">    <span class="comment">//第一个参数为a，指向当前遍历的DOM元素</span></div><div class="line">    <span class="comment">//第二个参数为i，指的是当前遍历DOM元素的索引，从0开始</span></div><div class="line">    <span class="comment">//第三个参数m比较特别，它是有jQuery正则引擎进一步解析后的产物（用match匹配出来的），结果是一个数组</span></div><div class="line">        <span class="comment">//m[0]，以例子$("div:gt(1)")来讲，是:gt(1)这部分</span></div><div class="line">        <span class="comment">//m[1]，选择器的引导符，匹配例子中的:号</span></div><div class="line">        <span class="comment">//m[2]，例子中的gt，确定是调用哪个选择器函数</span></div><div class="line">        <span class="comment">//m[3]，括号里的数字1，是编写选择器函数最重要的参数</span></div><div class="line">        <span class="comment">//m[4]，例子没有体现，略</span></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="构建选择器函数"><a href="#构建选择器函数" class="headerlink" title="构建选择器函数"></a>构建选择器函数</h2><p>例如编写$(“div:between(2,5)”)能实现获取索引值为3,4元素的功能<br>构建：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a,i,m</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tmp=m[<span class="number">3</span>].split(<span class="string">","</span>);   <span class="comment">//将传进来的m[3]以逗号分隔开，转成一个数组</span></div><div class="line">    <span class="keyword">return</span> tmp[<span class="number">0</span>]<span class="number">-0</span>&lt;i&amp;&amp;i&lt;tmp[<span class="number">1</span>]<span class="number">-0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>扩展成jQuery选择器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.extend($.expr[<span class="string">":"</span>],&#123;</div><div class="line">        <span class="attr">between</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> tmp=m[<span class="number">3</span>].split(<span class="string">","</span>);  </div><div class="line">            <span class="keyword">return</span> tmp[<span class="number">0</span>]<span class="number">-0</span>&lt;i&amp;&amp;i&lt;tmp[<span class="number">1</span>]<span class="number">-0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;)(jQuery)</div></pre></td></tr></table></figure></p>
+<h1 id="插件的基本要点"><a href="#插件的基本要点" class="headerlink" title="插件的基本要点"></a>插件的基本要点</h1><ul>
+<li>Query插件的文件名推荐命名为jquery.[插件名].js，以免和其他JS库插件混淆。 </li>
+<li>所有的对象方法都应当附加到jQuery.fn对象上，而所有的全局函数都应当附加到jQuery对象本身。 </li>
+<li><p><strong>在插件的范围里， this关键字代表了这个插件将要执行的jQuery对象；而在其他包含callback的jQuery函数中，this关键字代表了原生的DOM元素</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    $.fn.m​​yPlugin =<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="comment">//此处没有必要将this包在$号中如$(this)，因为this已经是一个jQuery对象。</span></div><div class="line"><span class="comment">//$(this)等同于 $($('#element'));</span></div><div class="line">        <span class="keyword">this</span>.fadeIn(<span class="string">'normal'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="comment">//此处callback函数中this关键字代表一个DOM元素</span></div><div class="line">        &#125;);</div><div class="line">    &#125;;</div><div class="line">&#125;)(jQuery);</div><div class="line"> </div><div class="line">$(<span class="string">'#element'</span>).myPlugin();</div></pre></td></tr></table></figure>
+</li>
+<li><p>可以通过this.each方法来遍历所有元素。</p>
+</li>
+<li>在插件头部加上一个分号，以免他人的不规范代码给插件带来影响。 </li>
+<li>所有的方法或函数插件，都应当以分号结尾，以免压缩时出现问题 </li>
+<li>除非插件需要返回的是一些需要获取的变量，<strong>插件应该返回一个jQuery对象</strong>，以保证插件的可链式操作。 </li>
+<li>利于jQuery.extend()方法设置插件方法的默认参数，增加插件的可用性。 </li>
+</ul>
+<h1 id="jQuery-fn-extend-与jQuery-extend-的对比"><a href="#jQuery-fn-extend-与jQuery-extend-的对比" class="headerlink" title="jQuery.fn.extend()与jQuery.extend()的对比"></a>jQuery.fn.extend()与jQuery.extend()的对比</h1><ul>
+<li>jQuery.fn.extend()是对于jQuery对象（原型）扩展的方法，因为jQuery.fn=jQuery.prototype</li>
+<li>jQuery.extend()除了用于扩展jQuery全局函数和选择器函数之外，还有一个重要的功能，就是扩展已有的Objext对象<br><strong>语法：jQuery.extend(target,obj1,…[objN])</strong></li>
+</ul>
+<p>1、例如合并setting对象和options对象，修改并返回settings对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> setting=&#123;<span class="attr">validate</span>:<span class="literal">false</span>,<span class="attr">limit</span>:<span class="number">5</span>,<span class="attr">name</span>:<span class="string">"foo"</span>&#125;</div><div class="line"><span class="keyword">var</span> options=&#123;<span class="attr">validate</span>:<span class="literal">true</span>,<span class="attr">name</span>:<span class="string">"bar"</span>&#125;</div><div class="line"><span class="keyword">var</span> newOptions=jQuery.extend(setting,options)</div><div class="line"><span class="comment">//结果</span></div><div class="line">newOptions=&#123;<span class="attr">validate</span>:<span class="literal">true</span>,<span class="attr">limit</span>:<span class="number">5</span>,<span class="attr">name</span>:<span class="string">"bar"</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>由此可见，内部机制是有扩展对象将覆盖与原对象相同的属性的值；若原对象不存在某属性，则进行扩展<br>2、jQuery.extend()常被用于设置插件方法的一系列默认参数，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">    options=jQuery.extend(&#123;</div><div class="line">        <span class="attr">name</span>:<span class="string">"bar"</span>,</div><div class="line">        <span class="attr">length</span>:<span class="number">5</span>,</div><div class="line">        <span class="attr">dataType</span>:<span class="string">"xml"</span>       <span class="comment">/*默认参数*/</span></div><div class="line">    &#125;,options)               <span class="comment">/*options为传递的参数*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/js/" rel="tag">#js</a>
+          
+            <a href="/blog/tags/jQuery/" rel="tag">#jQuery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/06/08/related-menu/" rel="next" title="省、市、区三级联动菜单Demo">
+                <i class="fa fa-chevron-left"></i> 省、市、区三级联动菜单Demo
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/06/14/js-array-method/" rel="prev" title="Javascript数组方法">
+                Javascript数组方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/06/12/jquery-plugin/"
+     data-title="使用jQuery封装插件"
+     data-content=""
+     data-url="http://www.huzerui.com/2016/06/12/jquery-plugin/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/12/jquery-plugin/"
+           data-title="使用jQuery封装插件" data-url="http://www.huzerui.com/2016/06/12/jquery-plugin/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/img/avatar.jpg"
+               alt="前端空城师" />
+          <p class="site-author-name" itemprop="name">前端空城师</p>
+          <p class="site-description motion-element" itemprop="description">借笔墨纸砚，成铭悦之轩，伴余生之梦。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alex1504" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e2a1d411595b/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/alex1504" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/huzerui/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://huzerui.lofter.com/" target="_blank" title="LOFTER">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  LOFTER
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对象方法的插件"><span class="nav-number">1.</span> <span class="nav-text">对象方法的插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加一个对象扩展方法"><span class="nav-number">1.1.</span> <span class="nav-text">添加一个对象扩展方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加多个对象扩展方法"><span class="nav-number">1.2.</span> <span class="nav-text">添加多个对象扩展方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-fn-extend-obj-方法"><span class="nav-number">1.3.</span> <span class="nav-text">使用$.fn.extend(obj)方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全局函数的插件"><span class="nav-number">2.</span> <span class="nav-text">全局函数的插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加单个全局函数"><span class="nav-number">2.1.</span> <span class="nav-text">添加单个全局函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加多个全局函数"><span class="nav-number">2.2.</span> <span class="nav-text">添加多个全局函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-extend-进行扩展-适合全局函数比较多的情况"><span class="nav-number">2.3.</span> <span class="nav-text">使用$.extend()进行扩展(适合全局函数比较多的情况)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#独立的命名空间"><span class="nav-number">2.4.</span> <span class="nav-text">独立的命名空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择器插件"><span class="nav-number">3.</span> <span class="nav-text">选择器插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写jQuery选择器需要知道jQuery选择器的参数。"><span class="nav-number">3.1.</span> <span class="nav-text">编写jQuery选择器需要知道jQuery选择器的参数。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建选择器函数"><span class="nav-number">3.2.</span> <span class="nav-text">构建选择器函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件的基本要点"><span class="nav-number">4.</span> <span class="nav-text">插件的基本要点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-fn-extend-与jQuery-extend-的对比"><span class="nav-number">5.</span> <span class="nav-text">jQuery.fn.extend()与jQuery.extend()的对比</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端空城师</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blog-jerry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/blog/libs/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/blog/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz", "v6hzlSojKgLf2oDjC1gNPuf8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

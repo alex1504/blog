@@ -1,0 +1,856 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="description" content="前端开发博客，专注前端技术/资源分享，记载关于电影/旅行/生活等轶事，记录经验总结/人生思考；借笔墨纸砚，成铭悦之轩，伴余生之梦。">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5zegIGyHLF9Qs-4RGG3VU8CKUML9omsUu7OOsQRJhbY" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css,图标," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="晚晴铭悦轩" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="本文总结一款免费开源的Web应用程序IcoMoon制作web图标字体。 使用web字体图标优势适用性：一个图标字体比一系列的图像（特别是在Retina屏中使用双倍大小的图像）要小。一旦图标字体加载了，你的图标就会马上渲染出来，不需要下载一个图像。 可扩展性：图标字体可以用过font-size属性设置其任何大小。这使您能够随时输出不同大小的图标，然而，使用位图，你必须得为每个不同大小的图像输出一个不">
+<meta name="keywords" content="css,图标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IcoMoon将图标转换成web字体">
+<meta property="og:url" content="http://www.huzerui.com/2016/06/16/icoMoon/index.html">
+<meta property="og:site_name" content="晚晴铭悦轩">
+<meta property="og:description" content="本文总结一款免费开源的Web应用程序IcoMoon制作web图标字体。 使用web字体图标优势适用性：一个图标字体比一系列的图像（特别是在Retina屏中使用双倍大小的图像）要小。一旦图标字体加载了，你的图标就会马上渲染出来，不需要下载一个图像。 可扩展性：图标字体可以用过font-size属性设置其任何大小。这使您能够随时输出不同大小的图标，然而，使用位图，你必须得为每个不同大小的图像输出一个不">
+<meta property="og:image" content="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-1.jpg">
+<meta property="og:image" content="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-2.gif">
+<meta property="og:image" content="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-3.jpg">
+<meta property="og:updated_time" content="2017-04-29T07:02:21.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IcoMoon将图标转换成web字体">
+<meta name="twitter:description" content="本文总结一款免费开源的Web应用程序IcoMoon制作web图标字体。 使用web字体图标优势适用性：一个图标字体比一系列的图像（特别是在Retina屏中使用双倍大小的图像）要小。一旦图标字体加载了，你的图标就会马上渲染出来，不需要下载一个图像。 可扩展性：图标字体可以用过font-size属性设置其任何大小。这使您能够随时输出不同大小的图标，然而，使用位图，你必须得为每个不同大小的图像输出一个不">
+<meta name="twitter:image" content="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.huzerui.com/2016/06/16/icoMoon/"/>
+
+
+  <title> IcoMoon将图标转换成web字体 | 晚晴铭悦轩 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85595036-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1e11d2f2589bccbdb30499db84c40bfe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58945240";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">晚晴铭悦轩</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">听食茗赏，山土月日</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IcoMoon将图标转换成web字体
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-16T11:22:52+08:00" content="2016-06-16">
+              2016-06-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/06/16/icoMoon/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/16/icoMoon/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/06/16/icoMoon/" class="leancloud_visitors" data-flag-title="IcoMoon将图标转换成web字体">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文总结一款免费开源的Web应用程序<a href="https://icomoon.io/app/#/select" target="_blank" rel="external">IcoMoon</a>制作web图标字体。</p>
+<h1 id="使用web字体图标优势"><a href="#使用web字体图标优势" class="headerlink" title="使用web字体图标优势"></a>使用web字体图标优势</h1><p>适用性：一个图标字体比一系列的图像（特别是在Retina屏中使用双倍大小的图像）要小。一旦图标字体加载了，你的图标就会马上渲染出来，不需要下载一个图像。</p>
+<p>可扩展性：图标字体可以用过font-size属性设置其任何大小。这使您能够随时输出不同大小的图标，然而，使用位图，你必须得为每个不同大小的图像输出一个不同文件。</p>
+<p>灵活性：文字效果可以很容易地应用到你的图标上，包括<strong>颜色，阴影和翻转</strong>等效果。他们还可以在任何背景下显示。</p>
+<p>兼容性：网页字体支持所有现代浏览器，包括IE低版本。详细兼容性可以点击这里。</p>
+<h1 id="IconMoon优势"><a href="#IconMoon优势" class="headerlink" title="IconMoon优势"></a>IconMoon优势</h1><p>提供完整图标解决方案：<br>600+字符，您可以根据自己需求定制（如就选两个）；可以导入其他字体，也进行特别定制（类似fontforge功能）；定制字体提供打包导出功能（省去了字体转换），兼容IE6+，现代浏览器以及各类手机设备，且有demo实例，并对字符进行了HTML转化。</p>
+<h1 id="IconMoon使用方法"><a href="#IconMoon使用方法" class="headerlink" title="IconMoon使用方法"></a>IconMoon使用方法</h1><p>导入或选择图标、对图标进行编辑、生成并输出成zip文件（含字体本身、HTML实例页面和相应的CSS）</p>
+<h2 id="导入或选择图标"><a href="#导入或选择图标" class="headerlink" title="导入或选择图标"></a>导入或选择图标</h2><p>选择内置图标只需在界面单击相应图标，图标高亮即为选中。<br><img src="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-1.jpg" alt="选择"><br>如果你通过AI做好了一个图标想导入，只需点击“Imorticons”按钮，然后选择您想要添加的SVG文件——您也可以一次添加多个文件。这些图标将会出现在“Your Custom Icons”区域中。如果他们是高亮的黄色显示，表示这些图标是你将要创建的图标字体。</p>
+<h2 id="对图标进行编辑"><a href="#对图标进行编辑" class="headerlink" title="对图标进行编辑"></a>对图标进行编辑</h2><p><img src="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-2.gif" alt="编辑"><br>如果你想调整图标的位置、大小或旋转，你可以点击“Edit”按钮。可以使用“Save Copy”按钮来创建图片的变化（例如，一个镜像的衅标）。添加一个有意义的图标标记，因为这将被用来生成类名。</p>
+<h2 id="生成并输出成zip文件"><a href="#生成并输出成zip文件" class="headerlink" title="生成并输出成zip文件"></a>生成并输出成zip文件</h2><p>点击屏幕底部的“Font”按钮开始生成字体。这样你就可以指定哪个图标映射到哪个字符上，例如，如果你要设置一套六个旋转的球，你可以每 这六个球分别指定字符：q、w、e、r、t和y。你也可以根据你自己的爱好选择一个字体的名字。<br><img src="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-3.jpg" alt="输出"><br>单击“Download”下载字体包到你的电脑上。他有一个字文件夹包含了字体本身（woff,eot,ttf格式），以及一个HTML示例页面和相应的CSS。甚至还有一个javascript文件和一个解决方法，如果你需要支持IE或IE7。</p>
+<h1 id="如何使用这些图标字体"><a href="#如何使用这些图标字体" class="headerlink" title="如何使用这些图标字体"></a>如何使用这些图标字体</h1><p>@font-face引入字体库、调用图标字体</p>
+<h2 id="font-face引入字体库"><a href="#font-face引入字体库" class="headerlink" title="@font-face引入字体库"></a>@font-face引入字体库</h2><p>语法：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">   font-family: &lt;YourWebFontName&gt;;</div><div class="line">   src: &lt;source&gt; [&lt;format&gt;][,&lt;source&gt; [&lt;format&gt;]]*;</div><div class="line">   [font-weight: &lt;weight&gt;];</div><div class="line">   [font-style: &lt;style&gt;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>兼容多种浏览器示例；如果只需兼容现代浏览器，可以按需删除src一些代码。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'icomoon'</span>;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'fonts/icomoon.eot?1h4iu7'</span>); <span class="comment">/* IE9 Compat Modes */</span></div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'fonts/icomoon.eot?1h4iu7#iefix'</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>),<span class="comment">/* IE6-IE8 */</span></div><div class="line">         <span class="built_in">url</span>(<span class="string">'fonts/icomoon.ttf?1h4iu7'</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>), <span class="comment">/* Modern Browsers */</span></div><div class="line">         <span class="built_in">url</span>(<span class="string">'fonts/icomoon.woff?1h4iu7'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>), <span class="comment">/* Safari, Android, iOS */</span></div><div class="line">         <span class="built_in">url</span>(<span class="string">'fonts/icomoon.svg?1h4iu7#icomoon'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>);  <span class="comment">/* Legacy iOS */</span></div><div class="line">    <span class="attribute">font-weight</span>: normal;</div><div class="line">    <span class="attribute">font-style</span>: normal;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="调用图标字体"><a href="#调用图标字体" class="headerlink" title="调用图标字体"></a>调用图标字体</h2><p>通过css属性选择器指定类为”icon-“开头的元素的font-family，并为icon-创建的图标类名定义content。与fontAwesome图标字体使用方法是相同的<br>css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-attr">[class^="icon-"]</span>, <span class="selector-attr">[class*=" icon-"]</span> &#123;</div><div class="line">    <span class="comment">/* 使用!important 使样式获得最高优先级  */</span></div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'icomoon'</span> <span class="meta">!important</span>;</div><div class="line">    <span class="attribute">speak</span>: none;</div><div class="line">    <span class="attribute">font-style</span>: normal;</div><div class="line">    <span class="attribute">font-weight</span>: normal;</div><div class="line">    <span class="attribute">font-variant</span>: normal;</div><div class="line">    <span class="attribute">text-transform</span>: none;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="comment">/* 使字体变得平滑 =========== */</span></div><div class="line">    <span class="attribute">-webkit-font-smoothing</span>: antialiased;</div><div class="line">    <span class="attribute">-moz-osx-font-smoothing</span>: grayscale;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-home</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">"\e900"</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-office</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">"\e904"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后html中定义类名调用即可：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-home"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>最简单的方法就是将文件夹中的style.css样式文件粘贴到自己项目中的样式表即可。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/css/" rel="tag">#css</a>
+          
+            <a href="/blog/tags/图标/" rel="tag">#图标</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/06/15/js-dom-elepos-and-elesize/" rel="next" title="JavaScript获取DOM尺寸大小和元素位置">
+                <i class="fa fa-chevron-left"></i> JavaScript获取DOM尺寸大小和元素位置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/06/16/mobile-rem/" rel="prev" title="移动端自适应布局解决方案——rem">
+                移动端自适应布局解决方案——rem <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/06/16/icoMoon/"
+     data-title="IcoMoon将图标转换成web字体"
+     data-content=""
+     data-url="http://www.huzerui.com/2016/06/16/icoMoon/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/16/icoMoon/"
+           data-title="IcoMoon将图标转换成web字体" data-url="http://www.huzerui.com/2016/06/16/icoMoon/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/img/avatar.jpg"
+               alt="前端空城师" />
+          <p class="site-author-name" itemprop="name">前端空城师</p>
+          <p class="site-description motion-element" itemprop="description">借笔墨纸砚，成铭悦之轩，伴余生之梦。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alex1504" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e2a1d411595b/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/alex1504" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/huzerui/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://huzerui.lofter.com/" target="_blank" title="LOFTER">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  LOFTER
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用web字体图标优势"><span class="nav-number">1.</span> <span class="nav-text">使用web字体图标优势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IconMoon优势"><span class="nav-number">2.</span> <span class="nav-text">IconMoon优势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IconMoon使用方法"><span class="nav-number">3.</span> <span class="nav-text">IconMoon使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入或选择图标"><span class="nav-number">3.1.</span> <span class="nav-text">导入或选择图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对图标进行编辑"><span class="nav-number">3.2.</span> <span class="nav-text">对图标进行编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成并输出成zip文件"><span class="nav-number">3.3.</span> <span class="nav-text">生成并输出成zip文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使用这些图标字体"><span class="nav-number">4.</span> <span class="nav-text">如何使用这些图标字体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#font-face引入字体库"><span class="nav-number">4.1.</span> <span class="nav-text">@font-face引入字体库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用图标字体"><span class="nav-number">4.2.</span> <span class="nav-text">调用图标字体</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端空城师</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blog-jerry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/blog/libs/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/blog/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz", "v6hzlSojKgLf2oDjC1gNPuf8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

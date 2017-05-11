@@ -1,0 +1,860 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="description" content="前端开发博客，专注前端技术/资源分享，记载关于电影/旅行/生活等轶事，记录经验总结/人生思考；借笔墨纸砚，成铭悦之轩，伴余生之梦。">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5zegIGyHLF9Qs-4RGG3VU8CKUML9omsUu7OOsQRJhbY" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sass,mixin," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="晚晴铭悦轩" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="最近看到知乎的一个问题：英语是否会成为前端工程师的发展瓶颈？，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…” 由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国">
+<meta name="keywords" content="sass,mixin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8个sass mixins快到我的碗里来">
+<meta property="og:url" content="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/index.html">
+<meta property="og:site_name" content="晚晴铭悦轩">
+<meta property="og:description" content="最近看到知乎的一个问题：英语是否会成为前端工程师的发展瓶颈？，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…” 由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国">
+<meta property="og:updated_time" content="2017-05-11T13:54:59.952Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8个sass mixins快到我的碗里来">
+<meta name="twitter:description" content="最近看到知乎的一个问题：英语是否会成为前端工程师的发展瓶颈？，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…” 由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/"/>
+
+
+  <title> 8个sass mixins快到我的碗里来 | 晚晴铭悦轩 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85595036-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1e11d2f2589bccbdb30499db84c40bfe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58945240";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">晚晴铭悦轩</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">听食茗赏，山土月日</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                8个sass mixins快到我的碗里来
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-11T20:43:02+08:00" content="2017-05-11">
+              2017-05-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" class="leancloud_visitors" data-flag-title="8个sass mixins快到我的碗里来">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近看到知乎的一个问题：<a href="https://www.zhihu.com/question/55998388/answer/167923782?group_id=846021391139627008" target="_blank" rel="external">英语是否会成为前端工程师的发展瓶颈？</a>，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…”</p>
+<p>由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国外程序员社区还是有好处滴。所以从今天起给自己立下的目标是，若见到比较有价值的外文博客文章，便翻译到本博客，原文链接附在文章末尾方便大家参考（摘要去除不必要的翻译）。</p>
+<p>Sass mixins是一种可随处重用的预定义代码块，如果你熟悉任何编程语言你可以将它们视为函数使用。mixin可以接收多个参数并被调用，最后输出css代码，它们可以使你的css代码变得十分整洁。</p>
+<p>以下部分的代码块在compass库中已经有了，但我不想在我的项目中使用compass这样的庞然大物，我决定自己重写它们。</p>
+<p>以下是8个我认为开发者必须放在囊中的mixins</p>
+<h2 id="1、以rem为单位设置字体大小并且用px作为后备样式"><a href="#1、以rem为单位设置字体大小并且用px作为后备样式" class="headerlink" title="1、以rem为单位设置字体大小并且用px作为后备样式"></a>1、以rem为单位设置字体大小并且用px作为后备样式</h2><p>rem单位与em单位非常类似，区别在于em相对于父元素，而rem相对于根元素。<br>rem单位拥有所有em单位的优势，但缺点是在IE8及以下版本并不支持，但通过mixin我们可以将px作为rem的后备样式进行兼容。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@<span class="function"><span class="keyword">function</span> <span class="title">calculateRem</span>(<span class="params">$size</span>) </span>&#123;</div><div class="line">  $remSize: $size / <span class="number">16</span>px;</div><div class="line">  @<span class="keyword">return</span> $remSize * <span class="number">1</span>rem;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@mixin font-size($size) &#123;</div><div class="line">  font-size: $size;</div><div class="line">  font-size: calculateRem($size);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  @include font-size(<span class="number">14</span>px)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  font-size: <span class="number">14</span>px; <span class="comment">//如果浏览器支持rem将会被覆盖</span></div><div class="line">  font-size: <span class="number">0.8</span>rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2、生成媒体查询的断点"><a href="#2、生成媒体查询的断点" class="headerlink" title="2、生成媒体查询的断点"></a>2、生成媒体查询的断点</h2><p>Sass3.2版本之后允许通过命名媒体查询使代码更加整洁，我们可以不在使用@media (min-width: 600px)，而是给他们一些语义化的名字如”breakpoint-large” 或者 “breakpoint-a-really-large-computer-machine”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@mixin bp-large &#123;</div><div class="line">  @media only screen and (max-width: <span class="number">60</span>em) &#123;</div><div class="line">    @content;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@mixin bp-medium &#123;</div><div class="line">  @media only screen and (max-width: <span class="number">40</span>em) &#123;</div><div class="line">    @content;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@mixin bp-small &#123;</div><div class="line">  @media only screen and (max-width: <span class="number">30</span>em) &#123;</div><div class="line">    @content;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.sidebar &#123;</div><div class="line">  <span class="attr">width</span>: <span class="number">60</span>%;</div><div class="line">  float: left;</div><div class="line">  margin: <span class="number">0</span> <span class="number">2</span>% <span class="number">0</span> <span class="number">0</span>;</div><div class="line">  @include bp-small &#123;</div><div class="line">    <span class="attr">width</span>: <span class="number">100</span>%;</div><div class="line">    float: none;</div><div class="line">    margin: <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.sidebar &#123;</div><div class="line">  <span class="attr">width</span>: <span class="number">60</span>%;</div><div class="line">  float: left;</div><div class="line">  margin: <span class="number">0</span> <span class="number">2</span>% <span class="number">0</span> <span class="number">0</span>;</div><div class="line">  @media only screen and (max-width: <span class="number">30</span>)&#123;</div><div class="line">    .sidebar&#123;<span class="attr">width</span>: <span class="number">100</span>%; float: none; margin: <span class="number">0</span>;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3、设置SVG格式的背景图片并以PNG和retina作为备选"><a href="#3、设置SVG格式的背景图片并以PNG和retina作为备选" class="headerlink" title="3、设置SVG格式的背景图片并以PNG和retina作为备选"></a>3、设置SVG格式的背景图片并以PNG和retina作为备选</h2><p>这个mixin需要依赖于<a href="https://modernizr.com/" target="_blank" rel="external">Modernizr</a>库，你需要一个svg图作为默认的背景图片，需要一个png图片给不支持svg的浏览器使用，还需要一个@2x的png图片给retina屏幕使用。<br>所以你需要三张图片资源:<br>· pattern.svg<br>··pattern.png<br>· pattern@2x.png</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$image-path: '../img' !default;</div><div class="line">$fallback-extension: 'png' !default;</div><div class="line">$retina-suffix: '@2x';</div><div class="line">@mixin background-image($name, $size:false)&#123;</div><div class="line">    background-image: url(#&#123;$image-path&#125;/#&#123;$name&#125;.svg);</div><div class="line">    @if($size)&#123;</div><div class="line">        background-size: $size;</div><div class="line">    &#125;</div><div class="line">    .no-svg &amp;&#123;</div><div class="line">        background-image: url(#&#123;$image-path&#125;/#&#123;$name&#125;.#&#123;$fallback-extension&#125;);</div><div class="line"></div><div class="line">        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) &#123;</div><div class="line">          background-image: url(#&#123;$image-path&#125;/#&#123;$name&#125;#&#123;$retina-suffix&#125;.#&#123;$fallback-extension&#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line">  @include background-image(<span class="string">'pattern'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注：Modernizr在初始化的时候会寻找”no-js”的节点，如果浏览器支持js，那么该节点的class就变成”js”并且附带了其他它检测后所支持的属性判断。如果类名前带”no-“表示不支持该css属性。</p>
+<h2 id="4、简化css3动画的书写前缀"><a href="#4、简化css3动画的书写前缀" class="headerlink" title="4、简化css3动画的书写前缀"></a>4、简化css3动画的书写前缀</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@mixin keyframes($animation-name) &#123;</div><div class="line">    @-webkit-keyframes #&#123;$animation-name&#125; &#123;</div><div class="line">        @content;</div><div class="line">    &#125;</div><div class="line">    @-moz-keyframes #&#123;$animation-name&#125; &#123;</div><div class="line">        @content;</div><div class="line">    &#125;  </div><div class="line">    @-ms-keyframes #&#123;$animation-name&#125; &#123;</div><div class="line">        @content;</div><div class="line">    &#125;</div><div class="line">    @-o-keyframes #&#123;$animation-name&#125; &#123;</div><div class="line">        @content;</div><div class="line">    &#125;  </div><div class="line">    @keyframes #&#123;$animation-name&#125; &#123;</div><div class="line">        @content;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@mixin animation($str) &#123;</div><div class="line">  -webkit-animation: #&#123;$str&#125;;</div><div class="line">  -moz-animation: #&#123;$str&#125;;</div><div class="line">  -ms-animation: #&#123;$str&#125;;</div><div class="line">  -o-animation: #&#123;$str&#125;;</div><div class="line">  animation: #&#123;$str&#125;;      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@include keyframes(slide-down) &#123;</div><div class="line">  <span class="number">0</span>% &#123; <span class="attr">opacity</span>: <span class="number">1</span>; &#125;</div><div class="line">  <span class="number">90</span>% &#123; <span class="attr">opacity</span>: <span class="number">0</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.element &#123;</div><div class="line">  <span class="attr">width</span>: <span class="number">100</span>px;</div><div class="line">  height: <span class="number">100</span>px;</div><div class="line">  background: black;</div><div class="line">  @include animation(<span class="string">'slide-down 5s 3'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="5、简化transition"><a href="#5、简化transition" class="headerlink" title="5、简化transition"></a>5、简化transition</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@mixin transition($args...) &#123;</div><div class="line">  -webkit-transition: $args;</div><div class="line">  -moz-transition: $args;</div><div class="line">  -ms-transition: $args;</div><div class="line">  -o-transition: $args;</div><div class="line">  transition: $args;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a &#123;</div><div class="line">  <span class="attr">color</span>: gray;</div><div class="line">  @include transition(color <span class="number">.3</span>s ease);</div><div class="line">  &amp;:hover &#123;</div><div class="line">    <span class="attr">color</span>: black;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="6、透明度的跨浏览器支持"><a href="#6、透明度的跨浏览器支持" class="headerlink" title="6、透明度的跨浏览器支持"></a>6、透明度的跨浏览器支持</h2><p>使得低版本ie5及以上兼容opacity的mixin<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@mixin opacity($opacity) &#123;</div><div class="line">  <span class="attr">opacity</span>: $opacity;</div><div class="line">  $opacity-ie: $opacity * <span class="number">100</span>;</div><div class="line">  filter: alpha(opacity=$opacity-ie); <span class="comment">//IE8</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.faded-text &#123;</div><div class="line">  @include opacity(<span class="number">0.8</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="7、清除浮动"><a href="#7、清除浮动" class="headerlink" title="7、清除浮动"></a>7、清除浮动</h2><p>在web中清除浮动常会有很多异常，这是<a href="http://nicolasgallagher.com/micro-clearfix-hack/" target="_blank" rel="external">Nicolas Gallagher</a>创造的比较稳定的写法，支持IE6及以上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">%clearfix &#123;</div><div class="line">  *zoom: <span class="number">1</span>;</div><div class="line">  &amp;:before, &amp;:after &#123;</div><div class="line">    <span class="attr">content</span>: <span class="string">" "</span>;</div><div class="line">    display: table;</div><div class="line">  &#125;</div><div class="line">  &amp;:after &#123;</div><div class="line">    <span class="attr">clear</span>: both;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.container-<span class="keyword">with</span>-floated-children &#123;</div><div class="line">  @extend %clearfix;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="8、直观地隐藏元素"><a href="#8、直观地隐藏元素" class="headerlink" title="8、直观地隐藏元素"></a>8、直观地隐藏元素</h2><p>当你将一个元素设置为display: none的时候，将会阻止它们呈现给屏幕阅读器用户。因此我们需要在隐藏元素的同时让元素对于屏幕阅读器是可获知的。<br>由于输出结果总是一致的，下面这个例子使用sass占位符选择器，这样减少了很多重复的代码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">%visuallyhidden &#123;</div><div class="line">  <span class="attr">margin</span>: <span class="number">-1</span>px;</div><div class="line">  padding: <span class="number">0</span>;</div><div class="line">  width: <span class="number">1</span>px;</div><div class="line">  height: <span class="number">1</span>px;</div><div class="line">  overflow: hidden;</div><div class="line">  clip: rect(<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>);</div><div class="line">  clip: rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">  position: absolute;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.visually-hidden &#123;</div><div class="line">  @extend %visuallyhidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>原文链接：<a href="http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/" target="_blank" rel="external">8 Sass mixins you must have in your toolbox</a><br>扩展阅读：<a href="https://webdesign.tutsplus.com/tutorials/bourbon-on-the-rocks-cool-functions-to-improve-your-sass--cms-24798" target="_blank" rel="external">Cool Functions to Improve Your Sass</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/sass/" rel="tag">#sass</a>
+          
+            <a href="/blog/tags/mixin/" rel="tag">#mixin</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/03/30/solve-asyncfun-callback-problem/" rel="next" title="关于异步函数的回调问题">
+                <i class="fa fa-chevron-left"></i> 关于异步函数的回调问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/"
+     data-title="8个sass mixins快到我的碗里来"
+     data-content=""
+     data-url="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/"
+           data-title="8个sass mixins快到我的碗里来" data-url="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/img/avatar.jpg"
+               alt="前端空城师" />
+          <p class="site-author-name" itemprop="name">前端空城师</p>
+          <p class="site-description motion-element" itemprop="description">借笔墨纸砚，成铭悦之轩，伴余生之梦。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alex1504" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e2a1d411595b/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/alex1504" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/huzerui/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://huzerui.lofter.com/" target="_blank" title="LOFTER">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  LOFTER
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、以rem为单位设置字体大小并且用px作为后备样式"><span class="nav-number">1.</span> <span class="nav-text">1、以rem为单位设置字体大小并且用px作为后备样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、生成媒体查询的断点"><span class="nav-number">2.</span> <span class="nav-text">2、生成媒体查询的断点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、设置SVG格式的背景图片并以PNG和retina作为备选"><span class="nav-number">3.</span> <span class="nav-text">3、设置SVG格式的背景图片并以PNG和retina作为备选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、简化css3动画的书写前缀"><span class="nav-number">4.</span> <span class="nav-text">4、简化css3动画的书写前缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、简化transition"><span class="nav-number">5.</span> <span class="nav-text">5、简化transition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、透明度的跨浏览器支持"><span class="nav-number">6.</span> <span class="nav-text">6、透明度的跨浏览器支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、清除浮动"><span class="nav-number">7.</span> <span class="nav-text">7、清除浮动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、直观地隐藏元素"><span class="nav-number">8.</span> <span class="nav-text">8、直观地隐藏元素</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端空城师</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"blog-jerry"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/blog/libs/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/blog/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz", "v6hzlSojKgLf2oDjC1gNPuf8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
