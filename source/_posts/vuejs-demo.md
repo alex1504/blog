@@ -59,10 +59,17 @@ Github地址：https://github.com/alex1504/vue2.0-demo
 - 由于ithub访问速度原因，初次加载需稍等片刻。
 - 登录及注册使用了Leancloud的后端云服务，关于如何使用你可以点[这里](https://leancloud.cn/docs/demo.html)查看LeanCloud搭建的各类应用演示。
 
+# 关于使用Leancloud接口
+细心的小伙伴应该会发现，使用LN接口必须使用AV.init对接口进行初始化，接收的参数是你的APPID和APPScret，也就是说即使我们的项目不开源，通过前端审查脚本也可以知道你的应用id及密钥，进而可以轻松调取你的接口做坏坏的事情。
+为此如果你需要纯前后端分离的进行接口调用，LN给予的安全方案是配置web安全域名，也就是只有安全域名才能访问你的接口。
+![安全域名](/blog/img/post/2017-02-04-leancloud-web-security.png)
+另外更稳妥的做法是传统开发APP的方式，将APPID和APPScret在后台代码中对接口进行初始化，前端就审查不到了，比如koa就可以单独为静态文件设置公开访问的静态目录，对于敏感数据文件可以设置存放在安全的前端无法访问的目录下面。
+在有后端对接口实现复杂的逻辑封装的时候，推荐LN官方推出的[LeanEngine](https://leancloud.cn/docs/leanengine_overview.html)运行方案，有Nodejs、Pythod、PHP、Java四个版本。
+
 # 感触：
 1. MVVM三分天下，如果你希望一个轻巧、易上手、文档详尽的框架，选择[Vuejs](https://cn.vuejs.org/)
 2. 如果你十分熟练jQuery的用法，在Vuejs中你很容易发现一些遗传着“经典”的足迹
 3. 仔细发现，如果你学习过js设计模式，你会觉得Vuejs的设计很像其中一种模式——单例模式
-4. 如果你需要做一个小型应用，不妨使用后端云服务（比如[LeanCloud](https://leancloud.cn/)、[Bomb](http://www.bmob.cn/)、[maxLeap](https://maxleap.cn/s/web/zh_cn/index.html)），既减少你的开发时间也减少开发成本。
+4. 如果你需要做一个小型应用，不妨使用后端云服务（比如[LeanCloud](https://leancloud.cn/)、[Bomb](http://www.bmob.cn/)、[maxLeap](https://maxleap.cn/s/web/zh_cn/index.html)），既减少你的开发时间也减少开发成本；但大型的应用和数据敏感型的应用肯定是不推荐用别人的服务器的。
 5. ES6还没完全支持，ES7就发布了，关于js逐渐融合各种语言优良特性不断发展的前景个人是十分看好的，毕竟js创始人Brendan Eich仅用几天时间就完成了它的设计。在开发过程中也确实因为js的某些缺陷增大了开发的代码量，不得不用一些设计模式去弥补。关于ES6、ES7的新特性，会在今后逐渐学习并记录。
 6. 见过一些reactNative制作的应用，体验和原生APP无任何差别，有Vue Native么？不妨给它加层包装，叫做[weex](https://weex.incubator.apache.org/cn/)，后面也会慢慢地了解和学习。
