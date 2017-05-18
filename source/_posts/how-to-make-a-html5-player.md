@@ -5,7 +5,7 @@ categories: 前端
 tags: [html5,player]
 ---
 “咳咳咳..在看正文之前，如果客官有兴趣可以轻点播放按钮聆听一下我的**第一首吉他原创歌曲**”。——作于大三下学期
-<audio style="width: 100%" src="http://ofuq64vel.bkt.clouddn.com/guita-september.mp3" controls></audio>
+<audio style="width: 100%" src="http://qiniu.huzerui.com/audio/guita-september.mp3" controls></audio>
 “怎么感觉整个人都不好了...还有呜呜呜的声音”
 
 “那时正值寒冬，于学校宿舍顶楼录制，周围一片漆黑，忽一阵冷风袭来，但对我而言那是美丽的协奏”
@@ -13,7 +13,7 @@ tags: [html5,player]
 “什么鬼..！”
 
 “好吧...那听听这首吧，也许能帮到客官您，这是我的**第二首原创歌曲**”。——作于大四上学期
-<audio style="width: 100%" src="http://ofuq64vel.bkt.clouddn.com/guita-nightsky.mp3" controls></audio>
+<audio style="width: 100%" src="http://qiniu.huzerui.com/audio/guita-nightsky.mp3" controls></audio>
 “怎么比第一首调子还哀伤”？Are you kiding me？
 
 **“蓝瘦，香菇，在这里。”**
