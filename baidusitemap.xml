@@ -4,16 +4,16 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2017/02/04/vuejs-demo/</loc>
-    <lastmod>2017-05-12T07:10:12.815Z</lastmod>
+    <loc>http://www.huzerui.com/blog/2016/09/04/mobile-gallery/</loc>
+    <lastmod>2017-05-18T11:54:03.770Z</lastmod>
     <data>
         <display>
-        <title>Vuejs2.0 Demo</title>
-        <pubTime>2017-02-04T07:12:19.000Z</pubTime>
+        <title>移动端图片画廊</title>
+        <pubTime>2016-09-04T02:55:47.000Z</pubTime>
         
-        <tag>js</tag>
+        <tag>移动端</tag>
          
-        <tag>vuejs</tag>
+        <tag>图片画廊</tag>
          
          
            
@@ -27,15 +27,59 @@
     
   <url>
     <loc>http://www.huzerui.com/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/</loc>
-    <lastmod>2017-05-11T13:54:59.952Z</lastmod>
+    <lastmod>2017-05-18T11:52:11.305Z</lastmod>
     <data>
         <display>
-        <title>8个sass mixins快到我的碗里来</title>
+        <title>8个值得收藏的sass函数</title>
         <pubTime>2017-05-11T12:43:02.000Z</pubTime>
         
         <tag>sass</tag>
          
         <tag>mixin</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/10/30/how-to-make-a-html5-player/</loc>
+    <lastmod>2017-05-18T11:51:30.412Z</lastmod>
+    <data>
+        <display>
+        <title>HTML5(Audio)移动音乐播放器</title>
+        <pubTime>2016-10-30T00:38:01.000Z</pubTime>
+        
+        <tag>html5</tag>
+         
+        <tag>player</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2017/02/04/vuejs-demo/</loc>
+    <lastmod>2017-05-12T07:10:12.815Z</lastmod>
+    <data>
+        <display>
+        <title>Vuejs2.0 Demo</title>
+        <pubTime>2017-02-04T07:12:19.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>vuejs</tag>
          
          
            
@@ -72,46 +116,6 @@
     
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>css命名规范总结（分类命名）</title>
-        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
-        
-        <tag>css</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>CSS3变换及CSS3动画</title>
-        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
-        
-        <tag>css3</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.huzerui.com/blog/2016/09/08/graduate-for-one-year/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -123,6 +127,26 @@
          
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/03/13/film-review-detective-china-tang/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>完美的犯罪，触目惊心的微笑</title>
+        <pubTime>2016-03-13T12:09:46.000Z</pubTime>
+        
+        <tag>电影</tag>
+         
+         
+           
+             
+              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
+          
         </display>
     </data>
     </url>
@@ -149,19 +173,21 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/13/film-review-detective-china-tang/</loc>
+    <loc>http://www.huzerui.com/blog/2016/05/25/ajax-and-php/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>完美的犯罪，触目惊心的微笑</title>
-        <pubTime>2016-03-13T12:09:46.000Z</pubTime>
+        <title>ajax请求数据（后台PHP）</title>
+        <pubTime>2016-05-25T07:12:19.000Z</pubTime>
         
-        <tag>电影</tag>
+        <tag>js</tag>
+         
+        <tag>ajax</tag>
          
          
            
              
-              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -231,28 +257,6 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/10/30/how-to-make-a-html5-player/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>HTML5(Audio)移动音乐播放器</title>
-        <pubTime>2016-10-30T00:38:01.000Z</pubTime>
-        
-        <tag>html5</tag>
-         
-        <tag>player</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.huzerui.com/blog/2016/06/16/icoMoon/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -275,16 +279,16 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/12/jquery-plugin/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/14/js-array-method/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>使用jQuery封装插件</title>
-        <pubTime>2016-06-12T10:10:19.000Z</pubTime>
+        <title>Javascript数组方法</title>
+        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
         
         <tag>js</tag>
          
-        <tag>jQuery</tag>
+        <tag>数组</tag>
          
          
            
@@ -317,22 +321,17 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/05/25/ajax-and-php/</loc>
+    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>ajax请求数据（后台PHP）</title>
-        <pubTime>2016-05-25T07:12:19.000Z</pubTime>
+        <title>汉服秀</title>
+        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
         
-        <tag>js</tag>
-         
-        <tag>ajax</tag>
+        <tag>年会</tag>
          
          
            
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
         </display>
     </data>
     </url>
@@ -381,6 +380,26 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/05/18/bainiaochaofeng/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>《百鸟朝凤》观感</title>
+        <pubTime>2016-05-18T15:21:47.000Z</pubTime>
+        
+        <tag>电影</tag>
+         
+         
+           
+             
+              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/06/15/js-dom-elepos-and-elesize/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -400,48 +419,6 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>Javascript开启浏览器全屏模式</title>
-        <pubTime>2016-11-04T15:38:01.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/09/04/mobile-gallery/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>移动端图片画廊</title>
-        <pubTime>2016-09-04T02:55:47.000Z</pubTime>
-        
-        <tag>移动端</tag>
-         
-        <tag>图片画廊</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.huzerui.com/blog/2016/03/29/major-tag/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -455,6 +432,26 @@
            
              
               <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript开启浏览器全屏模式</title>
+        <pubTime>2016-11-04T15:38:01.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -483,6 +480,28 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-property-method/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式常用属性及方法</title>
+        <pubTime>2016-06-02T13:22:19.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>正则</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/06/02/regexp-grammar/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -505,22 +524,17 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-property-method/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/06/css-module/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>正则表达式常用属性及方法</title>
-        <pubTime>2016-06-02T13:22:19.000Z</pubTime>
+        <title>css模块化</title>
+        <pubTime>2016-06-06T14:22:19.000Z</pubTime>
         
-        <tag>js</tag>
-         
-        <tag>正则</tag>
+        <tag>css</tag>
          
          
            
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
         </display>
     </data>
     </url>
@@ -549,23 +563,6 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>汉服秀</title>
-        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
-        
-        <tag>年会</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.huzerui.com/blog/2016/10/03/traveling-of-changsha/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -586,19 +583,19 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/05/18/bainiaochaofeng/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>《百鸟朝凤》观感</title>
-        <pubTime>2016-05-18T15:21:47.000Z</pubTime>
+        <title>CSS3变换及CSS3动画</title>
+        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
         
-        <tag>电影</tag>
+        <tag>css3</tag>
          
          
            
              
-              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -607,33 +604,36 @@
     
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/06/css-module/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>css模块化</title>
-        <pubTime>2016-06-06T14:22:19.000Z</pubTime>
+        <title>css命名规范总结（分类命名）</title>
+        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
         
         <tag>css</tag>
          
          
            
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/14/js-array-method/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/12/jquery-plugin/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>Javascript数组方法</title>
-        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
+        <title>使用jQuery封装插件</title>
+        <pubTime>2016-06-12T10:10:19.000Z</pubTime>
         
         <tag>js</tag>
          
-        <tag>数组</tag>
+        <tag>jQuery</tag>
          
          
            

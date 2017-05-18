@@ -66,13 +66,13 @@
 <meta name="description" content="最近看到知乎的一个问题：英语是否会成为前端工程师的发展瓶颈？，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…” 由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国">
 <meta name="keywords" content="sass,mixin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="8个sass mixins快到我的碗里来">
+<meta property="og:title" content="8个值得收藏的sass函数">
 <meta property="og:url" content="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/index.html">
 <meta property="og:site_name" content="晚晴铭悦轩">
 <meta property="og:description" content="最近看到知乎的一个问题：英语是否会成为前端工程师的发展瓶颈？，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…” 由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国">
-<meta property="og:updated_time" content="2017-05-11T13:54:59.952Z">
+<meta property="og:updated_time" content="2017-05-18T11:52:11.305Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="8个sass mixins快到我的碗里来">
+<meta name="twitter:title" content="8个值得收藏的sass函数">
 <meta name="twitter:description" content="最近看到知乎的一个问题：英语是否会成为前端工程师的发展瓶颈？，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…” 由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国">
 
 
@@ -97,7 +97,7 @@
   <link rel="canonical" href="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/"/>
 
 
-  <title> 8个sass mixins快到我的碗里来 | 晚晴铭悦轩 </title>
+  <title> 8个值得收藏的sass函数 | 晚晴铭悦轩 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
             
             
               
-                8个sass mixins快到我的碗里来
+                8个值得收藏的sass函数
               
             
           </h1>
@@ -308,7 +308,7 @@
 
           
           
-             <span id="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" class="leancloud_visitors" data-flag-title="8个sass mixins快到我的碗里来">
+             <span id="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" class="leancloud_visitors" data-flag-title="8个值得收藏的sass函数">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -332,9 +332,7 @@
       
         <p>最近看到知乎的一个问题：<a href="https://www.zhihu.com/question/55998388/answer/167923782?group_id=846021391139627008" target="_blank" rel="external">英语是否会成为前端工程师的发展瓶颈？</a>，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…”</p>
 <p>由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国外程序员社区还是有好处滴。所以从今天起给自己立下的目标是，若见到比较有价值的外文博客文章，便翻译到本博客，原文链接附在文章末尾方便大家参考（摘要去除不必要的翻译）。</p>
-<p>Sass mixins是一种可随处重用的预定义代码块，如果你熟悉任何编程语言你可以将它们视为函数使用。mixin可以接收多个参数并被调用，最后输出css代码，它们可以使你的css代码变得十分整洁。</p>
-<p>以下部分的代码块在compass库中已经有了，但我不想在我的项目中使用compass这样的庞然大物，我决定自己重写它们。</p>
-<p>以下是8个我认为开发者必须放在囊中的mixins</p>
+<p>Sass mixins是一种可随处重用的预定义代码块，如果你熟悉任何编程语言你可以将它们视为函数使用。mixin可以接收多个参数并被调用，最后输出css代码，它们可以使你的css代码变得十分整洁。以下部分的代码块在compass库中已经有了，但我不想在我的项目中使用compass这样的庞然大物，我决定自己重写它们。</p>
 <h2 id="1、以rem为单位设置字体大小并且用px作为后备样式"><a href="#1、以rem为单位设置字体大小并且用px作为后备样式" class="headerlink" title="1、以rem为单位设置字体大小并且用px作为后备样式"></a>1、以rem为单位设置字体大小并且用px作为后备样式</h2><p>rem单位与em单位非常类似，区别在于em相对于父元素，而rem相对于根元素。<br>rem单位拥有所有em单位的优势，但缺点是在IE8及以下版本并不支持，但通过mixin我们可以将px作为rem的后备样式进行兼容。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@<span class="function"><span class="keyword">function</span> <span class="title">calculateRem</span>(<span class="params">$size</span>) </span>&#123;</div><div class="line">  $remSize: $size / <span class="number">16</span>px;</div><div class="line">  @<span class="keyword">return</span> $remSize * <span class="number">1</span>rem;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@mixin font-size($size) &#123;</div><div class="line">  font-size: $size;</div><div class="line">  font-size: calculateRem($size);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>使用方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  @include font-size(<span class="number">14</span>px)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>输出：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  font-size: <span class="number">14</span>px; <span class="comment">//如果浏览器支持rem将会被覆盖</span></div><div class="line">  font-size: <span class="number">0.8</span>rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -413,7 +411,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/"
-     data-title="8个sass mixins快到我的碗里来"
+     data-title="8个值得收藏的sass函数"
      data-content=""
      data-url="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/">
   <div class="ds-share-inline">
@@ -443,7 +441,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/"
-           data-title="8个sass mixins快到我的碗里来" data-url="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/">
+           data-title="8个值得收藏的sass函数" data-url="http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/">
       </div>
     
   </div>

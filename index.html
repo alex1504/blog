@@ -257,7 +257,7 @@
               
                 
                 <a class="post-title-link" href="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" itemprop="url">
-                  8个sass mixins快到我的碗里来
+                  8个值得收藏的sass函数
                 </a>
               
             
@@ -311,7 +311,7 @@
 
           
           
-             <span id="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" class="leancloud_visitors" data-flag-title="8个sass mixins快到我的碗里来">
+             <span id="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" class="leancloud_visitors" data-flag-title="8个值得收藏的sass函数">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -337,9 +337,7 @@
           
             <p>最近看到知乎的一个问题：<a href="https://www.zhihu.com/question/55998388/answer/167923782?group_id=846021391139627008" target="_blank" rel="external">英语是否会成为前端工程师的发展瓶颈？</a>，短短几星期浏览量就突破30万，可见前端工程师都是普遍处于有种在瓶颈处的恐慌。个人感觉英语还不赖便试着从正面的角度回答了一翻，后来由于回答人数众多引起尤大大注意，他怼了一句“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了…”</p>
 <p>由此可见英语的重要性，所以有时候多多看看外文博客，逛逛国外程序员社区还是有好处滴。所以从今天起给自己立下的目标是，若见到比较有价值的外文博客文章，便翻译到本博客，原文链接附在文章末尾方便大家参考（摘要去除不必要的翻译）。</p>
-<p>Sass mixins是一种可随处重用的预定义代码块，如果你熟悉任何编程语言你可以将它们视为函数使用。mixin可以接收多个参数并被调用，最后输出css代码，它们可以使你的css代码变得十分整洁。</p>
-<p>以下部分的代码块在compass库中已经有了，但我不想在我的项目中使用compass这样的庞然大物，我决定自己重写它们。</p>
-<p>以下是8个我认为开发者必须放在囊中的mixins</p>
+<p>Sass mixins是一种可随处重用的预定义代码块，如果你熟悉任何编程语言你可以将它们视为函数使用。mixin可以接收多个参数并被调用，最后输出css代码，它们可以使你的css代码变得十分整洁。以下部分的代码块在compass库中已经有了，但我不想在我的项目中使用compass这样的庞然大物，我决定自己重写它们。</p>
 <h2 id="1、以rem为单位设置字体大小并且用px作为后备样式"><a href="#1、以rem为单位设置字体大小并且用px作为后备样式" class="headerlink" title="1、以rem为单位设置字体大小并且用px作为后备样式"></a>1、以rem为单位设置字体大小并且用px作为后备样式</h2><p>rem单位与em单位非常类似，区别在于em相对于父元素，而rem相对于根元素。<br>rem单位拥有所有em单位的优势，但缺点是在IE8及以下版本并不支持，但通过mixin我们可以将px作为rem的后备样式进行兼容。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@<span class="function"><span class="keyword">function</span> <span class="title">calculateRem</span>(<span class="params">$size</span>) </span>&#123;</div><div class="line">  $remSize: $size / <span class="number">16</span>px;</div><div class="line">  @<span class="keyword">return</span> $remSize * <span class="number">1</span>rem;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@mixin font-size($size) &#123;</div><div class="line">  font-size: $size;</div><div class="line">  font-size: calculateRem($size);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>使用方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  @include font-size(<span class="number">14</span>px)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>输出：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  font-size: <span class="number">14</span>px; <span class="comment">//如果浏览器支持rem将会被覆盖</span></div><div class="line">  font-size: <span class="number">0.8</span>rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1423,11 +1421,11 @@
         
           
             <p>“咳咳咳..在看正文之前，如果客官有兴趣可以轻点播放按钮聆听一下我的<strong>第一首吉他原创歌曲</strong>”。——作于大三下学期</p>
-<p><audio style="width: 100%" src="http://ofuq64vel.bkt.clouddn.com/guita-september.mp3" controls></audio><br>“怎么感觉整个人都不好了…还有呜呜呜的声音”</p>
+<p><audio style="width: 100%" src="http://qiniu.huzerui.com/audio/guita-september.mp3" controls></audio><br>“怎么感觉整个人都不好了…还有呜呜呜的声音”</p>
 <p>“那时正值寒冬，于学校宿舍顶楼录制，周围一片漆黑，忽一阵冷风袭来，但对我而言那是美丽的协奏”</p>
 <p>“什么鬼..！”</p>
 <p>“好吧…那听听这首吧，也许能帮到客官您，这是我的<strong>第二首原创歌曲</strong>”。——作于大四上学期</p>
-<p><audio style="width: 100%" src="http://ofuq64vel.bkt.clouddn.com/guita-nightsky.mp3" controls></audio><br>“怎么比第一首调子还哀伤”？Are you kiding me？</p>
+<p><audio style="width: 100%" src="http://qiniu.huzerui.com/audio/guita-nightsky.mp3" controls></audio><br>“怎么比第一首调子还哀伤”？Are you kiding me？</p>
 <p><strong>“蓝瘦，香菇，在这里。”</strong></p>
 <p>好了，客观见笑了，为了真正治愈你，让我们回归正题吧！</p>
 <p>这段时间公司一直在做一个PC的教育类单页应用，庞大复杂，涉及非常多H5的知识，音频就是其中的一部分。闲暇时写了一个移动音乐播放器，除了将之作为练手项目，对于音乐的喜爱也是促使自己想写个播放器的原因。</p>
@@ -1840,7 +1838,7 @@
       
         
           
-            <p>移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果<br><img src="http://huzerui.com/blog/img/post/2016-09-04-mobile-photo-galleries.gif" alt="demo"><br>你也可以点击<a href="http://coding.huzerui.com/mobile-gallery" target="_blank" rel="external">在线地址</a>  查看预览:</p>
+            <p>移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果<br><img src="/blog/img/post/2016-09-04-mobile-photo-galleries.gif" alt="demo"><br>你也可以点击<a href="http://alex1504.oschina.io/demo/mobile-gallery/" target="_blank" rel="external">在线地址</a>  查看预览:</p>
 <h2 id="关于flex-box布局"><a href="#关于flex-box布局" class="headerlink" title="关于flex-box布局"></a>关于flex-box布局</h2><p>flex布局简直是移动端的神器，因为移动端不存在兼容性问题，几乎所有手机浏览器都采用相同的标准。</p>
 <h2 id="几分钟快速了解flex-box布局"><a href="#几分钟快速了解flex-box布局" class="headerlink" title="几分钟快速了解flex-box布局"></a>几分钟快速了解flex-box布局</h2><h3 id="采用flex布局（作用于容器）"><a href="#采用flex布局（作用于容器）" class="headerlink" title="采用flex布局（作用于容器）"></a>采用flex布局（作用于容器）</h3><p>块状元素：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">    <span class="attribute">display</span>:flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>行内元素：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123; </div><div class="line">    <span class="attribute">display</span>: inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>

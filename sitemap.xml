@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.huzerui.com/2017/02/04/vuejs-demo/</loc>
+    <loc>http://www.huzerui.com/2016/09/04/mobile-gallery/</loc>
     
-    <lastmod>2017-05-12T07:10:12.815Z</lastmod>
+    <lastmod>2017-05-18T11:54:03.770Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/</loc>
     
-    <lastmod>2017-05-11T13:54:59.952Z</lastmod>
+    <lastmod>2017-05-18T11:52:11.305Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/10/30/how-to-make-a-html5-player/</loc>
+    
+    <lastmod>2017-05-18T11:51:30.412Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2017/02/04/vuejs-demo/</loc>
+    
+    <lastmod>2017-05-12T07:10:12.815Z</lastmod>
     
   </url>
   
@@ -37,21 +51,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.huzerui.com/2016/09/08/graduate-for-one-year/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -65,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
+    <loc>http://www.huzerui.com/2016/05/25/ajax-and-php/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -93,13 +100,6 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/10/30/how-to-make-a-html5-player/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.huzerui.com/2016/06/16/icoMoon/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
@@ -107,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/12/jquery-plugin/</loc>
+    <loc>http://www.huzerui.com/2016/06/14/js-array-method/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -121,7 +121,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/05/25/ajax-and-php/</loc>
+    <loc>http://www.huzerui.com/2016/03/15/annual-meeting/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -142,21 +142,14 @@
   </url>
   
   <url>
+    <loc>http://www.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/09/04/mobile-gallery/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -170,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/16/mobile-rem/</loc>
+    <loc>http://www.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/02/regexp-grammar/</loc>
+    <loc>http://www.huzerui.com/2016/06/16/mobile-rem/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -191,35 +184,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/08/related-menu/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/03/15/annual-meeting/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/10/03/traveling-of-changsha/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/404.html</loc>
+    <loc>http://www.huzerui.com/2016/06/02/regexp-grammar/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -233,7 +198,42 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/14/js-array-method/</loc>
+    <loc>http://www.huzerui.com/2016/06/08/related-menu/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/10/03/traveling-of-changsha/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/404.html</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/12/jquery-plugin/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
