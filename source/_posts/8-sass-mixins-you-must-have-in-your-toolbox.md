@@ -1,5 +1,5 @@
 ---
-title: 8个sass mixins快到我的碗里来
+title: 8个值得收藏的sass函数
 date: 2017-05-11 20:43:02
 tags: [sass, mixin]
 categories: 前端

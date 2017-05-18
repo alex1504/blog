@@ -5,8 +5,8 @@ categories: 前端
 tags: [移动端,图片画廊]
 ---
 移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果
-![demo](http://huzerui.com/blog/img/post/2016-09-04-mobile-photo-galleries.gif)
-你也可以点击[在线地址](http://coding.huzerui.com/mobile-gallery)  查看预览:
+![demo](/blog/img/post/2016-09-04-mobile-photo-galleries.gif)
+你也可以点击[在线地址](http://alex1504.oschina.io/demo/mobile-gallery/)  查看预览:
 
 
 ## 关于flex-box布局 
