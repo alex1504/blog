@@ -717,6 +717,182 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2017/01/22/lodash-useful-function/" itemprop="url">
+                  常用的Lodash方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T22:39:31+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2017/01/22/lodash-useful-function/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/lodash-useful-function/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/01/22/lodash-useful-function/" class="leancloud_visitors" data-flag-title="常用的Lodash方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Lodash目前非常流行的JavaScript的工具集合框架，被前端开发者广泛地使用，下面是一些平常开发过程中常用的函数。</p>
+<p>在介绍函数前，对lodash函数名应有如下的了解：</p>
+<ul>
+<li>含sorted的方法接受有序数组</li>
+<li>同名含By的方法额外接受一个迭代器参数</li>
+<li>同名含Last的方法返回的是符合筛选条件元素的最后一个</li>
+</ul>
+<h2 id="对象扩展："><a href="#对象扩展：" class="headerlink" title="对象扩展："></a>对象扩展：</h2><p>_.assign</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123; <span class="attr">a</span>: <span class="string">"a property"</span> &#125;;</div><div class="line"><span class="keyword">var</span> bar = &#123; <span class="attr">b</span>: <span class="number">4</span>, <span class="attr">c</span>: <span class="string">"an other property"</span> &#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> result = _.assign(&#123; <span class="attr">a</span>: <span class="string">"an old property"</span> &#125;, foo, bar);</div><div class="line"><span class="comment">// result =&gt; &#123; a: 'a property', b: 4, c: 'an other property' &#125;</span></div></pre></td></tr></table></figure>
+<h2 id="防抖函数"><a href="#防抖函数" class="headerlink" title="防抖函数"></a>防抖函数</h2><p>_.debounce</p>
+<p>在触发防抖函数的事件后面加个延迟时间，如果在该延迟时间内没有继续触发事件，那么执行防抖函数。设想一个场景，电梯门打开的时候，如果在2s内陆续有人按电梯按钮，那么每次电梯都会再重新等待2s，直至2s中没人按按钮再触发关门操作。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateEmail</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// Validate email here and show error message if not valid</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> emailInput = <span class="built_in">document</span>.getElementById(<span class="string">"email-field"</span>);</div><div class="line">emailInput.addEventListener(<span class="string">"keyup"</span>, _.debounce(validateEmail, <span class="number">500</span>));</div></pre></td></tr></table></figure></p>
+<h2 id="迭代函数n次"><a href="#迭代函数n次" class="headerlink" title="迭代函数n次"></a>迭代函数n次</h2><ul>
+<li>返回：每次返回结果构成的数组</li>
+<li>应用：生成大量测试数据</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandomInteger</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">100</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> result = _.times(<span class="number">5</span>, getRandomNumber);</div><div class="line"><span class="comment">// result =&gt; [64, 70, 29, 10, 23]</span></div></pre></td></tr></table></figure>
+<h2 id="查找数组中的特定对象"><a href="#查找数组中的特定对象" class="headerlink" title="查找数组中的特定对象"></a>查找数组中的特定对象</h2><p>接收多个对象属性查找<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> users = [</div><div class="line">  &#123; <span class="attr">firstName</span>: <span class="string">"John"</span>, <span class="attr">lastName</span>: <span class="string">"Doe"</span>, <span class="attr">age</span>: <span class="number">28</span>, <span class="attr">gender</span>: <span class="string">"male"</span> &#125;,</div><div class="line">  &#123; <span class="attr">firstName</span>: <span class="string">"Jane"</span>, <span class="attr">lastName</span>: <span class="string">"Doe"</span>, <span class="attr">age</span>: <span class="number">5</span>, <span class="attr">gender</span>: <span class="string">"female"</span> &#125;,</div><div class="line">  &#123; <span class="attr">firstName</span>: <span class="string">"Jim"</span>, <span class="attr">lastName</span>: <span class="string">"Carrey"</span>, <span class="attr">age</span>: <span class="number">54</span>, <span class="attr">gender</span>: <span class="string">"male"</span> &#125;,</div><div class="line">  &#123; <span class="attr">firstName</span>: <span class="string">"Kate"</span>, <span class="attr">lastName</span>: <span class="string">"Winslet"</span>, <span class="attr">age</span>: <span class="number">40</span>, <span class="attr">gender</span>: <span class="string">"female"</span> &#125;</div><div class="line">];</div><div class="line"></div><div class="line"><span class="keyword">var</span> user = _.find(users, &#123; <span class="attr">lastName</span>: <span class="string">"Doe"</span>, <span class="attr">gender</span>: <span class="string">"male"</span> &#125;);</div><div class="line"><span class="comment">// user -&gt; &#123; firstName: "John", lastName: "Doe", age: 28, gender: "male" &#125;</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> underAgeUser = _.find(users, <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> user.age &lt; <span class="number">18</span>;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// underAgeUser -&gt; &#123; firstName: "Jane", lastName: "Doe", age: 5, gender: "female" &#125;</span></div></pre></td></tr></table></figure></p>
+<h2 id="设置及获取对象属性"><a href="#设置及获取对象属性" class="headerlink" title="设置及获取对象属性"></a>设置及获取对象属性</h2><p>根据对象路径进行设置或获取</p>
+<ul>
+<li>_set方法：如果路径不存在，会自动创建路径。像下面的例子，使用该方法不会再出现“Cannot set property ‘items’ of undefined” error.”这种错误</li>
+<li>_get方法：如果对象路径不存在，返回undefined而不会报错，第三个参数接收默认值。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> bar = &#123; <span class="attr">foo</span>: &#123; <span class="attr">key</span>: <span class="string">"foo"</span> &#125; &#125;;</div><div class="line">_.set(bar, <span class="string">"foo.items[0]"</span>, <span class="string">"An item"</span>);</div><div class="line"><span class="comment">// bar =&gt; &#123; foo: &#123; key: "foo", items: ["An item"] &#125; &#125;</span></div><div class="line"><span class="keyword">var</span> name = _.get(bar, <span class="string">"name"</span>, <span class="string">"John Doe"</span>);</div><div class="line"><span class="comment">// name =&gt; John Doe</span></div></pre></td></tr></table></figure>
+<h2 id="将对象数组重组成对象映射"><a href="#将对象数组重组成对象映射" class="headerlink" title="将对象数组重组成对象映射"></a>将对象数组重组成对象映射</h2><ul>
+<li>只要服务器返回的是个集合对象，就可以通过该方法将集合转成对象映射</li>
+<li>第二个参数也可以是函数，函数的第一个参数默认是数组中的一个对象</li>
+</ul>
+<p>如从100篇文章中选取出id为34abc的文章，当获取到文章数组后，怎么做？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> posts = [</div><div class="line">    &#123; <span class="attr">id</span>: <span class="string">"1abc"</span>, <span class="attr">title</span>: <span class="string">"First blog post"</span>, <span class="attr">content</span>: <span class="string">"..."</span> &#125;,</div><div class="line">    &#123; <span class="attr">id</span>: <span class="string">"2abc"</span>, <span class="attr">title</span>: <span class="string">"Second blog post"</span>, <span class="attr">content</span>: <span class="string">"..."</span> &#125;,</div><div class="line">    <span class="comment">// more blog posts</span></div><div class="line">    &#123; <span class="attr">id</span>: <span class="string">"34abc"</span>, <span class="attr">title</span>: <span class="string">"The blog post we want"</span>, <span class="attr">content</span>: <span class="string">"..."</span> &#125;</div><div class="line">    <span class="comment">// even more blog posts</span></div><div class="line">];</div><div class="line"></div><div class="line">posts = _.keyBy(posts, <span class="string">"id"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> post = posts[<span class="string">"34abc"</span>]</div><div class="line"><span class="comment">// post -&gt; &#123; id: "34abc", title: "The blog post we want", content: "..." &#125;</span></div></pre></td></tr></table></figure></p>
+<h2 id="遍历集合元素并返回特定格式的对象"><a href="#遍历集合元素并返回特定格式的对象" class="headerlink" title="遍历集合元素并返回特定格式的对象"></a>遍历集合元素并返回特定格式的对象</h2><ul>
+<li>通过 iteratee 遍历集合中的每个元素。 每次返回的值会作为下一次 iteratee 使用。 如果没有提供accumulator（第三个参数，即初始值），则集合中的第一个元素作为 accumulator。</li>
+<li>常见的错误是忽略了返回结果(return result)和没有传入函数的第三个参数(默认值)</li>
+</ul>
+<p>下面的例子从数组筛选符合年龄条件并由年龄进行分组的数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> users = [</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">"John"</span>, <span class="attr">age</span>: <span class="number">30</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">"Jane"</span>, <span class="attr">age</span>: <span class="number">28</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">"Bill"</span>, <span class="attr">age</span>: <span class="number">65</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">"Emily"</span>, <span class="attr">age</span>: <span class="number">17</span> &#125;,</div><div class="line">    &#123; <span class="attr">name</span>: <span class="string">"Jack"</span>, <span class="attr">age</span>: <span class="number">30</span> &#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">var</span> reducedUsers = _.reduce(users, <span class="function"><span class="keyword">function</span> (<span class="params">result, user</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(user.age &gt;= <span class="number">18</span> &amp;&amp; user.age &lt;= <span class="number">59</span>) &#123;</div><div class="line">        (result[user.age] || (result[user.age] = [])).push(user);</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;, &#123;&#125;);</div><div class="line"></div><div class="line"><span class="comment">// reducedUsers -&gt; &#123; </span></div><div class="line"><span class="comment">//     28: [&#123; name: "Jane", age: 28 &#125;], </span></div><div class="line"><span class="comment">//     30: [&#123; name: "John", age: 30 &#125;, &#123; name: "Jack", age: 30 &#125;] </span></div><div class="line"><span class="comment">// &#125;</span></div></pre></td></tr></table></figure></p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>_.cloneDeep()<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> original = &#123; <span class="attr">foo</span>: <span class="string">"bar"</span> &#125;;</div><div class="line"><span class="keyword">var</span> copy = original;</div><div class="line">copy.foo = <span class="string">"new value"</span>;</div><div class="line"><span class="comment">// copy -&gt; &#123; foo: "new value" &#125; Yeah!</span></div><div class="line"><span class="comment">// original -&gt; &#123; foo: "new value" &#125; Oops!</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> original = &#123; <span class="attr">foo</span>: <span class="string">"bar"</span> &#125;;</div><div class="line"><span class="keyword">var</span> copy = _.cloneDeep(original);</div><div class="line">copy.foo = <span class="string">"new value"</span>;</div><div class="line"><span class="comment">// copy -&gt; &#123; foo: "new value" &#125; Yeah!</span></div><div class="line"><span class="comment">// original -&gt; &#123; foo: "bar" &#125; Yeah!</span></div></pre></td></tr></table></figure></p>
+<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>_.clone()</p>
+<p>对于对象内部的引用类型不会拷贝，而是指向同一个存在堆中的地址<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> objects = [&#123; <span class="string">'a'</span>: <span class="number">1</span> &#125;, &#123; <span class="string">'b'</span>: <span class="number">2</span> &#125;];</div><div class="line"></div><div class="line"><span class="keyword">var</span> shallow = _.clone(objects);</div><div class="line"><span class="built_in">console</span>.log(shallow[<span class="number">0</span>] === objects[<span class="number">0</span>]);</div><div class="line"><span class="comment">// =&gt; true</span></div></pre></td></tr></table></figure></p>
+<h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><p><em>uniq() 与 </em>. sortedUniq()<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sortedArray = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">8</span>];</div><div class="line"><span class="keyword">var</span> result = _.sortedUniq(sortedArray);</div><div class="line"><span class="comment">// -&gt; [1, 2, 3, 5, 8]</span></div></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_.uniq</td>
+<td>数组去重</td>
+</tr>
+<tr>
+<td>_.sortedUniq</td>
+<td>对于已排序的数组性能更高</td>
+</tr>
+</tbody>
+</table>
+<h2 id="向有序数组中插入元素，依旧保证有序"><a href="#向有序数组中插入元素，依旧保证有序" class="headerlink" title="向有序数组中插入元素，依旧保证有序"></a>向有序数组中插入元素，依旧保证有序</h2><p>返回：插入元素在数组中的索引</p>
+<p>方法：都含有sorted表示接受有序数组</p>
+<ul>
+<li>_.sortedIndex</li>
+<li>_.sortedIndexBy</li>
+<li>_.sortedLastIndex</li>
+<li>_.sortedLastIndexBy</li>
+</ul>
+<p>含Last方法和不含Last方法的区别是：<br>Last方法在保持有序的前提下会把value插进最大的那个位置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> objects = [&#123; <span class="string">'x'</span>: <span class="number">4</span> &#125;, &#123; <span class="string">'x'</span>: <span class="number">5</span> &#125;];</div><div class="line"> </div><div class="line">_.sortedLastIndexBy(objects, &#123; <span class="string">'x'</span>: <span class="number">4</span> &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123; <span class="keyword">return</span> o.x; &#125;);</div><div class="line"><span class="comment">// =&gt; 1</span></div><div class="line"> </div><div class="line">_.sortedLastIndexBy(objects, &#123; <span class="string">'x'</span>: <span class="number">4</span> &#125;, <span class="string">'x'</span>);</div><div class="line"><span class="comment">// =&gt; 1</span></div></pre></td></tr></table></figure></p>
+<h2 id="参考及延伸"><a href="#参考及延伸" class="headerlink" title="参考及延伸"></a>参考及延伸</h2><blockquote>
+<p>Lodash官方文档(4.17.4)：<a href="https://lodash.com/docs/4.17.4" target="_blank" rel="external">https://lodash.com/docs/4.17.4</a><br>Lodash中文文档(3.10.1)：<a href="http://lodashjs.com/docs/" target="_blank" rel="external">http://lodashjs.com/docs/</a><br>Lodash/fp模块：<a href="https://github.com/lodash/lodash/wiki/FP-Guide" target="_blank" rel="external">https://github.com/lodash/lodash/wiki/FP-Guide</a><br>什么是Lodash/fp模块：<a href="http://www.cnblogs.com/legendlee/p/5601524.html" target="_blank" rel="external">http://www.cnblogs.com/legendlee/p/5601524.html</a><br>Webpack按需打包lodash：<a href="http://www.tuicool.com/articles/niyeMrN" target="_blank" rel="external">http://www.tuicool.com/articles/niyeMrN</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/11/07/gulp-learning-note/" itemprop="url">
                   Gulp前端自动化工具笔记
                 </a>
@@ -1890,194 +2066,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/06/16/css3-transform-animation/" itemprop="url">
-                  CSS3变换及CSS3动画
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-16T22:21:23+08:00" content="2016-06-16">
-              2016-06-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/06/16/css3-transform-animation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/16/css3-transform-animation/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/06/16/css3-transform-animation/" class="leancloud_visitors" data-flag-title="CSS3变换及CSS3动画">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CSS3变换动画"><a href="#CSS3变换动画" class="headerlink" title="CSS3变换动画"></a>CSS3变换动画</h1><h2 id="指定三维视角"><a href="#指定三维视角" class="headerlink" title="指定三维视角"></a>指定三维视角</h2><p>perspective 属性定义 3D 元素距视图的距离，以像素计。<br>当为元素定义 perspective 属性时，其子元素会获得透视效果，而不是元素本身。</p>
-<h2 id="三维变形"><a href="#三维变形" class="headerlink" title="三维变形"></a>三维变形</h2><p>三维变形的变形方式：四种方法<br>旋转——缩放——平移——扭曲——指定变形基点</p>
-<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>transform:rotate(45deg);<br>该语句使div元素顺时针旋转45度。</p>
-<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>transform:scale(0.8,1);<br>使用缩放的方法实现文字或图像的缩放效果，在参数中指定缩放倍率。该语句使用scale方法使该元素在水平方向上缩小了20%，垂直方向上不缩放。</p>
-<h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><p>translate(50px,50px);<br>使用translate方法来将文字或图像在水平方向和垂直方向上分别垂直移动50像素。</p>
-<h2 id="扭曲"><a href="#扭曲" class="headerlink" title="扭曲"></a>扭曲</h2><p>transform:skew(30deg,0deg);<br>该实例通过skew方法把元素水平方向上倾斜30度，处置方向保持不变。</p>
-<h2 id="指定变形基点"><a href="#指定变形基点" class="headerlink" title="指定变形基点"></a>指定变形基点</h2><p>在使用transform方法进行文字或图像的变形时，是以元素的中心点为基准点进行的。使用transform-orign属性，可以改变变形的基准点。<br>transorm-origin:left bottom;<br>left和bottom是基准点在元素水平方向和垂直方向上的位置。</p>
-<h2 id="形成过渡动画"><a href="#形成过渡动画" class="headerlink" title="形成过渡动画"></a>形成过渡动画</h2><p>元素在定义了变化终点状态之后，在元素本身设置transition即可形成过渡动画。</p>
-<h1 id="Animation动画"><a href="#Animation动画" class="headerlink" title="Animation动画"></a>Animation动画</h1><p>animation属性值：</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>@keyframes</td>
-<td style="text-align:center">定义动画名称</td>
-</tr>
-<tr>
-<td>animation</td>
-<td style="text-align:center">所有动画属性的简写属性，除了animation-play-state属性。</td>
-</tr>
-<tr>
-<td>animation-name</td>
-<td style="text-align:center">规定 @keyframes 动画的名称。</td>
-</tr>
-<tr>
-<td>animation-duration</td>
-<td style="text-align:center">规定动画完成一个周期所花费的时间。默认是0s。</td>
-</tr>
-<tr>
-<td>animation-timing-function</td>
-<td style="text-align:center">规定动画的速度曲线。默认是 “ease”。</td>
-</tr>
-<tr>
-<td>animation</td>
-<td style="text-align:center">规定动画何时开始。默认是0s。</td>
-</tr>
-<tr>
-<td>animation-iteration-count</td>
-<td style="text-align:center">规定动画被播放的次数。默认是1。</td>
-</tr>
-<tr>
-<td>animation-direction</td>
-<td style="text-align:center">规定动画是否在下一周期逆向地播放。默认是 “normal” 。逆向alternate</td>
-</tr>
-<tr>
-<td>animation-play-state</td>
-<td style="text-align:center">规定动画是否正在运行或暂停。默认是 “running”，暂停时pause</td>
-</tr>
-<tr>
-<td>animation-fill-mode</td>
-<td style="text-align:center">规定对象动画时间之外的状态。forwards：设置对象状态为动画结束时的状态；backwards：设置对象状态为动画开始时的状态；both：设置对象状态为动画开始或结束的状态</td>
-</tr>
-</tbody>
-</table>
-<h1 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h1><p>1、变换动画不能自行触发，通过hover等动作或结合JS进行触发。anmiation可以自行运行。<br>2、变换动画可控性较弱，只能指定起始状态和结束状态，而animation可以定义多个关键帧。<br>3、变换动画在运行结束之后，需要回到初始状态<br>4、变换动画的作用在于平滑的改变CSS样式<br>5、animation多两个参数，循环和动画的方式。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2123,7 +2111,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2140,7 +2128,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
