@@ -266,13 +266,16 @@ mathjax:
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-#baidushare:
+baidushare: true
 ##  type: button
 
 # Share
-#jiathis:
+jiathis: true
 # Warning: JiaThis does not support https.
 #add_this_id:
+
+# 来必力评论
+livere_uid: MTAyMC8yODk0Ni81NTE1
 
 # Share
 #duoshuo_share: true
@@ -349,7 +352,8 @@ tencent_analytics: 58945240
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: true
 
-
+# 网易云跟帖
+gentie_productKey: ce93e8f5995044d3998c53ee36637800
 
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING SETTINGS
@@ -413,3 +417,4 @@ images: images
 
 # Theme version
 version: 5.0.2
+

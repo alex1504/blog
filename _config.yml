@@ -78,8 +78,8 @@ theme: next
   #path: baidusitemap.xml
 
 # 多说评论及分享功能
-duoshuo_shortname: blog-jerry
-duoshuo_share: true
+# duoshuo_shortname: blog-jerry
+# duoshuo_share: true
 
 # 谷歌站点管理工具-用于提交sitemap
 google_site_verification: 5zegIGyHLF9Qs-4RGG3VU8CKUML9omsUu7OOsQRJhbY
@@ -100,12 +100,12 @@ baidu_analytics: 1e11d2f2589bccbdb30499db84c40bfe
 # swiftype_key: SBDWyUSRDv5yPwFJsD5h
 
 # Algolia 搜索集成
-algolia:
-  applicationID: 'H80XSRPO94'
-  apiKey: 'c1794c537df72190f8c5cb2016fe4ef0'
-  adminApiKey: '40c77b5edf661ba766061e20667977eb'
-  indexName: 'blog'
-  chunkSize: 5000
+# algolia:
+#   applicationID: 'H80XSRPO94'
+#   apiKey: 'c1794c537df72190f8c5cb2016fe4ef0'
+#   adminApiKey: '40c77b5edf661ba766061e20667977eb'
+#   indexName: 'blog'
+#   chunkSize: 5000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -113,3 +113,10 @@ deploy:
   type: git
   repository: https://github.com/alex1504/blog.git
   branch: gh-pages
+
+# Local Search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
