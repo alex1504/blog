@@ -133,19 +133,19 @@
     
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/04/29/game-life/</loc>
+    <loc>http://www.huzerui.com/blog/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>游戏相伴的青春</title>
-        <pubTime>2016-04-29T14:29:19.000Z</pubTime>
+        <title>Javascript开启浏览器全屏模式</title>
+        <pubTime>2016-11-04T15:38:01.000Z</pubTime>
         
-        <tag>随笔</tag>
+        <tag>javascript</tag>
          
          
            
              
-              <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -164,6 +164,26 @@
          
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/11/07/gulp-learning-note/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>Gulp前端自动化工具笔记</title>
+        <pubTime>2016-11-07T13:42:28.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
         </display>
     </data>
     </url>
@@ -192,36 +212,14 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/11/07/gulp-learning-note/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/16/h5-tags/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>Gulp前端自动化工具笔记</title>
-        <pubTime>2016-11-07T13:42:28.000Z</pubTime>
+        <title>HTML5新增input类型</title>
+        <pubTime>2016-06-16T13:50:32.000Z</pubTime>
         
-        <tag>gulp</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/05/25/ajax-and-php/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>ajax请求数据（后台PHP）</title>
-        <pubTime>2016-05-25T07:12:19.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-        <tag>ajax</tag>
+        <tag>html5</tag>
          
          
            
@@ -256,14 +254,16 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/h5-tags/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/12/jquery-plugin/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>HTML5新增input类型</title>
-        <pubTime>2016-06-16T13:50:32.000Z</pubTime>
+        <title>使用jQuery封装插件</title>
+        <pubTime>2016-06-12T10:10:19.000Z</pubTime>
         
-        <tag>html5</tag>
+        <tag>js</tag>
+         
+        <tag>jQuery</tag>
          
          
            
@@ -276,16 +276,14 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/12/jquery-plugin/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>使用jQuery封装插件</title>
-        <pubTime>2016-06-12T10:10:19.000Z</pubTime>
+        <title>CSS3变换及CSS3动画</title>
+        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
         
-        <tag>js</tag>
-         
-        <tag>jQuery</tag>
+        <tag>css3</tag>
          
          
            
@@ -318,33 +316,36 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
+    <loc>http://www.huzerui.com/blog/2016/05/25/ajax-and-php/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>汉服秀</title>
-        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
+        <title>ajax请求数据（后台PHP）</title>
+        <pubTime>2016-05-25T07:12:19.000Z</pubTime>
         
-        <tag>年会</tag>
+        <tag>js</tag>
+         
+        <tag>ajax</tag>
          
          
            
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/14/js-array-method/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/15/js-call-and-apply/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>Javascript数组方法</title>
-        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
+        <title>javascript中的call()和apply()方法</title>
+        <pubTime>2016-06-15T01:29:53.000Z</pubTime>
         
         <tag>js</tag>
-         
-        <tag>数组</tag>
          
          
            
@@ -398,52 +399,12 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
+    <loc>http://www.huzerui.com/blog/2016/04/29/game-life/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>Javascript开启浏览器全屏模式</title>
-        <pubTime>2016-11-04T15:38:01.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/05/18/bainiaochaofeng/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>《百鸟朝凤》观感</title>
-        <pubTime>2016-05-18T15:21:47.000Z</pubTime>
-        
-        <tag>电影</tag>
-         
-         
-           
-             
-              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/03/29/major-tag/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>跨行转前端，仗剑走天涯</title>
-        <pubTime>2016-03-29T15:29:23.000Z</pubTime>
+        <title>游戏相伴的青春</title>
+        <pubTime>2016-04-29T14:29:19.000Z</pubTime>
         
         <tag>随笔</tag>
          
@@ -478,6 +439,43 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/03/29/major-tag/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>跨行转前端，仗剑走天涯</title>
+        <pubTime>2016-03-29T15:29:23.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/06/06/css-module/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>css模块化</title>
+        <pubTime>2016-06-06T14:22:19.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/06/16/mobile-rem/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -499,12 +497,12 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-grammar/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-property-method/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>正则表达式语法详解</title>
-        <pubTime>2016-06-02T09:12:19.000Z</pubTime>
+        <title>正则表达式常用属性及方法</title>
+        <pubTime>2016-06-02T13:22:19.000Z</pubTime>
         
         <tag>js</tag>
          
@@ -521,12 +519,12 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-property-method/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-grammar/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>正则表达式常用属性及方法</title>
-        <pubTime>2016-06-02T13:22:19.000Z</pubTime>
+        <title>正则表达式语法详解</title>
+        <pubTime>2016-06-02T09:12:19.000Z</pubTime>
         
         <tag>js</tag>
          
@@ -565,14 +563,34 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/06/css-module/</loc>
+    <loc>http://www.huzerui.com/blog/2016/05/18/bainiaochaofeng/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>css模块化</title>
-        <pubTime>2016-06-06T14:22:19.000Z</pubTime>
+        <title>《百鸟朝凤》观感</title>
+        <pubTime>2016-05-18T15:21:47.000Z</pubTime>
         
-        <tag>css</tag>
+        <tag>电影</tag>
+         
+         
+           
+             
+              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>汉服秀</title>
+        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
+        
+        <tag>年会</tag>
          
          
            
@@ -601,26 +619,6 @@
     </url>
 
     
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>CSS3变换及CSS3动画</title>
-        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
-        
-        <tag>css3</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>http://www.huzerui.com/blog/2016/03/13/film-review-detective-china-tang/</loc>
@@ -643,14 +641,16 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/15/js-call-and-apply/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/14/js-array-method/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>javascript中的call()和apply()方法</title>
-        <pubTime>2016-06-15T01:29:53.000Z</pubTime>
+        <title>Javascript数组方法</title>
+        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
         
         <tag>js</tag>
+         
+        <tag>数组</tag>
          
          
            
