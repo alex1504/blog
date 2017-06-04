@@ -133,17 +133,20 @@
     
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/09/08/graduate-for-one-year/</loc>
+    <loc>http://www.huzerui.com/blog/2016/03/13/film-review-detective-china-tang/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>毕业一年，如期而至</title>
-        <pubTime>2016-09-08T14:51:47.000Z</pubTime>
+        <title>完美的犯罪，触目惊心的微笑</title>
+        <pubTime>2016-03-13T12:09:46.000Z</pubTime>
         
-        <tag>大学</tag>
+        <tag>电影</tag>
          
          
            
+             
+              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
+          
         </display>
     </data>
     </url>
@@ -163,6 +166,28 @@
            
              
               <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/03/05/grammar-of-sass/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>Sass使用指南</title>
+        <pubTime>2016-03-05T14:46:44.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>sass</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -198,45 +223,6 @@
         <pubTime>2016-06-16T13:50:32.000Z</pubTime>
         
         <tag>html5</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>汉服秀</title>
-        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
-        
-        <tag>年会</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/03/05/grammar-of-sass/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>Sass使用指南</title>
-        <pubTime>2016-03-05T14:46:44.000Z</pubTime>
-        
-        <tag>sass</tag>
-         
-        <tag>css</tag>
          
          
            
@@ -313,6 +299,28 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/06/14/js-array-method/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript数组方法</title>
+        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>数组</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/05/18/bainiaochaofeng/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -333,20 +341,19 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/15/js-call-and-apply/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/15/js-dom-elepos-and-elesize/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>javascript中的call()和apply()方法</title>
-        <pubTime>2016-06-15T01:29:53.000Z</pubTime>
+        <title>JavaScript获取DOM尺寸大小和元素位置</title>
+        <pubTime>2016-06-15T04:46:43.000Z</pubTime>
         
         <tag>js</tag>
          
+        <tag>dom</tag>
+         
          
            
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
         </display>
     </data>
     </url>
@@ -375,25 +382,6 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/15/js-dom-elepos-and-elesize/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript获取DOM尺寸大小和元素位置</title>
-        <pubTime>2016-06-15T04:46:43.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-        <tag>dom</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.huzerui.com/blog/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -402,28 +390,6 @@
         <pubTime>2016-11-04T15:38:01.000Z</pubTime>
         
         <tag>javascript</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/05/25/ajax-and-php/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>ajax请求数据（后台PHP）</title>
-        <pubTime>2016-05-25T07:12:19.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-        <tag>ajax</tag>
          
          
            
@@ -456,26 +422,6 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>css命名规范总结（分类命名）</title>
-        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
-        
-        <tag>css</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.huzerui.com/blog/2016/06/16/mobile-rem/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -491,6 +437,28 @@
          
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/05/25/ajax-and-php/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>ajax请求数据（后台PHP）</title>
+        <pubTime>2016-05-25T07:12:19.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>ajax</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
         </display>
     </data>
     </url>
@@ -563,6 +531,26 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>css命名规范总结（分类命名）</title>
+        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/10/03/traveling-of-changsha/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -619,38 +607,50 @@
     </url>
 
     
-    
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/13/film-review-detective-china-tang/</loc>
+    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>完美的犯罪，触目惊心的微笑</title>
-        <pubTime>2016-03-13T12:09:46.000Z</pubTime>
+        <title>汉服秀</title>
+        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
         
-        <tag>电影</tag>
+        <tag>年会</tag>
          
          
            
-             
-              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
-          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/09/08/graduate-for-one-year/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>毕业一年，如期而至</title>
+        <pubTime>2016-09-08T14:51:47.000Z</pubTime>
+        
+        <tag>大学</tag>
+         
+         
+           
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/14/js-array-method/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/15/js-call-and-apply/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>Javascript数组方法</title>
-        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
+        <title>javascript中的call()和apply()方法</title>
+        <pubTime>2016-06-15T01:29:53.000Z</pubTime>
         
         <tag>js</tag>
-         
-        <tag>数组</tag>
          
          
            
