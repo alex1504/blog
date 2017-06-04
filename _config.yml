@@ -113,10 +113,3 @@ deploy:
   type: git
   repository: https://github.com/alex1504/blog.git
   branch: gh-pages
-
-# Local Search
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000

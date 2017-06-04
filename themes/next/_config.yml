@@ -260,7 +260,7 @@ mathjax:
 #duoshuo_shortname:
 
 # Disqus
-#disqus_shortname:
+disqus_shortname: huzerui
 
 # Baidu Share
 # Available value:
@@ -275,7 +275,7 @@ jiathis: true
 #add_this_id:
 
 # 来必力评论
-livere_uid: MTAyMC8yODk0Ni81NTE1
+# livere_uid: MTAyMC8yODk0Ni81NTE1
 
 # Share
 #duoshuo_share: true
@@ -353,7 +353,7 @@ tencent_analytics: 58945240
 baidu_push: true
 
 # 网易云跟帖
-gentie_productKey: ce93e8f5995044d3998c53ee36637800
+# gentie_productKey: ce93e8f5995044d3998c53ee36637800
 
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING SETTINGS
