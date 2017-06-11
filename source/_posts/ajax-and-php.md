@@ -1,5 +1,5 @@
 ---
-title: ajax请求数据（后台PHP）
+title: ajax请求数据
 date: 2016-05-25 15:12:19
 categories: 前端
 tags: [js,ajax]
