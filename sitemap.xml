@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.huzerui.com/2016/05/25/ajax-and-php/</loc>
+    
+    <lastmod>2017-06-11T03:41:06.843Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.huzerui.com/2017/01/22/lodash-useful-function/</loc>
     
     <lastmod>2017-05-22T14:45:27.941Z</lastmod>
@@ -58,21 +65,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
+    <loc>http://www.huzerui.com/2016/03/29/major-tag/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/04/29/game-life/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/03/05/grammar-of-sass/</loc>
+    <loc>http://www.huzerui.com/2016/09/08/graduate-for-one-year/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -87,6 +87,13 @@
   
   <url>
     <loc>http://www.huzerui.com/2016/06/16/h5-tags/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -114,14 +121,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/14/js-array-method/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
+    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -135,7 +135,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/14/js-string-method/</loc>
+    <loc>http://www.huzerui.com/2016/06/15/js-call-and-apply/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -149,7 +149,28 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/29/major-tag/</loc>
+    <loc>http://www.huzerui.com/2016/03/05/grammar-of-sass/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/14/js-string-method/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -163,7 +184,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/05/25/ajax-and-php/</loc>
+    <loc>http://www.huzerui.com/2016/06/02/regexp-property-method/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -177,21 +198,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/02/regexp-property-method/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.huzerui.com/2016/06/08/related-menu/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -212,13 +219,6 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.huzerui.com/2016/03/15/annual-meeting/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
@@ -233,14 +233,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/09/08/graduate-for-one-year/</loc>
+    <loc>http://www.huzerui.com/2016/04/29/game-life/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/15/js-call-and-apply/</loc>
+    <loc>http://www.huzerui.com/2016/06/14/js-array-method/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
