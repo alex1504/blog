@@ -8,29 +8,18 @@ tags: [webapp,css,rem]
 
 - flex布局、弹性flex布局：在移动端会出现一些支持的兼容问题。
 
-# rem #
+# rem 
 W3C官网描述是“font size of the root element”，即rem是相对于根元素。
 我们只需要在HTML根元素确定一个参考值，css中其他使用rem作为单位的值都基于这个值进行计算。
 
-# rem实现宽度自适应的原理 #
-通过JS使页面<html>的fontsize会根据屏幕的宽度自动调整。
-具体方案有两种：
-
-- 网易是根据屏幕宽度比和字体大小比是固定的，获取屏幕宽度后，按照固定比例缩小根字体实现自适应。(随着iPhone6的流行，750也许更合适)
+# 网易云方案
+根据屏幕宽度比和字体大小比是固定的，获取屏幕宽度后，按照固定比例缩小根字体基准值实现自适应。(随着iPhone6的流行，750也许更合适)
 ```javascript
 docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
 ```
-- 淘宝是根据device-width=设备的物理分辨率/(devicePixelRatio * scale)，动态设置scale，保持device-width始终和设备的物理分辨率相等。device-width相当于逻辑像素，这样做750的设计稿上的px/根字体基准值就等于需要设置的rem值，相比网易还要在所量的尺寸/2/根字体才得到rem的值。比如iPhone6的devicePixelRatio为2，那么scale就为0.5
-```javascript
-var scale = 1 / devicePixelRatio;
-document.querySelector('meta[name="viewport"]').setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
-```
-接着也是根据屏幕大小动态计算根字体大小，具体是将屏幕划分为10等分，每份为a，1rem就等于10a。
-```javascript
-document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
-```
 
-另外值得说的是即使采用了rem布局方案，**页面上不一定所有的元素都是采用rem作为单位。**，比如下面淘宝的案例。底部固定的导航条采用的是高度使用固定的像素值，宽度flex布局的方案。
+值得注意的是即使采用了rem布局方案，**页面上不一定所有的元素都是采用rem作为单位。**，比如下面淘宝的案例。底部固定的导航条采用的是高度使用固定的像素值，宽度flex布局的方案；另外对于font-size字体大小的单位，最好不使用rem，而是使用px结合媒体查询的方式，因为这样做可以精确控制不同功能字体的显示大小。
+
 ![淘宝案例](http://huzerui.com/blog/img/post/2016-06-16-rem-adaptive-layout-1.jpg)
 ```css
 footer{
@@ -47,7 +36,7 @@ footer{
 
 }
 ```
-# 网易云方案
+## 代码详解
 ```javascript
 (function (doc, win) {
     var docEl = doc.documentElement,
@@ -134,8 +123,22 @@ html{
 ```
 使用媒体查询的缺点是不能所有设备全适配，但是用JS是可以实现全适配。具体使用上根据需求来定。
 
-# 使用工具提高开发效率
-淘宝已经开源了它的rem方案，见github地址[可伸缩布局方案](https://github.com/amfe/lib-flexible)
+# 淘宝方案
+淘宝是根据device-width=设备的物理分辨率/(devicePixelRatio * scale)，动态设置scale，保持device-width始终和设备的物理分辨率相等。
+比如：iPhone6的devicePixelRatio为2，那么scale就为0.5。
+
+```javascript
+var scale = 1 / devicePixelRatio;
+document.querySelector('meta[name="viewport"]').setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+```
+接着根据屏幕大小动态计算根字体大小，具体是将屏幕划分为10等分，每份为a，1rem就等于10a。
+```javascript
+document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+```
+
+使用淘宝方案如果是750的设计稿上的**所量的尺寸/75**就等于需要设置的rem值，而网易方案还要在**所量的尺寸/2/根字体基准值**才得到rem的值。
+
+关于rem布局淘宝已经整合形成一套完整的可伸缩布局方案，开源在github上，链接：[可伸缩布局方案](https://github.com/amfe/lib-flexible)
 在开发过程中使用淘宝的方案我们常常遇到的是单位换算麻烦的问题，以750的设计稿为例，根据淘宝方案，根字体设为75px，那么100px换算为rem就是100/75 rem。为了提高开发效率，如果你使用sublime或者vscode，都有相应的单位转换插件：在使用前根据设计图的尺寸配置转换比例，这里配置1rem = 75px
 **SublimeText：**
 
@@ -162,5 +165,3 @@ cssrem [https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem](https
     height: 3.2rem;
 }
 ```
-# 引用
-> （淘宝无限适配）手机端rem布局详解：http://blog.csdn.net/xwqqq/article/details/54862279
