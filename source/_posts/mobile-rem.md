@@ -11,9 +11,24 @@ tags: [webapp,css,rem]
 # rem #
 W3C官网描述是“font size of the root element”，即rem是相对于根元素。
 我们只需要在HTML根元素确定一个参考值，css中其他使用rem作为单位的值都基于这个值进行计算。
+
 # rem实现宽度自适应的原理 #
 通过JS使页面<html>的fontsize会根据屏幕的宽度自动调整。
-具体是根据屏幕宽度和所设字体大小的比值是固定的，获取屏幕宽度后，按照固定比例缩小后作为rem的单位长度实现自适应。
+具体方案有两种：
+
+- 网易是根据屏幕宽度比和字体大小比是固定的，获取屏幕宽度后，按照固定比例缩小根字体实现自适应。(随着iPhone6的流行，750也许更合适)
+```javascript
+docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+```
+- 淘宝是根据device-width=设备的物理分辨率/(devicePixelRatio * scale)，动态设置scale，保持device-width始终和设备的物理分辨率相等。device-width相当于逻辑像素，这样做750的设计稿上的px/根字体基准值就等于需要设置的rem值，相比网易还要在所量的尺寸/2/根字体才得到rem的值。比如iPhone6的devicePixelRatio为2，那么scale就为0.5
+```javascript
+var scale = 1 / devicePixelRatio;
+document.querySelector('meta[name="viewport"]').setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+```
+接着也是根据屏幕大小动态计算根字体大小，具体是将屏幕划分为10等分，每份为a，1rem就等于10a。
+```javascript
+document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+```
 
 另外值得说的是即使采用了rem布局方案，**页面上不一定所有的元素都是采用rem作为单位。**，比如下面淘宝的案例。底部固定的导航条采用的是高度使用固定的像素值，宽度flex布局的方案。
 ![淘宝案例](http://huzerui.com/blog/img/post/2016-06-16-rem-adaptive-layout-1.jpg)
@@ -32,7 +47,7 @@ footer{
 
 }
 ```
-# 代码详解 #
+# 网易云方案
 ```javascript
 (function (doc, win) {
     var docEl = doc.documentElement,
@@ -55,14 +70,14 @@ footer{
 代码解释：
 如果页面的宽度超过了640px，那么页面中html的font-size恒为100px，否则，页面中html的font-size的大小为： 100 * (当前页面宽度 / 640) 
 
-## 为什么是640px？ ##
+## 为什么是640px？ 
 三个概念：屏幕分辨率、设备像素、css像素
 屏幕分辨率和设备像素是物理概念，而CSS像素是WEB编程的概念；屏幕分辨率和设备像素的差别在于设备像素显示密度。
 当设备屏幕分辨率=100%的时候，浏览器CSS像素尺寸和设备像素相等，而当像素密度(pixel density)为1的时候，屏幕分辨率和设备像素相等。
 
 对于手机屏幕来说，640px的页面宽度是一个安全的最大宽度，保证了移动端页面两边不会留白。注意这里的px是css逻辑像素，与设备的物理像素是有区别的。如iPhone 5使用的是Retina视网膜屏幕，使用2px x 2px的 device pixel 代表 1px x 1px 的 css pixel，所以设备像素数为640 x 1136px，而它的CSS逻辑像素数为320 x 568px。
 
-## 为什么要设置html的font-size？ ##
+## 为什么要设置html的font-size？ 
 rem就是根元素（即：html）的字体大小。html中的所有标签样式凡是涉及到尺寸的（如： height,width,padding,margin,font-size。甚至，left,top等）你都可以放心大胆的用rem作单位。
 如果你把html的font-size设为20px，前面说过，rem就是html的字体大小，那么1rem = 20px。
 
@@ -70,7 +85,7 @@ rem就是根元素（即：html）的字体大小。html中的所有标签样式
 
 根据上面的js代码，如果页面宽度低于640px,那么页面中html的font-size也会按照（当前页面宽度/640）的比例变化。这样，页面中凡是应用了rem的作尺寸单位的元素都会随着页面变化而等比例缩放了。
 
-## 怎么计算出不同分辨率下font-size的值？##
+## 怎么计算出不同分辨率下font-size的值？
 假设页面设计稿是按照640的标准尺寸设计的，（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格。
 ![rem](http://huzerui.com/blog/img/post/2016-06-16-rem-adaptive-layout-2.jpg)
 
@@ -118,3 +133,34 @@ html{
 }
 ```
 使用媒体查询的缺点是不能所有设备全适配，但是用JS是可以实现全适配。具体使用上根据需求来定。
+
+# 使用工具提高开发效率
+淘宝已经开源了它的rem方案，见github地址[可伸缩布局方案](https://github.com/amfe/lib-flexible)
+在开发过程中使用淘宝的方案我们常常遇到的是单位换算麻烦的问题，以750的设计稿为例，根据淘宝方案，根字体设为75px，那么100px换算为rem就是100/75 rem。为了提高开发效率，如果你使用sublime或者vscode，都有相应的单位转换插件：在使用前根据设计图的尺寸配置转换比例，这里配置1rem = 75px
+**SublimeText：**
+
+rem-unit [https://packagecontrol.io/packages/rem-unit](https://packagecontrol.io/packages/rem-unit)
+![rem-unit](http://qiniu.huzerui.com/image/2017-6-30-rem-unit.gif/w640)
+**vscode：**
+cssrem [https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem](https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem)
+
+![pxtorem](http://qiniu.huzerui.com/image/2017-6-30-css-to-rem.gif)
+
+当然如果使用sass或者less，可以定义mixin进行计算及重用
+```css
+//定义一个变量和一个mixin
+@baseFontSize: 75;//基于视觉稿横屏尺寸/100得出的基准font-size
+.px2rem(@name, @px){
+    @{name}: @px / @baseFontSize * 1rem;
+}
+//使用示例：
+.container {
+    .px2rem(height, 240);
+}
+//less翻译结果：
+.container {
+    height: 3.2rem;
+}
+```
+# 引用
+> （淘宝无限适配）手机端rem布局详解：http://blog.csdn.net/xwqqq/article/details/54862279
