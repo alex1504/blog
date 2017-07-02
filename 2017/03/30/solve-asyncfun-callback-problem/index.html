@@ -63,17 +63,17 @@
 
 
 
-<meta name="description" content="前不久一个前端的同行问我一个问题，关于函数中存在异步请求返回值始终为false的问题。她的需求应该是根据异步的结果进行相关操作，不多说了附上代码实例。 12345678910111213141516// 异步之后进行相关操作的错误做法function asyncFun()&amp;#123;	var flag = false;	$.ajax(&amp;#123;		url: &apos;https://api.github">
+<meta name="description" content="我们在项目中经常需要根据异步请求结果进行相关操作，以往常用的方法是callback，但现在如果结合babel编译，用promise或者async会更加优雅。如下是错误的做法： 12345678910111213141516// 异步之后进行相关操作的错误做法function asyncFun()&amp;#123;	var flag = false;	$.ajax(&amp;#123;		url: &apos;https:">
 <meta name="keywords" content="js,es6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于异步函数的回调问题">
 <meta property="og:url" content="http://www.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/index.html">
 <meta property="og:site_name" content="晚晴铭悦轩">
-<meta property="og:description" content="前不久一个前端的同行问我一个问题，关于函数中存在异步请求返回值始终为false的问题。她的需求应该是根据异步的结果进行相关操作，不多说了附上代码实例。 12345678910111213141516// 异步之后进行相关操作的错误做法function asyncFun()&amp;#123;	var flag = false;	$.ajax(&amp;#123;		url: &apos;https://api.github">
-<meta property="og:updated_time" content="2017-05-10T14:25:22.848Z">
+<meta property="og:description" content="我们在项目中经常需要根据异步请求结果进行相关操作，以往常用的方法是callback，但现在如果结合babel编译，用promise或者async会更加优雅。如下是错误的做法： 12345678910111213141516// 异步之后进行相关操作的错误做法function asyncFun()&amp;#123;	var flag = false;	$.ajax(&amp;#123;		url: &apos;https:">
+<meta property="og:updated_time" content="2017-07-02T10:50:22.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于异步函数的回调问题">
-<meta name="twitter:description" content="前不久一个前端的同行问我一个问题，关于函数中存在异步请求返回值始终为false的问题。她的需求应该是根据异步的结果进行相关操作，不多说了附上代码实例。 12345678910111213141516// 异步之后进行相关操作的错误做法function asyncFun()&amp;#123;	var flag = false;	$.ajax(&amp;#123;		url: &apos;https://api.github">
+<meta name="twitter:description" content="我们在项目中经常需要根据异步请求结果进行相关操作，以往常用的方法是callback，但现在如果结合babel编译，用promise或者async会更加优雅。如下是错误的做法： 12345678910111213141516// 异步之后进行相关操作的错误做法function asyncFun()&amp;#123;	var flag = false;	$.ajax(&amp;#123;		url: &apos;https:">
 
 
 
@@ -330,7 +330,7 @@
       
 
       
-        <p>前不久一个前端的同行问我一个问题，关于函数中存在异步请求返回值始终为false的问题。她的需求应该是根据异步的结果进行相关操作，不多说了附上代码实例。</p>
+        <p>我们在项目中经常需要根据异步请求结果进行相关操作，以往常用的方法是callback，但现在如果结合babel编译，用promise或者async会更加优雅。如下是错误的做法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 异步之后进行相关操作的错误做法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncFun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> flag = <span class="literal">false</span>;</div><div class="line">	$.ajax(&#123;</div><div class="line">		<span class="attr">url</span>: <span class="string">'https://api.github.com/'</span>,</div><div class="line">		<span class="attr">type</span>: <span class="string">'get'</span></div><div class="line">	&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(res.code == <span class="number">1</span>)&#123;</div><div class="line">			flag = <span class="literal">true</span></div><div class="line">		&#125;</div><div class="line">	&#125;)</div><div class="line">	<span class="keyword">return</span> flag;    <span class="comment">// 这里始终返回false，因为异步请求不阻塞后面代码执行</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(asyncFun())&#123;</div><div class="line">	<span class="comment">// 由于flag始终为false，很明显这里永远不会执行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>解决方案有三种：传统回调方式，ES5Promise对象，ES6 async/await方式</p>
 <h1 id="回调函数方式"><a href="#回调函数方式" class="headerlink" title="回调函数方式"></a>回调函数方式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个异步函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncFun</span>(<span class="params">cb</span>)</span>&#123;</div><div class="line">	$.ajax(&#123;</div><div class="line">		<span class="attr">url</span>: <span class="string">'https://api.github.com/'</span>,</div><div class="line">		<span class="attr">type</span>: <span class="string">'get'</span></div><div class="line">	&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">		cb &amp;&amp; cb(res)</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line">asyncFun(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">	<span class="comment">// 根据异步请求返回的结果进行相关操作</span></div><div class="line">	<span class="keyword">if</span>(res.code == <span class="number">1</span>)&#123;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -399,10 +399,6 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/" rel="prev" title="8个值得收藏的sass函数">
-                8个值得收藏的sass函数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -500,7 +496,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/</loc>
+    
+    <lastmod>2017-07-02T10:50:22.747Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.huzerui.com/2016/05/25/ajax-and-php/</loc>
     
     <lastmod>2017-06-11T03:41:06.843Z</lastmod>
@@ -23,13 +30,6 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2017/05/11/8-sass-mixins-you-must-have-in-your-toolbox/</loc>
-    
-    <lastmod>2017-05-18T11:52:11.305Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.huzerui.com/2016/10/30/how-to-make-a-html5-player/</loc>
     
     <lastmod>2017-05-18T11:51:30.412Z</lastmod>
@@ -40,13 +40,6 @@
     <loc>http://www.huzerui.com/2017/02/04/vuejs-demo/</loc>
     
     <lastmod>2017-05-12T07:10:12.815Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/</loc>
-    
-    <lastmod>2017-05-10T14:25:22.848Z</lastmod>
     
   </url>
   
@@ -65,21 +58,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/29/major-tag/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.huzerui.com/2016/09/08/graduate-for-one-year/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/11/07/gulp-learning-note/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -93,56 +72,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/06/16/icoMoon/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/06/12/jquery-plugin/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/04/10/jquery-summary/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/06/15/js-call-and-apply/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
+    <loc>http://www.huzerui.com/2016/11/07/gulp-learning-note/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -156,21 +86,63 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/14/js-string-method/</loc>
+    <loc>http://www.huzerui.com/2016/06/16/icoMoon/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
+    <loc>http://www.huzerui.com/2016/06/14/js-array-method/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
+    <loc>http://www.huzerui.com/2016/06/15/js-call-and-apply/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/12/jquery-plugin/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/06/css-module/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/04/10/jquery-summary/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/03/29/major-tag/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -191,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/02/regexp-grammar/</loc>
+    <loc>http://www.huzerui.com/2016/06/08/related-menu/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/08/related-menu/</loc>
+    <loc>http://www.huzerui.com/2016/06/02/regexp-grammar/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -212,7 +184,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/06/css-module/</loc>
+    <loc>http://www.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -226,7 +198,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/404.html</loc>
+    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -240,7 +219,21 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/14/js-array-method/</loc>
+    <loc>http://www.huzerui.com/404.html</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2016/06/14/js-string-method/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     

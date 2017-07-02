@@ -256,194 +256,6 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2016/06/16/css3-transform-animation/" itemprop="url">
-                  CSS3变换及CSS3动画
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-16T22:21:23+08:00" content="2016-06-16">
-              2016-06-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/06/16/css3-transform-animation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/16/css3-transform-animation/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/06/16/css3-transform-animation/" class="leancloud_visitors" data-flag-title="CSS3变换及CSS3动画">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CSS3变换动画"><a href="#CSS3变换动画" class="headerlink" title="CSS3变换动画"></a>CSS3变换动画</h1><h2 id="指定三维视角"><a href="#指定三维视角" class="headerlink" title="指定三维视角"></a>指定三维视角</h2><p>perspective 属性定义 3D 元素距视图的距离，以像素计。<br>当为元素定义 perspective 属性时，其子元素会获得透视效果，而不是元素本身。</p>
-<h2 id="三维变形"><a href="#三维变形" class="headerlink" title="三维变形"></a>三维变形</h2><p>三维变形的变形方式：四种方法<br>旋转——缩放——平移——扭曲——指定变形基点</p>
-<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>transform:rotate(45deg);<br>该语句使div元素顺时针旋转45度。</p>
-<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>transform:scale(0.8,1);<br>使用缩放的方法实现文字或图像的缩放效果，在参数中指定缩放倍率。该语句使用scale方法使该元素在水平方向上缩小了20%，垂直方向上不缩放。</p>
-<h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><p>translate(50px,50px);<br>使用translate方法来将文字或图像在水平方向和垂直方向上分别垂直移动50像素。</p>
-<h2 id="扭曲"><a href="#扭曲" class="headerlink" title="扭曲"></a>扭曲</h2><p>transform:skew(30deg,0deg);<br>该实例通过skew方法把元素水平方向上倾斜30度，处置方向保持不变。</p>
-<h2 id="指定变形基点"><a href="#指定变形基点" class="headerlink" title="指定变形基点"></a>指定变形基点</h2><p>在使用transform方法进行文字或图像的变形时，是以元素的中心点为基准点进行的。使用transform-orign属性，可以改变变形的基准点。<br>transorm-origin:left bottom;<br>left和bottom是基准点在元素水平方向和垂直方向上的位置。</p>
-<h2 id="形成过渡动画"><a href="#形成过渡动画" class="headerlink" title="形成过渡动画"></a>形成过渡动画</h2><p>元素在定义了变化终点状态之后，在元素本身设置transition即可形成过渡动画。</p>
-<h1 id="Animation动画"><a href="#Animation动画" class="headerlink" title="Animation动画"></a>Animation动画</h1><p>animation属性值：</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>@keyframes</td>
-<td style="text-align:center">定义动画名称</td>
-</tr>
-<tr>
-<td>animation</td>
-<td style="text-align:center">所有动画属性的简写属性，除了animation-play-state属性。</td>
-</tr>
-<tr>
-<td>animation-name</td>
-<td style="text-align:center">规定 @keyframes 动画的名称。</td>
-</tr>
-<tr>
-<td>animation-duration</td>
-<td style="text-align:center">规定动画完成一个周期所花费的时间。默认是0s。</td>
-</tr>
-<tr>
-<td>animation-timing-function</td>
-<td style="text-align:center">规定动画的速度曲线。默认是 “ease”。</td>
-</tr>
-<tr>
-<td>animation</td>
-<td style="text-align:center">规定动画何时开始。默认是0s。</td>
-</tr>
-<tr>
-<td>animation-iteration-count</td>
-<td style="text-align:center">规定动画被播放的次数。默认是1。</td>
-</tr>
-<tr>
-<td>animation-direction</td>
-<td style="text-align:center">规定动画是否在下一周期逆向地播放。默认是 “normal” 。逆向alternate</td>
-</tr>
-<tr>
-<td>animation-play-state</td>
-<td style="text-align:center">规定动画是否正在运行或暂停。默认是 “running”，暂停时pause</td>
-</tr>
-<tr>
-<td>animation-fill-mode</td>
-<td style="text-align:center">规定对象动画时间之外的状态。forwards：设置对象状态为动画结束时的状态；backwards：设置对象状态为动画开始时的状态；both：设置对象状态为动画开始或结束的状态</td>
-</tr>
-</tbody>
-</table>
-<h1 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h1><p>1、变换动画不能自行触发，通过hover等动作或结合JS进行触发。anmiation可以自行运行。<br>2、变换动画可控性较弱，只能指定起始状态和结束状态，而animation可以定义多个关键帧。<br>3、变换动画在运行结束之后，需要回到初始状态<br>4、变换动画的作用在于平滑的改变CSS样式<br>5、animation多两个参数，循环和动画的方式。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/blog/2016/06/16/h5-tags/" itemprop="url">
                   HTML5新增input类型
                 </a>
@@ -1761,6 +1573,137 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/06/06/css-module/" itemprop="url">
+                  css模块化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-06T22:22:19+08:00" content="2016-06-06">
+              2016-06-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/06/06/css-module/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/06/css-module/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/06/06/css-module/" class="leancloud_visitors" data-flag-title="css模块化">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="模块化定义"><a href="#模块化定义" class="headerlink" title="模块化定义"></a>模块化定义</h1><ul>
+<li>一系列相关联的结构组成的整体</li>
+<li>带有一定语义，而非表现</li>
+</ul>
+<h1 id="怎么做"><a href="#怎么做" class="headerlink" title="怎么做"></a>怎么做</h1><ol>
+<li>为模块分类命名（如m-,md-）</li>
+<li>以一个主选择器开头（模块根节点）</li>
+<li>使用以主选择器开头的后代选择器（模块子节点）</li>
+</ol>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p> Html代码<br> <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">&lt;!--Nav Module--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"m-nav"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"z-crt"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>index<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>link1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>...</div><div class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--End Nav Module--&gt;</span></div></pre></td></tr></table></figure></p>
+<p> Css代码：<br> <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.m-nav</span>&#123;&#125;   <span class="comment">/*模块容器*/</span></div><div class="line"><span class="selector-class">.m-nav</span> <span class="selector-tag">li</span>,<span class="selector-class">.m-nav</span> <span class="selector-tag">a</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-nav</span> <span class="selector-tag">li</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-nav</span> <span class="selector-tag">a</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-nav</span> <span class="selector-class">.z-crt</span> <span class="selector-tag">a</span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="模块扩展"><a href="#模块扩展" class="headerlink" title="模块扩展"></a>模块扩展</h1><p>原模块：Html<br> <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">&lt;!--Nav Module--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"m-nav"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"z-crt"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>index<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>link1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>...</div><div class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--End Nav Module--&gt;</span></div></pre></td></tr></table></figure></p>
+<p>基于原模块的扩展模块Html：新增一个class类，名为m-nav-n，n为正整数依次递增<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">&lt;!--Nav-1 Module--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"m-nav m-nav-1"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"z-crt"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>index<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">li</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>link1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>...</div><div class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--End Nav-1 Module--&gt;</span></div></pre></td></tr></table></figure></p>
+<p> 对模块和拓展模块设置css<br> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> /*导航模块*/</div><div class="line">.m-nav&#123;&#125;   /*模块容器*/</div><div class="line">.m-nav li,.m-nav a&#123;&#125;</div><div class="line">.m-nav li&#123;&#125;</div><div class="line">.m-nav a&#123;&#125;</div><div class="line">.m-nav .z-crt a&#123;&#125;    /*交互状态变化*/</div><div class="line">/*导航模块扩展*/</div><div class="line">.m-nav-1&#123;&#125;</div><div class="line">.m-nav-1 a&#123;border-radius:5px;   //设置扩展模块导航按钮有5px圆角&#125;</div><div class="line">.m-nav-1 btn&#123;&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="为什么要模块化"><a href="#为什么要模块化" class="headerlink" title="为什么要模块化"></a>为什么要模块化</h1><ul>
+<li>利于多人协同开发</li>
+<li>便于扩展和重用</li>
+<li>可读性、可维护性好</li>
+</ul>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;m-slides&quot;&gt;</div><div class="line">	&lt;ol&gt;</div><div class="line">		&lt;li class=&quot;slide z-crt&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/li&gt;</div><div class="line">		&lt;li class=&quot;slide&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/li&gt;</div><div class="line">		&lt;li class=&quot;slide&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/li&gt;</div><div class="line">		&lt;li class=&quot;slide&quot;&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/li&gt;</div><div class="line">		&lt;span class=&quot;ctrl&quot;&gt;&lt;i class=&quot;z-crt&quot;&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;</div><div class="line">	&lt;/ol&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>使用了外层div类名为m-slides时css结构清晰<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*模块化样式*/</span></div><div class="line"><span class="selector-class">.m-slides</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-slides</span> <span class="selector-tag">slide</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-slides</span> <span class="selector-tag">slide</span> <span class="selector-tag">img</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-slides</span> <span class="selector-tag">li</span><span class="selector-class">.z-crt</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-slides</span> <span class="selector-class">.ctrl</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-slides</span> <span class="selector-class">.ctrl</span> <span class="selector-tag">i</span>&#123;&#125;</div><div class="line"><span class="selector-class">.m-slides</span> <span class="selector-class">.ctrl</span> <span class="selector-tag">i</span><span class="selector-class">.z-crt</span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>去掉外层div时css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*未模块化样式*/</span></div><div class="line"><span class="selector-class">.slides</span>&#123;&#125;</div><div class="line"><span class="selector-class">.slide</span>&#123;&#125;</div><div class="line"><span class="selector-class">.slide</span> <span class="selector-tag">img</span>&#123;&#125;</div><div class="line"><span class="selector-tag">li</span><span class="selector-class">.z-crt</span>&#123;&#125;</div><div class="line"><span class="selector-class">.ctrl</span>&#123;&#125;</div><div class="line"><span class="selector-class">.ctrl</span> <span class="selector-tag">i</span>&#123;&#125;</div><div class="line"><span class="selector-tag">i</span><span class="selector-class">.z-crt</span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1806,7 +1749,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
