@@ -256,6 +256,154 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2017/07/03/vuejs-develop-h5-experience/" itemprop="url">
+                  vuejs开发H5页面总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-03T15:12:19+08:00" content="2017-07-03">
+              2017-07-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2017/07/03/vuejs-develop-h5-experience/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/03/vuejs-develop-h5-experience/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/07/03/vuejs-develop-h5-experience/" class="leancloud_visitors" data-flag-title="vuejs开发H5页面总结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近参与了APP内嵌H5页面的开发，这次使用vuejs替代了以外的jQuery，仅仅把vuejs当做一个库来使用，效率提高之外代码可读性更强，再次分享一下自己的一些开发经验。</p>
+<h1 id="关于布局方案"><a href="#关于布局方案" class="headerlink" title="关于布局方案"></a>关于布局方案</h1><p>当拿到设计师给的UI设计图，前端的首要任务就是布局和样式，相信这对于大部分前端工程师来说已经不是什么难题了。移动端的布局相对PC较为简单，关键在于<strong>对不同设备的适配</strong>。之前介绍了一篇关于移动端<a href="http://www.huzerui.com/blog/2016/06/16/mobile-rem/">rem布局方案</a>，这大致是网易H5的适配方案。不过实践中发现淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>效果更好且更容易使用。</p>
+<p>网易云的方案总结为：根据<strong>屏幕大小 / 750 = 所求字体 / 基准字体大小</strong>比值相等，动态调节html的font-size大小。</p>
+<p>淘宝的方案总结为：根据设备设备像素比设置scale的值，保持视口device-width始终等于设备物理像素，接着根据屏幕大小动态计算根字体大小，具体是将屏幕划分为10等分，每份为a，1rem就等于10a。</p>
+<p>通常我们会拿到750宽的设计稿，这是基于iPhone6的物理分辨率。有的设计师也许会偷懒，设计图上面没有任何的标注，如果我们边开发边量尺寸，无疑效率是比较低的。要么让设计师 标注上，要么自食其力。科技技术是第一生产力，而技术衍生了工具，工具提升了效率。如果设计师实在没有时间，推荐使用<a href="http://www.getmarkman.com/" target="_blank" rel="external">markman</a>，免费版阉割了一些功能（比如无法保存）不过基本满足了我们的需求了。</p>
+<p>布局完成后开始写我们的样式，使用了淘宝的lib-flexible库之后，我们的根字体基准值就为750/100*10 = 75px。此时我们从图中量的某个宽度加入为100px，那么css中就应该设置为100/75 = 1.333333rem。所以为了提高开发效率，可以使用px转化为rem的插件。如果你使用sublimeText，可以用 <a href="https://packagecontrol.io/packages/rem-unit" target="_blank" rel="external">rem-unit</a><br><img src="http://qiniu.huzerui.com/image/2017-07-03-rem-unit.gif" alt="rem-unit"><br>如果你用vscode编辑器，推荐 <a href="https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem" target="_blank" rel="external">cssrem</a><br><img src="http://qiniu.huzerui.com/image/2017-07-03-css-to-rem.gif" alt="pxtorem"></p>
+<p>使用rem单位注意以下几点：</p>
+<ol>
+<li>在所有的单位中，font-size推荐使用px，然后结合媒体查询进行重要节点的控制，这样可以满足突出或者弱化某些字体的需求，而非整体调整</li>
+<li>众向的单位可以全部使用px，横向的使用rem，因为移动设备宽度有限，而高度可以无限向下滑动。但这也有特例，比如对于一些活动注册页面，需要在一屏幕内完全显示，没有下拉，这时候所有众向或者横向都应该使用rem作为单位。如图：<br><img src="http://qiniu.huzerui.com/image/2017-07-03-rem-description.jpg" alt="rem-desc"><br>左图的表单高度单位由于下边空距较大，使用px在不同屏幕显示更加；而右边的活动注册页由于不能出现滚动条，所有的众向高度、margin、padding都应该使用rem。</li>
+<li>border、box-shadow、border-radius等一些效果应该使用px作为单位。</li>
+</ol>
+<h1 id="基于接口返回数据的属性注入"><a href="#基于接口返回数据的属性注入" class="headerlink" title="基于接口返回数据的属性注入"></a>基于接口返回数据的属性注入</h1><p>可能大家不明白什么叫”基于接口返回数据的属性注入”，在此之前，先说一下表单数据的绑定方式，一个重要的点是<strong>有几份表单就分开几个表单对象进行数据绑定</strong>。</p>
+<p>已上图公积金查询为例，由于不同城市会有不同的查询要素，可能登陆方式只有一种，也可能有几种。比如上图有三种登陆方式，在使用vue布局时，有两种方案。一是只建立一个表单用于数据绑定，点击按钮触发判断；而是有几种登陆方式建立几个表单，用一个字段标识当前显示的表单。由于使用第三方的接口，一开始也没有先进行接口返回数据结构的查看，采用了第一种错误的方式，错误一是每种登陆方式下面的登陆要素的数量也不同，错误二是数据绑定在同一个表单data下，当用户在用户名登陆方式输入用户名密码后，切换到客户号，就会出现数据错乱的情况。</p>
+<p>解决完布局问题后，我们需要根据设计图定义一些状态，比如当前登陆方式的切换、同意授权状态的切换、按钮是否可以点击的状态、是否处于请求中的状态。当然还有一些app穿过来的数据，这里就忽略了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">    <span class="attr">tags</span>: &#123;</div><div class="line">        <span class="attr">arr</span>: [<span class="string">''</span>],</div><div class="line">        <span class="attr">activeIndex</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">isAgreeProxy</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">isLoading</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>首先我们整理一下首先我们需要得到接口返回的数据，比如呼和浩特的登陆要素如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"code"</span>: <span class="number">2005</span>,</div><div class="line">    <span class="string">"data"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="string">"name"</span>: <span class="string">"login_type"</span>,</div><div class="line">            <span class="string">"label"</span>: <span class="string">"身份证号"</span>,</div><div class="line">            <span class="string">"fields"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_name"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"身份证号"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_pass"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"密码"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"password"</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="string">"value"</span>: <span class="string">"1"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="string">"name"</span>: <span class="string">" login_type"</span>,</div><div class="line">            <span class="string">"label"</span>: <span class="string">"公积金账号"</span>,</div><div class="line">            <span class="string">"fields"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_name"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"公积金账号"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_pass"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"密码"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"password"</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="string">"value"</span>: <span class="string">"0"</span></div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    <span class="string">"message"</span>: <span class="string">"登录要素请求成功"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到有两种登陆方式，然后我在data中定义了一个loginWays，初始为空数组，接着method有个查询登陆要素的函数，里面就是基于返回数据的基础上为上面fields对象注入一个input用于绑定，这就是所谓的基于接口返回数据的循环注入。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">methods: &#123;</div><div class="line">    <span class="attr">queryloginWays</span>: <span class="function"><span class="keyword">function</span>(<span class="params">channel_type, channel_code</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> params = <span class="keyword">new</span> URLSearchParams();</div><div class="line">        params.append(<span class="string">'channel_type'</span>, channel_type);</div><div class="line">        params.append(<span class="string">'channel_code'</span>, channel_code);</div><div class="line">        axios.post(<span class="keyword">this</span>.loginParamsProxy, params)</div><div class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(res);</div><div class="line">                <span class="keyword">var</span> code = res.code || res.data.code;</div><div class="line">                <span class="keyword">var</span> msg = res.message || res.data.message;</div><div class="line">                <span class="keyword">var</span> loginWays = res.data.data ? res.data.data : res.data;</div><div class="line">                <span class="comment">// 查询失败</span></div><div class="line">                <span class="keyword">if</span> (code != <span class="number">2005</span>) &#123;</div><div class="line">                    alert(msg);</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 添加input字段用于v-model绑定</span></div><div class="line">                loginWays.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">loginWay</span>) </span>&#123;</div><div class="line">                    loginWay.fields.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">field</span>) </span>&#123;</div><div class="line">                        field.input = <span class="string">''</span>;</div><div class="line">                    &#125;)</div><div class="line">                &#125;)</div><div class="line">                <span class="keyword">this</span>.loginWays = loginWays;</div><div class="line">                <span class="keyword">this</span>.tags.arr = loginWays.map(<span class="function"><span class="keyword">function</span>(<span class="params">loginWay</span>) </span>&#123;</div><div class="line">                    <span class="keyword">return</span> loginWay.label;</div><div class="line">                &#125;)</div><div class="line">            &#125;.bind(<span class="keyword">this</span>))</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>即使返回的数据有我们不需要的数据也没有关系，这样保证我们不会遗失进行下一步登陆所需要的数据。</p>
+<p>这样多个表单绑定数据问题也解决了，还有页面间数据传递的方式，如果是app传过来，那么通常使用URL拼接的方式，使用window.location.search获得queryString后再进行截取；如果通过页面套入javaWeb中，那么直接使用”${字段名}”就能获取，注意要js获取控制器传来字段需要加双引号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">        <span class="comment">// 真实姓名</span></div><div class="line">        realName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getQueryVariable(<span class="string">'name'</span>) || <span class="string">''</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// 身份证</span></div><div class="line">        identity: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.getQueryVariable(<span class="string">'identity'</span>)) || <span class="string">''</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/*If javaWeb</span></div><div class="line">        realName: function() &#123;</div><div class="line">            return this.getQueryVariable('name') || ''</div><div class="line">        &#125;,</div><div class="line">        identity: function() &#123;</div><div class="line">            return parseInt(this.getQueryVariable('identity')) || ''</div><div class="line">        &#125;*/</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        <span class="attr">getQueryVariable</span>: <span class="function"><span class="keyword">function</span>(<span class="params">variable</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> query = <span class="built_in">window</span>.location.search.substring(<span class="number">1</span>);</div><div class="line">            <span class="keyword">var</span> vars = query.split(<span class="string">'&amp;'</span>);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; vars.length; i++) &#123;</div><div class="line">                <span class="keyword">var</span> pair = vars[i].split(<span class="string">'='</span>);</div><div class="line">                <span class="keyword">if</span> (<span class="built_in">decodeURIComponent</span>(pair[<span class="number">0</span>]) == variable) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(pair[<span class="number">1</span>]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'Query variable %s not found'</span>, variable);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="关于前端跨域调试"><a href="#关于前端跨域调试" class="headerlink" title="关于前端跨域调试"></a>关于前端跨域调试</h1><p>在进行接口请求时，我们的页面通常是在sublime的本地服务器或者vscode本地服务器预览，所以请求接口会遇到跨域的问题。<br>在项目构建的时候通常我们源代码会放在src文件夹下，然后使用gulp进行代码的压缩、合并、图片的优化（根据需要）等等，我们会使用gulp。这里解决跨域的问题可以用<a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">gulp-connect</a>结合<a href="https://www.npmjs.com/package/http-proxy-middleware" target="_blank" rel="external">http-proxy-middleware</a>。<br>gulpfile.js如下： 开发过程使用gulp server命令，监听文件改动并使用liveReload刷新；使用gulp命令进行打包。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);</div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"><span class="keyword">var</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>);</div><div class="line"><span class="keyword">var</span> useref = <span class="built_in">require</span>(<span class="string">'gulp-useref'</span>);</div><div class="line"><span class="keyword">var</span> connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>);</div><div class="line"><span class="keyword">var</span> proxyMiddleware = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 定义环境变量，若为 dev，则代理src目录； 若为prod，则代理dist目录</span></div><div class="line"><span class="keyword">var</span> env = <span class="string">'prod'</span></div><div class="line"></div><div class="line"><span class="comment">// 跨域代理  将localhost:8088/api 映射到 https://api.shujumohe.com/</span></div><div class="line">gulp.task(<span class="string">'server'</span>, [<span class="string">'listen'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> middleware = proxyMiddleware([<span class="string">'/api'</span>], &#123;</div><div class="line">        <span class="attr">target</span>: <span class="string">'https://api.shujumohe.com/'</span>,</div><div class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">pathRewrite</span>: &#123;</div><div class="line">            <span class="string">'^/api'</span>: <span class="string">'/'</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    connect.server(&#123;</div><div class="line">        <span class="attr">root</span>: env == <span class="string">'dev'</span> ? <span class="string">'./src'</span> : <span class="string">'./dist'</span>,</div><div class="line">        <span class="attr">port</span>: <span class="number">8088</span>,</div><div class="line">        <span class="attr">livereload</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">middleware</span>: <span class="function"><span class="keyword">function</span>(<span class="params">connect, opt</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> [middleware]</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/*.html'</span>)</div><div class="line">        .pipe(useref())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/css/main.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'main.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css/'</span>));</div><div class="line"></div><div class="line">    gulp.src(<span class="string">'src/css/share.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'share.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css/'</span>));</div><div class="line"></div><div class="line">    gulp.src(<span class="string">'src/vendors/css/*.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'vendors.min.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/vendors/css'</span>));</div><div class="line">    <span class="keyword">return</span> gulp</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'js'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'src/vendors/js/*.js'</span>)</div><div class="line">        .pipe(concat(<span class="string">'vendors.min.js'</span>))</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/vendors/js'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'img'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/imgs/*'</span>)</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/imgs'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'listen'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.watch(<span class="string">'./src/css/*.css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/css/*.css'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(<span class="string">'./src/js/*.js'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/js/*.js'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(<span class="string">'./src/*.html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/*.html'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>, <span class="string">'js'</span>, <span class="string">'img'</span>]);</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2017/03/30/solve-asyncfun-callback-problem/" itemprop="url">
                   关于异步函数的回调问题
                 </a>
@@ -1912,194 +2060,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/06/16/css3-transform-animation/" itemprop="url">
-                  CSS3变换及CSS3动画
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-16T22:21:23+08:00" content="2016-06-16">
-              2016-06-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/06/16/css3-transform-animation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/16/css3-transform-animation/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/06/16/css3-transform-animation/" class="leancloud_visitors" data-flag-title="CSS3变换及CSS3动画">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CSS3变换动画"><a href="#CSS3变换动画" class="headerlink" title="CSS3变换动画"></a>CSS3变换动画</h1><h2 id="指定三维视角"><a href="#指定三维视角" class="headerlink" title="指定三维视角"></a>指定三维视角</h2><p>perspective 属性定义 3D 元素距视图的距离，以像素计。<br>当为元素定义 perspective 属性时，其子元素会获得透视效果，而不是元素本身。</p>
-<h2 id="三维变形"><a href="#三维变形" class="headerlink" title="三维变形"></a>三维变形</h2><p>三维变形的变形方式：四种方法<br>旋转——缩放——平移——扭曲——指定变形基点</p>
-<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>transform:rotate(45deg);<br>该语句使div元素顺时针旋转45度。</p>
-<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>transform:scale(0.8,1);<br>使用缩放的方法实现文字或图像的缩放效果，在参数中指定缩放倍率。该语句使用scale方法使该元素在水平方向上缩小了20%，垂直方向上不缩放。</p>
-<h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><p>translate(50px,50px);<br>使用translate方法来将文字或图像在水平方向和垂直方向上分别垂直移动50像素。</p>
-<h2 id="扭曲"><a href="#扭曲" class="headerlink" title="扭曲"></a>扭曲</h2><p>transform:skew(30deg,0deg);<br>该实例通过skew方法把元素水平方向上倾斜30度，处置方向保持不变。</p>
-<h2 id="指定变形基点"><a href="#指定变形基点" class="headerlink" title="指定变形基点"></a>指定变形基点</h2><p>在使用transform方法进行文字或图像的变形时，是以元素的中心点为基准点进行的。使用transform-orign属性，可以改变变形的基准点。<br>transorm-origin:left bottom;<br>left和bottom是基准点在元素水平方向和垂直方向上的位置。</p>
-<h2 id="形成过渡动画"><a href="#形成过渡动画" class="headerlink" title="形成过渡动画"></a>形成过渡动画</h2><p>元素在定义了变化终点状态之后，在元素本身设置transition即可形成过渡动画。</p>
-<h1 id="Animation动画"><a href="#Animation动画" class="headerlink" title="Animation动画"></a>Animation动画</h1><p>animation属性值：</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>@keyframes</td>
-<td style="text-align:center">定义动画名称</td>
-</tr>
-<tr>
-<td>animation</td>
-<td style="text-align:center">所有动画属性的简写属性，除了animation-play-state属性。</td>
-</tr>
-<tr>
-<td>animation-name</td>
-<td style="text-align:center">规定 @keyframes 动画的名称。</td>
-</tr>
-<tr>
-<td>animation-duration</td>
-<td style="text-align:center">规定动画完成一个周期所花费的时间。默认是0s。</td>
-</tr>
-<tr>
-<td>animation-timing-function</td>
-<td style="text-align:center">规定动画的速度曲线。默认是 “ease”。</td>
-</tr>
-<tr>
-<td>animation</td>
-<td style="text-align:center">规定动画何时开始。默认是0s。</td>
-</tr>
-<tr>
-<td>animation-iteration-count</td>
-<td style="text-align:center">规定动画被播放的次数。默认是1。</td>
-</tr>
-<tr>
-<td>animation-direction</td>
-<td style="text-align:center">规定动画是否在下一周期逆向地播放。默认是 “normal” 。逆向alternate</td>
-</tr>
-<tr>
-<td>animation-play-state</td>
-<td style="text-align:center">规定动画是否正在运行或暂停。默认是 “running”，暂停时pause</td>
-</tr>
-<tr>
-<td>animation-fill-mode</td>
-<td style="text-align:center">规定对象动画时间之外的状态。forwards：设置对象状态为动画结束时的状态；backwards：设置对象状态为动画开始时的状态；both：设置对象状态为动画开始或结束的状态</td>
-</tr>
-</tbody>
-</table>
-<h1 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h1><p>1、变换动画不能自行触发，通过hover等动作或结合JS进行触发。anmiation可以自行运行。<br>2、变换动画可控性较弱，只能指定起始状态和结束状态，而animation可以定义多个关键帧。<br>3、变换动画在运行结束之后，需要回到初始状态<br>4、变换动画的作用在于平滑的改变CSS样式<br>5、animation多两个参数，循环和动画的方式。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2145,7 +2105,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2162,7 +2122,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
