@@ -256,6 +256,187 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2017/07/05/about-blob-filereader-formdata/" itemprop="url">
+                  关于Blob、FileReader、FormData的那些事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-05T15:12:19+08:00" content="2017-07-05">
+              2017-07-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2017/07/05/about-blob-filereader-formdata/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/05/about-blob-filereader-formdata/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/07/05/about-blob-filereader-formdata/" class="leancloud_visitors" data-flag-title="关于Blob、FileReader、FormData的那些事">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Blob对象是什么"><a href="#Blob对象是什么" class="headerlink" title="Blob对象是什么"></a>Blob对象是什么</h1><p>从<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="_blank" rel="external">MDN</a>上有这样一段描述：</p>
+<blockquote>
+<p>一个 Blob对象表示一个不可变的, 原始数据的<strong>类似文件对象</strong>。Blob表示的数据不一定是一个JavaScript原生格式。 File 接口基于Blob，继承 blob功能并将其扩展为支持用户系统上的文件。</p>
+</blockquote>
+<p>引用中的关键词是保存着原始数据的类似文件的对象，所谓类似文件的对象可以理解为这种对象本身不是文件，但可以从原始数据解析出文件数据。</p>
+<p>既然要解析，就需要知道Blob对象的类型，所以创建Blob的时候第二个参数就是配置项，我们可以配置所有<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="_blank" rel="external">MIME类型</a>，比如将配置项的type制定为’text/xml’，’text/plain’，’text/css’等，Blob构造函数语法如下（参考MDN）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> aBlob = <span class="keyword">new</span> Blob( array, options );</div></pre></td></tr></table></figure></p>
+<ul>
+<li>array 是一个由ArrayBuffer, ArrayBufferView, Blob, DOMString 等对象构成的 Array ，或者其他类似对象的混合体，它将会被放进 Blob.</li>
+<li>options 是一个可选的Blob熟悉字典，它可能会指定如下两种属性：<ul>
+<li>type，默认值为 “”，它代表了将会被放入到blob中的数组内容的MIME类型。</li>
+<li>endings，默认值为”transparent”，它代表包含行结束符\n的字符串如何被输出。 它是以下两个值中的一个： “native”，代表行结束符会被更改为适合宿主操作系统文件系统的惯例，或者 “transparent”, 代表会保持blob中保存的结束符不变 </li>
+</ul>
+</li>
+</ul>
+<p>Blob创建出来，那JS种如何读取或者说从原始数据解析出文件数据呢？从Blob中读取内容的唯一方法是使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="external">FileReader</a>。</p>
+<h1 id="FileReader对象"><a href="#FileReader对象" class="headerlink" title="FileReader对象"></a>FileReader对象</h1><p>故名思议，FileReader对象用于读取文件数据，所谓的文件数据其实就是Blob对象和File对象（因为File对象继承于Blob对象）。<br>由于文件的读取时间基于文件的大小，所以FileReader读取的过程为设计为异步，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fileReader = <span class="keyword">new</span> FileReader();</div><div class="line">FileReader.addEventListener(<span class="string">'onload'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">	<span class="comment">// 读取的数据保存在fileReader实例的result属性</span></div><div class="line">	<span class="keyword">var</span> data = e.target.result</div><div class="line">	<span class="comment">// Todo...</span></div><div class="line">&#125;)</div><div class="line">fileReader.readAsDataURL(file)</div></pre></td></tr></table></figure></p>
+<p>这个过程跟预加载图片的过程相同，<strong>生成实例-&gt;监听-&gt;开始加载</strong>，上面的例子以读取文件为例，使用readAsDataURL的方法，FileRader还有三种读取为其他数据类型的方法：<br>方法名 | 参数| 描述 |<br>—- | — | — |<br>readAsBinaryString| file |将文件读取为二进制编码<br>readAsBinaryArray | file | 将文件读取为二进制数组<br>readAsText|  file[, encoding] |  按照格式将文件读取为文本，encode默认为UTF-8<br>readAsDataURL | file| 将文件读取为DataUrl</p>
+<p>另外还有一个abort方法用于阻止文件读取</p>
+<p>我们知道Image对象读取图像的事件有onload、onerror、onabort，而FileReader除了这三个事件，还新增了三个对过程的监听事件，onloadstart、onprogress、onloadend，但实际上新增的事件使用的并不多，主要用于大文件读取时进度条实现的需求上。    </p>
+<p>在onprogress的事件处理器中，有一个ProgressEvent对象，这个事件对象实际上继承了Event对象，提供了三个只读属性：</p>
+<ul>
+<li>lengthComputable</li>
+<li>loaded  （已读取的字节数）  </li>
+<li><ul>
+<li>total   （总字节数）  </li>
+</ul>
+</li>
+</ul>
+<p>其中事件的lengthComputable属性代表文件总大小是否可知。如果 lengthComputable 属性的值是 false，那么意味着总字节数是未知并且 total 的值为零。</p>
+<p>看到这些是否感觉似曾相识，“蓦然回首，那人却在灯火阑珊处”。没错，使用ajax上传文件的时候也有同样的事件钩子，<a href="https://en.wikipedia.org/wiki/XMLHttpRequest" target="_blank" rel="external">XMLHttpRequest Level 2</a>中，xhr的progress事件用于异步请求进度的监听，上传的进度事件绑定在xhr的upload属性中，在异步上传文件时我们可以这样监听进度：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.upload.onprogress = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (e.lengthComputable) &#123;</div><div class="line">        <span class="keyword">var</span> percentComplete = (e.loaded / e.total) * <span class="number">100</span>;</div><div class="line">        $progress.css(<span class="string">'width'</span>, percentComplete + <span class="string">'%'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>同样地，我们只需要为onprogress事件添加处理器就获取文件读取的进度。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">progressHandler</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> percentLoaded = <span class="built_in">Math</span>.round((e.loaded / e.total) * <span class="number">100</span>);</div><div class="line">    $progress.css(<span class="string">'width'</span>, percentLoaded + <span class="string">'%'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>FileReader和文件密不可分，既然说到文件上传，就再说一下多文件上传、拖拽上传</p>
+<h1 id="FormData与文件上传"><a href="#FormData与文件上传" class="headerlink" title="FormData与文件上传"></a>FormData与文件上传</h1><h2 id="多文件上传"><a href="#多文件上传" class="headerlink" title="多文件上传"></a>多文件上传</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fileInput = <span class="built_in">document</span>.getElementById(<span class="string">"myFile"</span>);</div><div class="line"><span class="keyword">var</span> files = fileInput.files;</div><div class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; files.length; i++) &#123;</div><div class="line">    <span class="keyword">var</span> file = files[i];</div><div class="line">    formData.append(<span class="string">'files[]'</span>, file, file.name);</div><div class="line">    xhr.open(<span class="string">"POST"</span>, <span class="string">"/upload.php"</span>);</div><div class="line"></div><div class="line">	xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	    <span class="keyword">if</span>(<span class="keyword">this</span>.status === <span class="number">200</span>)&#123;</div><div class="line">	        <span class="comment">//对请求成功的处理</span></div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 如果要监听进度</span></div><div class="line">	xhr.upload.onprogress = progressHandler</div><div class="line">	</div><div class="line">	xhr.send(formData);</div><div class="line">	xhr = <span class="literal">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是将所有的文件发送一次异步请求，而我们监听的进度也是所有文件上传的总进度，如果我们需要单独监听单个文件的上传进度，只需改成递归的方式依次发送请求。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fileInput = <span class="built_in">document</span>.getElementById(<span class="string">"myFile"</span>);</div><div class="line"><span class="keyword">var</span> files = fileInput.files;</div><div class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> uploadFile = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</div><div class="line">	formData.append(files[i]);</div><div class="line"></div><div class="line">	xhr.open(<span class="string">"POST"</span>, <span class="string">"/upload.php"</span>);</div><div class="line"></div><div class="line">	xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	    <span class="keyword">if</span>(<span class="keyword">this</span>.status === <span class="number">200</span>)&#123;</div><div class="line">			<span class="comment">//进行下一次请求</span></div><div class="line">	        i++;</div><div class="line">	        <span class="keyword">if</span>(i != files.length)&#123;</div><div class="line">			    uploadFile()</div><div class="line">			&#125;  </div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 如果要监听进度</span></div><div class="line">	xhr.upload.onprogress = progressHandler</div><div class="line">	</div><div class="line">	xhr.send(formData);</div><div class="line">	xhr = <span class="literal">null</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="拖拽上传"><a href="#拖拽上传" class="headerlink" title="拖拽上传"></a>拖拽上传</h2><p>拖拽上传只需了解HTML5基本的拖拽事件即可，参考MDN的<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API" target="_blank" rel="external">HTML 拖放 API</a>。</p>
+<ul>
+<li>drag : 元素被拖拽时由<strong>拖拽元素</strong>频繁触发的事件</li>
+<li>dragstart : 拖拽时开始时由<strong>拖拽元素</strong>触发的事件</li>
+<li>dragend : 拖拽结束时触发由<strong>拖拽元素</strong>的事件</li>
+<li>dragover : 当拖拽元素进入放置区域时由<strong>放置元素</strong>频繁触发的事件(每隔几百毫秒就会触发一次)</li>
+<li>dragenter : 当拖拽元素进入放置区域时由<strong>放置元素</strong>触发的事件</li>
+<li>dragleave : 当拖拽元素离开放置区域时由<strong>放置元素</strong>触发的事件</li>
+<li>drop : 当拖拽元素在放置区域放置时由<strong>放置元素</strong>触发的事件</li>
+</ul>
+<p><strong>持续触发的事件</strong>：drag和dragover<br><strong>发生在拖拽元素的事件</strong>：drag、dragstart、dragend<br><strong>发生在放置元素的事件</strong>：dragover 、dragenter 、dragleave、drop<br><strong>事件触发次序：</strong>dragstart -&gt; drag -&gt; dragenter -&gt; dragover -&gt; dragleave -&gt; drop -&gt; dragend</p>
+<p>当我们拖放文件到浏览器中时，浏览器默认的行为是浏览器将当前页面重定向到被拖拽元素所指向的资源上，因此需要阻止dragenter、dragover、drop的默认行为，这样才能使drop事件被触发。（最好同时阻止冒泡）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dropArea;</div><div class="line"></div><div class="line">dropArea = <span class="built_in">document</span>.getElementById(<span class="string">"dropArea"</span>);</div><div class="line">dropArea.addEventListener(<span class="string">"dragenter"</span>, handleDragenter, <span class="literal">false</span>);</div><div class="line">dropArea.addEventListener(<span class="string">"dragover"</span>, handleDragover, <span class="literal">false</span>);</div><div class="line">dropArea.addEventListener(<span class="string">"drop"</span>, handleDrop, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleDragenter</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="comment">/*若要兼容ie</span></div><div class="line">	window.event? window.event.cancelBubble = true : e.stopPropagation();</div><div class="line">	window.event? window.event.returnValue = false : e.preventDefault();*/</div><div class="line">    e.stopPropagation();</div><div class="line">    e.preventDefault();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleDragover</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.stopPropagation();</div><div class="line">    e.preventDefault();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleDrop</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.stopPropagation();</div><div class="line">    e.preventDefault();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> dt = e.dataTransfer;</div><div class="line">    <span class="keyword">var</span> files = dt.files;</div><div class="line"></div><div class="line">    <span class="comment">// FileReader将图片读取为dataUrl并立刻展示..省略</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>值得注意的是：触发dragstart事件后，其他元素的mousemove,mouseover,mouseenter,mouseleave,mouseout事件均不会被触发了。</p>
+<p>上面拖拽回调中的事件对象，继承自 MouseEvent 对象，它的<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer" target="_blank" rel="external">dataTransfer</a>属性保存着拖拽对象的相关信息。</p>
+<p>DataTransfer对象有几个重要的属性，其中files属性保存文件的数据。<br>effectAllowed 和 dropEffect 最主要的作用是，用于配置拖拽操作过程中鼠标指针的类型以便提示用户后续可执行怎样的操作；其次的作用是，控制 drop 事件的触发与否。当显示禁止的指针样式时，将无法触发目标元素的 drop 事件。</p>
+<p>注意：只能在dragstart中设置effectAllowed，只能在dragover中设置dropEffect </p>
+<p>拖拽后通过FileReader读取立刻显示图片优化体验，因为用户可能需要确定是否更换图片，然后单击按钮才将图片，这样可以防止不必要的请求，接下来就是上文提到的FormData上传文件，这里不再赘述。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2017/07/03/vuejs-develop-h5-experience/" itemprop="url">
                   vuejs开发H5页面总结
                 </a>
@@ -1908,158 +2089,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/09/04/mobile-gallery/" itemprop="url">
-                  移动端图片画廊
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T10:55:47+08:00" content="2016-09-04">
-              2016-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/09/04/mobile-gallery/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/04/mobile-gallery/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/09/04/mobile-gallery/" class="leancloud_visitors" data-flag-title="移动端图片画廊">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果<br><img src="/blog/img/post/2016-09-04-mobile-photo-galleries.gif" alt="demo"><br>你也可以点击<a href="http://alex1504.oschina.io/demo/mobile-gallery/" target="_blank" rel="external">在线地址</a>  查看预览:</p>
-<h2 id="关于flex-box布局"><a href="#关于flex-box布局" class="headerlink" title="关于flex-box布局"></a>关于flex-box布局</h2><p>flex布局简直是移动端的神器，因为移动端不存在兼容性问题，几乎所有手机浏览器都采用相同的标准。</p>
-<h2 id="几分钟快速了解flex-box布局"><a href="#几分钟快速了解flex-box布局" class="headerlink" title="几分钟快速了解flex-box布局"></a>几分钟快速了解flex-box布局</h2><h3 id="采用flex布局（作用于容器）"><a href="#采用flex布局（作用于容器）" class="headerlink" title="采用flex布局（作用于容器）"></a>采用flex布局（作用于容器）</h3><p>块状元素：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">    <span class="attribute">display</span>:flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>行内元素：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123; </div><div class="line">    <span class="attribute">display</span>: inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h3><p>寻找好基友：<br> flex-direction、 flex-wrap、flex-flow<br>justify-content、align-items、align-content</p>
-<p>解释：</p>
-<ul>
-<li><strong>flex-direction</strong>：决定主轴的方向（即项目的排列方向）</li>
-<li><strong>flex-wrap</strong>：默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行</li>
-<li><strong>strong text</strong>flex-flow：flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</li>
-<li><strong>justify-content</strong>：定义了项目在主轴上的对齐方式（flex-start | flex-end | center | space-between | space-around）</li>
-<li><strong>align-items</strong>：定义项目在交叉轴上如何对齐（flex-start | flex-end | center | baseline | stretch）</li>
-<li><strong>align-content</strong>：定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。（flex-start | flex-end | center | space-between | space-around | stretch;）</li>
-</ul>
-<h3 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h3><p>基友：<br>flex-grow、flex-shrink、flex-basis、flex<br>order   （规整有序）<br>alignself  （特立独行）</p>
-<p>解释：<br><strong>flex-grow</strong>：定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br><strong>flex-shrink</strong>：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。<br><strong>flex-basis</strong>：定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。<br><strong>flex</strong>：flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</p>
-<p><strong>order</strong>：定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
-<p><strong>align-self</strong>：属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
-<h2 id="关于object-fit属性"><a href="#关于object-fit属性" class="headerlink" title="关于object-fit属性"></a>关于object-fit属性</h2><p>适用范围：替换元素</p>
-<pre><code>&lt;img&gt;、&lt;input&gt;、&lt;textarea&gt;、&lt;select&gt;、&lt;object&gt;等
-浏览器根据其标签的元素与属性来判断显示具体的内容
-</code></pre><p>值：<br><strong>fill</strong>: 默认值。替换内容拉伸填满整个content box, 不保证保持原有的比例。<br><strong>contain</strong>: 保持原有尺寸比例。保证替换内容尺寸一定可以在容器里面放得下。因此，此参数可能会在容器内留下空白。<br><strong>cover</strong>: 保持原有尺寸比例。保证替换内容尺寸一定大于容器尺寸，宽度和高度至少有一个和容器一致。因此，此参数可能会让替换内容（如图片）部分区域不可见。<br><strong>none</strong>: 保持原有尺寸比例。同时保持替换内容原始尺寸大小。<br><strong>scale-down</strong>: 就好像依次设置了none或contain, 最终呈现的是尺寸比较小的那个。</p>
-<h2 id="DEMO解释"><a href="#DEMO解释" class="headerlink" title="DEMO解释"></a>DEMO解释</h2><p>html:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"m-gallery"</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- &lt;div&gt;&lt;img class="animated bounceIn" src="img/1.jpg"&gt;&lt;/div&gt; --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"m-viewbox hide"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"bigimg animated bounceIn"</span> <span class="attr">src</span>=<span class="string">""</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>css:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">.m-gallery&#123;</div><div class="line">    display: flex; //采用flex布局</div><div class="line">    flex-wrap: wrap;  //规定一行放不下flex元素时自动换行</div><div class="line">&#125;</div><div class="line">.m-gallery div&#123;</div><div class="line">    height: 100px;</div><div class="line">    flex-grow:1;   //每个flex元素占的宽度相同</div><div class="line">    margin: 2px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.m-gallery  img&#123;</div><div class="line">    height: 100px;</div><div class="line">    min-width: 100%;     </div><div class="line">    max-width: 100%;</div><div class="line">    object-fit: cover;      //使图片等比拉伸，可能会被裁减</div><div class="line">    vertical-align: bottom;</div><div class="line">&#125;</div><div class="line">@media (max-width: 1000px) and (min-width: 900px) &#123;</div><div class="line">  .m-gallery::after &#123;</div><div class="line">      content: '';</div><div class="line">      flex-grow: 999999999;     //当最后一行图片太少的时候，比如只有一张，因为 grow 的关系，它将占满一整行，通过伪元素来占满剩余空间，防止图片拉伸</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">@media (max-width: 1100px) and (min-width: 1000px) &#123;</div><div class="line"> .m-gallery::after &#123;</div><div class="line">      content: '';</div><div class="line">      flex-grow: 999999999;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2105,7 +2134,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2122,7 +2151,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

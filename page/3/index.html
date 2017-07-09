@@ -256,6 +256,140 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/06/08/related-menu/" itemprop="url">
+                  省、市、区三级联动菜单Demo
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-08T17:12:19+08:00" content="2016-06-08">
+              2016-06-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2016/06/08/related-menu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/08/related-menu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/06/08/related-menu/" class="leancloud_visitors" data-flag-title="省、市、区三级联动菜单Demo">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>前端模拟数据，省略请求数据</li>
+<li>封装成jQuery插件形式</li>
+<li>省、市、区选择弹出浮层信息</li>
+</ul>
+<p>核心代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//初始化省</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">province</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        $.each(areaJson, <span class="function"><span class="keyword">function</span>(<span class="params">index, val</span>) </span>&#123; </div><div class="line">             temp_option+=<span class="string">"&lt;option value="</span>+val.p+<span class="string">"&gt;"</span>+val.p+<span class="string">"&lt;/option&gt;"</span>;</div><div class="line">             oProvince.html(temp_option);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//根据省赋值市</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">city</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        temp_option=<span class="string">""</span>+chooseC;</div><div class="line">        <span class="keyword">var</span> proIndex=oProvince.get(<span class="number">0</span>).selectedIndex<span class="number">-1</span>;</div><div class="line">        <span class="keyword">if</span>(proIndex&gt;=<span class="number">0</span>)&#123;</div><div class="line">            $.each(areaJson[proIndex].c, <span class="function"><span class="keyword">function</span>(<span class="params">index, val</span>) </span>&#123;</div><div class="line">                 temp_option+=<span class="string">"&lt;option value="</span>+val.ct+<span class="string">"&gt;"</span>+val.ct+<span class="string">"&lt;/option&gt;"</span>;</div><div class="line">                 oCity.html(temp_option);</div><div class="line">                 oDis.html(chooseD);</div><div class="line">            &#125;);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            oCity.html(chooseC);</div><div class="line">            oDis.html(chooseD);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//赋值区|县</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">district</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        temp_option=<span class="string">""</span>+chooseD;</div><div class="line">        <span class="keyword">var</span> proIndex=oProvince.get(<span class="number">0</span>).selectedIndex<span class="number">-1</span>;</div><div class="line">        <span class="keyword">var</span> cityIndex=oCity.get(<span class="number">0</span>).selectedIndex<span class="number">-1</span>;</div><div class="line">        <span class="keyword">if</span>( proIndex&gt;=<span class="number">0</span> &amp;&amp; cityIndex&gt;=<span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">typeof</span>(areaJson[proIndex].c[cityIndex].d)!==<span class="string">"undefined"</span>)&#123;</div><div class="line">                $.each(areaJson[proIndex].c[cityIndex].d, <span class="function"><span class="keyword">function</span>(<span class="params">index, val</span>) </span>&#123;</div><div class="line">                     temp_option+=<span class="string">"&lt;option value="</span>+val.dt+<span class="string">"&gt;"</span>+val.dt+<span class="string">"&lt;/option&gt;"</span>;</div><div class="line">                     oDis.html(temp_option);</div><div class="line">                &#125;);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                showInfo();</div><div class="line">            &#125;                   </div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            oDis.html(chooseD);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">showInfo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> proIndex=oProvince.get(<span class="number">0</span>).selectedIndex;</div><div class="line">        <span class="keyword">var</span> cityIndex=oCity.get(<span class="number">0</span>).selectedIndex;</div><div class="line">        <span class="keyword">var</span> disIndex=oDis.get(<span class="number">0</span>).selectedIndex;</div><div class="line">        <span class="keyword">var</span> p=oProvince.get(<span class="number">0</span>).options[proIndex].value;</div><div class="line">        <span class="keyword">var</span> c=oCity.get(<span class="number">0</span>).options[cityIndex].value;</div><div class="line">        <span class="keyword">var</span> d=disIndex&gt;<span class="number">0</span>?oDis.get(<span class="number">0</span>).options[disIndex].value:<span class="string">""</span>;</div><div class="line">        oShow.css(<span class="string">"display"</span>,<span class="string">"block"</span>).find(<span class="string">"p"</span>).html(p+c+d);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">closeInfo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> btnClose=oShow.find(<span class="string">".btn-close"</span>);</div><div class="line">        <span class="keyword">var</span> btnOk=oShow.find(<span class="string">"button"</span>).eq(<span class="number">0</span>);</div><div class="line">        <span class="keyword">var</span> btnReset=oShow.find(<span class="string">"button"</span>).eq(<span class="number">1</span>);</div><div class="line">        <span class="keyword">var</span> btnArr=[btnClose,btnOk,btnReset];</div><div class="line">        $.each(btnArr, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">             $(<span class="keyword">this</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                oShow.css(<span class="string">"display"</span>,<span class="string">"none"</span>);</div><div class="line">             &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用初始化省</span></div><div class="line">    province();</div><div class="line">    <span class="comment">//省发生变化改变市</span></div><div class="line">    oProvince.change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        city();</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//市发生变化改变区|县</span></div><div class="line">    oCity.change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        district();</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//区|县选择完后弹出浮层信息框</span></div><div class="line">    oDis.change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        showInfo();</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/06/06/css-module/" itemprop="url">
                   css模块化
                 </a>
@@ -1928,118 +2062,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/03/15/annual-meeting/" itemprop="url">
-                  汉服秀
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-15T22:46:44+08:00" content="2016-03-15">
-              2016-03-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2016/03/15/annual-meeting/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/15/annual-meeting/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/03/15/annual-meeting/" class="leancloud_visitors" data-flag-title="汉服秀">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有章服之美谓之华；有礼仪之大故称夏。</p>
-<video id="video" style="max-width: 100%" controls preload="none" width="640" poster="http://huzerui.com/blog/img/post/2016-3-15-company-annual-meeting-poster.jpg"><br>      <source id="rmvb" src="http://oeu9ic4uq.bkt.clouddn.com/video/2016/3/15/annual-meeting.mp4" type="video/mp4"><br>      <p>Your user agent does not support the HTML5 Video element.</p><br>    </video>
-
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2085,7 +2107,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2102,7 +2124,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
