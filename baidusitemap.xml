@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.huzerui.com/blog/2017/07/05/about-blob-filereader-formdata/</loc>
-    <lastmod>2017-07-09T06:09:54.272Z</lastmod>
+    <lastmod>2017-07-09T06:12:20.714Z</lastmod>
     <data>
         <display>
         <title>关于Blob、FileReader、FormData的那些事</title>
@@ -177,34 +177,14 @@
     
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>css命名规范总结（分类命名）</title>
-        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
+        <title>CSS3变换及CSS3动画</title>
+        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
         
-        <tag>css</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/h5-tags/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>HTML5新增input类型</title>
-        <pubTime>2016-06-16T13:50:32.000Z</pubTime>
-        
-        <tag>html5</tag>
+        <tag>css3</tag>
          
          
            
@@ -257,16 +237,14 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/icoMoon/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/16/h5-tags/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>IcoMoon将图标转换成web字体</title>
-        <pubTime>2016-06-16T03:22:52.000Z</pubTime>
+        <title>HTML5新增input类型</title>
+        <pubTime>2016-06-16T13:50:32.000Z</pubTime>
         
-        <tag>css</tag>
-         
-        <tag>图标</tag>
+        <tag>html5</tag>
          
          
            
@@ -289,6 +267,28 @@
         <tag>js</tag>
          
         <tag>jQuery</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/06/16/icoMoon/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>IcoMoon将图标转换成web字体</title>
+        <pubTime>2016-06-16T03:22:52.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>图标</tag>
          
          
            
@@ -363,28 +363,6 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/14/js-string-method/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>javascript字符串对象方法</title>
-        <pubTime>2016-06-14T08:04:41.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-        <tag>string</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.huzerui.com/blog/2016/06/15/js-dom-elepos-and-elesize/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -404,56 +382,16 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/29/major-tag/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/14/js-string-method/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>跨行转前端，仗剑走天涯</title>
-        <pubTime>2016-03-29T15:29:23.000Z</pubTime>
+        <title>javascript字符串对象方法</title>
+        <pubTime>2016-06-14T08:04:41.000Z</pubTime>
         
-        <tag>随笔</tag>
+        <tag>js</tag>
          
-         
-           
-             
-              <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/03/05/grammar-of-sass/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>Sass使用指南</title>
-        <pubTime>2016-03-05T14:46:44.000Z</pubTime>
-        
-        <tag>css</tag>
-         
-        <tag>sass</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>CSS3变换及CSS3动画</title>
-        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
-        
-        <tag>css3</tag>
+        <tag>string</tag>
          
          
            
@@ -486,16 +424,77 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/08/related-menu/</loc>
+    <loc>http://www.huzerui.com/blog/2016/03/05/grammar-of-sass/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>省、市、区三级联动菜单Demo</title>
-        <pubTime>2016-06-08T09:12:19.000Z</pubTime>
+        <title>Sass使用指南</title>
+        <pubTime>2016-03-05T14:46:44.000Z</pubTime>
         
-        <tag>js</tag>
+        <tag>css</tag>
          
-        <tag>jQuery</tag>
+        <tag>sass</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/03/29/major-tag/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>跨行转前端，仗剑走天涯</title>
+        <pubTime>2016-03-29T15:29:23.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+             
+              <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/06/16/mobile-rem/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>移动端自适应布局解决方案——rem</title>
+        <pubTime>2016-06-16T05:42:29.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>webapp</tag>
+         
+        <tag>rem</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>css命名规范总结（分类命名）</title>
+        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
+        
+        <tag>css</tag>
          
          
            
@@ -552,21 +551,42 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/mobile-rem/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/08/related-menu/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>移动端自适应布局解决方案——rem</title>
-        <pubTime>2016-06-16T05:42:29.000Z</pubTime>
+        <title>省、市、区三级联动菜单Demo</title>
+        <pubTime>2016-06-08T09:12:19.000Z</pubTime>
         
-        <tag>css</tag>
+        <tag>js</tag>
          
-        <tag>webapp</tag>
-         
-        <tag>rem</tag>
+        <tag>jQuery</tag>
          
          
            
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/10/03/traveling-of-changsha/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>2016.10.3长沙之旅</title>
+        <pubTime>2016-10-03T12:12:19.000Z</pubTime>
+        
+        <tag>旅行</tag>
+         
+         
+           
+             
+              <breadCrumb title="旅行" url="http://www.huzerui.com/blog/categories/%E6%97%85%E8%A1%8C/"/>
+          
         </display>
     </data>
     </url>
@@ -601,26 +621,6 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/10/03/traveling-of-changsha/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>2016.10.3长沙之旅</title>
-        <pubTime>2016-10-03T12:12:19.000Z</pubTime>
-        
-        <tag>旅行</tag>
-         
-         
-           
-             
-              <breadCrumb title="旅行" url="http://www.huzerui.com/blog/categories/%E6%97%85%E8%A1%8C/"/>
-          
         </display>
     </data>
     </url>
