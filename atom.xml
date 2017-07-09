@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://www.huzerui.com/"/>
-  <updated>2017-07-09T06:06:32.895Z</updated>
+  <updated>2017-07-09T06:08:26.866Z</updated>
   <id>http://www.huzerui.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.huzerui.com/2017/07/05/about-blob-filereader-formdata/"/>
     <id>http://www.huzerui.com/2017/07/05/about-blob-filereader-formdata/</id>
     <published>2017-07-05T07:12:19.000Z</published>
-    <updated>2017-07-09T06:06:32.895Z</updated>
+    <updated>2017-07-09T06:08:26.866Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Blob对象是什么"><a href="#Blob对象是什么" class="headerlink" title="Blob对象是什么"></a>Blob对象是什么</h1><p>从<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="_blank" rel="external">MDN</a>上有这样一段描述：</p>
 <blockquote>
