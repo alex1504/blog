@@ -34,6 +34,7 @@ FileReader.addEventListener('onload', function(e){
 fileReader.readAsDataURL(file)
 ```
 这个过程跟预加载图片的过程相同，**生成实例->监听->开始加载**，上面的例子以读取文件为例，使用readAsDataURL的方法，FileRader还有三种读取为其他数据类型的方法：
+
 方法名 | 参数| 描述 |
 ---- | --- | --- |
 readAsBinaryString| file |将文件读取为二进制编码
