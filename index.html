@@ -351,7 +351,38 @@
 </ul>
 <p>Blob创建出来，那JS种如何读取或者说从原始数据解析出文件数据呢？从Blob中读取内容的唯一方法是使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="external">FileReader</a>。</p>
 <h1 id="FileReader对象"><a href="#FileReader对象" class="headerlink" title="FileReader对象"></a>FileReader对象</h1><p>故名思议，FileReader对象用于读取文件数据，所谓的文件数据其实就是Blob对象和File对象（因为File对象继承于Blob对象）。<br>由于文件的读取时间基于文件的大小，所以FileReader读取的过程为设计为异步，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fileReader = <span class="keyword">new</span> FileReader();</div><div class="line">FileReader.addEventListener(<span class="string">'onload'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">	<span class="comment">// 读取的数据保存在fileReader实例的result属性</span></div><div class="line">	<span class="keyword">var</span> data = e.target.result</div><div class="line">	<span class="comment">// Todo...</span></div><div class="line">&#125;)</div><div class="line">fileReader.readAsDataURL(file)</div></pre></td></tr></table></figure></p>
-<p>这个过程跟预加载图片的过程相同，<strong>生成实例-&gt;监听-&gt;开始加载</strong>，上面的例子以读取文件为例，使用readAsDataURL的方法，FileRader还有三种读取为其他数据类型的方法：<br>方法名 | 参数| 描述 |<br>—- | — | — |<br>readAsBinaryString| file |将文件读取为二进制编码<br>readAsBinaryArray | file | 将文件读取为二进制数组<br>readAsText|  file[, encoding] |  按照格式将文件读取为文本，encode默认为UTF-8<br>readAsDataURL | file| 将文件读取为DataUrl</p>
+<p>这个过程跟预加载图片的过程相同，<strong>生成实例-&gt;监听-&gt;开始加载</strong>，上面的例子以读取文件为例，使用readAsDataURL的方法，FileRader还有三种读取为其他数据类型的方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readAsBinaryString</td>
+<td>file</td>
+<td>将文件读取为二进制编码</td>
+</tr>
+<tr>
+<td>readAsBinaryArray</td>
+<td>file</td>
+<td>将文件读取为二进制数组</td>
+</tr>
+<tr>
+<td>readAsText</td>
+<td>file[, encoding]</td>
+<td>按照格式将文件读取为文本，encode默认为UTF-8</td>
+</tr>
+<tr>
+<td>readAsDataURL</td>
+<td>file</td>
+<td>将文件读取为DataUrl</td>
+</tr>
+</tbody>
+</table>
 <p>另外还有一个abort方法用于阻止文件读取</p>
 <p>我们知道Image对象读取图像的事件有onload、onerror、onabort，而FileReader除了这三个事件，还新增了三个对过程的监听事件，onloadstart、onprogress、onloadend，但实际上新增的事件使用的并不多，主要用于大文件读取时进度条实现的需求上。    </p>
 <p>在onprogress的事件处理器中，有一个ProgressEvent对象，这个事件对象实际上继承了Event对象，提供了三个只读属性：</p>
