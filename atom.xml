@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://www.huzerui.com/"/>
-  <updated>2017-07-09T06:12:20.714Z</updated>
+  <updated>2017-10-15T12:35:07.881Z</updated>
   <id>http://www.huzerui.com/</id>
   
   <author>
@@ -16,11 +16,152 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>前端都了解的配色策略</title>
+    <link href="http://www.huzerui.com/2017/10/15/color-formula/"/>
+    <id>http://www.huzerui.com/2017/10/15/color-formula/</id>
+    <published>2017-10-15T11:18:19.000Z</published>
+    <updated>2017-10-15T12:35:07.881Z</updated>
+    
+    <content type="html"><![CDATA[<p>在色彩设计应用中，我们对颜色不同程度的理解，影响到设计页面的表现。可是这跟前端有什么联系么？不是设计师的事情么？</p>
+<p>可试想一下如果某些情况下我们需要脱离脱离设计师，比如我们需要做些赏心悦目的示例分享，除了将交互、逻辑做好，没有优雅的配色和设计，可能你的分享会显得苍白无力，下面直入正题。</p>
+<h1 id="颜色理论（Color-theory）"><a href="#颜色理论（Color-theory）" class="headerlink" title="颜色理论（Color theory）"></a>颜色理论（Color theory）</h1><p>三原色：指色彩中不能再分解的三种基本颜色，我们通常说的三原色，即<strong>红、黄、蓝</strong>。三原色可以混合出所有的颜色，同时相加为黑色，黑白灰属于无色系。色彩中颜料调配三原色混合色为黑色。</p>
+<p><strong>红+黄=橙、黄+蓝=绿、蓝+红=紫</strong></p>
+<p>色环（Color  Wheel）：又称色轮、色圈，是<strong>将可见光区域的颜色以圆环来表示</strong>，为色彩学的一个工具，一个基本色环通常包括12种不同的颜色。<br><img src="http://qiniu.huzerui.com/image/2017-10-15-color-ring.gif" alt="色环形成"><br><img src="http://qiniu.huzerui.com/image/2017-10-15-color-ring.jpg" alt="色坏"></p>
+<h1 id="配色策略"><a href="#配色策略" class="headerlink" title="配色策略"></a>配色策略</h1><p>在理解的色环之后，在前人的总结和指引下，就衍生出了一些配色策略。注意每一种配色策略都可以因饱和度、明度的变化产生数不清的配色方案。比如下面的相似色两种配色方案，<strong>基本颜色就是四种（主色、辅色、点睛、背景）</strong>。</p>
+<p>可以发现它们对应颜色的色相变化值都不超过30，在提升或降低饱和度之后形成的颜色变化从而形成不同配色方案。</p>
+<p>配色策略提供的一种指引，具体的颜色值确定靠的更多是灵感和视觉审美。</p>
+<h2 id="单色（Monochromatic）"><a href="#单色（Monochromatic）" class="headerlink" title="单色（Monochromatic）"></a>单色（Monochromatic）</h2><p><img src="http://qiniu.huzerui.com/image/2017-10-15-formula-monochromatic.jpg" alt="Monochromatic"></p>
+<h2 id="相似色（Analogous）"><a href="#相似色（Analogous）" class="headerlink" title="相似色（Analogous）"></a>相似色（Analogous）</h2><p><img src="http://qiniu.huzerui.com/image/2017-10-15-formula-analogous.jpg" alt="Analogous"><br><img src="http://qiniu.huzerui.com/image/2017-10-15-formula-analogous-1.jpg" alt="Analogous"></p>
+<h2 id="互补色（Complementary）"><a href="#互补色（Complementary）" class="headerlink" title="互补色（Complementary）"></a>互补色（Complementary）</h2><p>如：红绿对比、蓝橙、黄紫对比<br><img src="http://qiniu.huzerui.com/image/2017-10-15-formula-complementary.jpg" alt="Complementary"></p>
+<h2 id="分割互补色（Split-complementary）"><a href="#分割互补色（Split-complementary）" class="headerlink" title="分割互补色（Split complementary）"></a>分割互补色（Split complementary）</h2><p><img src="http://qiniu.huzerui.com/image/2017-10-15-formular-split-complementary.jpg" alt="Split complementary"></p>
+<p>##三角对立（Triadic ）<br><img src="http://qiniu.huzerui.com/image/2017-10-15-formula-triadic.jpg" alt="Triadic "></p>
+<h2 id="矩形（Tetradic）"><a href="#矩形（Tetradic）" class="headerlink" title="矩形（Tetradic）"></a>矩形（Tetradic）</h2><p><img src="http://qiniu.huzerui.com/image/2017-10-15-formula-tetradic.jpg" alt="Tetradic"></p>
+<h1 id="关于主色调、辅色调、点睛色、背景色"><a href="#关于主色调、辅色调、点睛色、背景色" class="headerlink" title="关于主色调、辅色调、点睛色、背景色"></a>关于主色调、辅色调、点睛色、背景色</h1><p> 主色调<br>页面色彩的主要色调、总趋势，其他配色不能超过该主要色调的视觉面积。（背景白色不一定根据视觉面积决定，可以根据页面的感觉需要。）</p>
+<p>辅色调<br>仅次与主色调的视觉面积的辅助色，是烘托主色调、支持主色调、起到融合主色调效果的辅助色调。 </p>
+<p>点睛色<br>在小范围内点上强烈的颜色来突出主题效果，使页面更加鲜明生动。</p>
+<p>背景色<br>衬托环抱整体的色调，协调、支配整体的作用。</p>
+<h1 id="配色工具"><a href="#配色工具" class="headerlink" title="配色工具"></a>配色工具</h1><p>Adobe出品的一个在线配色工具，上边列出了海量的配色方案供我们使用，如果你不满足，也可以试下上传图片建立自己的配色方案，只需上传一张图片，网站便可自动提取图片颜色生成配色方案。</p>
+<p>网页版地址：<a href="https://color.adobe.com/zh/create/color-wheel/" target="_blank" rel="external">https://color.adobe.com/zh/create/color-wheel/</a><br>除了创建自己的配色方案，可以参考他人的配色方案并且提供下载编辑的功能，十分好用。<br><img src="http://qiniu.huzerui.com/image/2017-10-15-color-explore.jpg" alt=" explore"></p>
+<p>Kuler也有PS插件，使用方式参考这篇文章<a href="http://www.uisdc.com/adobe-kuler-vc" target="_blank" rel="external">教你使用最受欢迎的配色小工具Kuler</a>。</p>
+<p>其他配色工具：<br><a href="http://www.eigenlogik.com/spectrum/mac" target="_blank" rel="external">Spectrum</a>：Mac + iOS 配色工具<br><a href="http://paletton.com/" target="_blank" rel="external">Paletton</a>：The Color Scheme Designer<br><a href="http://www.peise.net/tools/web/" target="_blank" rel="external">Color Scheme Designer</a>：高级在线配色工具</p>
+<p>更多的配色工具参考：<a href="https://www.zhihu.com/question/23220933" target="_blank" rel="external">推荐配色工具</a>、<a href="http://www.uisdc.com/best-22-color-website" target="_blank" rel="external">国外最好的22个配色网站</a></p>
+<h1 id="网页设计配色文章"><a href="#网页设计配色文章" class="headerlink" title="网页设计配色文章"></a>网页设计配色文章</h1><p>一、<a href="http://www.uisdc.com/6-rules-webdesign-color" target="_blank" rel="external">秒变配色高手！怎么都不会错的6条网页设计配色原则</a><br>二、<a href="http://tool.c7sky.com/webcolor/" target="_blank" rel="external">网页设计常用色彩搭配表</a><br>三、<a href="http://www.uisdc.com/color-psychology-web-design" target="_blank" rel="external">如何巧用色彩打造动人心弦的网页设计</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在色彩设计应用中，我们对颜色不同程度的理解，影响到设计页面的表现。可是这跟前端有什么联系么？不是设计师的事情么？&lt;/p&gt;
+&lt;p&gt;可试想一下如果某些情况下我们需要脱离脱离设计师，比如我们需要做些赏心悦目的示例分享，除了将交互、逻辑做好，没有优雅的配色和设计，可能你的分享会显得
+    
+    </summary>
+    
+      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="设计" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+      <category term="设计" scheme="http://www.huzerui.com/tags/%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="配色" scheme="http://www.huzerui.com/tags/%E9%85%8D%E8%89%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于bmob后端云微信小程序开发</title>
+    <link href="http://www.huzerui.com/2017/10/14/wechat-guita-tabs/"/>
+    <id>http://www.huzerui.com/2017/10/14/wechat-guita-tabs/</id>
+    <published>2017-10-14T10:18:19.000Z</published>
+    <updated>2017-10-15T10:23:35.845Z</updated>
+    
+    <content type="html"><![CDATA[<p>人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。</p>
+<p>程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用<a href="http://www.bmob.cn/" target="_blank" rel="external">bmob后端云</a>提供数据存储服务，除吉他谱图片，其他图片存储在<a href="https://www.qiniu.com/" target="_blank" rel="external">七牛</a>。</p>
+<p>关于bmob小程序开发文档请戳<a href="https://docs.bmob.cn/data/wechatApp/a_faststart/doc/index.html" target="_blank" rel="external">这里</a>，文档详细简练，主要是缩短了开发周期，不过对于复杂的项目，还是推荐使用自己服务器提供数据服务。</p>
+<h1 id="使用微信扫描二维码预览"><a href="#使用微信扫描二维码预览" class="headerlink" title="使用微信扫描二维码预览"></a>使用微信扫描二维码预览</h1><p><img src="http://upload-images.jianshu.io/upload_images/1709462-a09843e9084bcd98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="qrcode"><br>源码地址：<a href="https://github.com/alex1504/wx-guita_tab" target="_blank" rel="external">https://github.com/alex1504/wx-guita_tab</a></p>
+<p>下面分点分享下小程序的开发过程中的关键点及感受，说明：</p>
+<ol>
+<li>小程序标签统称组件，Html标签统称元素。</li>
+<li>部分内容会与vuejs及jQuery作对比</li>
+</ol>
+<h1 id="使用iconfont字体图标"><a href="#使用iconfont字体图标" class="headerlink" title="使用iconfont字体图标"></a>使用iconfont字体图标</h1><p>新建项目并添加图标<br><img src="http://upload-images.jianshu.io/upload_images/1709462-75640d57eb7658e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iconfont"><br>在app.wxss中以unicode方式引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;iconfont&apos;;  /* project id 431644 */</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot&apos;);</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.woff&apos;) format(&apos;woff&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.svg#iconfont&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>定义通用icon样式，定义伪元素<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.icon</span>&#123;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">font-family</span>: <span class="string">'iconfont'</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-home</span><span class="selector-pseudo">::before</span>&#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"\e600"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;view class=&quot;icon icon-home&quot;&lt;/view&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="小程序事件绑定及处理器"><a href="#小程序事件绑定及处理器" class="headerlink" title="小程序事件绑定及处理器"></a>小程序事件绑定及处理器</h1><p>小程序并没有类似vuejs的v-model进行双向绑定，使用bindinput类似jQuery监听input事件在事件处理器中更新数据，通过event对象e.data.value即可获得input的值。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// bindconfirm监听键盘回车事件，focus属性聚焦渲染组件时会自动弹出手机软键盘</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">placeholder</span>=<span class="string">'歌曲名 / 歌手'</span> <span class="attr">bindinput</span>=<span class="string">'bindSearchInput'</span> <span class="attr">bindconfirm</span>=<span class="string">'onSearch'</span> <span class="attr">focus</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bindSearchInput(e) &#123;</div><div class="line">  <span class="keyword">this</span>.setData(&#123;</div><div class="line">    <span class="attr">searchTxt</span>: e.detail.value</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>小程序中的事件处理器并不能像vue一样传入参数，因为事件处理器只有一个默认的参数event对象，在for循环的组件中如果要想获取元素绑定的id，可以通过和jQuery相同的方式绑定data属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 轮播图 --&gt;</div><div class="line">&lt;swiper indicator-dots=&quot;&#123;&#123;indicatorDots&#125;&#125;&quot; autoplay=&quot;&#123;&#123;autoplay&#125;&#125;&quot; interval=&quot;&#123;&#123;interval&#125;&#125;&quot; duration=&quot;&#123;&#123;duration&#125;&#125;&quot;&gt;</div><div class="line">  &lt;block wx:for=&quot;&#123;&#123;banner_list&#125;&#125;&quot; wx:key=&quot;&#123;&#123;index&#125;&#125;&quot;&gt;</div><div class="line">    &lt;swiper-item bindtap=&quot;navigateToDetail&quot;  data-id=&quot;&#123;&#123;item.href&#125;&#125;&quot;&gt;</div><div class="line">      &lt;image src=&quot;&#123;&#123;item.image&#125;&#125;&quot; class=&quot;slide-image&quot; mode=&quot;widthFix&quot;&gt;&lt;/image&gt;</div><div class="line">    &lt;/swiper-item&gt;</div><div class="line">  &lt;/block&gt;</div><div class="line">&lt;/swiper&gt;</div></pre></td></tr></table></figure></p>
+<p>获取id：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//事件处理函数</span></div><div class="line">navigateToDetail: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> id = e.currentTarget.dataset.id;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bindtap、bindlongtap、bindtouchstart、bindtouchmove、bindtouchend、bindtouchcancle</div></pre></td></tr></table></figure>
+<p>对应阻止冒泡事件将bind用catch替代</p>
+<h1 id="setData"><a href="#setData" class="headerlink" title="setData"></a>setData</h1><p>小程序的视图更新需要调用setData修改绑定数据，直接对数据进行修改是不会触发视图层更新的。setData接受一个对象，为需要添加或修改的属性。属性名有点特殊，[]中的值会被识别为变量，因此如果要对对象数组中的某个属性进行修改，只能预先拼接好属性名。<br>错误做法：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 视图不更新</div><div class="line">this.data.searchSongs[index].love_flag': 2</div><div class="line">// SyntaxError: unknown: Unexpected token</div><div class="line">this.setData(&#123;</div><div class="line">  'searchSongs[' + index + '].love_flag': 2</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>正确做法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">setSongFlag(e) &#123;</div><div class="line"><span class="comment">// 注意setData属性名[]中的非整数值会被识别为变量</span></div><div class="line"><span class="keyword">let</span> key = <span class="string">'searchSongs['</span> + index + <span class="string">'].love_flag'</span></div><div class="line"><span class="keyword">this</span>.setData(&#123;</div><div class="line">  [key]: <span class="number">2</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h1 id="关于image组件"><a href="#关于image组件" class="headerlink" title="关于image组件"></a>关于image组件</h1><p>小程序wxss的background-image及image组件都不支持本地url<br>在H5的开发中，通常我们会将页面一些不需要根据容器大小来选择显示方式的图片使用img标签，需要一些特殊显示方式的使用background。但小程序只需要image组件便可。它提供的mode属性和背景定义图片及img元素控制图片显示方式对比</p>
+<table>
+<thead>
+<tr>
+<th>mode属性</th>
+<th style="text-align:right">background-size</th>
+<th style="text-align:right">html img元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scaleToFill</td>
+<td style="text-align:right">100%,100%(默认)</td>
+<td style="text-align:right">width:100%;height:100%</td>
+</tr>
+<tr>
+<td>aspectFit</td>
+<td style="text-align:right">contain</td>
+<td style="text-align:right">js实现</td>
+</tr>
+<tr>
+<td>aspectFill</td>
+<td style="text-align:right">cover</td>
+<td style="text-align:right">js实现</td>
+</tr>
+<tr>
+<td>widthFix</td>
+<td style="text-align:right">100%, auto</td>
+<td style="text-align:right">width: 100%;</td>
+</tr>
+</tbody>
+</table>
+<p>其他的top、bottom、right、left等不缩放图片调整位置的属性与background-position作用相同，img元素则只能通过定位控制。</p>
+<h1 id="小程序API异步方案"><a href="#小程序API异步方案" class="headerlink" title="小程序API异步方案"></a>小程序API异步方案</h1><p>如果没有强迫症，小程序API使用默认回调的方式即可；另外由于小程序只支持es6，不支持async及await，也可以将API封装成promise的方式，参考funnycoder的<a href="http://wangyaxing.top/2017/09/01/wxapp/" target="_blank" rel="external">这篇文章</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseify</span>(<span class="params">func</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">args = &#123;&#125;</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">            func.call(wx, <span class="built_in">Object</span>.assign(args, &#123;</div><div class="line">                <span class="attr">success</span>: resolve,</div><div class="line">                <span class="attr">fail</span>: reject,</div><div class="line">            &#125;));</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> wx) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(wx, key) &amp;&amp; <span class="keyword">typeof</span> wx[key] === <span class="string">'function'</span>) &#123;</div><div class="line">        wx[<span class="string">`_<span class="subst">$&#123;key&#125;</span>`</span>] = promiseify(wx[key]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="小程序问题"><a href="#小程序问题" class="headerlink" title="小程序问题"></a>小程序问题</h1><ul>
+<li>调试器没有css快捷提示功能和颜色面板，影响布局及颜色调整效率（随性派）</li>
+<li>无法引入第三方js库</li>
+<li>内置组件单调，没有考虑字体数量比较多时的自适应情况</li>
+<li>不支持跳转外部链接</li>
+<li>背景图片或者image组件不能用本地图片</li>
+</ul>
+<h1 id="关于小程序审发布或更新"><a href="#关于小程序审发布或更新" class="headerlink" title="关于小程序审发布或更新"></a>关于小程序审发布或更新</h1><p>小程序上线需要经过审核、发布两个过程。<br>审核通过后有全量更新、或者分阶段发布，小程序才会更新，首次发布没有选项。</p>
+<p>全量发布：即时向全量微信用户发布新版小程序。<br>分阶段发布：新版小程序将在15天内以开发者自定义比例，向微信用户发布更新<br>详情见知乎：<a href="https://www.zhihu.com/question/65215216/answer/228639943" target="_blank" rel="external">发布小程序时选择全量发布和分阶段发布是什么意思？</a></p>
+<p>不得不说小程序审核速度是非常快的，即便是个人申请（相比以企业账号申请会有应用服务类型限制），通常小程序没有涉及政策不允许的内容或者超过小程序允许的应用服务类型，都是可以顺利通过，初次体验，即便在国庆期间，也是有工作团队进行审核，审核时间通常在几小时内。</p>
+<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p>一直关注着小程序，一直处于不愠不火的状态，但微信团队一直坚持在更新。从小程序的<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/uplog.html" target="_blank" rel="external">历史更新日志</a>可以看到，无论是开发工具、基础库、与原生硬件交互API都在不断的更新或者修复异常bug，有时间希望做些与硬件交互更有趣的小程序和大家分享。</p>
+<p>这个简易小程序将加入评论功能，用户系统功能、曲谱本地收藏、分享、改善图片加载、滑动位置保存等功能及问题，借此熟悉小程序开发以便做出更有趣的东西出来，因此本篇文章随开发过程持续更新。<br>希望这篇分享对你有所帮助，更希望能与同样热爱前端的你交流心得体会抑或工作经历、困扰等，欢迎知乎私信或邮件交流。</p>
+<p>知乎：<a href="https://www.zhihu.com/people/huzerui" target="_blank" rel="external">https://www.zhihu.com/people/huzerui</a><br>邮箱：me@huzerui.com</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。&lt;/p&gt;
+&lt;p&gt;程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用&lt;a href
+    
+    </summary>
+    
+      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="微信小程序" scheme="http://www.huzerui.com/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>关于Blob、FileReader、FormData的那些事</title>
     <link href="http://www.huzerui.com/2017/07/05/about-blob-filereader-formdata/"/>
     <id>http://www.huzerui.com/2017/07/05/about-blob-filereader-formdata/</id>
     <published>2017-07-05T07:12:19.000Z</published>
-    <updated>2017-07-09T06:12:20.714Z</updated>
+    <updated>2017-07-09T06:14:55.706Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Blob对象是什么"><a href="#Blob对象是什么" class="headerlink" title="Blob对象是什么"></a>Blob对象是什么</h1><p>从<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="_blank" rel="external">MDN</a>上有这样一段描述：</p>
 <blockquote>
@@ -101,7 +242,7 @@
 <p><strong>持续触发的事件</strong>：drag和dragover<br><strong>发生在拖拽元素的事件</strong>：drag、dragstart、dragend<br><strong>发生在放置元素的事件</strong>：dragover 、dragenter 、dragleave、drop<br><strong>事件触发次序：</strong>dragstart -&gt; drag -&gt; dragenter -&gt; dragover -&gt; dragleave -&gt; drop -&gt; dragend</p>
 <p>当我们拖放文件到浏览器中时，浏览器默认的行为是浏览器将当前页面重定向到被拖拽元素所指向的资源上，因此需要阻止dragenter、dragover、drop的默认行为，这样才能使drop事件被触发。（最好同时阻止冒泡）</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dropArea;</div><div class="line"></div><div class="line">dropArea = <span class="built_in">document</span>.getElementById(<span class="string">"dropArea"</span>);</div><div class="line">dropArea.addEventListener(<span class="string">"dragenter"</span>, handleDragenter, <span class="literal">false</span>);</div><div class="line">dropArea.addEventListener(<span class="string">"dragover"</span>, handleDragover, <span class="literal">false</span>);</div><div class="line">dropArea.addEventListener(<span class="string">"drop"</span>, handleDrop, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleDragenter</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="comment">/*若要兼容ie</span></div><div class="line">	window.event? window.event.cancelBubble = true : e.stopPropagation();</div><div class="line">	window.event? window.event.returnValue = false : e.preventDefault();*/</div><div class="line">    e.stopPropagation();</div><div class="line">    e.preventDefault();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleDragover</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.stopPropagation();</div><div class="line">    e.preventDefault();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleDrop</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.stopPropagation();</div><div class="line">    e.preventDefault();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> dt = e.dataTransfer;</div><div class="line">    <span class="keyword">var</span> files = dt.files;</div><div class="line"></div><div class="line">    <span class="comment">// FileReader将图片读取为dataUrl并立刻展示..省略</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>值得注意的是：触发dragstart事件后，其他元素的mousemove、mouseover、mouseenter、mouseleave、mouseout事件均不会被触发了。</p>
+<p>值得注意的是：触发dragstart事件后，其他元素的mousemove、mouseover、mouseenter、mouseleaver、mouseout事件均不会被触发。</p>
 <p>上面拖拽回调中的事件对象，继承自 MouseEvent 对象，它的<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer" target="_blank" rel="external">dataTransfer</a>属性保存着拖拽对象的相关信息。</p>
 <p>DataTransfer对象有几个重要的属性，其中files属性保存文件的数据。<br>effectAllowed 和 dropEffect 最主要的作用是，用于配置拖拽操作过程中鼠标指针的类型以便提示用户后续可执行怎样的操作；其次的作用是，控制 drop 事件的触发与否。当显示禁止的指针样式时，将无法触发目标元素的 drop 事件。</p>
 <p>注意：只能在dragstart中设置effectAllowed，只能在dragover中设置dropEffect </p>
@@ -1291,144 +1432,6 @@
       <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
     
       <category term="string" scheme="http://www.huzerui.com/tags/string/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Javascript数组方法</title>
-    <link href="http://www.huzerui.com/2016/06/14/js-array-method/"/>
-    <id>http://www.huzerui.com/2016/06/14/js-array-method/</id>
-    <published>2016-06-14T04:00:10.000Z</published>
-    <updated>2017-04-29T07:02:21.907Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="ECMAScript3定义的数组方法"><a href="#ECMAScript3定义的数组方法" class="headerlink" title="ECMAScript3定义的数组方法"></a>ECMAScript3定义的数组方法</h1><ul>
-<li><strong>转换</strong>：join()</li>
-<li><strong>排序</strong>: reverse()、sort()</li>
-<li><strong>连接</strong>：concat()</li>
-<li><strong>裁剪</strong>: slice()</li>
-<li><strong>插入、删除</strong>：splice()、push()、pop()、unshift()、shift()</li>
-<li><strong>对象方法</strong>：toString()、toLocaleString()</li>
-</ul>
-<h2 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h2><p>将数组中所有元素转化为字符串并连接在一起，返回最后生成的字符串。可以指定一个可选的字符串在生成的字符串中来分隔数组中的各个元素。<strong>如果不指定分隔符，默认使用逗号</strong>。</p>
-<h2 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h2><p>将数组中的元素顺序颠倒，返回逆序的数组。它<strong>不通过创建新的数组重新排列，而是在原先的数组中排列它们</strong>。</p>
-<h2 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h2><p><strong>将数组中的元素排序并返回排序后的数组</strong>。当不带参数调用sort()时，数组元素以字母表顺序排序。<br>如果包含undefined的元素，它们会被排到数组的尾部。<br>如果要按照其他方式排序，必须给sort()方法传递一个比较函数，该函数的返回值决定了该函数所传入参数a,b在排序好的数组中的先后顺序。假设第一个参数在前，则应该返回一个小于0的数；相反，则返回一个大于0的数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//按数值升序</span></div><div class="line">a.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> a-b;</div><div class="line">&#125;)</div><div class="line"><span class="comment">//按数组降序</span></div><div class="line">a.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> b-a;</div><div class="line">&#125;)</div><div class="line"><span class="comment">//随机排序</span></div><div class="line">a.sort(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">0.5</span>-<span class="built_in">Math</span>.random();</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p>Array.concat()方法<strong>创建并返回一个新的数组</strong>，元素包括调用concat()的原始数组的元素和concat()的每个参数。如果这些参数中的任何一个自身是数组，则连接的是数组的元素；但是，concat<br>()不会扁平化数组的数组，可以理解为<strong>只能解剖一层</strong>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">a.concat(<span class="number">4</span>,<span class="number">5</span>);            <span class="comment">//返回[1,2,3,4,5]</span></div><div class="line">a.concat([<span class="number">4</span>,<span class="number">5</span>]);		  <span class="comment">//返回[1,2,3,4,5]</span></div><div class="line">a.concat([<span class="number">4</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">7</span>])     <span class="comment">//返回[1,2,3,4,5,6,7]</span></div><div class="line">a.concat(<span class="number">4</span>,[<span class="number">5</span>,[<span class="number">6</span>,<span class="number">7</span>]])     <span class="comment">//返回[1,2,3,4,5,[6,7]]</span></div></pre></td></tr></table></figure></p>
-<p>由于返回的是新数组，该方法可用于<strong>实现数组复制</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b=a.concat();</div><div class="line"><span class="built_in">console</span>.log(b)            <span class="comment">//返回[1,2,3]</span></div></pre></td></tr></table></figure></p>
-<h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><p>Array.slice()方法<strong>创建并返回指定数组的子数组</strong>。<br>slice(start,end)  参数start为必须，end为可选，分别指定截取的数组的起、止位置；如果出现负数，它表示相对于数组最后一个元素的位置。<br>slice(start)   截取start开始到数组结束的所有元素<br>slice(start,end) 截取[start,end)闭开区间的数组元素<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];       </div><div class="line">a.slice(<span class="number">0</span>,<span class="number">3</span>);        <span class="comment">//返回[1,2,3]</span></div><div class="line">a.slice(<span class="number">3</span>);			 <span class="comment">//返回[4,5]</span></div><div class="line">a.slice(<span class="number">1</span>,<span class="number">-1</span>);	 	 <span class="comment">//返回[2,3,4]</span></div><div class="line">a.slice(<span class="number">-3</span>,<span class="number">-2</span>);		 <span class="comment">//返回[3]</span></div></pre></td></tr></table></figure></p>
-<p>slice()方法可用于实现数组复制<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a.slice(<span class="number">0</span>);          <span class="comment">//返回[1,2,3,4,5]</span></div></pre></td></tr></table></figure></p>
-<h2 id="splice"><a href="#splice" class="headerlink" title="splice()"></a>splice()</h2><p>Array.splice()是<strong>数组中插入或删除元素的通用方法</strong>。<strong>不同于concat()和slice()，splice()会修改调用的数组</strong><br>splice(index,howmany,item1,item2…)<br>第一个参数指定了插入或删除的<strong>起始位置</strong><br>第二个参数指定了应该从数组中<strong>删除的元素的个数</strong>，如果省略，从起始点开始到数组结尾的所有元素都将被删除<br>返回值：<strong>splice()返回一个由删除元素组成的数组，或者没有删除元素，就返回空数组</strong>。<br>删除：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">a.splice(<span class="number">3</span>);           <span class="comment">//返回[4,5],a是[1,2,3]</span></div><div class="line">a.splice(<span class="number">1</span>,<span class="number">2</span>);		   <span class="comment">//返回[2,3],a是[1]</span></div></pre></td></tr></table></figure></p>
-<p>插入：注意区别于concat()，splice()会插入数组本身而非数组的元素<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">a.splice(<span class="number">2</span>,<span class="number">0</span>,<span class="string">'a'</span>,<span class="string">'b'</span>)  <span class="comment">//返回[],a是[1,2,'a','b',3,4,5]</span></div><div class="line">a.splice(<span class="number">2</span>,<span class="number">2</span>,[<span class="number">1</span>,<span class="number">2</span>],<span class="number">3</span>)  <span class="comment">//返回[3,4],a是[1,2,[1,2],3,4,5]</span></div></pre></td></tr></table></figure></p>
-<h2 id="push-、pop-、unshift-、shift"><a href="#push-、pop-、unshift-、shift" class="headerlink" title="push()、pop()、unshift()、shift()"></a>push()、pop()、unshift()、shift()</h2><p>在<strong>数组的尾部</strong>插入元素、删除元素：<br>push()、pop()<br>在<strong>数组的头部</strong>插入元素、删除元素：<br>unshift()、shift()<br><strong>这些方法都可以被splice()替代</strong>；</p>
-<h2 id="toString-和toLocaleString"><a href="#toString-和toLocaleString" class="headerlink" title="toString()和toLocaleString()"></a>toString()和toLocaleString()</h2><p><strong>toString()方法将数组的每个元素转化为字符串，返回用逗号分隔的字符串列表</strong>。注意，输出不包括方括号或其他任何形式包裹数组数值的分隔符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].toString();       <span class="comment">//返回'1,2,3'</span></div><div class="line">[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>].toString(); <span class="comment">//返回'a,b,c'</span></div><div class="line">[<span class="number">1</span>,[<span class="number">2</span>,<span class="string">'c'</span>]].toString();   <span class="comment">//返回'1,2,c'</span></div></pre></td></tr></table></figure></p>
-<p>这里与不使用任何参数调用join()方法返回的字符串是一样的。</p>
-<p><strong>toLocaleString()是数组对象的本地字符串表示</strong>，返回结果随机器不同而不同，最好不要在脚本中用来基本运算。</p>
-<h1 id="ECMAScript5中的数组方法"><a href="#ECMAScript5中的数组方法" class="headerlink" title="ECMAScript5中的数组方法"></a>ECMAScript5中的数组方法</h1><p>ECMAScript5中数组方法概述：<br>大多数方法<strong>第一个参数接收一个函数</strong>，<strong>并且对数组中的每个元素调用一次该函数</strong>。对不存在的元素不调用该函数。<br>大多数情况下，调用提供的函数使用三个参数：<strong>数组元素、元素的索引和数组本身</strong>，通常只需要使用第一个参数，忽略后面两个参数。<br>大多数ECMASscript数组方法第一个参数是一个函数，第二个参数可选。如果有第二个参数，则调用的函数被看成第二个参数的方法，即第二个参数可以在调用函数时将作为它的this关键字的值来使用，起到修改指针的作用。</p>
-<h2 id="forEach"><a href="#forEach" class="headerlink" title="forEach()"></a>forEach()</h2><p>array1.forEach(callbackfn[, thisArg])</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:center">定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>array1</td>
-<td style="text-align:center">必需。 一个数组对象。</td>
-</tr>
-<tr>
-<td>callbackfn</td>
-<td style="text-align:center">必需。 一个接受最多三个参数的函数。 对于数组中的每个元素，forEach 都会调用 callbackfn 函数一次。</td>
-</tr>
-<tr>
-<td>thisArg可选</td>
-<td style="text-align:center">可在 callbackfn 函数中为其引用 this 关键字的对象。 如果省略 thisArg，则 undefined 将用作 this 值。</td>
-</tr>
-</tbody>
-</table>
-<p>如果 callbackfn 参数不是函数对象，则将引发 TypeError 异常。</p>
-<p>对于数组中的每个元素，forEach 方法都会调用 callbackfn 函数一次（采用升序索引顺序）。 不为数组中缺少的元素调用该回调函数。</p>
-<p>除了数组对象之外，forEach 方法可由具有 length 属性且具有已按数字编制索引的属性名的任何对象使用。</p>
-<h2 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h2><p>map()方法将调用数组的每个元素传递给指定的函数，并返回一个数组，它包含该函数的返回值。<br>map()方法返回的是新数组，<strong>它不修改调用的数组</strong>；如果是稀疏数组，返回的也是相同方式的稀疏数组。它具有相同的长度，相同的缺失元素。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">b=a.map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> x*x;          <span class="comment">//b是[1,4,9]    </span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<h2 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h2><p>filter()方法创建并返回调用数组的一个子集。<strong>传递的函数用来进行逻辑判定</strong>的，该函数返回true或false。<br>返回true的元素将被添加成为这个子集的成员。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">b=a.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> x&gt;<span class="number">3</span></div><div class="line">&#125;)                 <span class="comment">//b是[4,5]</span></div><div class="line">c=a.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x,i</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> i%<span class="number">2</span>==<span class="number">0</span>；</div><div class="line">&#125;)                 <span class="comment">//c是[1,3,5]</span></div></pre></td></tr></table></figure></p>
-<h2 id="every-和some-方法"><a href="#every-和some-方法" class="headerlink" title="every()和some()方法"></a>every()和some()方法</h2><p>所有：every()每个数组元素回调函数都返回true的时候才会返回true，当遇到false的时候终止执行，返回false；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">a.every(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> x &lt; <span class="number">10</span>;      <span class="comment">//返回true</span></div><div class="line">&#125;);</div><div class="line">a.every(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> x % <span class="number">2</span> == <span class="number">0</span>;  <span class="comment">//返回false,并非所有元素都能被2整除   </span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>存在：some()<br>存在有一个数组元素的回调函数返回true的时候终止执行并返回true，否则返回false。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">a.some(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> x % <span class="number">2</span> == <span class="number">0</span>;  <span class="comment">//返回true </span></div><div class="line">&#125;);</div><div class="line">a.some(<span class="built_in">isNaN</span>);    <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
-<h2 id="reduce-和reduceRight-方法"><a href="#reduce-和reduceRight-方法" class="headerlink" title="reduce()和reduceRight()方法"></a>reduce()和reduceRight()方法</h2><p>遍历数组，调用回调函数，将数组元素组合成一个值<br>参数1：回调函数：把两个值合为一个<br>参数2：value，一个初始值，可选<br>reduce从索引最小值开始<br>reduceRight反向，方法有两个参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>);</div><div class="line"><span class="built_in">console</span>.log(a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">v1,v2</span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> v1+v2;</div><div class="line">&#125;));              <span class="comment">// 21</span></div><div class="line"><span class="built_in">console</span>.log(a.reduceRight(<span class="function"><span class="keyword">function</span>(<span class="params">v1,v2</span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> v1-v2;</div><div class="line">&#125;,<span class="number">100</span>));          <span class="comment">// 79</span></div></pre></td></tr></table></figure></p>
-<h2 id="indexOf-lastIndexOf-方法"><a href="#indexOf-lastIndexOf-方法" class="headerlink" title="indexOf()lastIndexOf()方法"></a>indexOf()lastIndexOf()方法</h2><p>用于查找数组内指定元素位置，查找到第一个后返回其索引，没有查找到返回-1，indexOf从头至尾搜索，lastIndexOf反向搜索。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>);</div><div class="line"><span class="built_in">console</span>.log(a.indexOf(<span class="number">2</span>));     <span class="comment">//1</span></div><div class="line"><span class="built_in">console</span>.log(a.lastIndexOf(<span class="number">2</span>)); <span class="comment">//4</span></div><div class="line"><span class="built_in">console</span>.log(a.IndexOf(<span class="number">4</span>));     <span class="comment">//-1，找不到</span></div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;ECMAScript3定义的数组方法&quot;&gt;&lt;a href=&quot;#ECMAScript3定义的数组方法&quot; class=&quot;headerlink&quot; title=&quot;ECMAScript3定义的数组方法&quot;&gt;&lt;/a&gt;ECMAScript3定义的数组方法&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
-    
-      <category term="数组" scheme="http://www.huzerui.com/tags/%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用jQuery封装插件</title>
-    <link href="http://www.huzerui.com/2016/06/12/jquery-plugin/"/>
-    <id>http://www.huzerui.com/2016/06/12/jquery-plugin/</id>
-    <published>2016-06-12T10:10:19.000Z</published>
-    <updated>2017-04-29T07:02:21.907Z</updated>
-    
-    <content type="html"><![CDATA[<p>jQuery封装插件的方法有三种：封装对象方法的插件、封装全局函数的插件、选择器插件</p>
-<h1 id="对象方法的插件"><a href="#对象方法的插件" class="headerlink" title="对象方法的插件"></a>对象方法的插件</h1><p>这种插件是将对象方法封装起来，用于对通过选择器获取的jQuery对象进行操作，是最常见的一种插件。此类插件可以发挥出jQuery选择器的强大优势，有相当一部分的jQuery的方法，都是在jQuery脚本库内部通过这种形式“插”在内核上的，例如parent()方法，appendTo()方法等。</p>
-<h2 id="添加一个对象扩展方法"><a href="#添加一个对象扩展方法" class="headerlink" title="添加一个对象扩展方法"></a>添加一个对象扩展方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> $.fn.changeColor= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.css( <span class="string">"color"</span>, <span class="string">"red"</span> );</div><div class="line">&#125;;</div><div class="line">   $.fn.changeFont= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.css( <span class="string">"font-size"</span>, <span class="string">"24px"</span> );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="添加多个对象扩展方法"><a href="#添加多个对象扩展方法" class="headerlink" title="添加多个对象扩展方法"></a>添加多个对象扩展方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">   $.fn.changeColor= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.css( <span class="string">"color"</span>, <span class="string">"red"</span> );</div><div class="line">&#125;;</div><div class="line">   $.fn.changeFont=<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.css( <span class="string">"font-size"</span>, <span class="string">"24px"</span> );</div><div class="line">&#125;;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
-<h2 id="使用-fn-extend-obj-方法"><a href="#使用-fn-extend-obj-方法" class="headerlink" title="使用$.fn.extend(obj)方法"></a>使用$.fn.extend(obj)方法</h2><p>插件中不需要默认参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    $.fn.extend(&#123;</div><div class="line">        <span class="string">"pluginName"</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="comment">//这里放置插件代码</span></div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure></p>
-<p>插件中需要设置一些默认参数，可以使用\$.extend()进行扩展。在后面将对\$.fn.extend()和$.extend()进行详解<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    $.fn.extend(&#123;</div><div class="line">        <span class="string">"pluginName"</span>:<span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">            options=$.extend(&#123;</div><div class="line">                <span class="comment">//放置默认参数</span></div><div class="line">            &#125;,options);</div><div class="line">            <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="comment">//这里放置插件代码</span></div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure></p>
-<h1 id="全局函数的插件"><a href="#全局函数的插件" class="headerlink" title="全局函数的插件"></a>全局函数的插件</h1><p>可以将独立的函数加到jQuery命名空间下。如常用的jQuery.ajax()方去首尾空格的jQuery.trim()方法，都是jQuery内部作为全局函数的插件附加到内核上去的。 </p>
-<h2 id="添加单个全局函数"><a href="#添加单个全局函数" class="headerlink" title="添加单个全局函数"></a>添加单个全局函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.ltrim = <span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="添加多个全局函数"><a href="#添加多个全局函数" class="headerlink" title="添加多个全局函数"></a>添加多个全局函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.ltrim = <span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">$.rtrim = <span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> str.replace( <span class="regexp">/\s+$/</span>, <span class="string">""</span> );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="使用-extend-进行扩展-适合全局函数比较多的情况"><a href="#使用-extend-进行扩展-适合全局函数比较多的情况" class="headerlink" title="使用$.extend()进行扩展(适合全局函数比较多的情况)"></a>使用$.extend()进行扩展(适合全局函数比较多的情况)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123;</div><div class="line">  <span class="attr">ltrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">rtrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> str.replace( <span class="regexp">/\s+$/</span>, <span class="string">""</span> );</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="独立的命名空间"><a href="#独立的命名空间" class="headerlink" title="独立的命名空间"></a>独立的命名空间</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.myPlugin=&#123;</div><div class="line">   <span class="attr">ltrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> str.replace( <span class="regexp">/^\s+/</span>, <span class="string">""</span> );</div><div class="line">   &#125;,</div><div class="line">   <span class="attr">rtrim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"> str </span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> str.replace( <span class="regexp">/\s+$/</span>, <span class="string">""</span> );</div><div class="line">   &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h1 id="选择器插件"><a href="#选择器插件" class="headerlink" title="选择器插件"></a>选择器插件</h1><p>虽然jQuery的选择器十分强大，但在少数情况下，还是会需要用到选择器插件来扩充一些自己喜欢的选择器。 </p>
-<h2 id="编写jQuery选择器需要知道jQuery选择器的参数。"><a href="#编写jQuery选择器需要知道jQuery选择器的参数。" class="headerlink" title="编写jQuery选择器需要知道jQuery选择器的参数。"></a>编写jQuery选择器需要知道jQuery选择器的参数。</h2><p>jQuery选择器函数一共接收3个参数，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a,i,m</span>)</span>&#123;</div><div class="line">    <span class="comment">//第一个参数为a，指向当前遍历的DOM元素</span></div><div class="line">    <span class="comment">//第二个参数为i，指的是当前遍历DOM元素的索引，从0开始</span></div><div class="line">    <span class="comment">//第三个参数m比较特别，它是有jQuery正则引擎进一步解析后的产物（用match匹配出来的），结果是一个数组</span></div><div class="line">        <span class="comment">//m[0]，以例子$("div:gt(1)")来讲，是:gt(1)这部分</span></div><div class="line">        <span class="comment">//m[1]，选择器的引导符，匹配例子中的:号</span></div><div class="line">        <span class="comment">//m[2]，例子中的gt，确定是调用哪个选择器函数</span></div><div class="line">        <span class="comment">//m[3]，括号里的数字1，是编写选择器函数最重要的参数</span></div><div class="line">        <span class="comment">//m[4]，例子没有体现，略</span></div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="构建选择器函数"><a href="#构建选择器函数" class="headerlink" title="构建选择器函数"></a>构建选择器函数</h2><p>例如编写$(“div:between(2,5)”)能实现获取索引值为3,4元素的功能<br>构建：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a,i,m</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tmp=m[<span class="number">3</span>].split(<span class="string">","</span>);   <span class="comment">//将传进来的m[3]以逗号分隔开，转成一个数组</span></div><div class="line">    <span class="keyword">return</span> tmp[<span class="number">0</span>]<span class="number">-0</span>&lt;i&amp;&amp;i&lt;tmp[<span class="number">1</span>]<span class="number">-0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>扩展成jQuery选择器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.extend($.expr[<span class="string">":"</span>],&#123;</div><div class="line">        <span class="attr">between</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> tmp=m[<span class="number">3</span>].split(<span class="string">","</span>);  </div><div class="line">            <span class="keyword">return</span> tmp[<span class="number">0</span>]<span class="number">-0</span>&lt;i&amp;&amp;i&lt;tmp[<span class="number">1</span>]<span class="number">-0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;)(jQuery)</div></pre></td></tr></table></figure></p>
-<h1 id="插件的基本要点"><a href="#插件的基本要点" class="headerlink" title="插件的基本要点"></a>插件的基本要点</h1><ul>
-<li>Query插件的文件名推荐命名为jquery.[插件名].js，以免和其他JS库插件混淆。 </li>
-<li>所有的对象方法都应当附加到jQuery.fn对象上，而所有的全局函数都应当附加到jQuery对象本身。 </li>
-<li><p><strong>在插件的范围里， this关键字代表了这个插件将要执行的jQuery对象；而在其他包含callback的jQuery函数中，this关键字代表了原生的DOM元素</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    $.fn.m​​yPlugin =<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="comment">//此处没有必要将this包在$号中如$(this)，因为this已经是一个jQuery对象。</span></div><div class="line"><span class="comment">//$(this)等同于 $($('#element'));</span></div><div class="line">        <span class="keyword">this</span>.fadeIn(<span class="string">'normal'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="comment">//此处callback函数中this关键字代表一个DOM元素</span></div><div class="line">        &#125;);</div><div class="line">    &#125;;</div><div class="line">&#125;)(jQuery);</div><div class="line"> </div><div class="line">$(<span class="string">'#element'</span>).myPlugin();</div></pre></td></tr></table></figure>
-</li>
-<li><p>可以通过this.each方法来遍历所有元素。</p>
-</li>
-<li>在插件头部加上一个分号，以免他人的不规范代码给插件带来影响。 </li>
-<li>所有的方法或函数插件，都应当以分号结尾，以免压缩时出现问题 </li>
-<li>除非插件需要返回的是一些需要获取的变量，<strong>插件应该返回一个jQuery对象</strong>，以保证插件的可链式操作。 </li>
-<li>利于jQuery.extend()方法设置插件方法的默认参数，增加插件的可用性。 </li>
-</ul>
-<h1 id="jQuery-fn-extend-与jQuery-extend-的对比"><a href="#jQuery-fn-extend-与jQuery-extend-的对比" class="headerlink" title="jQuery.fn.extend()与jQuery.extend()的对比"></a>jQuery.fn.extend()与jQuery.extend()的对比</h1><ul>
-<li>jQuery.fn.extend()是对于jQuery对象（原型）扩展的方法，因为jQuery.fn=jQuery.prototype</li>
-<li>jQuery.extend()除了用于扩展jQuery全局函数和选择器函数之外，还有一个重要的功能，就是扩展已有的Objext对象<br><strong>语法：jQuery.extend(target,obj1,…[objN])</strong></li>
-</ul>
-<p>1、例如合并setting对象和options对象，修改并返回settings对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> setting=&#123;<span class="attr">validate</span>:<span class="literal">false</span>,<span class="attr">limit</span>:<span class="number">5</span>,<span class="attr">name</span>:<span class="string">"foo"</span>&#125;</div><div class="line"><span class="keyword">var</span> options=&#123;<span class="attr">validate</span>:<span class="literal">true</span>,<span class="attr">name</span>:<span class="string">"bar"</span>&#125;</div><div class="line"><span class="keyword">var</span> newOptions=jQuery.extend(setting,options)</div><div class="line"><span class="comment">//结果</span></div><div class="line">newOptions=&#123;<span class="attr">validate</span>:<span class="literal">true</span>,<span class="attr">limit</span>:<span class="number">5</span>,<span class="attr">name</span>:<span class="string">"bar"</span>&#125;</div></pre></td></tr></table></figure></p>
-<p>由此可见，内部机制是有扩展对象将覆盖与原对象相同的属性的值；若原对象不存在某属性，则进行扩展<br>2、jQuery.extend()常被用于设置插件方法的一系列默认参数，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">    options=jQuery.extend(&#123;</div><div class="line">        <span class="attr">name</span>:<span class="string">"bar"</span>,</div><div class="line">        <span class="attr">length</span>:<span class="number">5</span>,</div><div class="line">        <span class="attr">dataType</span>:<span class="string">"xml"</span>       <span class="comment">/*默认参数*/</span></div><div class="line">    &#125;,options)               <span class="comment">/*options为传递的参数*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;jQuery封装插件的方法有三种：封装对象方法的插件、封装全局函数的插件、选择器插件&lt;/p&gt;
-&lt;h1 id=&quot;对象方法的插件&quot;&gt;&lt;a href=&quot;#对象方法的插件&quot; class=&quot;headerlink&quot; title=&quot;对象方法的插件&quot;&gt;&lt;/a&gt;对象方法的插件&lt;/h1&gt;&lt;p&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
-    
-      <category term="jQuery" scheme="http://www.huzerui.com/tags/jQuery/"/>
     
   </entry>
   

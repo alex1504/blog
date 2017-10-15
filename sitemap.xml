@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.huzerui.com/2017/10/15/color-formula/</loc>
+    
+    <lastmod>2017-10-15T12:35:07.881Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huzerui.com/2017/10/14/wechat-guita-tabs/</loc>
+    
+    <lastmod>2017-10-15T10:23:35.845Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.huzerui.com/2017/07/05/about-blob-filereader-formdata/</loc>
     
-    <lastmod>2017-07-09T06:12:20.714Z</lastmod>
+    <lastmod>2017-07-09T06:14:55.706Z</lastmod>
     
   </url>
   
@@ -72,21 +86,21 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
+    <loc>http://www.huzerui.com/2016/03/29/major-tag/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/11/07/gulp-learning-note/</loc>
+    <loc>http://www.huzerui.com/2016/09/08/graduate-for-one-year/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/04/29/game-life/</loc>
+    <loc>http://www.huzerui.com/2016/06/16/icoMoon/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -107,13 +121,6 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/16/icoMoon/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.huzerui.com/2016/04/10/jquery-summary/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
@@ -128,14 +135,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
-    
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</loc>
+    <loc>http://www.huzerui.com/2016/04/29/game-life/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -149,6 +149,13 @@
   </url>
   
   <url>
+    <loc>http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/05/grammar-of-sass/</loc>
+    <loc>http://www.huzerui.com/2016/03/13/film-review-detective-china-tang/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/29/major-tag/</loc>
+    <loc>http://www.huzerui.com/2016/11/07/gulp-learning-note/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -177,7 +184,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
+    <loc>http://www.huzerui.com/2016/06/16/css3-transform-animation/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -191,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/02/regexp-property-method/</loc>
+    <loc>http://www.huzerui.com/2016/06/08/related-menu/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/08/related-menu/</loc>
+    <loc>http://www.huzerui.com/2016/06/02/regexp-property-method/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -212,14 +219,14 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/06/06/css-module/</loc>
+    <loc>http://www.huzerui.com/2016/06/06/css-regulation-sum/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/03/15/annual-meeting/</loc>
+    <loc>http://www.huzerui.com/2016/06/06/css-module/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     
@@ -233,6 +240,13 @@
   </url>
   
   <url>
+    <loc>http://www.huzerui.com/2016/03/15/annual-meeting/</loc>
+    
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.huzerui.com/404.html</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
@@ -240,7 +254,7 @@
   </url>
   
   <url>
-    <loc>http://www.huzerui.com/2016/09/08/graduate-for-one-year/</loc>
+    <loc>http://www.huzerui.com/2016/03/05/grammar-of-sass/</loc>
     
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     

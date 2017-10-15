@@ -4,8 +4,53 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2017/10/15/color-formula/</loc>
+    <lastmod>2017-10-15T12:35:07.881Z</lastmod>
+    <data>
+        <display>
+        <title>前端都了解的配色策略</title>
+        <pubTime>2017-10-15T11:18:19.000Z</pubTime>
+        
+        <tag>设计</tag>
+         
+        <tag>配色</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+             
+              <breadCrumb title="设计" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/%E8%AE%BE%E8%AE%A1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2017/10/14/wechat-guita-tabs/</loc>
+    <lastmod>2017-10-15T10:23:35.845Z</lastmod>
+    <data>
+        <display>
+        <title>基于bmob后端云微信小程序开发</title>
+        <pubTime>2017-10-14T10:18:19.000Z</pubTime>
+        
+        <tag>微信小程序</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2017/07/05/about-blob-filereader-formdata/</loc>
-    <lastmod>2017-07-09T06:12:20.714Z</lastmod>
+    <lastmod>2017-07-09T06:14:55.706Z</lastmod>
     <data>
         <display>
         <title>关于Blob、FileReader、FormData的那些事</title>
@@ -177,52 +222,12 @@
     
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
+    <loc>http://www.huzerui.com/blog/2016/03/29/major-tag/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>CSS3变换及CSS3动画</title>
-        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
-        
-        <tag>css3</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/11/07/gulp-learning-note/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>Gulp前端自动化工具笔记</title>
-        <pubTime>2016-11-07T13:42:28.000Z</pubTime>
-        
-        <tag>gulp</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/04/29/game-life/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>游戏相伴的青春</title>
-        <pubTime>2016-04-29T14:29:19.000Z</pubTime>
+        <title>跨行转前端，仗剑走天涯</title>
+        <pubTime>2016-03-29T15:29:23.000Z</pubTime>
         
         <tag>随笔</tag>
          
@@ -230,6 +235,45 @@
            
              
               <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/09/08/graduate-for-one-year/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>毕业一年，如期而至</title>
+        <pubTime>2016-09-08T14:51:47.000Z</pubTime>
+        
+        <tag>大学</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/06/16/icoMoon/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>IcoMoon将图标转换成web字体</title>
+        <pubTime>2016-06-16T03:22:52.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>图标</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -267,28 +311,6 @@
         <tag>js</tag>
          
         <tag>jQuery</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/06/16/icoMoon/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>IcoMoon将图标转换成web字体</title>
-        <pubTime>2016-06-16T03:22:52.000Z</pubTime>
-        
-        <tag>css</tag>
-         
-        <tag>图标</tag>
          
          
            
@@ -343,39 +365,20 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/13/film-review-detective-china-tang/</loc>
+    <loc>http://www.huzerui.com/blog/2016/04/29/game-life/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>完美的犯罪，触目惊心的微笑</title>
-        <pubTime>2016-03-13T12:09:46.000Z</pubTime>
+        <title>游戏相伴的青春</title>
+        <pubTime>2016-04-29T14:29:19.000Z</pubTime>
         
-        <tag>电影</tag>
+        <tag>随笔</tag>
          
          
            
              
-              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
+              <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/06/15/js-dom-elepos-and-elesize/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript获取DOM尺寸大小和元素位置</title>
-        <pubTime>2016-06-15T04:46:43.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-        <tag>dom</tag>
-         
-         
-           
         </display>
     </data>
     </url>
@@ -404,6 +407,25 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/06/15/js-dom-elepos-and-elesize/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript获取DOM尺寸大小和元素位置</title>
+        <pubTime>2016-06-15T04:46:43.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>dom</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/11/04/let-your-browser-open-fullscreen-mode/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -424,21 +446,19 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/05/grammar-of-sass/</loc>
+    <loc>http://www.huzerui.com/blog/2016/03/13/film-review-detective-china-tang/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>Sass使用指南</title>
-        <pubTime>2016-03-05T14:46:44.000Z</pubTime>
+        <title>完美的犯罪，触目惊心的微笑</title>
+        <pubTime>2016-03-13T12:09:46.000Z</pubTime>
         
-        <tag>css</tag>
-         
-        <tag>sass</tag>
+        <tag>电影</tag>
          
          
            
              
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+              <breadCrumb title="电影" url="http://www.huzerui.com/blog/categories/%E7%94%B5%E5%BD%B1/"/>
           
         </display>
     </data>
@@ -446,19 +466,19 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/03/29/major-tag/</loc>
+    <loc>http://www.huzerui.com/blog/2016/11/07/gulp-learning-note/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>跨行转前端，仗剑走天涯</title>
-        <pubTime>2016-03-29T15:29:23.000Z</pubTime>
+        <title>Gulp前端自动化工具笔记</title>
+        <pubTime>2016-11-07T13:42:28.000Z</pubTime>
         
-        <tag>随笔</tag>
+        <tag>gulp</tag>
          
          
            
              
-              <breadCrumb title="随笔" url="http://www.huzerui.com/blog/categories/%E9%9A%8F%E7%AC%94/"/>
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -487,14 +507,14 @@
 
     
   <url>
-    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
+    <loc>http://www.huzerui.com/blog/2016/06/16/css3-transform-animation/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>css命名规范总结（分类命名）</title>
-        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
+        <title>CSS3变换及CSS3动画</title>
+        <pubTime>2016-06-16T14:21:23.000Z</pubTime>
         
-        <tag>css</tag>
+        <tag>css3</tag>
          
          
            
@@ -513,28 +533,6 @@
         <display>
         <title>正则表达式语法详解</title>
         <pubTime>2016-06-02T09:12:19.000Z</pubTime>
-        
-        <tag>js</tag>
-         
-        <tag>正则</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-property-method/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>正则表达式常用属性及方法</title>
-        <pubTime>2016-06-02T13:22:19.000Z</pubTime>
         
         <tag>js</tag>
          
@@ -573,6 +571,28 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/06/02/regexp-property-method/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式常用属性及方法</title>
+        <pubTime>2016-06-02T13:22:19.000Z</pubTime>
+        
+        <tag>js</tag>
+         
+        <tag>正则</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/10/03/traveling-of-changsha/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -593,6 +613,26 @@
 
     
   <url>
+    <loc>http://www.huzerui.com/blog/2016/06/06/css-regulation-sum/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>css命名规范总结（分类命名）</title>
+        <pubTime>2016-06-06T13:22:19.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.huzerui.com/blog/2016/06/06/css-module/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
@@ -601,23 +641,6 @@
         <pubTime>2016-06-06T14:22:19.000Z</pubTime>
         
         <tag>css</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
-    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
-    <data>
-        <display>
-        <title>汉服秀</title>
-        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
-        
-        <tag>年会</tag>
          
          
            
@@ -646,19 +669,41 @@
     </url>
 
     
-    
   <url>
-    <loc>http://www.huzerui.com/blog/2016/09/08/graduate-for-one-year/</loc>
+    <loc>http://www.huzerui.com/blog/2016/03/15/annual-meeting/</loc>
     <lastmod>2017-04-29T07:02:21.907Z</lastmod>
     <data>
         <display>
-        <title>毕业一年，如期而至</title>
-        <pubTime>2016-09-08T14:51:47.000Z</pubTime>
+        <title>汉服秀</title>
+        <pubTime>2016-03-15T14:46:44.000Z</pubTime>
         
-        <tag>大学</tag>
+        <tag>年会</tag>
          
          
            
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://www.huzerui.com/blog/2016/03/05/grammar-of-sass/</loc>
+    <lastmod>2017-04-29T07:02:21.907Z</lastmod>
+    <data>
+        <display>
+        <title>Sass使用指南</title>
+        <pubTime>2016-03-05T14:46:44.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>sass</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.huzerui.com/blog/categories/%E5%89%8D%E7%AB%AF/"/>
+          
         </display>
     </data>
     </url>

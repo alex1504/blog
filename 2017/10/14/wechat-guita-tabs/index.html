@@ -1,0 +1,918 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="description" content="前端开发博客，专注前端技术/资源分享，记载关于电影/旅行/生活等轶事，记录经验总结/人生思考；借笔墨纸砚，成铭悦之轩，伴余生之梦。">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5zegIGyHLF9Qs-4RGG3VU8CKUML9omsUu7OOsQRJhbY" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="微信小程序," />
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="晚晴铭悦轩" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。 程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用bmob后端云提供数据存储服务，除吉他谱图片，其他图片存储在七牛。 关于bmob小程序开发文档请戳这里，文档详细简练，主要是缩短了开发周期，不过对于复杂的">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于bmob后端云微信小程序开发">
+<meta property="og:url" content="http://www.huzerui.com/2017/10/14/wechat-guita-tabs/index.html">
+<meta property="og:site_name" content="晚晴铭悦轩">
+<meta property="og:description" content="人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。 程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用bmob后端云提供数据存储服务，除吉他谱图片，其他图片存储在七牛。 关于bmob小程序开发文档请戳这里，文档详细简练，主要是缩短了开发周期，不过对于复杂的">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1709462-a09843e9084bcd98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1709462-75640d57eb7658e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-15T10:23:35.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于bmob后端云微信小程序开发">
+<meta name="twitter:description" content="人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。 程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用bmob后端云提供数据存储服务，除吉他谱图片，其他图片存储在七牛。 关于bmob小程序开发文档请戳这里，文档详细简练，主要是缩短了开发周期，不过对于复杂的">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1709462-a09843e9084bcd98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.huzerui.com/2017/10/14/wechat-guita-tabs/"/>
+
+
+  <title> 基于bmob后端云微信小程序开发 | 晚晴铭悦轩 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85595036-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1e11d2f2589bccbdb30499db84c40bfe";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58945240";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">晚晴铭悦轩</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">听食茗赏，山土月日</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于bmob后端云微信小程序开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-14T18:18:19+08:00" content="2017-10-14">
+              2017-10-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/10/14/wechat-guita-tabs/" class="leancloud_visitors" data-flag-title="基于bmob后端云微信小程序开发">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。</p>
+<p>程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用<a href="http://www.bmob.cn/" target="_blank" rel="external">bmob后端云</a>提供数据存储服务，除吉他谱图片，其他图片存储在<a href="https://www.qiniu.com/" target="_blank" rel="external">七牛</a>。</p>
+<p>关于bmob小程序开发文档请戳<a href="https://docs.bmob.cn/data/wechatApp/a_faststart/doc/index.html" target="_blank" rel="external">这里</a>，文档详细简练，主要是缩短了开发周期，不过对于复杂的项目，还是推荐使用自己服务器提供数据服务。</p>
+<h1 id="使用微信扫描二维码预览"><a href="#使用微信扫描二维码预览" class="headerlink" title="使用微信扫描二维码预览"></a>使用微信扫描二维码预览</h1><p><img src="http://upload-images.jianshu.io/upload_images/1709462-a09843e9084bcd98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="qrcode"><br>源码地址：<a href="https://github.com/alex1504/wx-guita_tab" target="_blank" rel="external">https://github.com/alex1504/wx-guita_tab</a></p>
+<p>下面分点分享下小程序的开发过程中的关键点及感受，说明：</p>
+<ol>
+<li>小程序标签统称组件，Html标签统称元素。</li>
+<li>部分内容会与vuejs及jQuery作对比</li>
+</ol>
+<h1 id="使用iconfont字体图标"><a href="#使用iconfont字体图标" class="headerlink" title="使用iconfont字体图标"></a>使用iconfont字体图标</h1><p>新建项目并添加图标<br><img src="http://upload-images.jianshu.io/upload_images/1709462-75640d57eb7658e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iconfont"><br>在app.wxss中以unicode方式引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;iconfont&apos;;  /* project id 431644 */</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot&apos;);</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.woff&apos;) format(&apos;woff&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.svg#iconfont&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>定义通用icon样式，定义伪元素<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.icon</span>&#123;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">font-family</span>: <span class="string">'iconfont'</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-home</span><span class="selector-pseudo">::before</span>&#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"\e600"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;view class=&quot;icon icon-home&quot;&lt;/view&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="小程序事件绑定及处理器"><a href="#小程序事件绑定及处理器" class="headerlink" title="小程序事件绑定及处理器"></a>小程序事件绑定及处理器</h1><p>小程序并没有类似vuejs的v-model进行双向绑定，使用bindinput类似jQuery监听input事件在事件处理器中更新数据，通过event对象e.data.value即可获得input的值。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// bindconfirm监听键盘回车事件，focus属性聚焦渲染组件时会自动弹出手机软键盘</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">placeholder</span>=<span class="string">'歌曲名 / 歌手'</span> <span class="attr">bindinput</span>=<span class="string">'bindSearchInput'</span> <span class="attr">bindconfirm</span>=<span class="string">'onSearch'</span> <span class="attr">focus</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bindSearchInput(e) &#123;</div><div class="line">  <span class="keyword">this</span>.setData(&#123;</div><div class="line">    <span class="attr">searchTxt</span>: e.detail.value</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>小程序中的事件处理器并不能像vue一样传入参数，因为事件处理器只有一个默认的参数event对象，在for循环的组件中如果要想获取元素绑定的id，可以通过和jQuery相同的方式绑定data属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 轮播图 --&gt;</div><div class="line">&lt;swiper indicator-dots=&quot;&#123;&#123;indicatorDots&#125;&#125;&quot; autoplay=&quot;&#123;&#123;autoplay&#125;&#125;&quot; interval=&quot;&#123;&#123;interval&#125;&#125;&quot; duration=&quot;&#123;&#123;duration&#125;&#125;&quot;&gt;</div><div class="line">  &lt;block wx:for=&quot;&#123;&#123;banner_list&#125;&#125;&quot; wx:key=&quot;&#123;&#123;index&#125;&#125;&quot;&gt;</div><div class="line">    &lt;swiper-item bindtap=&quot;navigateToDetail&quot;  data-id=&quot;&#123;&#123;item.href&#125;&#125;&quot;&gt;</div><div class="line">      &lt;image src=&quot;&#123;&#123;item.image&#125;&#125;&quot; class=&quot;slide-image&quot; mode=&quot;widthFix&quot;&gt;&lt;/image&gt;</div><div class="line">    &lt;/swiper-item&gt;</div><div class="line">  &lt;/block&gt;</div><div class="line">&lt;/swiper&gt;</div></pre></td></tr></table></figure></p>
+<p>获取id：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//事件处理函数</span></div><div class="line">navigateToDetail: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> id = e.currentTarget.dataset.id;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bindtap、bindlongtap、bindtouchstart、bindtouchmove、bindtouchend、bindtouchcancle</div></pre></td></tr></table></figure>
+<p>对应阻止冒泡事件将bind用catch替代</p>
+<h1 id="setData"><a href="#setData" class="headerlink" title="setData"></a>setData</h1><p>小程序的视图更新需要调用setData修改绑定数据，直接对数据进行修改是不会触发视图层更新的。setData接受一个对象，为需要添加或修改的属性。属性名有点特殊，[]中的值会被识别为变量，因此如果要对对象数组中的某个属性进行修改，只能预先拼接好属性名。<br>错误做法：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 视图不更新</div><div class="line">this.data.searchSongs[index].love_flag': 2</div><div class="line">// SyntaxError: unknown: Unexpected token</div><div class="line">this.setData(&#123;</div><div class="line">  'searchSongs[' + index + '].love_flag': 2</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>正确做法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">setSongFlag(e) &#123;</div><div class="line"><span class="comment">// 注意setData属性名[]中的非整数值会被识别为变量</span></div><div class="line"><span class="keyword">let</span> key = <span class="string">'searchSongs['</span> + index + <span class="string">'].love_flag'</span></div><div class="line"><span class="keyword">this</span>.setData(&#123;</div><div class="line">  [key]: <span class="number">2</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h1 id="关于image组件"><a href="#关于image组件" class="headerlink" title="关于image组件"></a>关于image组件</h1><p>小程序wxss的background-image及image组件都不支持本地url<br>在H5的开发中，通常我们会将页面一些不需要根据容器大小来选择显示方式的图片使用img标签，需要一些特殊显示方式的使用background。但小程序只需要image组件便可。它提供的mode属性和背景定义图片及img元素控制图片显示方式对比</p>
+<table>
+<thead>
+<tr>
+<th>mode属性</th>
+<th style="text-align:right">background-size</th>
+<th style="text-align:right">html img元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scaleToFill</td>
+<td style="text-align:right">100%,100%(默认)</td>
+<td style="text-align:right">width:100%;height:100%</td>
+</tr>
+<tr>
+<td>aspectFit</td>
+<td style="text-align:right">contain</td>
+<td style="text-align:right">js实现</td>
+</tr>
+<tr>
+<td>aspectFill</td>
+<td style="text-align:right">cover</td>
+<td style="text-align:right">js实现</td>
+</tr>
+<tr>
+<td>widthFix</td>
+<td style="text-align:right">100%, auto</td>
+<td style="text-align:right">width: 100%;</td>
+</tr>
+</tbody>
+</table>
+<p>其他的top、bottom、right、left等不缩放图片调整位置的属性与background-position作用相同，img元素则只能通过定位控制。</p>
+<h1 id="小程序API异步方案"><a href="#小程序API异步方案" class="headerlink" title="小程序API异步方案"></a>小程序API异步方案</h1><p>如果没有强迫症，小程序API使用默认回调的方式即可；另外由于小程序只支持es6，不支持async及await，也可以将API封装成promise的方式，参考funnycoder的<a href="http://wangyaxing.top/2017/09/01/wxapp/" target="_blank" rel="external">这篇文章</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseify</span>(<span class="params">func</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">args = &#123;&#125;</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">            func.call(wx, <span class="built_in">Object</span>.assign(args, &#123;</div><div class="line">                <span class="attr">success</span>: resolve,</div><div class="line">                <span class="attr">fail</span>: reject,</div><div class="line">            &#125;));</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> wx) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(wx, key) &amp;&amp; <span class="keyword">typeof</span> wx[key] === <span class="string">'function'</span>) &#123;</div><div class="line">        wx[<span class="string">`_<span class="subst">$&#123;key&#125;</span>`</span>] = promiseify(wx[key]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="小程序问题"><a href="#小程序问题" class="headerlink" title="小程序问题"></a>小程序问题</h1><ul>
+<li>调试器没有css快捷提示功能和颜色面板，影响布局及颜色调整效率（随性派）</li>
+<li>无法引入第三方js库</li>
+<li>内置组件单调，没有考虑字体数量比较多时的自适应情况</li>
+<li>不支持跳转外部链接</li>
+<li>背景图片或者image组件不能用本地图片</li>
+</ul>
+<h1 id="关于小程序审发布或更新"><a href="#关于小程序审发布或更新" class="headerlink" title="关于小程序审发布或更新"></a>关于小程序审发布或更新</h1><p>小程序上线需要经过审核、发布两个过程。<br>审核通过后有全量更新、或者分阶段发布，小程序才会更新，首次发布没有选项。</p>
+<p>全量发布：即时向全量微信用户发布新版小程序。<br>分阶段发布：新版小程序将在15天内以开发者自定义比例，向微信用户发布更新<br>详情见知乎：<a href="https://www.zhihu.com/question/65215216/answer/228639943" target="_blank" rel="external">发布小程序时选择全量发布和分阶段发布是什么意思？</a></p>
+<p>不得不说小程序审核速度是非常快的，即便是个人申请（相比以企业账号申请会有应用服务类型限制），通常小程序没有涉及政策不允许的内容或者超过小程序允许的应用服务类型，都是可以顺利通过，初次体验，即便在国庆期间，也是有工作团队进行审核，审核时间通常在几小时内。</p>
+<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p>一直关注着小程序，一直处于不愠不火的状态，但微信团队一直坚持在更新。从小程序的<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/uplog.html" target="_blank" rel="external">历史更新日志</a>可以看到，无论是开发工具、基础库、与原生硬件交互API都在不断的更新或者修复异常bug，有时间希望做些与硬件交互更有趣的小程序和大家分享。</p>
+<p>这个简易小程序将加入评论功能，用户系统功能、曲谱本地收藏、分享、改善图片加载、滑动位置保存等功能及问题，借此熟悉小程序开发以便做出更有趣的东西出来，因此本篇文章随开发过程持续更新。<br>希望这篇分享对你有所帮助，更希望能与同样热爱前端的你交流心得体会抑或工作经历、困扰等，欢迎知乎私信或邮件交流。</p>
+<p>知乎：<a href="https://www.zhihu.com/people/huzerui" target="_blank" rel="external">https://www.zhihu.com/people/huzerui</a><br>邮箱：me@huzerui.com</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/微信小程序/" rel="tag">#微信小程序</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/07/05/about-blob-filereader-formdata/" rel="next" title="关于Blob、FileReader、FormData的那些事">
+                <i class="fa fa-chevron-left"></i> 关于Blob、FileReader、FormData的那些事
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/10/15/color-formula/" rel="prev" title="前端都了解的配色策略">
+                前端都了解的配色策略 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+        <div id="SOHUCS" ></div>
+        
+    
+  </div>
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/img/avatar.jpg"
+               alt="前端空城师" />
+          <p class="site-author-name" itemprop="name">前端空城师</p>
+          <p class="site-description motion-element" itemprop="description">借笔墨纸砚，成铭悦之轩，伴余生之梦。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/blog/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alex1504" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/e2a1d411595b/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/alex1504" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/huzerui/activities" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://huzerui.lofter.com/" target="_blank" title="Lofter">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Lofter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/alex1504" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用微信扫描二维码预览"><span class="nav-number">1.</span> <span class="nav-text">使用微信扫描二维码预览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用iconfont字体图标"><span class="nav-number">2.</span> <span class="nav-text">使用iconfont字体图标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小程序事件绑定及处理器"><span class="nav-number">3.</span> <span class="nav-text">小程序事件绑定及处理器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阻止事件冒泡"><span class="nav-number">4.</span> <span class="nav-text">阻止事件冒泡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setData"><span class="nav-number">5.</span> <span class="nav-text">setData</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于image组件"><span class="nav-number">6.</span> <span class="nav-text">关于image组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小程序API异步方案"><span class="nav-number">7.</span> <span class="nav-text">小程序API异步方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小程序问题"><span class="nav-number">8.</span> <span class="nav-text">小程序问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于小程序审发布或更新"><span class="nav-number">9.</span> <span class="nav-text">关于小程序审发布或更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续"><span class="nav-number">10.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端空城师</span>
+</div>
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div> -->
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+		 <script type="text/javascript"> 
+		(function(){ 
+		var appid = 'cytgoM6C4'; 
+		var conf = '3e9f363226ab272321da45201977e436'; 
+		var width = window.innerWidth || document.documentElement.clientWidth; 
+		if (width < 960) { 
+		window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+		<script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+	
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz", "v6hzlSojKgLf2oDjC1gNPuf8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
