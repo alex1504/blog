@@ -38,7 +38,7 @@ categories: [前端,设计]
 ## 分割互补色（Split complementary）
 ![Split complementary](http://qiniu.huzerui.com/image/2017-10-15-formular-split-complementary.jpg)
 
-##三角对立（Triadic ）
+## 三角对立（Triadic ）
 ![Triadic ](http://qiniu.huzerui.com/image/2017-10-15-formula-triadic.jpg)
 
 ## 矩形（Tetradic）
