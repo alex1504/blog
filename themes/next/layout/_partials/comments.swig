@@ -18,6 +18,12 @@
           <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
+
+    {% elseif theme.changyan_appid and theme.changyan_appkey %}
+        <div id="SOHUCS" ></div>
+        
     {% endif %}
   </div>
 {% endif %}
+
+

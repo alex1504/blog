@@ -176,7 +176,7 @@ function handleDrop(e) {
 }
 ```
 
-值得注意的是：触发dragstart事件后，其他元素的mousemove、mouseover、mouseenter、mouseleave、mouseout事件均不会被触发了。
+值得注意的是：触发dragstart事件后，其他元素的mousemove、mouseover、mouseenter、mouseleaver、mouseout事件均不会被触发。
 
 上面拖拽回调中的事件对象，继承自 MouseEvent 对象，它的[dataTransfer](https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer)属性保存着拖拽对象的相关信息。
 
