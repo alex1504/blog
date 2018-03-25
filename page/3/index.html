@@ -256,6 +256,181 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/06/14/js-string-method/" itemprop="url">
+                  javascript字符串对象方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-14T16:04:41+08:00" content="2016-06-14">
+              2016-06-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/06/14/js-string-method/" class="leancloud_visitors" data-flag-title="javascript字符串对象方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="字符方法"><a href="#字符方法" class="headerlink" title="字符方法"></a>字符方法</h1><h2 id="chatAt-和chatCodeAt"><a href="#chatAt-和chatCodeAt" class="headerlink" title="chatAt()和chatCodeAt"></a>chatAt()和chatCodeAt</h2><p>charAt()和charCodeAt()<br>这两个方法接收一个参数，即基于0的字符位置。<br>chatAt()以单字符字符串的形式返回给定位置的那个字符。<br>chatCodeAt()返回给定位置的那个字符的字符编码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> stringValue=<span class="string">"hellow"</span>;</div><div class="line">stringValue.chatAt(<span class="number">1</span>);      <span class="comment">//"e"</span></div><div class="line">stringValue.chatCodeAt(<span class="number">1</span>);  <span class="comment">//"101"</span></div></pre></td></tr></table></figure></p>
+<h1 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h1><h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p>concat()用于将一个或多个字符串拼接起来，返回拼接得到的新创建的字符串。<br>但实践中大多数情况还是使用(+)加号操作符，比concat()简单易行。</p>
+<h2 id="slice-、substring-、substr"><a href="#slice-、substring-、substr" class="headerlink" title="slice()、substring()、substr()"></a>slice()、substring()、substr()</h2><p>三个基于子字符串创建新字符串的方法，创建并返回被操作字符串的子字符串。<strong>注意方法名称都是小写</strong><br><strong>共同点：</strong><br>参数1：必选，指定子字符串开始位置。<br>参数2：可选，不指定时将字符串的长度作为结束位置。<br><strong>差异：</strong><br><strong>1、当指定参数2时</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:center">参数2含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>slice()、substring()</td>
+<td style="text-align:center">指定子字符串最后一个字符的位置</td>
+</tr>
+<tr>
+<td>substr</td>
+<td style="text-align:center">返回或截取的字符个数</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> stringValue=<span class="string">"hello world"</span>;</div><div class="line">stringValue.length;         <span class="comment">//11</span></div><div class="line">stringValue.slice(<span class="number">3</span>);       <span class="comment">//"lo world"</span></div><div class="line">stringValue.substring(<span class="number">3</span>);   <span class="comment">//"lo world"</span></div><div class="line">stringValue.substr(<span class="number">3</span>);		<span class="comment">//"lo world"</span></div><div class="line">stringValue.slice(<span class="number">3</span>,<span class="number">7</span>);		<span class="comment">//"lo wo"</span></div><div class="line">stringValue.substring(<span class="number">3</span>,<span class="number">7</span>); <span class="comment">//"lo wo"</span></div><div class="line">stringValue.substr(<span class="number">3</span>,<span class="number">7</span>);    <span class="comment">//"lo worl"</span></div></pre></td></tr></table></figure>
+<p><strong>2、当传递这些方法的参数是负数时</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:center">行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>slice()</td>
+<td style="text-align:center">所有传入的负值与字符串的长度相加</td>
+</tr>
+<tr>
+<td>substring()</td>
+<td style="text-align:center">所有的负值参数都转化为0</td>
+</tr>
+<tr>
+<td>substr()</td>
+<td style="text-align:center">将负的第一个参数加上字符串的长度，将负的第二个参数转换为0</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> stringValue=<span class="string">"hello world"</span>;</div><div class="line">stringValue.length;             <span class="comment">//11</span></div><div class="line">stringValue.slice(<span class="number">-3</span>);          <span class="comment">//"rld"</span></div><div class="line">stringValue.substring(<span class="number">-3</span>);      <span class="comment">//"hello world"</span></div><div class="line">stringValue.substr(<span class="number">-3</span>);			<span class="comment">//"rld"</span></div><div class="line">stringValue.slice(<span class="number">3</span>,<span class="number">-4</span>);		<span class="comment">//"lo wo"</span></div><div class="line">stringValue.substring(<span class="number">3</span>,<span class="number">-4</span>);    <span class="comment">//"hel"</span></div><div class="line">stringValue.substr(<span class="number">3</span>,<span class="number">-4</span>);       <span class="comment">//""</span></div></pre></td></tr></table></figure>
+<h1 id="字符串位置方法"><a href="#字符串位置方法" class="headerlink" title="字符串位置方法"></a>字符串位置方法</h1><h2 id="indexOf-和lastIndexOf"><a href="#indexOf-和lastIndexOf" class="headerlink" title="indexOf()和lastIndexOf"></a>indexOf()和lastIndexOf</h2><p>从字符串中查找子字符串的位置，如果找到返回子字符串的位置；找不到返回-1<br>参数1：指定检索的子字符串<br>参数2：可选，指定开始检索的位置<br>indexOf()从开头向末尾搜索<br>lastIndexOf()从末尾向开头搜索<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">stringValue=<span class="string">"hello world"</span>;</div><div class="line">stringValue.indexOf(<span class="string">'o'</span>,<span class="number">6</span>);           <span class="comment">//7</span></div><div class="line">stringValue.lastIndexOf(<span class="string">'o'</span>,<span class="number">6</span>);       <span class="comment">//4,此时从指定位置向前检索</span></div></pre></td></tr></table></figure></p>
+<h1 id="trim-方法"><a href="#trim-方法" class="headerlink" title="trim()方法"></a>trim()方法</h1><p>创建一个字符串的副本，删除前置及后缀的所有空格，然后返回结果。<br>注意：字符串中的空格不管<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">stringValue=<span class="string">" hellow world  "</span>;</div><div class="line">stringValue.trim();         <span class="comment">//"hellow world"</span></div><div class="line">stringValue;                <span class="comment">//" hellow world  ";</span></div></pre></td></tr></table></figure></p>
+<h1 id="字符串大小写转换方法"><a href="#字符串大小写转换方法" class="headerlink" title="字符串大小写转换方法"></a>字符串大小写转换方法</h1><p>toLowerCase()和toUpperCase()</p>
+<h1 id="字符串模式匹配方法"><a href="#字符串模式匹配方法" class="headerlink" title="字符串模式匹配方法"></a>字符串模式匹配方法</h1><h2 id="match"><a href="#match" class="headerlink" title="match()"></a>match()</h2><p>在字符串调用这个方法，本质上与调用RegExp对象的exec()方法相同。<br>参数：match()接收一个参数，要么是正则表达式，要么是正则对象。<br>返回值：matches返回一个数组，数组的第一项是与整个模式匹配的字符串，之后的每一项（如果有）保存着与正则表达式中捕获组匹配的字符串。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> text=<span class="string">"cat,bat,hat"</span>;</div><div class="line"><span class="keyword">var</span> pattern=<span class="regexp">/.at/</span>;</div><div class="line"><span class="keyword">var</span> matches=text.match(pattern);</div><div class="line">matches.index              <span class="comment">//0</span></div><div class="line">matches[<span class="number">0</span>]                 <span class="comment">//"cat"</span></div><div class="line">pattern.lastIndex          <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<h2 id="search"><a href="#search" class="headerlink" title="search()"></a>search()</h2><p>参数：search()接收一个参数，要么是正则表达式，要么是正则对象。<br>返回值：返回字符串中第一个匹配项的索引，如果没有找到匹配项，则返回-1.<br>注意：search()方法始终从字符串开头向后查找模式<br>例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> text=<span class="string">"cat,bat,hat"</span>;</div><div class="line"><span class="keyword">var</span> pos=text.search(<span class="regexp">/cat/</span>);    <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<h2 id="replace"><a href="#replace" class="headerlink" title="replace()"></a>replace()</h2><p>诞生原因：为了简化替换子字符串的操作，ECMAScript提供了replace()方法<br>参数：第一个参数正则对象或者字符串，第二个参数是一个字符串或者函数。<br>返回值：生成的替换后的字符串<br>注意<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">text=<span class="string">"cat,bat,hat"</span>;</div><div class="line">result=text.replace(<span class="string">"at"</span>,<span class="string">"ond"</span>)     <span class="comment">//"cond,bat,hat"</span></div><div class="line">result=text.replace(<span class="regexp">/at/g</span>,<span class="string">"ond"</span>)    <span class="comment">//"cond,cont,hont"</span></div></pre></td></tr></table></figure></p>
+<p>更精细的替换操作，使用函数作为replace()的第二个参数<br>在只有一个匹配项的情况下，会向这个函数传递3个参数：模式的匹配项、模式的匹配项在字符串中的位置、原始字符串。<br>在正则表达式中定义了多个捕获组的情况下，这个函数的参数依次是：模式的匹配项、第一个捕获组的匹配项、第二个捕获组的匹配项…，最后两个参数是模式的匹配项在字符串中的位置、原始字符串。<br>这个函数应该返回一个字符串，表示准备替换的预备项。<br>例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlEscape</span>(<span class="params">text</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> text.replace(<span class="regexp">/[&lt;&gt;"&amp;]/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params">match,pos,originText</span>)</span>&#123;</div><div class="line">		<span class="keyword">switch</span>(<span class="keyword">case</span>)&#123;</div><div class="line">			<span class="keyword">case</span> <span class="string">"&lt;"</span>:</div><div class="line">				<span class="keyword">return</span> &amp;lt;</div><div class="line">			<span class="keyword">case</span> <span class="string">"&gt;"</span>:</div><div class="line">				<span class="keyword">return</span> &amp;gt;</div><div class="line">			<span class="keyword">case</span> <span class="string">"\""</span>:</div><div class="line">				<span class="keyword">return</span> &amp;quot;</div><div class="line">			<span class="keyword">case</span> <span class="string">"&amp;"</span>:</div><div class="line">				<span class="keyword">return</span> &amp;amp;</div><div class="line">		&#125;</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line">htmlEscape(<span class="string">"&lt;p class=\"desc\"&gt;hellow&lt;/p&gt;"</span>)  </div><div class="line"><span class="comment">//输出 &amp;lt;p class=&amp;quot;desc;&amp;quot;&amp;gt;hellow&amp;lt;/p&amp;gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="split"><a href="#split" class="headerlink" title="split()"></a>split()</h2><p>基于指定的分割符将字符串分割成多个子字符串，并将结果存放在一个数组中。<br>参数：第一个参数是字符串或者正则表达式,匹配的项将作为分隔符<br>      第二个参数可选，用于指定数组的大小<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">color=<span class="string">"red,blue,pink"</span>;</div><div class="line">colors1=color.split(<span class="string">","</span>);   <span class="comment">//["red","blue","pink"]</span></div><div class="line">colors2=color.split(<span class="string">","</span>,<span class="number">2</span>); <span class="comment">//["red","blue"]</span></div><div class="line">colors3=color.split(<span class="regexp">/[^,]+/</span>);   </div><div class="line"><span class="comment">//["",",",",",""]   由于/^,/匹配的是除逗号以外的一个或多个字符，而"red"和"pink"刚好在开头和结尾，因此数组第一个元素和最后一个为空字符</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/06/14/js-array-method/" itemprop="url">
                   Javascript数组方法
                 </a>
@@ -1754,148 +1929,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/04/29/game-life/" itemprop="url">
-                  游戏相伴的青春
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-29T22:29:19+08:00" content="2016-04-29">
-              2016-04-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/04/29/game-life/" class="leancloud_visitors" data-flag-title="游戏相伴的青春">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>游戏趁年少，诗酒趁年华</strong></p>
-<p><img src="http://huzerui.com/blog/img/post/2016-04-29-game-life-1.jpg" alt="游戏"><br>“游戏”，这个常被21世纪父母所厌恶至极的让儿女玩物丧志的名词，今天竟有点想为它沉冤昭雪的冲动。原因也很简单，除了它在我人生中抑或说读书生涯占据了巨大的比重让我不得不提下之外，更因为在互联网极度繁华的现在，它似乎有种走出阴霾渐渐被人们所理解的迹象，电竞游戏门类更产生了一个庞大的生态链，让人们觉得<strong>玩游戏也可以不是“颓废”、“懒”、“丧志”的代名词，它也可以成为赚钱、娱乐的一种手段</strong>。</p>
-<p>当然，今天主题并非在游戏的发展抑或现在游戏产业的革命，只是自己热衷于记录跟自己人生息息相关的东西，所以，如果你是<strong>80后抑或90年初</strong>的孩纸，你也许能在文中找到与我类似的经历和产生共鸣，<strong>因为那是属于一个年代的乐趣</strong>。</p>
-<p><img src="http://huzerui.com/blog/img/post/2016-04-29-game-life-2.jpg" alt="小霸王时代"></p>
-<p>“魂斗罗”、“超级玛丽”、“雪人兄弟”、“坦克大战”等这些个在部分人眼里耳熟能详的名词，真的是属于小霸王时代的年轻人的乐趣。</p>
-<p>在那个电脑十分不普及的年代，玩游戏机成了年轻人的fashion。我记得那时候我才6岁，家里买来一台小霸王，接触到第一款游戏好像就是魂斗罗，兄弟姐妹四人两两轮流着玩。</p>
-<p>后来觉得一款游戏乏味了，就开始不断地买游戏带，让我印象最深的就是超级玛丽了。听着金币那个“滴滴”的声音和最终跳旗的优越感，满满的都是回忆。虽然现在出了电脑版的和手机版的，但在这个年代似乎感觉不到儿时的乐趣了。</p>
-<p>但是，我的游戏生涯远远不止于此。我的家庭属于接触PC比较早的，在我大概8岁（00年）的时候，我爸购买了一台PC电脑，不知为何我妈似乎不排斥游戏，从外面购买了一些游戏光碟。</p>
-<p>见到光碟的时候，我们兄弟姐妹几个都乐坏了，要知道在那个没有互联网的年代，玩PC游戏简直是儿童的无上乐趣，当然这跟兄弟或者小伙伴一起玩的乐趣是分不开的。</p>
-<p>有个游戏印象很深，就是《大富翁4》，成为地产大亨是游戏的梦想，也是生活的梦想。嘎嘎，好像比较难实现，先挣他一个亿再说。</p>
-<p><strong>直到现在，对于我的母亲我总另怀着一份敬意——我的游戏启蒙导师</strong>…</p>
-<p><img src="http://huzerui.com/blog/img/post/2016-04-29-game-life-3.jpg" alt="互联网时代的游戏历程"></p>
-<ul>
-<li><em>泡泡堂：第一款让我小学5年级进入网吧的游戏*</em></li>
-<li><strong>跑跑卡丁车：一款让我与初中好友乐在其中的游戏</strong></li>
-<li>QQ幻想：第一款rpg游戏</li>
-<li>CF：灵巧类游戏</li>
-<li>Dota：考验智慧和反应的竞技类游戏</li>
-</ul>
-<p><strong>青春如果少了游戏时光，似乎不那么完美了。</strong></p>
-<p>游戏毕竟是虚拟的，游戏中的自己只是一个娱乐符号罢了。不沉溺于游戏，将更多的时间投入现实生活，应当是互联网时代的重要姿态。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1943,7 +1976,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1960,7 +1993,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2034,6 +2067,15 @@
                 </a>
               </span>
             
+              <span class="links-of-author-item">
+                <a href="/blog/wechat-public" target="_blank" title="微信公众号">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微信公众号
+                </a>
+              </span>
+            
           
         </div>
 
@@ -2060,7 +2102,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

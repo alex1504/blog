@@ -256,6 +256,195 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2017/10/31/javascript-from-prototype-to-prototype-chain/" itemprop="url">
+                  JavaScript深入之从原型到原型链【转载】
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-31T14:46:26+08:00" content="2017-10-31">
+              2017-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2017/10/31/javascript-from-prototype-to-prototype-chain/" class="leancloud_visitors" data-flag-title="JavaScript深入之从原型到原型链【转载】">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文转载自冴羽博客<a href="https://github.com/mqyqingfeng/Blog/issues/17" target="_blank" rel="external">javascript深入系列</a>，清楚解释了js原型继承的机制，以图片清晰描述出构造函数、实例、原型、prototype、__proto__、constructor之间的关系。另外也推荐冴羽大大的另一个系列<a href="https://github.com/mqyqingfeng/Blog/issues/53" target="_blank" rel="external">javascript专题系列</a>，相信会给研读的小伙伴柳暗花明之感。</p>
+</blockquote>
+<h1 id="JavaScript深入之从原型到原型链"><a href="#JavaScript深入之从原型到原型链" class="headerlink" title="JavaScript深入之从原型到原型链"></a>JavaScript深入之从原型到原型链</h1><blockquote>
+<p>JavaScript深入系列的第一篇，从原型与原型链开始讲起，如果你想知道构造函数的实例的原型，原型的原型，原型的原型的原型是什么，就来看看这篇文章吧。</p>
+</blockquote>
+<h2 id="构造函数创建对象"><a href="#构造函数创建对象" class="headerlink" title="构造函数创建对象"></a>构造函数创建对象</h2><p>我们先使用构造函数创建一个对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line">person.name = <span class="string">'Kevin'</span>;</div><div class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
+<p>在这个例子中，Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person。</p>
+<p>很简单吧，接下来进入正题：</p>
+<h2 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h2><p>每个函数都有一个 prototype 属性，就是我们经常在各种例子中看到的那个 prototype ，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="comment">// 虽然写在注释里，但是你要注意：</span></div><div class="line"><span class="comment">// prototype是函数才会有的属性</span></div><div class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</div><div class="line"><span class="built_in">console</span>.log(person1.name) <span class="comment">// Kevin</span></div><div class="line"><span class="built_in">console</span>.log(person2.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
+<p>那这个函数的 prototype 属性到底指向的是什么呢？是这个函数的原型吗？</p>
+<p>其实，函数的 prototype 属性指向了一个对象，这个对象正是调用该构造函数而创建的<strong>实例</strong>的原型，也就是这个例子中的 person1 和 person2 的原型。</p>
+<p>那什么是原型呢？你可以这样理解：每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
+<p>让我们用一张图表示构造函数和实例原型之间的关系：</p>
+<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype1.png" alt="构造函数和实例原型的关系图"></p>
+<p>在这张图中我们用 Object.prototype 表示实例原型。</p>
+<p>那么我们该怎么表示实例与实例原型，也就是 person 和 Person.prototype 之间的关系呢，这时候我们就要讲到第二个属性：</p>
+<h2 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a>__proto__</h2><p>这是每一个JavaScript对象(除了 null )都具有的一个属性，叫__proto__，这个属性会指向该对象的原型。</p>
+<p>为了证明这一点,我们可以在火狐或者谷歌中输入：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"><span class="built_in">console</span>.log(person.__proto__ === Person.prototype); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>于是我们更新下关系图：</p>
+<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype2.png" alt="实例与实例原型的关系图"></p>
+<p>既然实例对象和构造函数都可以指向原型，那么原型是否有属性指向构造函数或者实例呢？</p>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><p>指向实例倒是没有，因为一个构造函数可以生成多个实例，但是原型指向构造函数倒是有的，这就要讲到第三个属性：constructor﻿，每个原型都有一个 constructor 属性指向关联的构造函数。</p>
+<p>为了验证这一点，我们可以尝试：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(Person === Person.prototype.constructor); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>所以再更新下关系图：</p>
+<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype3.png" alt="实例原型与构造函数的关系图"></p>
+<p>综上我们已经得出：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person.__proto__ == Person.prototype) <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(Person.prototype.constructor == Person) <span class="comment">// true</span></div><div class="line"><span class="comment">// 顺便学习一个ES5的方法,可以获得对象的原型</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(person) === Person.prototype) <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>了解了构造函数、实例原型、和实例之间的关系，接下来我们讲讲实例和原型的关系：</p>
+<h2 id="实例与原型"><a href="#实例与原型" class="headerlink" title="实例与原型"></a>实例与原型</h2><p>当读取实例的属性时，如果找不到，就会查找与对象关联的原型中的属性，如果还查不到，就去找原型的原型，一直找到最顶层为止。</p>
+<p>举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"></div><div class="line">person.name = <span class="string">'Daisy'</span>;</div><div class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Daisy</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> person.name;</div><div class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
+<p>在这个例子中，我们给实例对象 person 添加了 name 属性，当我们打印 person.name 的时候，结果自然为 Daisy。</p>
+<p>但是当我们删除了 person 的 name 属性时，读取 person.name，从 person 对象中找不到 name 属性就会从 person 的原型也就是 person.__proto__ ，也就是 Person.prototype中查找，幸运的是我们找到了  name 属性，结果为 Kevin。</p>
+<p>但是万一还没有找到呢？原型的原型又是什么呢？</p>
+<h2 id="原型的原型"><a href="#原型的原型" class="headerlink" title="原型的原型"></a>原型的原型</h2><p>在前面，我们已经讲了原型也是一个对象，既然是对象，我们就可以用最原始的方式创建它，那就是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">obj.name = <span class="string">'Kevin'</span></div><div class="line"><span class="built_in">console</span>.log(obj.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
+<p>所以原型对象是通过 Object 构造函数生成的，结合之前所讲，实例的 __proto__ 指向构造函数的 prototype ，所以我们再更新下关系图：</p>
+<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype4.png" alt="原型的原型关系图"></p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>那 Object.prototype 的原型呢？</p>
+<p>null，我们可以打印：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>) <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>然而 null 究竟代表了什么呢？</p>
+<p>引用阮一峰老师的 <a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="external">《undefined与null的区别》</a> 就是：</p>
+<blockquote>
+<p>null 表示“没有对象”，即该处不应该有值。</p>
+</blockquote>
+<p>所以 Object.prototype.__proto__ 的值为 null 跟 Object.prototype 没有原型，其实表达了一个意思。</p>
+<p>所以查找属性的时候查到 Object.prototype 就可以停止查找了。</p>
+<p>最后一张关系图也可以更新为：</p>
+<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype5.png" alt="原型链示意图"></p>
+<p>顺便还要说一下，图中由相互关联的原型组成的链状结构就是原型链，也就是蓝色的这条线。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>最后，补充三点大家可能不会注意的地方：</p>
+<h3 id="constructor"><a href="#constructor" class="headerlink" title="constructor"></a>constructor</h3><p>首先是 constructor 属性，我们看个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"><span class="built_in">console</span>.log(person.constructor === Person); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>当获取 person.constructor 时，其实 person 中并没有 constructor 属性,当不能读取到constructor 属性时，会从 person 的原型也就是 Person.prototype 中读取，正好原型中有该属性，所以：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">person.constructor === Person.prototype.constructor</div></pre></td></tr></table></figure>
+<h3 id="proto-1"><a href="#proto-1" class="headerlink" title="__proto__"></a>__proto__</h3><p>其次是 __proto__ ，绝大部分浏览器都支持这个非标准的方法访问原型，然而它并不存在于 Person.prototype 中，实际上，它是来自于 Object.prototype ，与其说是一个属性，不如说是一个 getter/setter，当使用 obj.__proto__ 时，可以理解成返回了 Object.getPrototypeOf(obj)。</p>
+<h3 id="真的是继承吗？"><a href="#真的是继承吗？" class="headerlink" title="真的是继承吗？"></a>真的是继承吗？</h3><p>最后是关于继承，前面我们讲到“每一个对象都会从原型‘继承’属性”，实际上，继承是一个十分具有迷惑性的说法，引用《你不知道的JavaScript》中的话，就是：</p>
+<p>继承意味着复制操作，然而 JavaScript 默认并不会复制对象的属性，相反，JavaScript 只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数，所以与其叫继承，委托的说法反而更准确些。</p>
+<h2 id="下一篇文章"><a href="#下一篇文章" class="headerlink" title="下一篇文章"></a>下一篇文章</h2><p><a href="https://github.com/mqyqingfeng/Blog/issues/3" target="_blank" rel="external">JavaScript深入之词法作用域和动态作用域</a></p>
+<h2 id="深入系列"><a href="#深入系列" class="headerlink" title="深入系列"></a>深入系列</h2><p>JavaScript深入系列目录地址：<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="external">https://github.com/mqyqingfeng/Blog</a>。</p>
+<p>JavaScript深入系列预计写十五篇左右，旨在帮大家捋顺JavaScript底层知识，重点讲解如原型、作用域、执行上下文、变量对象、this、闭包、按值传递、call、apply、bind、new、继承等难点概念。</p>
+<p>如果有错误或者不严谨的地方，请务必给予指正，十分感谢。如果喜欢或者有所启发，欢迎star，对作者也是一种鼓励。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2017/10/15/color-formula/" itemprop="url">
                   前端都了解的配色策略
                 </a>
@@ -1998,176 +2187,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/10/30/how-to-make-a-html5-player/" itemprop="url">
-                  HTML5(Audio)移动音乐播放器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-30T08:38:01+08:00" content="2016-10-30">
-              2016-10-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/10/30/how-to-make-a-html5-player/" class="leancloud_visitors" data-flag-title="HTML5(Audio)移动音乐播放器">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>“咳咳咳..在看正文之前，如果客官有兴趣可以轻点播放按钮聆听一下我的<strong>第一首吉他原创歌曲</strong>”。——作于大三下学期</p>
-<p><audio style="width: 100%" src="http://qiniu.huzerui.com/audio/guita-september.mp3" controls></audio><br>“怎么感觉整个人都不好了…还有呜呜呜的声音”</p>
-<p>“那时正值寒冬，于学校宿舍顶楼录制，周围一片漆黑，忽一阵冷风袭来，但对我而言那是美丽的协奏”</p>
-<p>“什么鬼..！”</p>
-<p>“好吧…那听听这首吧，也许能帮到客官您，这是我的<strong>第二首原创歌曲</strong>”。——作于大四上学期</p>
-<p><audio style="width: 100%" src="http://qiniu.huzerui.com/audio/guita-nightsky.mp3" controls></audio><br>“怎么比第一首调子还哀伤”？Are you kiding me？</p>
-<p><strong>“蓝瘦，香菇，在这里。”</strong></p>
-<p>好了，客观见笑了，为了真正治愈你，让我们回归正题吧！</p>
-<p>这段时间公司一直在做一个PC的教育类单页应用，庞大复杂，涉及非常多H5的知识，音频就是其中的一部分。闲暇时写了一个移动音乐播放器，除了将之作为练手项目，对于音乐的喜爱也是促使自己想写个播放器的原因。</p>
-<p>在线地址：请猛击<a href="http://alex1504.oschina.io/demo/player/" target="_blank" rel="external">这里</a><br>源码：请猛击<a href="https://git.oschina.net/alex1504/demo/tree/osc-pages/player?dir=1&amp;filepath=player&amp;oid=4c10643c235593569490e3da0d2ff7f613ece98e&amp;sha=ec2e4efea87ee25ee0818481a8cf1f5893c5947c" target="_blank" rel="external">这里</a></p>
-<p>注意：使用PC浏览最好打开<strong>移动设备模式</strong>，使用移动设备浏览需要关闭无痕浏览模式（否则无法使用本地存储，一般浏览器都是默认不开启），项目需要在<strong>本地服务器</strong>或<strong>线上服务器</strong>运行，以file:///形式的地址打开是无法进行ajax请求的，从而无法看到音乐数据。<br><img src="http://huzerui.com/blog/img/post/2016-10-30-how-to-make-a-mobile-html5-player.jpg" alt="UI图"></p>
-<h1 id="项目实现的功能及所用知识"><a href="#项目实现的功能及所用知识" class="headerlink" title="项目实现的功能及所用知识"></a>项目实现的功能及所用知识</h1><ul>
-<li>播放器的基础操作，上一首，下一首(顺序播放、随机播放、单曲循环)，播放暂停，滑动时间轴的歌词定位</li>
-<li>初始handlebar模板渲染音乐列表数据，下拉滚动加载音乐列表数据。</li>
-<li>歌曲列表可添加喜爱音乐，于下次刷新时更新喜爱音乐列表，基于HTML5本地存储。</li>
-<li>布局采用rem布局，自适应移动端手机设备。</li>
-<li>iconfont在线图标应用的使用</li>
-</ul>
-<h1 id="项目目录文件结构"><a href="#项目目录文件结构" class="headerlink" title="项目目录文件结构"></a>项目目录文件结构</h1><ul>
-<li>css：存放样式文件</li>
-<li>lib： 存放公共脚本库</li>
-<li>js： 存放项目脚本文件</li>
-<li>img： 存放图片</li>
-<li>fonts： 项目字体文件</li>
-<li>res： 项目音乐资源</li>
-<li>ui：项目ui文件（psd）</li>
-</ul>
-<h1 id="项目js文件结构"><a href="#项目js文件结构" class="headerlink" title="项目js文件结构"></a>项目js文件结构</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ============================配置变量================================</span></div><div class="line"><span class="keyword">var</span> rootPath = <span class="built_in">window</span>.location.href.replace(<span class="regexp">/\/\w+\.\w+/</span>, <span class="string">"/"</span>);</div><div class="line"><span class="keyword">var</span> Settings = &#123;</div><div class="line">    <span class="attr">playmode</span>: <span class="number">0</span>, <span class="comment">//0列表循环，1随机，2为单曲循环</span></div><div class="line">    volume: <span class="number">0.5</span>, <span class="comment">//音量</span></div><div class="line">    initNum: <span class="number">10</span>, <span class="comment">//列表初始化歌曲数</span></div><div class="line">    reqNum: <span class="number">10</span> <span class="comment">//后续请求歌曲数</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// ============================工具函数================================</span></div><div class="line"><span class="keyword">var</span> Util = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;)()</div><div class="line"><span class="comment">// ============================Dom选择器================================</span></div><div class="line"><span class="keyword">var</span> Dom = &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ============================全局变量================================</span></div><div class="line"><span class="keyword">var</span> winH = $(<span class="built_in">window</span>).height();</div><div class="line"></div><div class="line"><span class="keyword">var</span> songNum = <span class="number">0</span>; <span class="comment">//当前列表歌曲数目</span></div><div class="line"><span class="keyword">var</span> lrcHighIndex = <span class="number">0</span>; <span class="comment">// 歌词高亮索引</span></div><div class="line"><span class="keyword">var</span> lrcMoveIndex = <span class="number">0</span>; <span class="comment">// 歌词移动单位索引</span></div><div class="line"><span class="keyword">var</span> moveDis = <span class="number">0</span>; <span class="comment">// 单句歌词每次移动距离</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> duration = <span class="number">0</span>; <span class="comment">// 当前歌曲的时间</span></div><div class="line"><span class="keyword">var</span> index = <span class="number">0</span>; <span class="comment">//当前播放歌曲的索引</span></div><div class="line"><span class="keyword">var</span> songInfo = <span class="literal">null</span>; <span class="comment">// 当前歌曲信息</span></div><div class="line"><span class="keyword">var</span> songModelUI = <span class="literal">null</span>; <span class="comment">// 当前歌曲UI模型</span></div><div class="line"><span class="keyword">var</span> timeArr = []; <span class="comment">//当前歌曲时间数组</span></div><div class="line"><span class="keyword">var</span> formatTimeArr = []; <span class="comment">//当前歌曲时间数组(格式化为秒数)</span></div><div class="line"></div><div class="line"><span class="comment">// ============================入口函数================================</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    initUIFrame();</div><div class="line">    <span class="keyword">var</span> initModel = PlayerModel();</div><div class="line"></div><div class="line">    <span class="keyword">var</span> songListUI = ModelUIFrame(Dom.songListContainer);</div><div class="line">    <span class="keyword">var</span> lsongListUI = ModelUIFrame(Dom.lSongListContainer);</div><div class="line">    initModel.getSongList(<span class="string">"data/data.json"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="comment">// 生成所有歌曲列表</span></div><div class="line">        songListUI.renderList(data, <span class="number">0</span>, <span class="literal">null</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            songListUI.updateList();</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">// 生成喜爱歌曲列表</span></div><div class="line">        initModel.getLoveSongArr(<span class="function"><span class="keyword">function</span>(<span class="params">lSongArr</span>) </span>&#123;</div><div class="line">            lsongListUI.renderList(data, <span class="number">1</span>, lSongArr);</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">// 添加动画</span></div><div class="line">        Util.addAnimationDelay(Dom.song);</div><div class="line">        <span class="comment">// 保存歌词数据</span></div><div class="line">        initModel.saveLyric(data);</div><div class="line"></div><div class="line">    &#125;);</div><div class="line">    EventHandler();</div><div class="line">&#125;</div><div class="line"><span class="comment">// ============================初始化UI函数================================</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUIFrame</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="comment">// ============================实现数据交互方法================================</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">PlayerModel</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="comment">// ============================模型动态UI模块================================</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ModelUIFrame</span>(<span class="params">container</span>) </span>&#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="comment">// ============================事件绑定模块================================</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">EventHandler</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="comment">// 调用入口函数</span></div><div class="line"> main();</div></pre></td></tr></table></figure>
-<h1 id="功能点详解"><a href="#功能点详解" class="headerlink" title="功能点详解"></a>功能点详解</h1><h2 id="Handlebar-js初次渲染及滚动加载"><a href="#Handlebar-js初次渲染及滚动加载" class="headerlink" title="Handlebar.js初次渲染及滚动加载"></a>Handlebar.js初次渲染及滚动加载</h2><p>使用前端模板优点是把数据和结构分离出来，代码更清晰。但后来发现handlerbar.js似乎无法在js中示例模板对象，而html中的handlebar在初次进入页面便会被编译了，因此后续添加音乐还是采用传统的拼接字符串的方式，如果你有更优雅的动态加载方式，欢迎讨论交流。</p>
-<p><strong>html:</strong> handlebars模板包含在script标签之中并且type类型为”text/x-handlebars-template”，在初始化页面的时候根据js获取数据植入后就渲染出相应的html。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"sListTpl"</span> <span class="attr">type</span>=<span class="string">"text/x-handlebars-template"</span>&gt;</span><span class="xml"></span></div><div class="line">&#123;&#123;#each this&#125;&#125;</div><div class="line">&#123;&#123;#isInitData this @index&#125;&#125;</div><div class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"song btm-line"</span> <span class="attr">data-src</span>=<span class="string">&#123;&#123;songSrc&#125;&#125;</span> <span class="attr">data-index</span>=<span class="string">&#123;&#123;id&#125;&#125;</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"poster"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;&#123;poster.thumbnail&#125;&#125;</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"songinfo"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"lsongname"</span>&gt;</span>&#123;&#123;songName&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">sub</span> <span class="attr">class</span>=<span class="string">"lsinger"</span>&gt;</span>&#123;&#123;singer&#125;&#125;<span class="tag">&lt;/<span class="name">sub</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"loveflag"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon icon-love &#123;&#123;#if loveFlag&#125;&#125;active&#123;&#123;/if&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">&#123;&#123;/isInitData&#125;&#125;</div><div class="line">&#123;&#123;/each&#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- END歌曲列表模块 --&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>js:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderAllList</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> preTpl;</div><div class="line">    <span class="keyword">var</span> lsongArr = Util.getItem(<span class="string">'lsonglist'</span>) === <span class="literal">null</span> ? [] : <span class="built_in">JSON</span>.parse(Util.getItem(<span class="string">'lsonglist'</span>));</div><div class="line">    <span class="comment">// 生成列表</span></div><div class="line">    <span class="keyword">if</span> (!sListTpl) &#123;</div><div class="line">        <span class="comment">// 后续动态生成歌曲</span></div><div class="line">        <span class="keyword">var</span> tpl = <span class="string">""</span>;</div><div class="line">        <span class="keyword">var</span> songIndex = songNum;</div><div class="line">        $.each(data, <span class="function"><span class="keyword">function</span>(<span class="params">index, el</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (index &gt;= songIndex &amp;&amp; index &lt; songIndex + Settings.reqNum) &#123;</div><div class="line">                tpl += <span class="string">"&lt;li class='song btm-line' data-src='res/music/"</span> + songNum + <span class="string">".mp3' data-index='"</span> + songNum + <span class="string">"'&gt;&lt;div class='poster'&gt;&lt;img src='./img/poster/"</span> + songNum + <span class="string">"-thumbnail.jpg'&gt;&lt;/div&gt;&lt;div class='songinfo'&gt;&lt;h2 class='lsongname'&gt;"</span> + el.songName + <span class="string">"&lt;/h2&gt;&lt;sub class='lsinger'&gt;"</span> + el.singer + <span class="string">"&lt;/sub&gt;&lt;/div&gt;&lt;div class='loveflag'&gt;&lt;i class='icon icon-love '&gt;&lt;/i&gt;&lt;/div&gt;&lt;/li&gt;"</span>;</div><div class="line">                songNum++;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        $(container).append($(tpl));</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 首次生成歌曲</span></div><div class="line">        preTpl = Handlebars.compile(sListTpl);</div><div class="line">        $(container).html(preTpl(data));</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 更新喜爱图标</span></div><div class="line">    <span class="keyword">if</span> (lsongArr.length !== <span class="number">0</span>) &#123;</div><div class="line">        $.each(lsongArr, <span class="function"><span class="keyword">function</span>(<span class="params">index, val</span>) </span>&#123;</div><div class="line">            Dom.songListContainer.find(<span class="string">".song"</span>).eq(val).find(<span class="string">".icon-love"</span>).addClass(<span class="string">'active'</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="rem布局自适应方案"><a href="#rem布局自适应方案" class="headerlink" title="rem布局自适应方案"></a>rem布局自适应方案</h2><p>大体上指的是html根元素上定义一个字体大小，然后css样式定义时使用rem作为单位，包括margin、paddding、用于绝对定位的单位等等。然后js根据手机设备的屏幕大小，改变根字体的大小，这样整个页面也会跟着相应的缩小或放大。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 根据手机屏幕自适应字体大小（rem自适应方案）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">rescale</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> docEle = <span class="built_in">document</span>.documentElement;</div><div class="line">    <span class="keyword">var</span> width = docEle.clientWidth || <span class="built_in">window</span>.innerWidth;</div><div class="line">    <span class="keyword">if</span> (width &gt; <span class="number">640</span> &amp;&amp; width !== <span class="number">768</span>) &#123;</div><div class="line">        docEle.style.fontSize = <span class="string">"100px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">320</span>) &#123;</div><div class="line">        <span class="comment">//iphone5</span></div><div class="line">        docEle.style.fontSize = <span class="string">"49px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">375</span>) &#123;</div><div class="line">        <span class="comment">//iphone6 </span></div><div class="line">        docEle.style.fontSize = <span class="string">"57px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">412</span>) &#123;</div><div class="line">        <span class="comment">// Nexus 5X</span></div><div class="line">        docEle.style.fontSize = <span class="string">"57px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">768</span>) &#123;</div><div class="line">        <span class="comment">//ipad </span></div><div class="line">        docEle.style.fontSize = <span class="string">"88px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        docEle.style.fontSize = <span class="built_in">Math</span>.round(width / <span class="number">640</span> * <span class="number">100</span>) + <span class="string">"px"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>更多详解，请看先前一篇文章《移动端自适应布局解决方案——rem》，您可以猛击<a href="http://huzerui.com/blog/2016/06/16/mobile-rem/" target="_blank" rel="external">这里</a>跳转。</p>
-<h2 id="关于歌词的同步方案实现"><a href="#关于歌词的同步方案实现" class="headerlink" title="关于歌词的同步方案实现"></a>关于歌词的同步方案实现</h2><p>目前音乐播放器的歌词同步显示大概有两种，一种是精确到单个文字，一种是精确到单行歌词。本文实现的是第二种。</p>
-<h2 id="整体实现思路"><a href="#整体实现思路" class="headerlink" title="整体实现思路"></a>整体实现思路</h2><p>页面初始化时，请求歌曲数据json（本地json文件模拟），其中歌名、歌手、图片等按需渲染到html中，将歌词存储到localStorage中。此时，F12打开chrome调试器，进入Application-LocalStorage可以看到：<br><img src="http://huzerui.com/blog/img/post/2016-10-30-lyric-localstorage.jpg" alt="歌词本地存储"></p>
-<p>点击一首歌进入播放页面后，歌词就会从本地存储中读取，此时你会看到生成这样的歌词结构：<br><img src="http://huzerui.com/blog/img/post/2016-10-30-lyric-html.jpg" alt="歌词结构"><br>每一行歌词都将要将歌词时间绑定在data-point上，监听歌曲播放的timeupdate事件，当歌曲的时间(经过取整处理)与当前data-point值相等时，就为当前歌词高亮（相当于给p添加current类名），并且根据当前高亮歌词的index索引将整个歌词盒子向上移动<strong>p标签的高度+margin-top的高度</strong>。</p>
-<h3 id="lrc歌词的结构"><a href="#lrc歌词的结构" class="headerlink" title="lrc歌词的结构"></a>lrc歌词的结构</h3><p>来自网易云音乐的歌词数据：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[<span class="number">00</span>:<span class="number">14.64</span>]如果不是那镜子\n[<span class="number">00</span>:<span class="number">16.73</span>]不像你不藏秘密\n[<span class="number">00</span>:<span class="number">21.26</span>]我还不肯相信\n[<span class="number">00</span>:<span class="number">23.02</span>]没有你我的笑更美丽\n[<span class="number">00</span>:<span class="number">28.99</span>]那天听你在电话里略带抱歉的关心\n</div><div class="line"></div><div class="line">[<span class="number">00</span>:<span class="number">16.959</span>]摘一颗苹果\n[<span class="number">00</span>:<span class="number">19.800</span>]等你从门前经过\n[<span class="number">00</span>:<span class="number">22.700</span>]送到你的手中帮你解渴\n[<span class="number">00</span>:<span class="number">25.570</span>]像夏天的可乐\n</div><div class="line"></div><div class="line">[<span class="number">00</span>:<span class="number">00.00</span>] 作曲 : 周杰伦\n[<span class="number">00</span>:<span class="number">01.00</span>] 作词 : 周杰伦\n[<span class="number">00</span>:<span class="number">05.620</span>]\n[<span class="number">00</span>:<span class="number">37.980</span>]亲吻你的手\n</div></pre></td></tr></table></figure></p>
-<p>可以看到<strong>格式 = [时间点] + 要显示的文字 + \n</strong><br>这里有两个坑需要注意：</p>
-<ul>
-<li>有的歌词秒数是精确到<strong>小数点后两位</strong>，<strong>有的是三位</strong>。</li>
-<li>有的歌词（周杰伦《算什么男人》）格式是 <strong>[时间点]+\n</strong></li>
-</ul>
-<h3 id="时间歌词创建映射"><a href="#时间歌词创建映射" class="headerlink" title="时间歌词创建映射"></a>时间歌词创建映射</h3><p>首先以\n将歌词字符串分割成以<strong>[时间点]文字</strong>的数组，但由于这样分割之后最后一个元素是空的，所以用<strong>tempArr.splice(-1, 1)</strong>删除最后一个元素。</p>
-<p>接下来循环遍历这个临时数组，由于上面提到的秒数精确度的问题，所以判断一下index为9是否为数字，若为数字则将该位数字删除。(采用字符串截取方式，若你对js字符串方法不熟悉，可以猛击<a href="http://huzerui.com/blog/2016/06/14/js-string-method/" target="_blank" rel="external">这里</a>)</p>
-<p>经过这样的处理之后，临时数组的元素格式不再有区别了，此时再进行字符串截取，将截取到的时间点放入timeArr，将截取的歌词放入lyricArr，并以返回保存着这两个变量的对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createArrMap</span>(<span class="params">lyric</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> timeArr = [],</div><div class="line">        lyricArr = [];</div><div class="line">    <span class="keyword">var</span> tempArr = lyric.split(<span class="string">"\n"</span>);</div><div class="line">    tempArr.splice(<span class="number">-1</span>, <span class="number">1</span>);</div><div class="line">    <span class="keyword">var</span> tempStr = <span class="string">""</span>;</div><div class="line">    $(tempArr).each(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;</div><div class="line">        tempStr = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">if</span> (tempStr.charAt(<span class="number">9</span>).match(<span class="regexp">/\d/</span>) !== <span class="literal">null</span>) &#123;</div><div class="line">            tempStr = tempStr.substring(<span class="number">0</span>, <span class="number">9</span>) + tempStr.substring(<span class="number">10</span>);</div><div class="line">        &#125;</div><div class="line">        timeArr.push(tempStr.substring(<span class="number">0</span>, <span class="number">10</span>));</div><div class="line">        lyricArr.push(tempStr.substring(<span class="number">10</span>));</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">timeArr</span>: timeArr,</div><div class="line">        <span class="attr">lyricArr</span>: lyricArr</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="生成歌词"><a href="#生成歌词" class="headerlink" title="生成歌词"></a>生成歌词</h3><p>由于上面歌词格式造成时间点对应的歌词为空，此时如果渲染出一个</p><p>标签的高度将为0，这会影响歌词向上移动距离的不统一。因此下面作出个判断如果为空，则替换为“————–”。（为空的时候大多数是歌曲中间停顿或过渡的时候）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderLyric</span>(<span class="params">songinfo</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arrMap = Util.createArrMap(songinfo.lyric);</div><div class="line">    <span class="keyword">var</span> tpl = <span class="string">""</span>;</div><div class="line">    $.each(arrMap.lyricArr, <span class="function"><span class="keyword">function</span>(<span class="params">index, lyric</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> lyricContent = lyric === <span class="string">""</span> ? <span class="string">"--------------"</span> : lyric;</div><div class="line">        tpl += <span class="string">"&lt;p class='' data-point='"</span> + arrMap.timeArr[index] + <span class="string">"'&gt;"</span> + lyricContent + <span class="string">"&lt;/p&gt;"</span>;</div><div class="line">    &#125;);</div><div class="line">    Dom.lrcwrap.html(tpl);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="歌词同步"><a href="#歌词同步" class="headerlink" title="歌词同步"></a>歌词同步</h3><p>歌词同步我写在了syncLyric方法中，监听audio元素的timeupdate事件调用。<br>这个方法接收两个参数，第一个是当前播放歌曲时间（秒），第二个是转化为秒数的时间点数组。<br>如果当前时间&gt;=时间点，那么高亮当前歌词（以lrcHighIndex）存储，并且lrcHighIndex自增1。<br>当歌词高亮索引lrcHighIndex&gt;=1即歌词高亮不为第一句时，计算索引并让歌词盒子向上移动。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">syncLyric</span>(<span class="params">curS, formatTimeArr</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">Math</span>.floor(curS) &gt;= formatTimeArr[lrcHighIndex]) &#123;</div><div class="line">        Dom.lrc.eq(lrcHighIndex).addClass(<span class="string">'current'</span>).siblings().removeClass(<span class="string">'current'</span>);</div><div class="line">        <span class="keyword">if</span> (lrcHighIndex &gt;= <span class="number">1</span>) &#123;</div><div class="line">            lrcMoveIndex = lrcHighIndex - <span class="number">2</span>;</div><div class="line">            moveDis += Util.getMoveDis(lrcMoveIndex);</div><div class="line">            Dom.lrcwrap.animate(&#123;</div><div class="line">                <span class="string">"top"</span>: <span class="string">"-"</span> + moveDis + <span class="string">"px"</span></div><div class="line">            &#125;, <span class="number">100</span>);</div><div class="line">            lrcMoveIndex++;</div><div class="line">        &#125;</div><div class="line">        lrcHighIndex++;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2215,7 +2234,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2232,7 +2251,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2306,6 +2325,15 @@
                 </a>
               </span>
             
+              <span class="links-of-author-item">
+                <a href="/blog/wechat-public" target="_blank" title="微信公众号">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微信公众号
+                </a>
+              </span>
+            
           
         </div>
 
@@ -2332,7 +2360,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
