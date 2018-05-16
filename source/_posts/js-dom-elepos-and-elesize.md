@@ -4,7 +4,7 @@ date: 2016-06-15 12:46:43
 tags: [js,dom]
 ---
 JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：
-![大小、位置属性](http://huzerui.com/blog/img/post/2016-06-15-js-get-dom-position-and-size-1.jpg)
+![大小、位置属性](http://qiniu.huzerui.com/image/2016-06-15-js-get-dom-position-and-size-1.jpg)
 这些属性的笼统特征：
 client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分    
 offset：元素内容+内边距+边框  不包括外边距和滚动条部分

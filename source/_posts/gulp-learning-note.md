@@ -4,7 +4,7 @@ date: 2016-11-07 21:42:28
 categories: 前端
 tags: [gulp]
 ---
-![gulp](http://huzerui.com/blog/img/post/2016-11-7-gulp-poster.jpg)
+![gulp](http://qiniu.huzerui.com/image/2016-11-7-gulp-poster.jpg)
 某个深夜独自在房间深造，在不断键盘敲击的“Alt+Tab”和“F5”许久，我开始疲惫了，于是从冰箱抡起一杯可乐。畅饮之余，去Google寻求仙人指路，仙人找到了nodejs为我指点了迷津，并递给我一杯可乐和吸管，原来“她”就在这里，她的名字叫“Gulp”。
 
 她虽然只是一杯插着吸管的饮料，可却能在烈日炎炎的夏天舒缓你焦灼的身心，在寒冷的冬天给你雪中送炭似的温暖，给你不一样的编码体验。

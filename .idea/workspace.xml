@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="880e36a7-e665-47b3-bec8-c260ebfef040" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/themes/next/layout/_scripts/third-party/analytics/baidu-analytics.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_scripts/third-party/analytics/baidu-analytics.swig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next/layout/_scripts/third-party/analytics/tencent-analytics.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_scripts/third-party/analytics/tencent-analytics.swig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next/layout/_scripts/third-party/comments/changyan.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_scripts/third-party/comments/changyan.swig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next/layout/_third-party/analytics/baidu-analytics.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_third-party/analytics/baidu-analytics.swig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next/layout/_third-party/analytics/tencent-analytics.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_third-party/analytics/tencent-analytics.swig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next/layout/_third-party/comments/changyan.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_third-party/comments/changyan.swig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,20 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="changyan.swig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/themes/next/layout/_third-party/comments/changyan.swig">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="10" column="522" selection-start-line="10" selection-start-column="522" selection-end-line="10" selection-end-column="522" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="changyan.swig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/next/layout/_scripts/third-party/comments/changyan.swig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="10" column="520" selection-start-line="10" selection-start-column="492" selection-end-line="10" selection-end-column="520" />
+            <state relative-caret-position="208">
+              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -75,6 +62,7 @@
         <option value="$PROJECT_DIR$/themes/next/layout/_third-party/analytics/baidu-analytics.swig" />
         <option value="$PROJECT_DIR$/themes/next/layout/_scripts/third-party/comments/changyan.swig" />
         <option value="$PROJECT_DIR$/themes/next/layout/_third-party/comments/changyan.swig" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -105,6 +93,11 @@
             <path>
               <item name="blog" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="blog" type="b2602c69:ProjectViewProjectNode" />
@@ -148,12 +141,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1525955910622</updated>
-      <workItem from="1525955912171" duration="1172000" />
+      <workItem from="1525955912171" duration="1964000" />
+      <workItem from="1526480113190" duration="37000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1172000" />
+    <option name="totallyTimeSpent" value="2001000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -161,21 +155,21 @@
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32972974" />
-      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32972974" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,8 +244,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/next/layout/_third-party/comments/changyan.swig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="522" selection-start-line="10" selection-start-column="522" selection-end-line="10" selection-end-column="522" />
+        <state relative-caret-position="416">
+          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
         </state>
       </provider>
     </entry>

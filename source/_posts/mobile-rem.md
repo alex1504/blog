@@ -16,7 +16,7 @@ W3C官网描述是“font size of the root element”，即rem是相对于根元
 具体是根据屏幕宽度和所设字体大小的比值是固定的，获取屏幕宽度后，按照固定比例缩小后作为rem的单位长度实现自适应。
 
 另外值得说的是即使采用了rem布局方案，**页面上不一定所有的元素都是采用rem作为单位。**，比如下面淘宝的案例。底部固定的导航条采用的是高度使用固定的像素值，宽度flex布局的方案。
-![淘宝案例](http://huzerui.com/blog/img/post/2016-06-16-rem-adaptive-layout-1.jpg)
+![淘宝案例](http://qiniu.huzerui.com/image/2016-06-16-rem-adaptive-layout-1.jpg)
 ```css
 footer{
 	height:114px;
@@ -72,7 +72,7 @@ rem就是根元素（即：html）的字体大小。html中的所有标签样式
 
 ## 怎么计算出不同分辨率下font-size的值？##
 假设页面设计稿是按照640的标准尺寸设计的，（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格。
-![rem](http://huzerui.com/blog/img/post/2016-06-16-rem-adaptive-layout-2.jpg)
+![rem](http://qiniu.huzerui.com/image/2016-06-16-rem-adaptive-layout-2.jpg)
 
 以640的宽度去切的，怎么计算不同宽度下font-site的值，大家看表格上面的数值变化应该能明白。举个例子：384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。
 

@@ -26,7 +26,7 @@ tags: [html5,player]
 源码：请猛击[这里](https://git.oschina.net/alex1504/demo/tree/osc-pages/player?dir=1&filepath=player&oid=4c10643c235593569490e3da0d2ff7f613ece98e&sha=ec2e4efea87ee25ee0818481a8cf1f5893c5947c)
 
 注意：使用PC浏览最好打开**移动设备模式**，使用移动设备浏览需要关闭无痕浏览模式（否则无法使用本地存储，一般浏览器都是默认不开启），项目需要在**本地服务器**或**线上服务器**运行，以file:///形式的地址打开是无法进行ajax请求的，从而无法看到音乐数据。
-![UI图](http://huzerui.com/blog/img/post/2016-10-30-how-to-make-a-mobile-html5-player.jpg)
+![UI图](http://qiniu.huzerui.com/image/2016-10-30-how-to-make-a-mobile-html5-player.jpg)
 
 # 项目实现的功能及所用知识 #
 - 播放器的基础操作，上一首，下一首(顺序播放、随机播放、单曲循环)，播放暂停，滑动时间轴的歌词定位
@@ -216,10 +216,10 @@ function rescale() {
 目前音乐播放器的歌词同步显示大概有两种，一种是精确到单个文字，一种是精确到单行歌词。本文实现的是第二种。
 ## 整体实现思路 ##
 页面初始化时，请求歌曲数据json（本地json文件模拟），其中歌名、歌手、图片等按需渲染到html中，将歌词存储到localStorage中。此时，F12打开chrome调试器，进入Application-LocalStorage可以看到：
-![歌词本地存储](http://huzerui.com/blog/img/post/2016-10-30-lyric-localstorage.jpg)
+![歌词本地存储](http://qiniu.huzerui.com/image/2016-10-30-lyric-localstorage.jpg)
 
 点击一首歌进入播放页面后，歌词就会从本地存储中读取，此时你会看到生成这样的歌词结构：
-![歌词结构](http://huzerui.com/blog/img/post/2016-10-30-lyric-html.jpg)
+![歌词结构](http://qiniu.huzerui.com/image/2016-10-30-lyric-html.jpg)
 每一行歌词都将要将歌词时间绑定在data-point上，监听歌曲播放的timeupdate事件，当歌曲的时间(经过取整处理)与当前data-point值相等时，就为当前歌词高亮（相当于给p添加current类名），并且根据当前高亮歌词的index索引将整个歌词盒子向上移动**p标签的高度+margin-top的高度**。
 
 ### lrc歌词的结构 ###

@@ -5,7 +5,7 @@ categories: 前端
 tags: [js,vuejs]
 ---
 前段时间利用闲暇时间学习Vuejs并且做了一个实例，主要使用vue-router实现路由控制，vuex对程序进行状态管理，axios发送http请求。对数据在组件间的传递、webpack打包工具、数据的双向绑定有更深刻的了解和认识。
-![预览图](http://huzerui.com/blog/img/post/2017-02-04-vue2.0-demo-poster.gif)
+![预览图](http://qiniu.huzerui.com/image/2017-02-04-vue2.0-demo-poster.gif)
 
 项目在线地址：http://www.huzerui.com/vue2.0-demo/
 Github地址：https://github.com/alex1504/vue2.0-demo

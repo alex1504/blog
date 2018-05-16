@@ -5,7 +5,7 @@ categories: 前端
 tags: [jQuery]
 ---
 
-![jQuery](http://huzerui.com/blog/img/post/2016-04-10-jquery-poster.jpg)
+![jQuery](http://qiniu.huzerui.com/image/2016-04-10-jquery-poster.jpg)
 最近重温了《锋利的jQuery》这本书，受益匪浅。
 
 **如果你和前端若只如初见，如果你和jQuery一见钟情，一纸文字铺满了你相恋的他（她）的所有。**
@@ -14,7 +14,7 @@ tags: [jQuery]
 
 **根据用户交互的基本流程，通常代码是获取元素，然后绑定相应的事件，接着触发这个事件后可以选择不同的交互方式。**比如增加节点改变Dom，或者对某个元素设置动画、亦或者进行aJax与后台进行数据交互。
 
-![知识点串联图](http://huzerui.com/blog/img/post/2016-04-10-jquery-knowledge-map.jpg)
+![知识点串联图](http://qiniu.huzerui.com/image/2016-04-10-jquery-knowledge-map.jpg)
 
 # jQuery 选择器总结（继承CSS风格）# 
 ## 常用

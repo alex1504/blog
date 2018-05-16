@@ -23,17 +23,17 @@ tags: [css, 图标]
 
 ## 导入或选择图标 ##
 选择内置图标只需在界面单击相应图标，图标高亮即为选中。
-![选择](http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-1.jpg)
+![选择](http://qiniu.huzerui.com/image/2016-06-16-how-to-use-iconmoon-1.jpg)
 如果你通过AI做好了一个图标想导入，只需点击“Imorticons”按钮，然后选择您想要添加的SVG文件——您也可以一次添加多个文件。这些图标将会出现在“Your Custom Icons”区域中。如果他们是高亮的黄色显示，表示这些图标是你将要创建的图标字体。
 
 ## 对图标进行编辑 ##
-![编辑](http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-2.gif)
+![编辑](http://qiniu.huzerui.com/image/2016-06-16-how-to-use-iconmoon-2.gif)
 如果你想调整图标的位置、大小或旋转，你可以点击“Edit”按钮。可以使用“Save Copy”按钮来创建图片的变化（例如，一个镜像的衅标）。添加一个有意义的图标标记，因为这将被用来生成类名。
 
 
 ## 生成并输出成zip文件 ##
 点击屏幕底部的“Font”按钮开始生成字体。这样你就可以指定哪个图标映射到哪个字符上，例如，如果你要设置一套六个旋转的球，你可以每 这六个球分别指定字符：q、w、e、r、t和y。你也可以根据你自己的爱好选择一个字体的名字。
-![输出](http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-3.jpg)
+![输出](http://qiniu.huzerui.com/image/2016-06-16-how-to-use-iconmoon-3.jpg)
 单击“Download”下载字体包到你的电脑上。他有一个字文件夹包含了字体本身（woff,eot,ttf格式），以及一个HTML示例页面和相应的CSS。甚至还有一个javascript文件和一个解决方法，如果你需要支持IE或IE7。
 
 # 如何使用这些图标字体 #
