@@ -70,12 +70,12 @@
 <meta property="og:url" content="http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/index.html">
 <meta property="og:site_name" content="晚晴铭悦轩">
 <meta property="og:description" content="JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：这些属性的笼统特征：client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分offset：元素内容+内边距+边框  不包括外边距和滚动条部分s">
-<meta property="og:image" content="http://huzerui.com/blog/img/post/2016-06-15-js-get-dom-position-and-size-1.jpg">
-<meta property="og:updated_time" content="2017-04-29T07:02:21.907Z">
+<meta property="og:image" content="http://qiniu.huzerui.com/image/2016-06-15-js-get-dom-position-and-size-1.jpg">
+<meta property="og:updated_time" content="2018-05-16T14:17:24.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript获取DOM尺寸大小和元素位置">
 <meta name="twitter:description" content="JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：这些属性的笼统特征：client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分offset：元素内容+内边距+边框  不包括外边距和滚动条部分s">
-<meta name="twitter:image" content="http://huzerui.com/blog/img/post/2016-06-15-js-get-dom-position-and-size-1.jpg">
+<meta name="twitter:image" content="http://qiniu.huzerui.com/image/2016-06-15-js-get-dom-position-and-size-1.jpg">
 
 
 
@@ -308,7 +308,7 @@
       
 
       
-        <p>JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：<br><img src="http://huzerui.com/blog/img/post/2016-06-15-js-get-dom-position-and-size-1.jpg" alt="大小、位置属性"><br>这些属性的笼统特征：<br>client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分<br>offset：元素内容+内边距+边框  不包括外边距和滚动条部分<br>scroll：与元素的滚动相关</p>
+        <p>JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：<br><img src="http://qiniu.huzerui.com/image/2016-06-15-js-get-dom-position-and-size-1.jpg" alt="大小、位置属性"><br>这些属性的笼统特征：<br>client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分<br>offset：元素内容+内边距+边框  不包括外边距和滚动条部分<br>scroll：与元素的滚动相关</p>
 <h1 id="尺寸大小"><a href="#尺寸大小" class="headerlink" title="尺寸大小"></a>尺寸大小</h1><p>一张网页的全部面积，就是它的大小。通常情况下，网页的大小由内容和CSS样式表决定。<br>视口是指在浏览器窗口中看到的那部分网页面积。</p>
 <h2 id="获取网页的大小（都不包括外边距、滚动条）"><a href="#获取网页的大小（都不包括外边距、滚动条）" class="headerlink" title="获取网页的大小（都不包括外边距、滚动条）"></a>获取网页的大小（都不包括外边距、滚动条）</h2><p><strong>宽（值随窗口大小发生改变）：</strong> document.body.clientWidth（不包括border，只包括内容+padding）<br>或者 document.body.offsetWidth（包括border）<br>或者 document.body.scrollWidth<br><strong>高(值固定)：</strong> document.body.clientHeigth（不包括border，只包括内容+padding）<br>或者 document.body.offsetHeight（包括border）<br>或者 document.body.scrollHeight<br><strong>说明：</strong>通常使用document.body.scrollWidth和document.body.scrollHeight</p>
 <h2 id="获取屏幕相关属性"><a href="#获取屏幕相关属性" class="headerlink" title="获取屏幕相关属性"></a>获取屏幕相关属性</h2><p>使用window.screen对象的属性。这些属性有个特点，不会随着窗口的伸缩而改变数值<br><strong>屏幕分辨率的高：</strong>window.screen.height<br><strong>屏幕分辨率的宽：</strong>window.screen.width<br><strong>屏幕可用工作区高度：</strong>window.screen.availHeight<br><strong>屏幕可用工作区宽度：</strong>window.screen.availWidth=屏幕分辨率的宽</p>
@@ -461,7 +461,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

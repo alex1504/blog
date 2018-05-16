@@ -258,6 +258,219 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2018/05/16/make-a-visual-dom-template-engine/" itemprop="url">
+                  构建一个使用 Virtual-DOM 的前端模版引擎【转载】
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-16T14:46:26+08:00" content="2018-05-16">
+              2018-05-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2018/05/16/make-a-visual-dom-template-engine/" class="leancloud_visitors" data-flag-title="构建一个使用 Virtual-DOM 的前端模版引擎【转载】">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>本文转载自：<a href="https://github.com/livoras/blog/issues/14" target="_blank" rel="external">https://github.com/livoras/blog/issues/14</a></p>
+</blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>前言</li>
+<li>问题的提出</li>
+<li>模板引擎和 Virtual-DOM 结合 —— Virtual-Template</li>
+<li>Virtual-Template 的实现<ul>
+<li>编译原理相关</li>
+<li>模版引擎的EBNF</li>
+<li>词法分析</li>
+<li>语法分析与抽象语法树</li>
+<li>代码生成</li>
+</ul>
+</li>
+<li>完整的 Virtual-Template</li>
+<li>结语</li>
+</ul>
+<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>本文尝试构建一个 Web 前端模板引擎，并且把这个引擎和 Virtual-DOM 进行结合。把传统模板引擎编译成 HTML 字符串的方式改进为编译成 Virtual-DOM 的 render 函数，可以有效地结合模板引擎的便利性和 Virtual-DOM 的性能。类似 ReactJS 中的 JSX。</p>
+<p>阅读本文需要一些关于 ReactJS 实现原理或者 Virtual-DOM 的相关知识，可以先阅读这篇博客：深度剖析：如何实现一个 Virtual DOM 算法 ， 进行相关知识的了解。</p>
+<p>同时还需要对编译原理相关知识有基本的了解，包括 EBNF，LL(1)，递归下降的方法等。</p>
+<h2 id="2-问题的提出"><a href="#2-问题的提出" class="headerlink" title="2 问题的提出"></a>2 问题的提出</h2><p>本人在就职的公司维护一个比较朴素的系统，前端渲染有两种方式：</p>
+<ol>
+<li>后台直接根据模板和数据直接把页面吐到前端。</li>
+<li>后台只吐数据，前端用前端模板引擎渲染数据，动态塞到页面。</li>
+</ol>
+<p>当数据状态变更的时候，前端用 jQuery 修改页面元素状态，或者把局部界面用模板引擎重新渲染一遍。当页面状态很多的时候，用 jQuery 代码中会就混杂着很多的 DOM 操作，编码复杂且不便于维护；而重新渲染虽然省事，但是会导致一些性能、焦点消失的问题（具体可以看这篇博客介绍）。</p>
+<p>因为习惯了 MVVM 数据绑定的编码方式，对于用 jQuery 选择器修改 wordings 等细枝末节的劳力操作个人感觉不甚习惯。于是就构思能否在这种朴素的编码方式上做一些改进，解放双手，提升开发效率。其实只要加入数据状态 -&gt; 视图的 one-way data-binding 开发效率就会有较大的提升。</p>
+<p>而这种已经在运作多年的多人维护系统，引入新的 MVVM 框架并不是一个非常好的选择，在兼容性和风险规避上大家都有诸多的考虑。于是就构思了一个方案，在前端模板引擎上做手脚。可以在几乎零学习成本的情况下，做到 one-way data-binding，大量减少 jQuery DOM 操作，提升开发效率。</p>
+<h2 id="3-模板引擎和-Virtual-DOM-结合-——-Virtual-Template"><a href="#3-模板引擎和-Virtual-DOM-结合-——-Virtual-Template" class="headerlink" title="3 模板引擎和 Virtual-DOM 结合 —— Virtual-Template"></a>3 模板引擎和 Virtual-DOM 结合 —— Virtual-Template</h2><p>考虑以下模板语法：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;title&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    &#123;each users as user i&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/&#123;user.id&#125;"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.&#123;i + 1&#125; - &#123;user.name&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">      &#123;if user.isAdmin&#125;</div><div class="line">        I am admin</div><div class="line">      &#123;elseif user.isAuthor&#125;</div><div class="line">        I am author</div><div class="line">      &#123;else&#125;</div><div class="line">        I am nobody</div><div class="line">      &#123;/if&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    &#123;/each&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这只一个普通的模板引擎语法（类似 artTemplate），支持循环语句（each）、条件语句（if elseif else ..）、和文本填充（{…}）， 应该比较容易看懂，这里就不解释。当用下面数据渲染该模板的时候：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = &#123;</div><div class="line">  <span class="attr">title</span>: <span class="string">'Users List'</span>,</div><div class="line">  <span class="attr">users</span>: [</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user0'</span>, <span class="attr">name</span>: <span class="string">'Jerry'</span>, <span class="attr">isAdmin</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user1'</span>, <span class="attr">name</span>: <span class="string">'Lucy'</span>, <span class="attr">isAuthor</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user2'</span>, <span class="attr">name</span>: <span class="string">'Tomy'</span>&#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>会得到下面的 HTML 字符串：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Users List<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/user0"</span> /&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.1 - Jerry<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">       I am admin</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/user1"</span> /&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.2 - Lucy<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">       I am author</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/user2"</span> /&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.3 - Tomy<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">       I am nobody</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>把这个字符串塞入文档当中就可以生成 DOM 。但是问题是如果数据变更了，例如data.title由Users List修改成Users，你只能用 jQuery 修改 DOM 或者直接重新渲染一个新的字符串塞入文档当中。</p>
+<p>然而我们可以参考 ReactJS 的 JSX 的做法，不把模板编译成 HTML， 而是把模板编译成一个返回 Virtual-DOM 的 render 函数。render 函数会根据传入的 state 不同返回不一样的 Virtual-DOM ，然后就可以根据 Virtual-DOM 算法进行 diff 和 patch：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// setup codes</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> render = template(tplString) <span class="comment">// template 把模板编译成 render 函数而不是 HTML 字符串</span></div><div class="line"><span class="keyword">var</span> root1 = render(state1) <span class="comment">// 根据初始状态返回的 virtual-dom</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> dom = root.render() <span class="comment">// 根据 virtual-dom 构建一个真正的 dom 元素</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(dom)</div><div class="line"></div><div class="line"><span class="keyword">var</span> root2 = render(state2) <span class="comment">// 状态变更，重新渲染另外一个 virtual-dom</span></div><div class="line"><span class="keyword">var</span> patches = diff(root1, root2) <span class="comment">// virtual-dom 的 diff 算法</span></div><div class="line">patch(dom, patches) <span class="comment">// 更新真正的 dom 元素</span></div></pre></td></tr></table></figure></p>
+<p>这样做好处就是：既保留了原来模板引擎的语法，又结合了 Virtual-DOM 特性：当状态改变的时候不再需要 jQuery 了，而是跑一遍 Virtual-DOM 算法把真正的 DOM 给patch了，达到了 one-way data-binding 的效果，总结流程就是：</p>
+<ol>
+<li>先把模板编译成一个 render 函数，这个函数会根据数据状态返回 Virtual-DOM</li>
+<li>用 render 函数构建 Virtual-DOM；并根据这个 Virtual-DOM 构建真正的 DOM 元素，塞入文档当中</li>
+<li>当数据变更的时候，再用 render 函数渲染一个新的 Virtual-DOM</li>
+<li>新旧的 Virtual-DOM 进行 diff，然后 patch 已经在文档中的 DOM 元素</li>
+</ol>
+<p>（恩，其实就是一个类似于 JSX 的东西）</p>
+<p>这里重点就是，如何能把模板语法编译成一个能够返回 Virtual-DOM 的 render 函数？例如上面的模板引擎，不再返回 HTML 字符串了，而是返回一个像下面那样的 render 函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span> (<span class="params">state</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> el(<span class="string">'div'</span>, &#123;&#125;, [</div><div class="line">    el(<span class="string">'h1'</span>, &#123;&#125;, [state.title]),</div><div class="line">    el(<span class="string">'ul'</span>, &#123;&#125;, state.users.map(<span class="function"><span class="keyword">function</span> (<span class="params">user, i</span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> el(<span class="string">'li'</span>, &#123;<span class="string">"class"</span>: <span class="string">"user-item"</span>&#125;, [</div><div class="line">         el(<span class="string">'img'</span>, &#123;<span class="string">"src"</span>: <span class="string">"/avatars/"</span> + user.id&#125;, []),</div><div class="line">         el(<span class="string">'span'</span>, &#123;&#125;, [<span class="string">'No.'</span> + (i + <span class="number">1</span>) + <span class="string">' - '</span> + user.name],</div><div class="line">         (user.isAdmin</div><div class="line">           ? <span class="string">'I am admin'</span></div><div class="line">           : uesr.isAuthor</div><div class="line">             ? <span class="string">'I am author'</span></div><div class="line">             : <span class="string">''</span>)</div><div class="line">       ])</div><div class="line">    &#125;))</div><div class="line">  ])</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>前面的模板和这个 render 函数在语义上是一样的，只要能够实现“模板 -&gt; render 函数”这个转换，就可以跑上面所说的 Virtual-DOM 的算法流程，这样就把模板引擎和 Virtual-DOM结合起来。为了方便起见，这里把这个结合体称为 Virtual-Template 。</p>
+<h2 id="4-Virtual-Template-的实现"><a href="#4-Virtual-Template-的实现" class="headerlink" title="4 Virtual-Template 的实现"></a>4 Virtual-Template 的实现</h2><p>网上关于模板引擎的实现原理介绍非常多。如果语法不是太复杂的话，可以直接通过对语法标签和代码片段进行分割，识别语法标签内的内容（循环、条件语句）然后拼装代码，具体可以参考这篇博客。其实就是正则表达式使用和字符串的操作，不需要对语法标签以外的内容做识别。</p>
+<p>但是对于和 HTML 语法已经差别较大的模板语法（例如 Jade ），单纯的正则和字符串操作已经不够用了，因为其语法标签以外的代码片段根本不是合法的 HTML 。这种情况下一般需要编译器相关知识发挥用途：模板引擎本质上就是把一种语言编译成另外一种语言。</p>
+<p>而对于 Virtual-Template 的情况，虽然其除了语法标签以外的代码都是合法的 HTML 字符串，但是我们的目的是把它编译成返回 Virtual-DOM 的 render 函数，在构建 Virtual-DOM 的时候，你需要知道元素的 tagName、属性等信息，所以就需要对 HTML 元素本身做识别。</p>
+<p>因此 Virtual-Template 也需要借助编译原理（编译器前端）相关的知识，把一种语言（模板语法）编译成另外一种语言（一个叫 render 的 JavaScript 函数）。</p>
+<h3 id="4-1-编译原理相关"><a href="#4-1-编译原理相关" class="headerlink" title="4.1 编译原理相关"></a>4.1 编译原理相关</h3><p>CS 本科都教过编译原理，本文会用到编译器前端的一些概念。在实现模板到 render 函数的过程中，要经过几个步骤：</p>
+<ol>
+<li>词法分析：把输入的模板分割成词法单元（tokens stream）</li>
+<li>语法分析：读入 tokens stream ，根据文法规则转化成抽象语法树（Abstract Syntax Tree）</li>
+<li>代码生成：遍历 AST，生成 render 函数体代码</li>
+</ol>
+<p><a href="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast.png" target="_blank" rel="external"><img src="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast.png" alt="ast"></a></p>
+<p>所以这个过程可以分成几个主要模块：tokenizer（词法分析器），parser（语法分析器），codegen（代码生成）。在此之前，还需要对模板的语法做文法定义，这是构建词法分析和语法分析的基础。</p>
+<h3 id="4-2-模板引擎的-EBNF"><a href="#4-2-模板引擎的-EBNF" class="headerlink" title="4.2 模板引擎的 EBNF"></a>4.2 模板引擎的 EBNF</h3><p>在计算机领域，对某种语言进行语法定义的时候，几乎都会用到 EBNF（扩展的巴科斯范式）。在定义模板引擎的语法的时候，也可以用到 EBNF。Virtual-Template 拥有非常简单的语法规则，支持上面所提到的 each、if 等语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;each users as user i &#125;</div><div class="line"> &lt;div&gt; &#123;user.name&#125; &lt;/div&gt;</div><div class="line"> ...</div><div class="line">&#123;/each&#125;</div><div class="line"></div><div class="line">&#123;if user.isAdmin&#125;</div><div class="line"> ...</div><div class="line">&#123;elseif user.isAuthor&#125;</div><div class="line"> ...</div><div class="line">&#123;elseif user.isXXX&#125;</div><div class="line"> ...</div><div class="line">&#123;/if&#125;</div></pre></td></tr></table></figure></p>
+<p>对于 {user.name} 这样的表达式插入，可以简单地看成是字符串，在代码生成的时候再做处理。这样我们的词法和语法分析就会简化很多，基本只需要对 each、if、HTML 元素进行处理。</p>
+<p>Virtual-Template 的 EBNF：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Stat -&gt; Frag Stat | ε</div><div class="line">Frag -&gt; IfStat | EachStat | Node | text</div><div class="line"></div><div class="line">IfStat -&gt; &apos;&#123;if ...&#125;&apos; Stat &#123;ElseIf&#125; [Else] &apos;&#123;/if&#125;&apos;</div><div class="line">ElseIf -&gt; &apos;&#123;elseif ...&#125;&apos; Stat</div><div class="line">Else -&gt; &apos;&#123;else&#125;&apos; Stat|e</div><div class="line"></div><div class="line">EachStat -&gt; &apos;&#123;each ...&#125;&apos; Stat &apos;&#123;/each&#125;&apos;</div><div class="line"></div><div class="line">Node -&gt; OpenTag NodeTail</div><div class="line">OpenTag -&gt; &apos;/[\w\-\d]+/&apos; &#123;Attr&#125;</div><div class="line">NodeTail -&gt; &apos;&gt;&apos; Stat &apos;/\&lt;[\w\d]+\&gt;/&apos; | &apos;/&gt;&apos;</div><div class="line"></div><div class="line">Attr -&gt; &apos;/[\w\-\d]/+&apos; Value</div><div class="line">Value -&gt; &apos;=&apos; &apos;/&quot;[\s\S]+&quot;/&apos; | ε</div></pre></td></tr></table></figure></p>
+<p>可以把该文法转换成 LL(1) 文法，方便我们写递归下降的 parser。这个语法还是比较简单的，没有出现复杂的左递归情况。简单进行展开和提取左公因子消除冲突获得下面的 LL(1) 文法。</p>
+<p>LL(1) 文法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Stat -&gt; Frag Stat | ε</div><div class="line">Frag -&gt; IfStat | EachStat | Node | text</div><div class="line"></div><div class="line">IfStat -&gt; &apos;&#123;if ...&#125;&apos; Stat ElseIfs Else &apos;&#123;/if&#125;&apos;</div><div class="line">ElseIfs -&gt; ElseIf ElseIfs | ε</div><div class="line">ElseIf -&gt; &apos;&#123;elseif ...&#125;&apos; Stat</div><div class="line">Else -&gt; &apos;&#123;else&#125;&apos; Stat | ε</div><div class="line"></div><div class="line">EachStat -&gt; &apos;&#123;each ...&#125;&apos; Stat &apos;&#123;/each&#125;&apos;</div><div class="line"></div><div class="line">Node -&gt; OpenTag NodeTail</div><div class="line">OpenTag -&gt; &apos;/[\w\-\d]+/&apos; Attrs</div><div class="line">NodeTail -&gt; &apos;&gt;&apos; Stat &apos;/\&lt;[\w\d]+\&gt;/&apos; | &apos;/&gt;&apos;</div><div class="line"></div><div class="line">Attrs -&gt; Attr Attrs | ε</div><div class="line">Attr -&gt; &apos;/[\w\-\d]/+&apos; Value</div><div class="line">Value -&gt; &apos;=&apos; &apos;/&quot;[\s\S]+&quot;/&apos; | ε</div></pre></td></tr></table></figure></p>
+<h3 id="4-3-词法分析"><a href="#4-3-词法分析" class="headerlink" title="4.3 词法分析"></a>4.3 词法分析</h3><p>根据上面获得的 EBNF ，单引号包含的都是非终结符，可以知道有以下几种词法单元：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">TK_TEXT</span>: <span class="number">1</span>, <span class="comment">// 文本节点</span></div><div class="line">  TK_IF: <span class="number">2</span>, <span class="comment">// &#123;if ...&#125;</span></div><div class="line">  TK_END_IF: <span class="number">3</span>, <span class="comment">// &#123;/if&#125;</span></div><div class="line">  TK_ELSE_IF: <span class="number">4</span>, <span class="comment">// &#123;elseif ...&#125;</span></div><div class="line">  TK_ELSE: <span class="number">5</span>, <span class="comment">// &#123;else&#125;</span></div><div class="line">  TK_EACH: <span class="number">6</span>, <span class="comment">// &#123;each ...&#125;</span></div><div class="line">  TK_END_EACH: <span class="number">7</span>, <span class="comment">// &#123;/each&#125;</span></div><div class="line">  TK_GT: <span class="number">8</span>, <span class="comment">// &gt;</span></div><div class="line">  TK_SLASH_GT: <span class="number">9</span>, <span class="comment">// /&gt;</span></div><div class="line">  TK_TAG_NAME: <span class="number">10</span>, <span class="comment">// &lt;div|&lt;span|&lt;img|...</span></div><div class="line">  TK_ATTR_NAME: <span class="number">11</span>, <span class="comment">// 属性名</span></div><div class="line">  TK_ATTR_EQUAL: <span class="number">12</span>, <span class="comment">// =</span></div><div class="line">  TK_ATTR_STRING: <span class="number">13</span>, <span class="comment">// "string"</span></div><div class="line">  TK_CLOSE_TAG: <span class="number">13</span>, <span class="comment">// &lt;/div&gt;|&lt;/span&gt;|&lt;/a&gt;|...</span></div><div class="line">  TK_EOF: <span class="number">100</span> <span class="comment">// end of file</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用 JavaScript 自带的正则表达式引擎编写 tokenizer 很方便，把输入的模板字符串从左到右进行扫描，按照上面的 token 的类型进行分割：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tokenizer</span> (<span class="params">input</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.input = input</div><div class="line">  <span class="keyword">this</span>.index = <span class="number">0</span></div><div class="line">  <span class="keyword">this</span>.eof = <span class="literal">false</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> pp = Tokenizer.prototype</div><div class="line"></div><div class="line">pp.nextToken = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.eatSpaces()</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="keyword">this</span>.readCloseTag() ||</div><div class="line">    <span class="keyword">this</span>.readTagName() ||</div><div class="line">    <span class="keyword">this</span>.readAttrName() ||</div><div class="line">    <span class="keyword">this</span>.readAttrEqual() ||</div><div class="line">    <span class="keyword">this</span>.readAttrString() ||</div><div class="line">    <span class="keyword">this</span>.readGT() ||</div><div class="line">    <span class="keyword">this</span>.readSlashGT() ||</div><div class="line">    <span class="keyword">this</span>.readIF() ||</div><div class="line">    <span class="keyword">this</span>.readElseIf() ||</div><div class="line">    <span class="keyword">this</span>.readElse() ||</div><div class="line">    <span class="keyword">this</span>.readEndIf() ||</div><div class="line">    <span class="keyword">this</span>.readEach() ||</div><div class="line">    <span class="keyword">this</span>.readEndEach() ||</div><div class="line">    <span class="keyword">this</span>.readText() ||</div><div class="line">    <span class="keyword">this</span>.readEOF() ||</div><div class="line">    <span class="keyword">this</span>.error()</div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// read token methods</span></div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
+<p>Tokenizer 会存储一个 index，标记当前识别到哪个字符位置。每次调用 nextToken 会先跳过所有的空白字符，然后尝试某一种类型的 token ，识别失败就会尝试下一种，如果成功就直接返回，并且把 index 往前移；所有类型都试过都无法识别那么就是语法错误，直接抛出异常。</p>
+<p>具体每个识别的函数其实就是正则表达式的使用，这里就不详细展开，有兴趣可以阅读源码 tokenizer.js</p>
+<p>最后会把这样的文章开头的模板例子转换成下面的 tokens stream：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'div'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'h1'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'&#123;title&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/h1&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'ul'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">6</span>, <span class="attr">label</span>: <span class="string">'&#123;each users as user i&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'li'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">11</span>, <span class="attr">label</span>: <span class="string">'class'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">12</span>, <span class="attr">label</span>: <span class="string">'='</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'user-item'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'img'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">11</span>, <span class="attr">label</span>: <span class="string">'src'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">12</span>, <span class="attr">label</span>: <span class="string">'='</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'/avatars/&#123;user.id&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">9</span>, <span class="attr">label</span>: <span class="string">'/&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'span'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'NO.'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'&#123;i + 1&#125; - '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'&#123;user.name&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/span&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">2</span>, <span class="attr">label</span>: <span class="string">'&#123;if user.isAdmin&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'I am admin\r\n        '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">4</span>, <span class="attr">label</span>: <span class="string">'&#123;elseif user.isAuthor&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'I am author\r\n        '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">5</span>, <span class="attr">label</span>: <span class="string">'&#123;else&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'I am nobody\r\n        '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">3</span>, <span class="attr">label</span>: <span class="string">'&#123;/if&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/li&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">7</span>, <span class="attr">label</span>: <span class="string">'&#123;/each&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/ul&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/div&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">100</span>, <span class="attr">label</span>: <span class="string">'$'</span> &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="4-4-语法分析与抽象语法树"><a href="#4-4-语法分析与抽象语法树" class="headerlink" title="4.4 语法分析与抽象语法树"></a>4.4 语法分析与抽象语法树</h3><p>拿到 tokens 以后就可以就可以按顺序读取 token，根据模板的 LL(1) 文法进行语法分析。语法分析器，也就是 parser，一般可以采取递归下降的方式来进行编写。LL(1) 不允许语法中有冲突（ conflicts )，需要对文法中的产生式求解 FIRST 和 FOLLOW 集。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">FIRST(Stat) = &#123;TK_IF, TK_EACH, TK_TAG_NAME, TK_TEXT&#125;</div><div class="line">FOLLOW(Stat) = &#123;TK_ELSE_IF, TK_END_IF, TK_ELSE, TK_END_EACH, TK_CLOSE_TAG, TK_EOF&#125;</div><div class="line">FIRST(Frag) = &#123;TK_IF, TK_EACH, TK_TAG_NAME, TK_TEXT&#125;</div><div class="line">FIRST(IfStat) = &#123;TK_IF&#125;</div><div class="line">FIRST(ElseIfs) = &#123;TK_ELSE_IF&#125;</div><div class="line">FOLLOW(ElseIfs) = &#123;TK_ELSE, TK_ELSE&#125;</div><div class="line">FIRST(ElseIf) = &#123;TK_ELSE_IF&#125;</div><div class="line">FIRST(Else) = &#123;TK_ELSE&#125;</div><div class="line">FOLLOW(Else) = &#123;TK_END_IF&#125;</div><div class="line">FIRST(EachStat) = &#123;TK_EACH&#125;</div><div class="line">FIRST(OpenTag) = &#123;TK_TAG_NAME&#125;</div><div class="line">FIRST(NodeTail) = &#123;TK_GT, TK_SLASH_GT&#125;</div><div class="line">FIRST(Attrs) = &#123;TK_ATTR_NAME&#125;</div><div class="line">FOLLOW(Attrs) = &#123;TK_GT, TK_SLASH_GT&#125;</div><div class="line">FIRST(Value) = &#123;TK_ATTR_EQUAL&#125;</div><div class="line">FOLLOW(Value) = &#123;TK_ATTR_NAME, TK_GT, TK_SLASH_GT&#125;</div></pre></td></tr></table></figure></p>
+<p>上面只求出了一些必要的 FIRST 和 FOLLOW 集，对于一些不需要预测的产生式就省略求解了。有了 FIRST 和 FOLLOW 集，剩下的编写递归下降的 parser 只是填空式的体力活。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Tokenizer = <span class="built_in">require</span>(<span class="string">'./tokenizer'</span>)</div><div class="line"><span class="keyword">var</span> types = <span class="built_in">require</span>(<span class="string">'./tokentypes'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parser</span> (<span class="params">input</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.tokens = <span class="keyword">new</span> Tokenizer(input)</div><div class="line">  <span class="keyword">this</span>.parse()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> pp = Parser.prototype</div><div class="line"></div><div class="line">pp.is = <span class="function"><span class="keyword">function</span> (<span class="params">type</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (<span class="keyword">this</span>.tokens.peekToken().type === type)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.parse = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.tokens.index = <span class="number">0</span></div><div class="line">  <span class="keyword">this</span>.parseStat()</div><div class="line">  <span class="keyword">this</span>.eat(types.TK_EOF)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.parseStat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (</div><div class="line">    <span class="keyword">this</span>.is(types.TK_IF) ||</div><div class="line">    <span class="keyword">this</span>.is(types.TK_EACH) ||</div><div class="line">    <span class="keyword">this</span>.is(types.TK_TAG_NAME) ||</div><div class="line">    <span class="keyword">this</span>.is(types.TK_TEXT)</div><div class="line">  ) &#123;</div><div class="line">    <span class="keyword">this</span>.parseFrag()</div><div class="line">    <span class="keyword">this</span>.parseStat()</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// end</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.parseFrag = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_IF)) <span class="keyword">return</span> <span class="keyword">this</span>.parseIfStat()</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_EACH)) <span class="keyword">return</span> <span class="keyword">this</span>.parseEachStat()</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_TAG_NAME)) <span class="keyword">return</span> <span class="keyword">this</span>.parseNode()</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_TEXT)) &#123;</div><div class="line">    <span class="keyword">var</span> token = <span class="keyword">this</span>.eat(types.TK_TEXT)</div><div class="line">    <span class="keyword">return</span> token.label</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">this</span>.parseError(<span class="string">'parseFrag'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
+<p>完整的 parser 可以查看 parser.js。</p>
+<p>抽象语法树（Abstract Syntax Tree）</p>
+<p>递归下降进行语法分析的时候，可以同时构建模版语法的树状表示结构——抽象语法树，模板语法有以下的抽象语法树的节点类型：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Stat: &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'Stat'</span></div><div class="line">    members: [IfStat | EachStat | Node | text, ...]</div><div class="line">&#125;</div><div class="line"></div><div class="line">IfStat: &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'IfStat'</span></div><div class="line">    label: &lt;string&gt;,</div><div class="line">    body: Stat</div><div class="line">    elifs: [ElseIf, ...]</div><div class="line">    elsebody: Stat</div><div class="line">&#125;</div><div class="line"></div><div class="line">ElseIf: &#123;</div><div class="line">    type: 'ElseIf'</div><div class="line">    label: &lt;string&gt;,</div><div class="line">    body: Stat</div><div class="line">&#125;</div><div class="line"></div><div class="line">EachStat: &#123;</div><div class="line">    type: 'EachStat'</div><div class="line">    label: &lt;string&gt;,</div><div class="line">    body: Stat</div><div class="line">&#125;</div><div class="line"></div><div class="line">Node: &#123;</div><div class="line">    type: 'Node'</div><div class="line">    name: &lt;string&gt;,</div><div class="line">    attributes: &lt;object&gt;,</div><div class="line">    body: Stat</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>因为 JavaScript 语法的灵活性，可以用字面量的 JavaScript 对象和数组直接表示语法树的树状结构。语法树构的建过程可以在语法分析阶段同时进行。最后，可以获取到如下图的语法树结构：</p>
+<p><a href="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast3.png" target="_blank" rel="external"><img src="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast3.png" alt="ast2"></a></p>
+<p>完整的语法树构建过程，可以查看 parser.js 。</p>
+<p>从模版字符串到 tokens stream 再到 AST ，这个过程只需要对文本进行一次扫描，整个算法的时间复杂度为 O(n)。</p>
+<p>至此，Virtual-Template 的编译器前端已经完成了。</p>
+<h3 id="4-5-代码生成"><a href="#4-5-代码生成" class="headerlink" title="4.5 代码生成"></a>4.5 代码生成</h3><p>JavaScript 从字符串中构建一个新的函数可以直接用 new Function 即可。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newFunc = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a + b'</span>)</div><div class="line">newFunc(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// =&gt; 3</span></div></pre></td></tr></table></figure></p>
+<p>这里需要通过语法树来还原 render 函数的函数体的内容，也就是 new Function 的第三个参数。</p>
+<p>拿到模版语法的抽象语法树以后，生成相应的 JavaScript 函数代码就很好办了。只需要地对生成的 AST 进行深度优先遍历，遍历的同时维护一个数组，这个数组保存着 render 函数的每一行的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CodeGen</span> (<span class="params">ast</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.lines = []</div><div class="line">  <span class="keyword">this</span>.walk(ast)</div><div class="line">  <span class="keyword">this</span>.body = <span class="keyword">this</span>.lines.join(<span class="string">'\n'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> pp = CodeGen.prototype</div><div class="line"></div><div class="line">pp.walk = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (node.type === <span class="string">'IfStat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.genIfStat(node)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node.type === <span class="string">'Stat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.genStat(node)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node.type === <span class="string">'EachStat'</span>) &#123;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.genIfStat = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> expr = node.label.replace(<span class="regexp">/(^\&#123;\s*if\s*)|(\s*\&#125;$)/g</span>, <span class="string">''</span>)</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'if ('</span> + expr + <span class="string">') &#123;'</span>)</div><div class="line">  <span class="keyword">if</span> (node.body) &#123;</div><div class="line">    <span class="keyword">this</span>.walk(node.body)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (node.elseifs) &#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span></div><div class="line">    _.each(node.elseifs, <span class="function"><span class="keyword">function</span> (<span class="params">elseif</span>) </span>&#123;</div><div class="line">      self.walk(elseif)</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (node.elsebody) &#123;</div><div class="line">    <span class="keyword">this</span>.lines.push(indent + <span class="string">'&#125; else &#123;'</span>)</div><div class="line">    <span class="keyword">this</span>.walk(node.elsebody)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'&#125;'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
+<p>CodeGen 类接受已经生成的 AST 的根节点，然后 this.walk(ast) 会对不同的节点类型进行解析。例如对于 IfStat 类型的节点：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'IfStat'</span>,</div><div class="line">  <span class="attr">label</span>: <span class="string">'&#123;if user.isAdmin&#125;'</span></div><div class="line">  body: &#123;...&#125;</div><div class="line">  elseifs: [&#123;...&#125;, &#123;...&#125;, &#123;...&#125;],</div><div class="line">  <span class="attr">elsebody</span>: &#123;...&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>genIfStat 会把 ‘{if user.isAdmin}’ 中的 user.isAdmin 抽离出来，然后拼接 JavaScript 的 if 语句，push 到 this.lines 中：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expr = node.label.replace(<span class="regexp">/(^\&#123;\s*if\s*)|(\s*\&#125;$)/g</span>, <span class="string">''</span>)</div><div class="line"><span class="keyword">this</span>.lines.push(<span class="string">'if ('</span> + expr + <span class="string">') &#123;'</span>)</div></pre></td></tr></table></figure></p>
+<p>然后会递归的对 elseifs 和 elsebody 进行遍历和解析，最后给 if 语句补上 }。所以如果 elseifs和 elsebody 都不存在，this.lines 上就会有：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'if (user.isAdmin) &#123;'</span>, &lt;body&gt;, <span class="string">'&#125;'</span>]</div></pre></td></tr></table></figure></p>
+<p>其它的结构和 IfStat 同理的解析和拼接方式，例如 EachStat:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">pp.genEachStat = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> expr = node.label.replace(<span class="regexp">/(^\&#123;\s*each\s*)|(\s*\&#125;$)/g</span>, <span class="string">''</span>)</div><div class="line">  <span class="keyword">var</span> tokens = expr.split(<span class="regexp">/\s+/</span>)</div><div class="line">  <span class="keyword">var</span> list = tokens[<span class="number">0</span>]</div><div class="line">  <span class="keyword">var</span> item = tokens[<span class="number">2</span>]</div><div class="line">  <span class="keyword">var</span> key = tokens[<span class="number">3</span>]</div><div class="line">  <span class="keyword">this</span>.lines.push(</div><div class="line">    <span class="string">'for (var '</span> + key + <span class="string">' = 0, len = '</span> + list + <span class="string">'.length; '</span> + key + <span class="string">' &lt; len; '</span> + key + <span class="string">'++) &#123;'</span></div><div class="line">  )</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'var '</span> + item + <span class="string">' = '</span> + list + <span class="string">'['</span> + key + <span class="string">'];'</span>)</div><div class="line">  <span class="keyword">if</span> (node.body) &#123;</div><div class="line">    <span class="keyword">this</span>.walk(node.body)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'&#125;'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后递归构造完成以后，this.lines.join(‘\n’) 就把整个函数的体构建起来：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (user.isAdmin) &#123;</div><div class="line">...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> ...) &#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时候 render 函数的函数体就有了，直接通过 new Function 构建 render 函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> code = <span class="keyword">new</span> CodeGen(ast)</div><div class="line"><span class="keyword">var</span> render = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'el'</span>, <span class="string">'data'</span>, code.body)</div></pre></td></tr></table></figure></p>
+<p>el 是需要注入的构建 Virtual-DOM 的构建函数，data 需要渲染的数据状态：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> svd = <span class="built_in">require</span>(<span class="string">'simple-virtual-dom'</span>)</div><div class="line"><span class="keyword">var</span> root = render(svd.el, &#123;<span class="attr">users</span>: [&#123;<span class="attr">isAdmin</span>: <span class="literal">true</span>&#125;]&#125;)</div></pre></td></tr></table></figure></p>
+<p>从模版 -&gt; Virtual-DOM 的 render 函数 -&gt; Virtual-DOM 的过程就完成了。完整的代码生成的过程可以参考：codegen.js</p>
+<h2 id="5-完整的-Virtual-Template"><a href="#5-完整的-Virtual-Template" class="headerlink" title="5 完整的 Virtual-Template"></a>5 完整的 Virtual-Template</h2><p>其实拿到 render 函数以后，每次手动进行 diff 和 patch 都是重复操作。可以把 diff 和 patch 也封装起来，只暴露一个 setData 的 API 。每次数据变更的时候，只需要 setData 就可以更新到 DOM 元素上（就像 ReactJS 的 setState）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// vTemplate.compile 编译模版字符串，返回一个函数</span></div><div class="line"><span class="keyword">var</span> usersListTpl = vTemplate.compile(tplStr)</div><div class="line"></div><div class="line"><span class="comment">// userListTpl 传入初始数据状态，返回一个实例</span></div><div class="line"><span class="keyword">var</span> usersList = usersListTpl(&#123;</div><div class="line">  <span class="attr">title</span>: <span class="string">'Users List'</span>,</div><div class="line">  <span class="attr">users</span>: [</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user0'</span>, <span class="attr">name</span>: <span class="string">'Jerry'</span>, <span class="attr">isAdmin</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user1'</span>, <span class="attr">name</span>: <span class="string">'Lucy'</span>, <span class="attr">isAuthor</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user2'</span>, <span class="attr">name</span>: <span class="string">'Tomy'</span>&#125;</div><div class="line">  ]</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 返回的实例有 dom 元素和一个 setData 的 API</span></div><div class="line"><span class="built_in">document</span>.appendChild(usersList.dom)</div><div class="line"></div><div class="line"><span class="comment">// 需要变更数据的时候，setData 一下即可</span></div><div class="line">usersList.setData(&#123;</div><div class="line">  <span class="attr">title</span>: <span class="string">'Users'</span>,</div><div class="line">  <span class="attr">users</span>: [</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user1'</span>, <span class="attr">name</span>: <span class="string">'Lucy'</span>, <span class="attr">isAuthor</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user2'</span>, <span class="attr">name</span>: <span class="string">'Tomy'</span>&#125;</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>完整的 Virtual-Template 源码托管在 github 。</p>
+<h2 id="6-结语"><a href="#6-结语" class="headerlink" title="6 结语"></a>6 结语</h2><p>这个过程其实和 ReactJS 的 JSX 差不多。就拿 Babel 的 JSX 语法实现而言，它的 parser 叫 babylon。而 babylon 基于一个叫 acorn 的 JavaScript 编写的 JavaScript 解释器和它的 JSX 插件 acorn-jsx。其实就是利用 acorn 把文本分割成 tokens，而 JSX 语法分析部分由 acorn-jsx 完成。</p>
+<p>Virtual-Template 还不能应用于实际的生产环境，需要完善的东西还有很多。本文记录基本的分析和实现的过程，也有助于更好地理解和学习 ReactJS 的实现。</p>
+<p>（全文完）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2017/10/31/javascript-from-prototype-to-prototype-chain/" itemprop="url">
                   JavaScript深入之从原型到原型链【转载】
                 </a>
@@ -1360,7 +1573,7 @@
       
         
           
-            <p>前段时间利用闲暇时间学习Vuejs并且做了一个实例，主要使用vue-router实现路由控制，vuex对程序进行状态管理，axios发送http请求。对数据在组件间的传递、webpack打包工具、数据的双向绑定有更深刻的了解和认识。<br><img src="http://huzerui.com/blog/img/post/2017-02-04-vue2.0-demo-poster.gif" alt="预览图"></p>
+            <p>前段时间利用闲暇时间学习Vuejs并且做了一个实例，主要使用vue-router实现路由控制，vuex对程序进行状态管理，axios发送http请求。对数据在组件间的传递、webpack打包工具、数据的双向绑定有更深刻的了解和认识。<br><img src="http://qiniu.huzerui.com/image/2017-02-04-vue2.0-demo-poster.gif" alt="预览图"></p>
 <p>项目在线地址：<a href="http://www.huzerui.com/vue2.0-demo/">http://www.huzerui.com/vue2.0-demo/</a><br>Github地址：<a href="https://github.com/alex1504/vue2.0-demo" target="_blank" rel="external">https://github.com/alex1504/vue2.0-demo</a></p>
 <p>扫描二维码预览：<br><img src="/blog/img/post/2017-03-04-vuejs-demo-qrcode.png" alt="二维码地址"></p>
 <h1 id="更新记录："><a href="#更新记录：" class="headerlink" title="更新记录："></a>更新记录：</h1><p>2017.1.13 主导航电影、音乐、图书、图片使用router跳转电影模块使用tab菜单切换各个列表模块下拉滚动加载图片模块使用flex布局实现瀑布流效果<br>2017.1.17 增加了电影详情模块，优化路由跳转<br>2017.1.18 增加了登录、登出模块，使用leancloud数据存储功能<br>2017.1.19 增加了图片详情模块，增加了新的生产依赖vue-touch<br>2017.2.6 新增用户注册模块</p>
@@ -1672,7 +1885,7 @@
       
         
           
-            <p><img src="http://huzerui.com/blog/img/post/2016-11-7-gulp-poster.jpg" alt="gulp"><br>某个深夜独自在房间深造，在不断键盘敲击的“Alt+Tab”和“F5”许久，我开始疲惫了，于是从冰箱抡起一杯可乐。畅饮之余，去Google寻求仙人指路，仙人找到了nodejs为我指点了迷津，并递给我一杯可乐和吸管，原来“她”就在这里，她的名字叫“Gulp”。</p>
+            <p><img src="http://qiniu.huzerui.com/image/2016-11-7-gulp-poster.jpg" alt="gulp"><br>某个深夜独自在房间深造，在不断键盘敲击的“Alt+Tab”和“F5”许久，我开始疲惫了，于是从冰箱抡起一杯可乐。畅饮之余，去Google寻求仙人指路，仙人找到了nodejs为我指点了迷津，并递给我一杯可乐和吸管，原来“她”就在这里，她的名字叫“Gulp”。</p>
 <p>她虽然只是一杯插着吸管的饮料，可却能在烈日炎炎的夏天舒缓你焦灼的身心，在寒冷的冬天给你雪中送炭似的温暖，给你不一样的编码体验。</p>
 <h1 id="拾起一杯Gulp"><a href="#拾起一杯Gulp" class="headerlink" title="拾起一杯Gulp"></a>拾起一杯Gulp</h1><p>gulpjs是一个前端构建工具，API简单，基于<strong>任务流</strong>，无需像Grunt复杂的配置。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在安装了node.js的基础上使用命令行或git即可安装。<br>全局安装：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --global gulp</div></pre></td></tr></table></figure></p>
@@ -1715,452 +1928,6 @@
 <h4 id="多种匹配"><a href="#多种匹配" class="headerlink" title="多种匹配"></a>多种匹配</h4><p>当有多种匹配模式(多个单一匹配)时可以使用数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp.src([<span class="string">'js/*.js'</span>,<span class="string">'css/*.css'</span>,<span class="string">'*.html'</span>])</div></pre></td></tr></table></figure></p>
 <p>使用数组的方式还有一个好处就是可以很方便的使用排除模式，在数组中的单个匹配模式前加上!即是排除模式，它会在匹配的结果中排除这个匹配，要注意一点的是不能在数组中的第一个元素中使用排除模式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gulp.src([*.js,<span class="string">'!b*.js'</span>]) <span class="comment">//匹配所有js文件，但排除掉以b开头的js文件</span></div><div class="line">gulp.src([<span class="string">'!b*.js'</span>,*.js]) <span class="comment">//不会排除任何文件，因为排除模式不能出现在数组的第一个元素中</span></div></pre></td></tr></table></figure></p>
 <h4 id="展开匹配"><a href="#展开匹配" class="headerlink" title="展开匹配"></a>展开匹配</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a&#123;b,c&#125;d 会展开为 abd,acd</div><div class="line">a&#123;b,&#125;c 会展开为 abc,ac</div><div class="line">a&#123;<span class="number">0.</span><span class="number">.3</span>&#125;d 会展开为 a0d,a1d,a2d,a3d</div><div class="line">a&#123;b,c&#123;d,e&#125;f&#125;g 会展开为 abg,acdfg,acefg</div><div class="line">a&#123;b,c&#125;d&#123;e,f&#125;g 会展开为 abdeg,acdeg,abdeg,abdfg</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/11/04/let-your-browser-open-fullscreen-mode/" itemprop="url">
-                  Javascript开启浏览器全屏模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T23:38:01+08:00" content="2016-11-04">
-              2016-11-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/11/04/let-your-browser-open-fullscreen-mode/" class="leancloud_visitors" data-flag-title="Javascript开启浏览器全屏模式">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>通常在某些情况下，我们需要让浏览器开启全屏模式，以便获得更好的视觉体验，先看下全屏模式简单的几个API。</p>
-<h1 id="浏览器默认绑定"><a href="#浏览器默认绑定" class="headerlink" title="浏览器默认绑定"></a>浏览器默认绑定</h1><p>非全屏模式下， document的F11按键绑定开启全屏模式<br>全屏模式下， document的esc和F11 按键绑定关闭全屏模式</p>
-<h1 id="屏幕全屏模式改变事件"><a href="#屏幕全屏模式改变事件" class="headerlink" title="屏幕全屏模式改变事件"></a>屏幕全屏模式改变事件</h1><p>当成功进入全屏模式后， document会收到一个fullscreenchange 事件。 当退出全屏状态后， document又会收到fullscreenchange 事件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> screenChange = <span class="string">'webkitfullscreenchange'</span> || <span class="string">'mozfullscreenchange'</span> || <span class="string">'fullscreenchange'</span></div></pre></td></tr></table></figure></p>
-<h1 id="判断当前是否处于全屏状态"><a href="#判断当前是否处于全屏状态" class="headerlink" title="判断当前是否处于全屏状态"></a>判断当前是否处于全屏状态</h1><p><strong>非标准(避免使用)：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isFullScreen = <span class="built_in">document</span>.fullScreen || <span class="built_in">document</span>.mozFullScreen || <span class="built_in">document</span>.webkitIsFullScreen;</div></pre></td></tr></table></figure></p>
-<p><strong>标准：</strong><br>fullscreenElement 属性会告诉你当前全屏显示的 element。 如果该值为非空，则document进入了全屏模式。如果为空则不在全屏模式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isFullScreen = <span class="built_in">document</span>.fullscreenElement || <span class="built_in">document</span>.mozFullScreenElement ||<span class="built_in">document</span>.webkitFullscreenElement</div></pre></td></tr></table></figure></p>
-<h1 id="判断是否可以进入请求全屏状态"><a href="#判断是否可以进入请求全屏状态" class="headerlink" title="判断是否可以进入请求全屏状态"></a>判断是否可以进入请求全屏状态</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isFullScreenAvailable = <span class="built_in">document</span>.fullScreenEnabled || <span class="built_in">document</span>.mozFullScreenEnabled || <span class="built_in">document</span>.webkitFullscreenEnabled;</div></pre></td></tr></table></figure>
-<h1 id="开启全屏模式"><a href="#开启全屏模式" class="headerlink" title="开启全屏模式"></a>开启全屏模式</h1><p>参数：element为想要全屏展示的元素比如video，如果想要浏览器全屏展示，则传入document.documentElement即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">launchFullScreen</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (element.requestFullscreen) &#123;</div><div class="line">        element.requestFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.mozRequestFullScreen) &#123;</div><div class="line">        element.mozRequestFullScreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.webkitRequestFullscreen) &#123;</div><div class="line">        element.webkitRequestFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.msRequestFullscreen) &#123;</div><div class="line">        element.msRequestFullscreen();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>注意: <strong>requestFullscreen是规范的书写模式（ s是小写）</strong>， 但在Gecko内核中仍使用带前缀的大写模式mozRequestFullScreen。</p>
-<h1 id="关闭全屏模式"><a href="#关闭全屏模式" class="headerlink" title="关闭全屏模式"></a>关闭全屏模式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">exitFullscreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.exitFullscreen) &#123;</div><div class="line">        <span class="built_in">document</span>.exitFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.mozCancelFullScreen) &#123;</div><div class="line">        <span class="built_in">document</span>.mozCancelFullScreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.webkitExitFullscreen) &#123;</div><div class="line">        <span class="built_in">document</span>.webkitExitFullscreen();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="全屏模式只能由手势触发"><a href="#全屏模式只能由手势触发" class="headerlink" title="全屏模式只能由手势触发"></a>全屏模式只能由手势触发</h1><p>了解API后，假如我们监听window.onload事件执行launchFullScreen方法，Chrome浏览器会提示“开启全屏模式API只能由用户手势触发”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"Failed to execute 'requestFullScreen' on 'Element': API can only be initiated by a user gesture."</span></div></pre></td></tr></table></figure></p>
-<p>原因是浏览器采用安全的机制， 将这种强制全屏模式意为“恶意行为”， <strong>一切非用户主观意愿带来的变化都是不允许的</strong>。</p>
-<p>因此如果你的应用有全屏需求，有两种方案。<br>1.页面初始化给用户一个“F11开启全屏” 的提示， 并且在延迟几秒之后消失。<br>2.页面设置一个全屏按钮，单击全屏按钮进入全屏模式，并且隐藏按钮（视觉效果最佳）。</p>
-<p>对于第二种方案，需要监听键盘事件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"keydown"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> currKey = <span class="number">0</span></div><div class="line">    <span class="comment">//在FireFox或Opera中，隐藏的变量e是存在的，那么e||event返回e，如果在IE中，隐藏变量e是不存在，则返回event。</span></div><div class="line">    <span class="keyword">var</span> e = e || event;  </div><div class="line">    <span class="comment">//IE中，只有keyCode属性，而FireFox中有which和charCode属性，Opera中有keyCode和which属性</span></div><div class="line">    <span class="keyword">var</span> currKey = e.keyCode || e.which || e.charCode;</div><div class="line">    <span class="keyword">if</span> (currKey == <span class="number">112</span>) &#123;</div><div class="line">        launchFullScreen(<span class="built_in">document</span>.documentElement);</div><div class="line">    &#125;</div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure></p>
-<p>具备了兼容各种浏览器按键模式的监听，但不知道<strong>keycode</strong>肿么办，112是哪个键？</p>
-<h2 id="字母和数字键的键码值-keyCode"><a href="#字母和数字键的键码值-keyCode" class="headerlink" title="字母和数字键的键码值(keyCode)"></a>字母和数字键的键码值(keyCode)</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">A</td>
-<td>65</td>
-<td>J</td>
-<td>74</td>
-<td>S</td>
-<td>83</td>
-<td>1</td>
-<td>49</td>
-</tr>
-<tr>
-<td style="text-align:center">B</td>
-<td>66</td>
-<td>K</td>
-<td>75</td>
-<td>T</td>
-<td>84</td>
-<td>2</td>
-<td>50</td>
-</tr>
-<tr>
-<td style="text-align:center">C</td>
-<td>67</td>
-<td>L</td>
-<td>76</td>
-<td>U</td>
-<td>85</td>
-<td>3</td>
-<td>51</td>
-</tr>
-<tr>
-<td style="text-align:center">D</td>
-<td>68</td>
-<td>M</td>
-<td>77</td>
-<td>V</td>
-<td>86</td>
-<td>4</td>
-<td>52</td>
-</tr>
-<tr>
-<td style="text-align:center">E</td>
-<td>69</td>
-<td>N</td>
-<td>78</td>
-<td>W</td>
-<td>87</td>
-<td>5</td>
-<td>53</td>
-</tr>
-<tr>
-<td style="text-align:center">F</td>
-<td>70</td>
-<td>O</td>
-<td>79</td>
-<td>X</td>
-<td>88</td>
-<td>6</td>
-<td>54</td>
-</tr>
-<tr>
-<td style="text-align:center">G</td>
-<td>71</td>
-<td>P</td>
-<td>80</td>
-<td>Y</td>
-<td>89</td>
-<td>7</td>
-<td>55</td>
-</tr>
-<tr>
-<td style="text-align:center">H</td>
-<td>72</td>
-<td>Q</td>
-<td>81</td>
-<td>Z</td>
-<td>90</td>
-<td>8</td>
-<td>56</td>
-</tr>
-<tr>
-<td style="text-align:center">I</td>
-<td>73</td>
-<td>R</td>
-<td>82</td>
-<td>0</td>
-<td>48</td>
-<td>9</td>
-<td>57</td>
-</tr>
-</tbody>
-</table>
-<h2 id="数字键盘上的键的键码值-keyCode"><a href="#数字键盘上的键的键码值-keyCode" class="headerlink" title="数字键盘上的键的键码值(keyCode)"></a>数字键盘上的键的键码值(keyCode)</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">0</td>
-<td>96</td>
-<td>8</td>
-<td>104</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td>97</td>
-<td>9</td>
-<td>105</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>98</td>
-<td>*</td>
-<td>106</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>99</td>
-<td>+</td>
-<td>107</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>100</td>
-<td>Enter</td>
-<td>108</td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>101</td>
-<td>-</td>
-<td>109</td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>102</td>
-<td>.</td>
-<td>110</td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>103</td>
-<td>/</td>
-<td>111</td>
-</tr>
-</tbody>
-</table>
-<h2 id="功能键键码值-keyCode"><a href="#功能键键码值-keyCode" class="headerlink" title="功能键键码值(keyCode)"></a>功能键键码值(keyCode)</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">F1</td>
-<td>112</td>
-<td>F7</td>
-<td>118</td>
-</tr>
-<tr>
-<td style="text-align:center">F2</td>
-<td>113</td>
-<td>F8</td>
-<td>119</td>
-</tr>
-<tr>
-<td style="text-align:center">F3</td>
-<td>114</td>
-<td>F9</td>
-<td>120</td>
-</tr>
-<tr>
-<td style="text-align:center">F4</td>
-<td>115</td>
-<td>F10</td>
-<td>121</td>
-</tr>
-<tr>
-<td style="text-align:center">F5</td>
-<td>116</td>
-<td>F11</td>
-<td>122</td>
-</tr>
-<tr>
-<td style="text-align:center">F6</td>
-<td>117</td>
-<td>F12</td>
-<td>123</td>
-</tr>
-</tbody>
-</table>
-<h2 id="控制键键码值-keyCode"><a href="#控制键键码值-keyCode" class="headerlink" title="控制键键码值(keyCode)"></a>控制键键码值(keyCode)</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-<th>按键</th>
-<th>键码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">BackSpace</td>
-<td>8</td>
-<td>Esc</td>
-<td>27</td>
-<td>Right Arrow</td>
-<td>39</td>
-<td>-_</td>
-<td>189</td>
-</tr>
-<tr>
-<td style="text-align:center">Tab</td>
-<td>9</td>
-<td>Spacebar</td>
-<td>32</td>
-<td>Dw Arrow</td>
-<td>40</td>
-<td>.&gt;</td>
-<td>190</td>
-</tr>
-<tr>
-<td style="text-align:center">Clear</td>
-<td>12</td>
-<td>Page Up</td>
-<td>33</td>
-<td>Insert</td>
-<td>45</td>
-<td>/?</td>
-<td>191</td>
-</tr>
-<tr>
-<td style="text-align:center">Enter</td>
-<td>13</td>
-<td>Page Down</td>
-<td>34</td>
-<td>Delete</td>
-<td>46</td>
-<td>`~</td>
-<td>192</td>
-</tr>
-<tr>
-<td style="text-align:center">Shift</td>
-<td>16</td>
-<td>End</td>
-<td>35</td>
-<td>Num Lock</td>
-<td>144</td>
-<td>[{</td>
-<td>219</td>
-</tr>
-<tr>
-<td style="text-align:center">Control</td>
-<td>17</td>
-<td>Home</td>
-<td>36</td>
-<td>;:</td>
-<td>186</td>
-<td>\</td>
-<td>220</td>
-</tr>
-<tr>
-<td style="text-align:center">Alt</td>
-<td>18</td>
-<td>Left Arrow</td>
-<td>37</td>
-<td>=+</td>
-<td>187</td>
-<td>]}</td>
-<td>221</td>
-</tr>
-<tr>
-<td style="text-align:center">Cape Lock</td>
-<td>20</td>
-<td>Up Arrow</td>
-<td>38</td>
-<td>,&lt;</td>
-<td>188</td>
-<td>‘“</td>
-<td>222</td>
-</tr>
-</tbody>
-</table>
-<h1 id="其他非标准化的方法"><a href="#其他非标准化的方法" class="headerlink" title="其他非标准化的方法"></a>其他非标准化的方法</h1><p><strong>非标准化的方法指的是进入草案前浏览器实现的一些方法。有的目前仍保留，有的已废除，避免使用。</strong><br><del>window.fullScreen(Firefox)</del><br><del>HTMLMediaElement.webkitDisplayingFullscreen</del><br><del>HTMLMediaElement.webkitEnterFullscreen</del><br><del>HTMLMediaElement.webkitExitFullscreen</del><br><del>HTMLMediaElement.webkitSupportsFullscreen</del></p>
 
           
         
@@ -2236,7 +2003,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

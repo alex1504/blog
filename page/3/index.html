@@ -258,6 +258,136 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/06/15/js-call-and-apply/" itemprop="url">
+                  javascript中的call()和apply()方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-15T09:29:53+08:00" content="2016-06-15">
+              2016-06-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/06/15/js-call-and-apply/" class="leancloud_visitors" data-flag-title="javascript中的call()和apply()方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们知道函数调用有四种方式：<strong>直接调用、作为对象的方法调用、构造函数调用、间接调用</strong>。<br>而<strong>call()和apply()就是间接调用函数的方法</strong>。这两个方法都允许显示的指示调用上下文(this)的值，也就是说，任何函数可以作为任何对象的方法来调用，哪怕这个函数不是那个对象的方法。</p>
+<p>假定有个函数f(),要想以对象o的方法来调用，可以这样使用call()和apply()<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f.call(o);</div><div class="line">f.apply(o);</div></pre></td></tr></table></figure></p>
+<p>每行代码的功能类似于(假设对象o预先不存在名为m的属性)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">o.m=f;       <span class="comment">//将f存储为临时方法</span></div><div class="line">o.m();       <span class="comment">//调用</span></div><div class="line"><span class="keyword">delete</span> o.m;  <span class="comment">//删除临时方法</span></div></pre></td></tr></table></figure></p>
+<h2 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h2><p>语法：<strong>call(thisObj, arg1, arg2 …argN)</strong><br>定义：<strong>调用一个对象的一个方法，以另一个对象替换当前对象</strong>。<br>说明：<br>1、call 方法可以用来代替另一个对象调用一个方法。<br>2、call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>3、如果没有提供 thisObj 参数（或者传入null、undefined），那么 Global 对象被用作 thisObj；ES5严格模式则将默认为this的值。<br>4、arg1、arg2..是待传入调用函数的实参，以逗号分隔。</p>
+<h2 id="apply"><a href="#apply" class="headerlink" title="apply()"></a>apply()</h2><p>语法：<strong>apply(thisObj,argArray)</strong><br>定义：<strong>应用某一对象的一个方法，用另一个对象替换当前对象</strong>。<br>说明：<br>1、如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>2、如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。<br>3、argArray是待传入调用函数的参数组成的数组</p>
+<h3 id="关于apply-的奇淫巧计"><a href="#关于apply-的奇淫巧计" class="headerlink" title="关于apply()的奇淫巧计"></a>关于apply()的奇淫巧计</h3><h4 id="apply-用来求数组中最大元素"><a href="#apply-用来求数组中最大元素" class="headerlink" title="apply()用来求数组中最大元素"></a>apply()用来求数组中最大元素</h4><p>由于Math.max()只能传入逗号分隔的参数，而apply()的第二个参数恰好可以传入数组或类数组元素。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> bigest=<span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, array_of_numbers)</div></pre></td></tr></table></figure></p>
+<h4 id="Array-prototype-push-可以实现两个数组合并"><a href="#Array-prototype-push-可以实现两个数组合并" class="headerlink" title="Array.prototype.push 可以实现两个数组合并"></a>Array.prototype.push 可以实现两个数组合并</h4><p>push方法没有提供push一个数组,但是它提供了push(param1,param,…paramN) 所以同样也可以通过apply来使用数组作为参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arr1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr2=[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line"><span class="built_in">Array</span>.prototype.push.apply(arr1,arr2);</div></pre></td></tr></table></figure></p>
+<h2 id="常用实例"><a href="#常用实例" class="headerlink" title="常用实例"></a>常用实例</h2><h3 id="将某个对象的方法临时借给另一个对象调用"><a href="#将某个对象的方法临时借给另一个对象调用" class="headerlink" title="将某个对象的方法临时借给另一个对象调用"></a>将某个对象的方法临时借给另一个对象调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">    <span class="keyword">this</span>.name = <span class="string">"Animal"</span>;    </div><div class="line">    <span class="keyword">this</span>.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">        alert(<span class="keyword">this</span>.name);    </div><div class="line">    &#125;    </div><div class="line">&#125;    </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">    <span class="keyword">this</span>.name = <span class="string">"Cat"</span>;    </div><div class="line">&#125;    </div><div class="line"><span class="keyword">var</span> animal = <span class="keyword">new</span> Animal();    </div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat();    </div><div class="line"><span class="comment">//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    </span></div><div class="line"><span class="comment">//输入结果为"Cat"    </span></div><div class="line">animal.showName.call(cat,<span class="string">","</span>);    </div><div class="line"><span class="comment">//animal.showName.apply(cat,[]);</span></div></pre></td></tr></table></figure>
+<h3 id="实现继承"><a href="#实现继承" class="headerlink" title="实现继承"></a>实现继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>)</span>&#123;      </div><div class="line">    <span class="keyword">this</span>.name = name;      </div><div class="line">    <span class="keyword">this</span>.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;      </div><div class="line">        alert(<span class="keyword">this</span>.name);      </div><div class="line">    &#125;      </div><div class="line">&#125;      </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>)</span>&#123;    </div><div class="line">    Animal.call(<span class="keyword">this</span>, name);      <span class="comment">//将Anima函数临时作为this的方法进行调用，并且传入Cat方法的参数name</span></div><div class="line">&#125;           </div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat(<span class="string">"Black Cat"</span>);   <span class="comment">//使用new调用Cat函数之后，this指向实例出来的对象cat；如果不使用new调用，则this指向全局对象。</span></div><div class="line">cat.showName();       <span class="comment">//"Black Cat"</span></div></pre></td></tr></table></figure>
+<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Class1</span>(<span class="params"></span>)  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">this</span>.showSub = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)  </span></div><div class="line">    &#123;  </div><div class="line">        alert(a-b);  </div><div class="line">    &#125;  </div><div class="line">&#125;;   </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Class2</span>(<span class="params"></span>)  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">this</span>.showAdd = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)  </span></div><div class="line">    &#123;  </div><div class="line">        alert(a+b);  </div><div class="line">    &#125;  </div><div class="line">&#125;;   </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Class3</span>(<span class="params"></span>)  </span></div><div class="line">&#123;  </div><div class="line">    Class1.call(<span class="keyword">this</span>);  </div><div class="line">    Class2.call(<span class="keyword">this</span>);  </div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> Class3();   <span class="comment">//此时obj就多了showSub和showAdd的方法</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/06/14/js-string-method/" itemprop="url">
                   javascript字符串对象方法
                 </a>
@@ -1798,139 +1928,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/05/18/bainiaochaofeng/" itemprop="url">
-                  《百鸟朝凤》观感
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T23:21:47+08:00" content="2016-05-18">
-              2016-05-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/电影/" itemprop="url" rel="index">
-                    <span itemprop="name">电影</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/05/18/bainiaochaofeng/" class="leancloud_visitors" data-flag-title="《百鸟朝凤》观感">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>有的电影值得一个人细细品味，就这样，在电影院座位静静等候开场，悄无声息。</strong></p>
-<p><strong>唢呐</strong>是中国民族吹管乐器的一种，也是中国各地广泛流传的民间乐器。由波斯人发明，唢呐的音色明亮，音量大，管身木制，呈圆椎形，上端装有带哨子的铜管，下端套着一个铜制的喇叭口（称作碗），所以<strong>俗称喇叭</strong>。在台湾民间称为鼓吹，广东地区亦将之称为“八音”。</p>
-<p>唢呐也许陌生，但喇叭想必耳熟能详，《百鸟朝凤》这电影正和“喇叭”相关。</p>
-<p><strong>A：兄弟说的头头是道，接受一下采访？</strong><br>B：某问题。</p>
-<p>A：一句话概括一下电影讲了些什么？<br>B：一个唢呐班子的昌盛、传承、发展、没落为故事主线，展示了中华民族民间乐器唢呐为西方音乐文化所同化的现象，象征着像唢呐一样的某些传统民族文化正在消失。</p>
-<p><strong>A：想到什么？</strong><br>B：一个拉着唢呐的老朽沦落到街边卖艺维生的场景，在都市的大街道常常有一些上了年纪的艺人用长笛、二胡等不流行的民间乐器上演绎着同样的片段；又如西方的节日受年轻人的欢迎程度远远高于传统文化节日，以致于节日的气氛、形式多样化、格调上西方节日的气焰往往凌驾于传统节日之上；还有中华戏曲文化，我亲身的例子是偶尔父母在听戏剧，一副悄然自得、沉静其中的感觉，而身旁的我却完全不懂这部戏曲在表达什么，我缺乏对戏曲文化的审美感，抑或说对这种传统文化我一无所知。</p>
-<p><strong>A：印象最深的片段？</strong><br>B：电影中焦师傅即使咳着血也要带领自己的弟子将曲子演完，因为他知道在时代变迁的十字路口，寻找到一个肯将唢呐吹到骨子里的接班人是来之不易的，焦老头子要传给他弟子的其实不是唢呐，而是自己是一生的事业、使命、热血。</p>
-<p><strong>A：潮汕不是信仰佛教吗？讲讲你的经历</strong><br>B：如果这种民间乐器没有这样寻找接班人，或许早已在当今销声匿迹了，文化传承很重要。潮汕人大都信仰佛教，与其说信仰，不如说佛教给与我们一种寄托亦或者希望。逢年过节或恰初一十五等等，烧香拜佛、请愿保佑不在话下，求平安、包富贵如是而已。然而这些习俗却无法传承到下一代的我们，因为一旦受过高等教育就会定义为“迷信”从而敬而远之了。</p>
-<p><strong>A：还有其他补充？</strong><br>B：随时代的发展我想有很多这样的传统文化、习俗在渐渐没落，正如电影中焦师傅那样，从前吹唢呐众人哭喊朝拜，仿佛看脚了唢呐唤起的长辈仙逝的灵魂，但到了游天明那一代唢呐连找活干都变得困难了，更别说当做一门生存的匠活了。</p>
-<p>这种没落的变化在天明父亲对他吹唢呐的态度变化中显而易见，从天明小时候为他求师四处寻关系到当他看到天明后来对着唢呐发呆时的一句话“还不丢掉这些破玩意”的转变，不得不说时代发展捧起一些东西的同时也会摔破一些东西，以致于这些即将被摔破但是对于民族而言是不可缺少的东西，最终要通过贴上“非物质文化遗产”来拯救了。</p>
-<p><strong>电影往往是社会的真实写照。</strong></p>
-<p>传承民族文化是必须的，但这种传承不能只通过班子传班子或者师傅传弟子，因为这样的文化不具有普及性，而是局限在某个区域的传承。把传统文化普及宣扬下去，让更多的青年了解，让更多的人懂得欣赏它的魅力，才是这种文化经久不衰的奥秘。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1978,7 +1975,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

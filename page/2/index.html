@@ -258,6 +258,452 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/11/04/let-your-browser-open-fullscreen-mode/" itemprop="url">
+                  Javascript开启浏览器全屏模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T23:38:01+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2016/11/04/let-your-browser-open-fullscreen-mode/" class="leancloud_visitors" data-flag-title="Javascript开启浏览器全屏模式">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通常在某些情况下，我们需要让浏览器开启全屏模式，以便获得更好的视觉体验，先看下全屏模式简单的几个API。</p>
+<h1 id="浏览器默认绑定"><a href="#浏览器默认绑定" class="headerlink" title="浏览器默认绑定"></a>浏览器默认绑定</h1><p>非全屏模式下， document的F11按键绑定开启全屏模式<br>全屏模式下， document的esc和F11 按键绑定关闭全屏模式</p>
+<h1 id="屏幕全屏模式改变事件"><a href="#屏幕全屏模式改变事件" class="headerlink" title="屏幕全屏模式改变事件"></a>屏幕全屏模式改变事件</h1><p>当成功进入全屏模式后， document会收到一个fullscreenchange 事件。 当退出全屏状态后， document又会收到fullscreenchange 事件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> screenChange = <span class="string">'webkitfullscreenchange'</span> || <span class="string">'mozfullscreenchange'</span> || <span class="string">'fullscreenchange'</span></div></pre></td></tr></table></figure></p>
+<h1 id="判断当前是否处于全屏状态"><a href="#判断当前是否处于全屏状态" class="headerlink" title="判断当前是否处于全屏状态"></a>判断当前是否处于全屏状态</h1><p><strong>非标准(避免使用)：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isFullScreen = <span class="built_in">document</span>.fullScreen || <span class="built_in">document</span>.mozFullScreen || <span class="built_in">document</span>.webkitIsFullScreen;</div></pre></td></tr></table></figure></p>
+<p><strong>标准：</strong><br>fullscreenElement 属性会告诉你当前全屏显示的 element。 如果该值为非空，则document进入了全屏模式。如果为空则不在全屏模式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isFullScreen = <span class="built_in">document</span>.fullscreenElement || <span class="built_in">document</span>.mozFullScreenElement ||<span class="built_in">document</span>.webkitFullscreenElement</div></pre></td></tr></table></figure></p>
+<h1 id="判断是否可以进入请求全屏状态"><a href="#判断是否可以进入请求全屏状态" class="headerlink" title="判断是否可以进入请求全屏状态"></a>判断是否可以进入请求全屏状态</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isFullScreenAvailable = <span class="built_in">document</span>.fullScreenEnabled || <span class="built_in">document</span>.mozFullScreenEnabled || <span class="built_in">document</span>.webkitFullscreenEnabled;</div></pre></td></tr></table></figure>
+<h1 id="开启全屏模式"><a href="#开启全屏模式" class="headerlink" title="开启全屏模式"></a>开启全屏模式</h1><p>参数：element为想要全屏展示的元素比如video，如果想要浏览器全屏展示，则传入document.documentElement即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">launchFullScreen</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (element.requestFullscreen) &#123;</div><div class="line">        element.requestFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.mozRequestFullScreen) &#123;</div><div class="line">        element.mozRequestFullScreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.webkitRequestFullscreen) &#123;</div><div class="line">        element.webkitRequestFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.msRequestFullscreen) &#123;</div><div class="line">        element.msRequestFullscreen();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意: <strong>requestFullscreen是规范的书写模式（ s是小写）</strong>， 但在Gecko内核中仍使用带前缀的大写模式mozRequestFullScreen。</p>
+<h1 id="关闭全屏模式"><a href="#关闭全屏模式" class="headerlink" title="关闭全屏模式"></a>关闭全屏模式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">exitFullscreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.exitFullscreen) &#123;</div><div class="line">        <span class="built_in">document</span>.exitFullscreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.mozCancelFullScreen) &#123;</div><div class="line">        <span class="built_in">document</span>.mozCancelFullScreen();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.webkitExitFullscreen) &#123;</div><div class="line">        <span class="built_in">document</span>.webkitExitFullscreen();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="全屏模式只能由手势触发"><a href="#全屏模式只能由手势触发" class="headerlink" title="全屏模式只能由手势触发"></a>全屏模式只能由手势触发</h1><p>了解API后，假如我们监听window.onload事件执行launchFullScreen方法，Chrome浏览器会提示“开启全屏模式API只能由用户手势触发”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"Failed to execute 'requestFullScreen' on 'Element': API can only be initiated by a user gesture."</span></div></pre></td></tr></table></figure></p>
+<p>原因是浏览器采用安全的机制， 将这种强制全屏模式意为“恶意行为”， <strong>一切非用户主观意愿带来的变化都是不允许的</strong>。</p>
+<p>因此如果你的应用有全屏需求，有两种方案。<br>1.页面初始化给用户一个“F11开启全屏” 的提示， 并且在延迟几秒之后消失。<br>2.页面设置一个全屏按钮，单击全屏按钮进入全屏模式，并且隐藏按钮（视觉效果最佳）。</p>
+<p>对于第二种方案，需要监听键盘事件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"keydown"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> currKey = <span class="number">0</span></div><div class="line">    <span class="comment">//在FireFox或Opera中，隐藏的变量e是存在的，那么e||event返回e，如果在IE中，隐藏变量e是不存在，则返回event。</span></div><div class="line">    <span class="keyword">var</span> e = e || event;  </div><div class="line">    <span class="comment">//IE中，只有keyCode属性，而FireFox中有which和charCode属性，Opera中有keyCode和which属性</span></div><div class="line">    <span class="keyword">var</span> currKey = e.keyCode || e.which || e.charCode;</div><div class="line">    <span class="keyword">if</span> (currKey == <span class="number">112</span>) &#123;</div><div class="line">        launchFullScreen(<span class="built_in">document</span>.documentElement);</div><div class="line">    &#125;</div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure></p>
+<p>具备了兼容各种浏览器按键模式的监听，但不知道<strong>keycode</strong>肿么办，112是哪个键？</p>
+<h2 id="字母和数字键的键码值-keyCode"><a href="#字母和数字键的键码值-keyCode" class="headerlink" title="字母和数字键的键码值(keyCode)"></a>字母和数字键的键码值(keyCode)</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td>65</td>
+<td>J</td>
+<td>74</td>
+<td>S</td>
+<td>83</td>
+<td>1</td>
+<td>49</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td>66</td>
+<td>K</td>
+<td>75</td>
+<td>T</td>
+<td>84</td>
+<td>2</td>
+<td>50</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td>67</td>
+<td>L</td>
+<td>76</td>
+<td>U</td>
+<td>85</td>
+<td>3</td>
+<td>51</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td>68</td>
+<td>M</td>
+<td>77</td>
+<td>V</td>
+<td>86</td>
+<td>4</td>
+<td>52</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td>69</td>
+<td>N</td>
+<td>78</td>
+<td>W</td>
+<td>87</td>
+<td>5</td>
+<td>53</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td>70</td>
+<td>O</td>
+<td>79</td>
+<td>X</td>
+<td>88</td>
+<td>6</td>
+<td>54</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td>71</td>
+<td>P</td>
+<td>80</td>
+<td>Y</td>
+<td>89</td>
+<td>7</td>
+<td>55</td>
+</tr>
+<tr>
+<td style="text-align:center">H</td>
+<td>72</td>
+<td>Q</td>
+<td>81</td>
+<td>Z</td>
+<td>90</td>
+<td>8</td>
+<td>56</td>
+</tr>
+<tr>
+<td style="text-align:center">I</td>
+<td>73</td>
+<td>R</td>
+<td>82</td>
+<td>0</td>
+<td>48</td>
+<td>9</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数字键盘上的键的键码值-keyCode"><a href="#数字键盘上的键的键码值-keyCode" class="headerlink" title="数字键盘上的键的键码值(keyCode)"></a>数字键盘上的键的键码值(keyCode)</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td>96</td>
+<td>8</td>
+<td>104</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td>97</td>
+<td>9</td>
+<td>105</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>98</td>
+<td>*</td>
+<td>106</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>99</td>
+<td>+</td>
+<td>107</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>100</td>
+<td>Enter</td>
+<td>108</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>101</td>
+<td>-</td>
+<td>109</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>102</td>
+<td>.</td>
+<td>110</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>103</td>
+<td>/</td>
+<td>111</td>
+</tr>
+</tbody>
+</table>
+<h2 id="功能键键码值-keyCode"><a href="#功能键键码值-keyCode" class="headerlink" title="功能键键码值(keyCode)"></a>功能键键码值(keyCode)</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">F1</td>
+<td>112</td>
+<td>F7</td>
+<td>118</td>
+</tr>
+<tr>
+<td style="text-align:center">F2</td>
+<td>113</td>
+<td>F8</td>
+<td>119</td>
+</tr>
+<tr>
+<td style="text-align:center">F3</td>
+<td>114</td>
+<td>F9</td>
+<td>120</td>
+</tr>
+<tr>
+<td style="text-align:center">F4</td>
+<td>115</td>
+<td>F10</td>
+<td>121</td>
+</tr>
+<tr>
+<td style="text-align:center">F5</td>
+<td>116</td>
+<td>F11</td>
+<td>122</td>
+</tr>
+<tr>
+<td style="text-align:center">F6</td>
+<td>117</td>
+<td>F12</td>
+<td>123</td>
+</tr>
+</tbody>
+</table>
+<h2 id="控制键键码值-keyCode"><a href="#控制键键码值-keyCode" class="headerlink" title="控制键键码值(keyCode)"></a>控制键键码值(keyCode)</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+<th>按键</th>
+<th>键码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">BackSpace</td>
+<td>8</td>
+<td>Esc</td>
+<td>27</td>
+<td>Right Arrow</td>
+<td>39</td>
+<td>-_</td>
+<td>189</td>
+</tr>
+<tr>
+<td style="text-align:center">Tab</td>
+<td>9</td>
+<td>Spacebar</td>
+<td>32</td>
+<td>Dw Arrow</td>
+<td>40</td>
+<td>.&gt;</td>
+<td>190</td>
+</tr>
+<tr>
+<td style="text-align:center">Clear</td>
+<td>12</td>
+<td>Page Up</td>
+<td>33</td>
+<td>Insert</td>
+<td>45</td>
+<td>/?</td>
+<td>191</td>
+</tr>
+<tr>
+<td style="text-align:center">Enter</td>
+<td>13</td>
+<td>Page Down</td>
+<td>34</td>
+<td>Delete</td>
+<td>46</td>
+<td>`~</td>
+<td>192</td>
+</tr>
+<tr>
+<td style="text-align:center">Shift</td>
+<td>16</td>
+<td>End</td>
+<td>35</td>
+<td>Num Lock</td>
+<td>144</td>
+<td>[{</td>
+<td>219</td>
+</tr>
+<tr>
+<td style="text-align:center">Control</td>
+<td>17</td>
+<td>Home</td>
+<td>36</td>
+<td>;:</td>
+<td>186</td>
+<td>\</td>
+<td>220</td>
+</tr>
+<tr>
+<td style="text-align:center">Alt</td>
+<td>18</td>
+<td>Left Arrow</td>
+<td>37</td>
+<td>=+</td>
+<td>187</td>
+<td>]}</td>
+<td>221</td>
+</tr>
+<tr>
+<td style="text-align:center">Cape Lock</td>
+<td>20</td>
+<td>Up Arrow</td>
+<td>38</td>
+<td>,&lt;</td>
+<td>188</td>
+<td>‘“</td>
+<td>222</td>
+</tr>
+</tbody>
+</table>
+<h1 id="其他非标准化的方法"><a href="#其他非标准化的方法" class="headerlink" title="其他非标准化的方法"></a>其他非标准化的方法</h1><p><strong>非标准化的方法指的是进入草案前浏览器实现的一些方法。有的目前仍保留，有的已废除，避免使用。</strong><br><del>window.fullScreen(Firefox)</del><br><del>HTMLMediaElement.webkitDisplayingFullscreen</del><br><del>HTMLMediaElement.webkitEnterFullscreen</del><br><del>HTMLMediaElement.webkitExitFullscreen</del><br><del>HTMLMediaElement.webkitSupportsFullscreen</del></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/10/30/how-to-make-a-html5-player/" itemprop="url">
                   HTML5(Audio)移动音乐播放器
                 </a>
@@ -340,7 +786,7 @@
 <p>好了，客观见笑了，为了真正治愈你，让我们回归正题吧！</p>
 <p>这段时间公司一直在做一个PC的教育类单页应用，庞大复杂，涉及非常多H5的知识，音频就是其中的一部分。闲暇时写了一个移动音乐播放器，除了将之作为练手项目，对于音乐的喜爱也是促使自己想写个播放器的原因。</p>
 <p>在线地址：请猛击<a href="http://alex1504.oschina.io/demo/player/" target="_blank" rel="external">这里</a><br>源码：请猛击<a href="https://git.oschina.net/alex1504/demo/tree/osc-pages/player?dir=1&amp;filepath=player&amp;oid=4c10643c235593569490e3da0d2ff7f613ece98e&amp;sha=ec2e4efea87ee25ee0818481a8cf1f5893c5947c" target="_blank" rel="external">这里</a></p>
-<p>注意：使用PC浏览最好打开<strong>移动设备模式</strong>，使用移动设备浏览需要关闭无痕浏览模式（否则无法使用本地存储，一般浏览器都是默认不开启），项目需要在<strong>本地服务器</strong>或<strong>线上服务器</strong>运行，以file:///形式的地址打开是无法进行ajax请求的，从而无法看到音乐数据。<br><img src="http://huzerui.com/blog/img/post/2016-10-30-how-to-make-a-mobile-html5-player.jpg" alt="UI图"></p>
+<p>注意：使用PC浏览最好打开<strong>移动设备模式</strong>，使用移动设备浏览需要关闭无痕浏览模式（否则无法使用本地存储，一般浏览器都是默认不开启），项目需要在<strong>本地服务器</strong>或<strong>线上服务器</strong>运行，以file:///形式的地址打开是无法进行ajax请求的，从而无法看到音乐数据。<br><img src="http://qiniu.huzerui.com/image/2016-10-30-how-to-make-a-mobile-html5-player.jpg" alt="UI图"></p>
 <h1 id="项目实现的功能及所用知识"><a href="#项目实现的功能及所用知识" class="headerlink" title="项目实现的功能及所用知识"></a>项目实现的功能及所用知识</h1><ul>
 <li>播放器的基础操作，上一首，下一首(顺序播放、随机播放、单曲循环)，播放暂停，滑动时间轴的歌词定位</li>
 <li>初始handlebar模板渲染音乐列表数据，下拉滚动加载音乐列表数据。</li>
@@ -366,8 +812,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 根据手机屏幕自适应字体大小（rem自适应方案）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">rescale</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> docEle = <span class="built_in">document</span>.documentElement;</div><div class="line">    <span class="keyword">var</span> width = docEle.clientWidth || <span class="built_in">window</span>.innerWidth;</div><div class="line">    <span class="keyword">if</span> (width &gt; <span class="number">640</span> &amp;&amp; width !== <span class="number">768</span>) &#123;</div><div class="line">        docEle.style.fontSize = <span class="string">"100px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">320</span>) &#123;</div><div class="line">        <span class="comment">//iphone5</span></div><div class="line">        docEle.style.fontSize = <span class="string">"49px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">375</span>) &#123;</div><div class="line">        <span class="comment">//iphone6 </span></div><div class="line">        docEle.style.fontSize = <span class="string">"57px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">412</span>) &#123;</div><div class="line">        <span class="comment">// Nexus 5X</span></div><div class="line">        docEle.style.fontSize = <span class="string">"57px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (width == <span class="number">768</span>) &#123;</div><div class="line">        <span class="comment">//ipad </span></div><div class="line">        docEle.style.fontSize = <span class="string">"88px"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        docEle.style.fontSize = <span class="built_in">Math</span>.round(width / <span class="number">640</span> * <span class="number">100</span>) + <span class="string">"px"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>更多详解，请看先前一篇文章《移动端自适应布局解决方案——rem》，您可以猛击<a href="http://huzerui.com/blog/2016/06/16/mobile-rem/" target="_blank" rel="external">这里</a>跳转。</p>
 <h2 id="关于歌词的同步方案实现"><a href="#关于歌词的同步方案实现" class="headerlink" title="关于歌词的同步方案实现"></a>关于歌词的同步方案实现</h2><p>目前音乐播放器的歌词同步显示大概有两种，一种是精确到单个文字，一种是精确到单行歌词。本文实现的是第二种。</p>
-<h2 id="整体实现思路"><a href="#整体实现思路" class="headerlink" title="整体实现思路"></a>整体实现思路</h2><p>页面初始化时，请求歌曲数据json（本地json文件模拟），其中歌名、歌手、图片等按需渲染到html中，将歌词存储到localStorage中。此时，F12打开chrome调试器，进入Application-LocalStorage可以看到：<br><img src="http://huzerui.com/blog/img/post/2016-10-30-lyric-localstorage.jpg" alt="歌词本地存储"></p>
-<p>点击一首歌进入播放页面后，歌词就会从本地存储中读取，此时你会看到生成这样的歌词结构：<br><img src="http://huzerui.com/blog/img/post/2016-10-30-lyric-html.jpg" alt="歌词结构"><br>每一行歌词都将要将歌词时间绑定在data-point上，监听歌曲播放的timeupdate事件，当歌曲的时间(经过取整处理)与当前data-point值相等时，就为当前歌词高亮（相当于给p添加current类名），并且根据当前高亮歌词的index索引将整个歌词盒子向上移动<strong>p标签的高度+margin-top的高度</strong>。</p>
+<h2 id="整体实现思路"><a href="#整体实现思路" class="headerlink" title="整体实现思路"></a>整体实现思路</h2><p>页面初始化时，请求歌曲数据json（本地json文件模拟），其中歌名、歌手、图片等按需渲染到html中，将歌词存储到localStorage中。此时，F12打开chrome调试器，进入Application-LocalStorage可以看到：<br><img src="http://qiniu.huzerui.com/image/2016-10-30-lyric-localstorage.jpg" alt="歌词本地存储"></p>
+<p>点击一首歌进入播放页面后，歌词就会从本地存储中读取，此时你会看到生成这样的歌词结构：<br><img src="http://qiniu.huzerui.com/image/2016-10-30-lyric-html.jpg" alt="歌词结构"><br>每一行歌词都将要将歌词时间绑定在data-point上，监听歌曲播放的timeupdate事件，当歌曲的时间(经过取整处理)与当前data-point值相等时，就为当前歌词高亮（相当于给p添加current类名），并且根据当前高亮歌词的index索引将整个歌词盒子向上移动<strong>p标签的高度+margin-top的高度</strong>。</p>
 <h3 id="lrc歌词的结构"><a href="#lrc歌词的结构" class="headerlink" title="lrc歌词的结构"></a>lrc歌词的结构</h3><p>来自网易云音乐的歌词数据：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[<span class="number">00</span>:<span class="number">14.64</span>]如果不是那镜子\n[<span class="number">00</span>:<span class="number">16.73</span>]不像你不藏秘密\n[<span class="number">00</span>:<span class="number">21.26</span>]我还不肯相信\n[<span class="number">00</span>:<span class="number">23.02</span>]没有你我的笑更美丽\n[<span class="number">00</span>:<span class="number">28.99</span>]那天听你在电话里略带抱歉的关心\n</div><div class="line"></div><div class="line">[<span class="number">00</span>:<span class="number">16.959</span>]摘一颗苹果\n[<span class="number">00</span>:<span class="number">19.800</span>]等你从门前经过\n[<span class="number">00</span>:<span class="number">22.700</span>]送到你的手中帮你解渴\n[<span class="number">00</span>:<span class="number">25.570</span>]像夏天的可乐\n</div><div class="line"></div><div class="line">[<span class="number">00</span>:<span class="number">00.00</span>] 作曲 : 周杰伦\n[<span class="number">00</span>:<span class="number">01.00</span>] 作词 : 周杰伦\n[<span class="number">00</span>:<span class="number">05.620</span>]\n[<span class="number">00</span>:<span class="number">37.980</span>]亲吻你的手\n</div></pre></td></tr></table></figure></p>
 <p>可以看到<strong>格式 = [时间点] + 要显示的文字 + \n</strong><br>这里有两个坑需要注意：</p>
 <ul>
@@ -500,7 +946,7 @@
       
         
           
-            <p><img src="http://huzerui.com/blog/img/post/2016-10-11-travel-of-changsha-1.jpg" alt="蓝瘦"><br><img src="http://huzerui.com/blog/img/post/2016-10-11-travel-of-changsha-2.jpg" alt="橘子洲夕阳"><br><img src="http://huzerui.com/blog/img/post/2016-10-11-travel-of-changsha-3.jpg" alt="极致美颜"><br><img src="http://huzerui.com/blog/img/post/2016-10-11-travel-of-changsha-4.jpg" alt="万达"><br><img src="http://huzerui.com/blog/img/post/2016-10-11-travel-of-changsha-5.jpg" alt="湖南大学"><br><img src="http://huzerui.com/blog/img/post/2016-10-11-travel-of-changsha-6.jpg" alt="湖南电视台"></p>
+            <p><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-1.jpg" alt="蓝瘦"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-2.jpg" alt="橘子洲夕阳"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-3.jpg" alt="极致美颜"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-4.jpg" alt="万达"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-5.jpg" alt="湖南大学"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-6.jpg" alt="湖南电视台"></p>
 
           
         
@@ -603,7 +1049,7 @@
       
         
           
-            <p><img src="http://huzerui.com/blog/img/post/2016-09-08-graduration-poster.jpg" alt="poster"></p>
+            <p><img src="http://qiniu.huzerui.com/image/2016-09-08-graduration-poster.jpg" alt="poster"></p>
 <iframe frameborder="0" style="max-width: 100%;max-height: 498px;" width="640" height="498" src="http://v.qq.com/iframe/player.html?vid=m03268wqppq&tiny=0&auto=0" allowfullscreen></iframe>
 
 
@@ -1180,7 +1626,7 @@
 </ul>
 <h1 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h1><p>W3C官网描述是“font size of the root element”，即rem是相对于根元素。<br>我们只需要在HTML根元素确定一个参考值，css中其他使用rem作为单位的值都基于这个值进行计算。</p>
 <h1 id="rem实现宽度自适应的原理"><a href="#rem实现宽度自适应的原理" class="headerlink" title="rem实现宽度自适应的原理"></a>rem实现宽度自适应的原理</h1><p>通过JS使页面<html>的fontsize会根据屏幕的宽度自动调整。<br>具体是根据屏幕宽度和所设字体大小的比值是固定的，获取屏幕宽度后，按照固定比例缩小后作为rem的单位长度实现自适应。</html></p>
-<p>另外值得说的是即使采用了rem布局方案，<strong>页面上不一定所有的元素都是采用rem作为单位。</strong>，比如下面淘宝的案例。底部固定的导航条采用的是高度使用固定的像素值，宽度flex布局的方案。<br><img src="http://huzerui.com/blog/img/post/2016-06-16-rem-adaptive-layout-1.jpg" alt="淘宝案例"><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">footer&#123;</div><div class="line">	height:114px;</div><div class="line">	</div><div class="line">	/*这三个样式需要补充prefix*/</div><div class="line">    /*通过一起使用box-align和box-pack属性,对div框的子元素进行居中*/</div><div class="line">	display:flex;</div><div class="line">	box-pack: justify;</div><div class="line">	box-align: center;</div><div class="line">    </div><div class="line">	justify-content: space-between; //在flex容器内的各项没有占用主轴所有可用的空间时,元素的各项周围留有空白</div><div class="line">	align-content: center;  //在flex容器内的各项没有占用纵轴上所有可用的空间时，元素居中对齐</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另外值得说的是即使采用了rem布局方案，<strong>页面上不一定所有的元素都是采用rem作为单位。</strong>，比如下面淘宝的案例。底部固定的导航条采用的是高度使用固定的像素值，宽度flex布局的方案。<br><img src="http://qiniu.huzerui.com/image/2016-06-16-rem-adaptive-layout-1.jpg" alt="淘宝案例"><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">footer&#123;</div><div class="line">	height:114px;</div><div class="line">	</div><div class="line">	/*这三个样式需要补充prefix*/</div><div class="line">    /*通过一起使用box-align和box-pack属性,对div框的子元素进行居中*/</div><div class="line">	display:flex;</div><div class="line">	box-pack: justify;</div><div class="line">	box-align: center;</div><div class="line">    </div><div class="line">	justify-content: space-between; //在flex容器内的各项没有占用主轴所有可用的空间时,元素的各项周围留有空白</div><div class="line">	align-content: center;  //在flex容器内的各项没有占用纵轴上所有可用的空间时，元素居中对齐</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h1 id="代码详解"><a href="#代码详解" class="headerlink" title="代码详解"></a>代码详解</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">doc, win</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> docEl = doc.documentElement,</div><div class="line">        resizeEvt = <span class="string">'orientationchange'</span> <span class="keyword">in</span> <span class="built_in">window</span> ? <span class="string">'orientationchange'</span> : <span class="string">'resize'</span>,</div><div class="line">        recalc = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> clientWidth = docEl.clientWidth;</div><div class="line">            <span class="keyword">if</span> (!clientWidth) <span class="keyword">return</span>;</div><div class="line">            <span class="keyword">if</span>(clientWidth&gt;=<span class="number">640</span>)&#123;</div><div class="line">                docEl.style.fontSize = <span class="string">'100px'</span>;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                docEl.style.fontSize = <span class="number">100</span> * (clientWidth / <span class="number">640</span>) + <span class="string">'px'</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!doc.addEventListener) <span class="keyword">return</span>;</div><div class="line">    win.addEventListener(resizeEvt, recalc, <span class="literal">false</span>);</div><div class="line">    doc.addEventListener(<span class="string">'DOMContentLoaded'</span>, recalc, <span class="literal">false</span>);</div><div class="line">&#125;)(<span class="built_in">document</span>, <span class="built_in">window</span>);</div></pre></td></tr></table></figure>
 <p>代码解释：<br>如果页面的宽度超过了640px，那么页面中html的font-size恒为100px，否则，页面中html的font-size的大小为： 100 * (当前页面宽度 / 640) </p>
 <h2 id="为什么是640px？"><a href="#为什么是640px？" class="headerlink" title="为什么是640px？"></a>为什么是640px？</h2><p>三个概念：屏幕分辨率、设备像素、css像素<br>屏幕分辨率和设备像素是物理概念，而CSS像素是WEB编程的概念；屏幕分辨率和设备像素的差别在于设备像素显示密度。<br>当设备屏幕分辨率=100%的时候，浏览器CSS像素尺寸和设备像素相等，而当像素密度(pixel density)为1的时候，屏幕分辨率和设备像素相等。</p>
@@ -1188,7 +1634,7 @@
 <h2 id="为什么要设置html的font-size？"><a href="#为什么要设置html的font-size？" class="headerlink" title="为什么要设置html的font-size？"></a>为什么要设置html的font-size？</h2><p>rem就是根元素（即：html）的字体大小。html中的所有标签样式凡是涉及到尺寸的（如： height,width,padding,margin,font-size。甚至，left,top等）你都可以放心大胆的用rem作单位。<br>如果你把html的font-size设为20px，前面说过，rem就是html的字体大小，那么1rem = 20px。</p>
 <p>浏览器一般都有最小字体限制，比如谷歌浏览器，最小中文字体就是12px，所以实际上没有办法让1rem=1px</p>
 <p>根据上面的js代码，如果页面宽度低于640px,那么页面中html的font-size也会按照（当前页面宽度/640）的比例变化。这样，页面中凡是应用了rem的作尺寸单位的元素都会随着页面变化而等比例缩放了。</p>
-<h2 id="怎么计算出不同分辨率下font-size的值？"><a href="#怎么计算出不同分辨率下font-size的值？" class="headerlink" title="怎么计算出不同分辨率下font-size的值？"></a>怎么计算出不同分辨率下font-size的值？</h2><p>假设页面设计稿是按照640的标准尺寸设计的，（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格。<br><img src="http://huzerui.com/blog/img/post/2016-06-16-rem-adaptive-layout-2.jpg" alt="rem"></p>
+<h2 id="怎么计算出不同分辨率下font-size的值？"><a href="#怎么计算出不同分辨率下font-size的值？" class="headerlink" title="怎么计算出不同分辨率下font-size的值？"></a>怎么计算出不同分辨率下font-size的值？</h2><p>假设页面设计稿是按照640的标准尺寸设计的，（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格。<br><img src="http://qiniu.huzerui.com/image/2016-06-16-rem-adaptive-layout-2.jpg" alt="rem"></p>
 <p>以640的宽度去切的，怎么计算不同宽度下font-site的值，大家看表格上面的数值变化应该能明白。举个例子：384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。</p>
 <p>除了上面通过JS去动态计算根元素的font-size，也可采用媒体查询。一般我们在做web app都会先统计自己网站有哪些主流的屏幕设备，然后去针对那些设备去做media query设置也可以实现适配，例如下面这样(参考)：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">    <span class="attribute">font-size</span>:<span class="number">10px</span></div><div class="line">&#125; </div><div class="line">@<span class="keyword">media</span> screen and (min-width:<span class="number">321px</span>) and (max-width:<span class="number">375px</span>)&#123;</div><div class="line">    <span class="selector-tag">html</span>&#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">11px</span></div><div class="line">    &#125;   </div><div class="line">&#125; </div><div class="line">@<span class="keyword">media</span> screen and (min-width:<span class="number">376px</span>) and (max-width:<span class="number">414px</span>)&#123;</div><div class="line">    <span class="selector-tag">html</span>&#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">12px</span></div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line">@<span class="keyword">media</span> screen and (min-width:<span class="number">415px</span>) and (max-width:<span class="number">639px</span>)&#123;</div><div class="line">    <span class="selector-tag">html</span>&#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">15px</span></div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line">@<span class="keyword">media</span> screen and (min-width:<span class="number">640px</span>) and (max-width:<span class="number">719px</span>)&#123;</div><div class="line">    <span class="selector-tag">html</span>&#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">20px</span></div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line">@<span class="keyword">media</span> screen and (min-width:<span class="number">720px</span>) and (max-width:<span class="number">749px</span>)&#123;</div><div class="line">    <span class="selector-tag">html</span>&#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">22.5px</span></div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line">@<span class="keyword">media</span> screen and (min-width:<span class="number">750px</span>) and (max-width:<span class="number">799px</span>)&#123;</div><div class="line">    <span class="selector-tag">html</span>&#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">23.5px</span></div><div class="line">    &#125;</div><div class="line">&#125; </div><div class="line">@<span class="keyword">media</span> screen and (min-width:<span class="number">800px</span>)&#123;</div><div class="line">    <span class="selector-tag">html</span>&#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">25px</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>使用媒体查询的缺点是不能所有设备全适配，但是用JS是可以实现全适配。具体使用上根据需求来定。</p>
@@ -1320,9 +1766,9 @@
 <p>兼容性：网页字体支持所有现代浏览器，包括IE低版本。详细兼容性可以点击这里。</p>
 <h1 id="IconMoon优势"><a href="#IconMoon优势" class="headerlink" title="IconMoon优势"></a>IconMoon优势</h1><p>提供完整图标解决方案：<br>600+字符，您可以根据自己需求定制（如就选两个）；可以导入其他字体，也进行特别定制（类似fontforge功能）；定制字体提供打包导出功能（省去了字体转换），兼容IE6+，现代浏览器以及各类手机设备，且有demo实例，并对字符进行了HTML转化。</p>
 <h1 id="IconMoon使用方法"><a href="#IconMoon使用方法" class="headerlink" title="IconMoon使用方法"></a>IconMoon使用方法</h1><p>导入或选择图标、对图标进行编辑、生成并输出成zip文件（含字体本身、HTML实例页面和相应的CSS）</p>
-<h2 id="导入或选择图标"><a href="#导入或选择图标" class="headerlink" title="导入或选择图标"></a>导入或选择图标</h2><p>选择内置图标只需在界面单击相应图标，图标高亮即为选中。<br><img src="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-1.jpg" alt="选择"><br>如果你通过AI做好了一个图标想导入，只需点击“Imorticons”按钮，然后选择您想要添加的SVG文件——您也可以一次添加多个文件。这些图标将会出现在“Your Custom Icons”区域中。如果他们是高亮的黄色显示，表示这些图标是你将要创建的图标字体。</p>
-<h2 id="对图标进行编辑"><a href="#对图标进行编辑" class="headerlink" title="对图标进行编辑"></a>对图标进行编辑</h2><p><img src="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-2.gif" alt="编辑"><br>如果你想调整图标的位置、大小或旋转，你可以点击“Edit”按钮。可以使用“Save Copy”按钮来创建图片的变化（例如，一个镜像的衅标）。添加一个有意义的图标标记，因为这将被用来生成类名。</p>
-<h2 id="生成并输出成zip文件"><a href="#生成并输出成zip文件" class="headerlink" title="生成并输出成zip文件"></a>生成并输出成zip文件</h2><p>点击屏幕底部的“Font”按钮开始生成字体。这样你就可以指定哪个图标映射到哪个字符上，例如，如果你要设置一套六个旋转的球，你可以每 这六个球分别指定字符：q、w、e、r、t和y。你也可以根据你自己的爱好选择一个字体的名字。<br><img src="http://huzerui.com/blog/img/post/2016-06-16-how-to-use-iconmoon-3.jpg" alt="输出"><br>单击“Download”下载字体包到你的电脑上。他有一个字文件夹包含了字体本身（woff,eot,ttf格式），以及一个HTML示例页面和相应的CSS。甚至还有一个javascript文件和一个解决方法，如果你需要支持IE或IE7。</p>
+<h2 id="导入或选择图标"><a href="#导入或选择图标" class="headerlink" title="导入或选择图标"></a>导入或选择图标</h2><p>选择内置图标只需在界面单击相应图标，图标高亮即为选中。<br><img src="http://qiniu.huzerui.com/image/2016-06-16-how-to-use-iconmoon-1.jpg" alt="选择"><br>如果你通过AI做好了一个图标想导入，只需点击“Imorticons”按钮，然后选择您想要添加的SVG文件——您也可以一次添加多个文件。这些图标将会出现在“Your Custom Icons”区域中。如果他们是高亮的黄色显示，表示这些图标是你将要创建的图标字体。</p>
+<h2 id="对图标进行编辑"><a href="#对图标进行编辑" class="headerlink" title="对图标进行编辑"></a>对图标进行编辑</h2><p><img src="http://qiniu.huzerui.com/image/2016-06-16-how-to-use-iconmoon-2.gif" alt="编辑"><br>如果你想调整图标的位置、大小或旋转，你可以点击“Edit”按钮。可以使用“Save Copy”按钮来创建图片的变化（例如，一个镜像的衅标）。添加一个有意义的图标标记，因为这将被用来生成类名。</p>
+<h2 id="生成并输出成zip文件"><a href="#生成并输出成zip文件" class="headerlink" title="生成并输出成zip文件"></a>生成并输出成zip文件</h2><p>点击屏幕底部的“Font”按钮开始生成字体。这样你就可以指定哪个图标映射到哪个字符上，例如，如果你要设置一套六个旋转的球，你可以每 这六个球分别指定字符：q、w、e、r、t和y。你也可以根据你自己的爱好选择一个字体的名字。<br><img src="http://qiniu.huzerui.com/image/2016-06-16-how-to-use-iconmoon-3.jpg" alt="输出"><br>单击“Download”下载字体包到你的电脑上。他有一个字文件夹包含了字体本身（woff,eot,ttf格式），以及一个HTML示例页面和相应的CSS。甚至还有一个javascript文件和一个解决方法，如果你需要支持IE或IE7。</p>
 <h1 id="如何使用这些图标字体"><a href="#如何使用这些图标字体" class="headerlink" title="如何使用这些图标字体"></a>如何使用这些图标字体</h1><p>@font-face引入字体库、调用图标字体</p>
 <h2 id="font-face引入字体库"><a href="#font-face引入字体库" class="headerlink" title="@font-face引入字体库"></a>@font-face引入字体库</h2><p>语法：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">   font-family: &lt;YourWebFontName&gt;;</div><div class="line">   src: &lt;source&gt; [&lt;format&gt;][,&lt;source&gt; [&lt;format&gt;]]*;</div><div class="line">   [font-weight: &lt;weight&gt;];</div><div class="line">   [font-style: &lt;style&gt;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>兼容多种浏览器示例；如果只需兼容现代浏览器，可以按需删除src一些代码。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">'icomoon'</span>;</div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'fonts/icomoon.eot?1h4iu7'</span>); <span class="comment">/* IE9 Compat Modes */</span></div><div class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'fonts/icomoon.eot?1h4iu7#iefix'</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>),<span class="comment">/* IE6-IE8 */</span></div><div class="line">         <span class="built_in">url</span>(<span class="string">'fonts/icomoon.ttf?1h4iu7'</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>), <span class="comment">/* Modern Browsers */</span></div><div class="line">         <span class="built_in">url</span>(<span class="string">'fonts/icomoon.woff?1h4iu7'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>), <span class="comment">/* Safari, Android, iOS */</span></div><div class="line">         <span class="built_in">url</span>(<span class="string">'fonts/icomoon.svg?1h4iu7#icomoon'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>);  <span class="comment">/* Legacy iOS */</span></div><div class="line">    <span class="attribute">font-weight</span>: normal;</div><div class="line">    <span class="attribute">font-style</span>: normal;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1431,7 +1877,7 @@
       
         
           
-            <p>JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：<br><img src="http://huzerui.com/blog/img/post/2016-06-15-js-get-dom-position-and-size-1.jpg" alt="大小、位置属性"><br>这些属性的笼统特征：<br>client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分<br>offset：元素内容+内边距+边框  不包括外边距和滚动条部分<br>scroll：与元素的滚动相关</p>
+            <p>JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：<br><img src="http://qiniu.huzerui.com/image/2016-06-15-js-get-dom-position-and-size-1.jpg" alt="大小、位置属性"><br>这些属性的笼统特征：<br>client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分<br>offset：元素内容+内边距+边框  不包括外边距和滚动条部分<br>scroll：与元素的滚动相关</p>
 <h1 id="尺寸大小"><a href="#尺寸大小" class="headerlink" title="尺寸大小"></a>尺寸大小</h1><p>一张网页的全部面积，就是它的大小。通常情况下，网页的大小由内容和CSS样式表决定。<br>视口是指在浏览器窗口中看到的那部分网页面积。</p>
 <h2 id="获取网页的大小（都不包括外边距、滚动条）"><a href="#获取网页的大小（都不包括外边距、滚动条）" class="headerlink" title="获取网页的大小（都不包括外边距、滚动条）"></a>获取网页的大小（都不包括外边距、滚动条）</h2><p><strong>宽（值随窗口大小发生改变）：</strong> document.body.clientWidth（不包括border，只包括内容+padding）<br>或者 document.body.offsetWidth（包括border）<br>或者 document.body.scrollWidth<br><strong>高(值固定)：</strong> document.body.clientHeigth（不包括border，只包括内容+padding）<br>或者 document.body.offsetHeight（包括border）<br>或者 document.body.scrollHeight<br><strong>说明：</strong>通常使用document.body.scrollWidth和document.body.scrollHeight</p>
 <h2 id="获取屏幕相关属性"><a href="#获取屏幕相关属性" class="headerlink" title="获取屏幕相关属性"></a>获取屏幕相关属性</h2><p>使用window.screen对象的属性。这些属性有个特点，不会随着窗口的伸缩而改变数值<br><strong>屏幕分辨率的高：</strong>window.screen.height<br><strong>屏幕分辨率的宽：</strong>window.screen.width<br><strong>屏幕可用工作区高度：</strong>window.screen.availHeight<br><strong>屏幕可用工作区宽度：</strong>window.screen.availWidth=屏幕分辨率的宽</p>
@@ -1446,136 +1892,6 @@
 <h2 id="时下元素大小"><a href="#时下元素大小" class="headerlink" title="时下元素大小"></a>时下元素大小</h2><p>当窗口大小改变，宽度值改变，高度值固定<br>以下以body节点为例，可替换成DOM元素调用方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>.body).width()　　　　　　<span class="comment">//浏览器时下窗口文档body的宽度   </span></div><div class="line">$(<span class="built_in">document</span>.body).height()　　　　　 <span class="comment">//浏览器时下窗口文档body的高度   </span></div><div class="line">$(<span class="built_in">document</span>.body).outerWidth(<span class="literal">true</span>)　 <span class="comment">//浏览器时下窗口文档body的总宽度(包括padding、border) </span></div><div class="line">$(<span class="built_in">document</span>.body).outerHeight(<span class="literal">true</span>)　<span class="comment">//浏览器时下窗口文档body的总高度(包括padding、border)</span></div></pre></td></tr></table></figure></p>
 <h2 id="时下可视区大小"><a href="#时下可视区大小" class="headerlink" title="时下可视区大小"></a>时下可视区大小</h2><p>当窗口大小改变，宽度、高度皆改变<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">window</span>).height() 　<span class="comment">//浏览器时下窗口可视区域高度    </span></div><div class="line">$(<span class="built_in">window</span>).width() 　 <span class="comment">//浏览器时下窗口可视区域宽度</span></div></pre></td></tr></table></figure></p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/06/15/js-call-and-apply/" itemprop="url">
-                  javascript中的call()和apply()方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-15T09:29:53+08:00" content="2016-06-15">
-              2016-06-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2016/06/15/js-call-and-apply/" class="leancloud_visitors" data-flag-title="javascript中的call()和apply()方法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我们知道函数调用有四种方式：<strong>直接调用、作为对象的方法调用、构造函数调用、间接调用</strong>。<br>而<strong>call()和apply()就是间接调用函数的方法</strong>。这两个方法都允许显示的指示调用上下文(this)的值，也就是说，任何函数可以作为任何对象的方法来调用，哪怕这个函数不是那个对象的方法。</p>
-<p>假定有个函数f(),要想以对象o的方法来调用，可以这样使用call()和apply()<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f.call(o);</div><div class="line">f.apply(o);</div></pre></td></tr></table></figure></p>
-<p>每行代码的功能类似于(假设对象o预先不存在名为m的属性)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">o.m=f;       <span class="comment">//将f存储为临时方法</span></div><div class="line">o.m();       <span class="comment">//调用</span></div><div class="line"><span class="keyword">delete</span> o.m;  <span class="comment">//删除临时方法</span></div></pre></td></tr></table></figure></p>
-<h2 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h2><p>语法：<strong>call(thisObj, arg1, arg2 …argN)</strong><br>定义：<strong>调用一个对象的一个方法，以另一个对象替换当前对象</strong>。<br>说明：<br>1、call 方法可以用来代替另一个对象调用一个方法。<br>2、call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。<br>3、如果没有提供 thisObj 参数（或者传入null、undefined），那么 Global 对象被用作 thisObj；ES5严格模式则将默认为this的值。<br>4、arg1、arg2..是待传入调用函数的实参，以逗号分隔。</p>
-<h2 id="apply"><a href="#apply" class="headerlink" title="apply()"></a>apply()</h2><p>语法：<strong>apply(thisObj,argArray)</strong><br>定义：<strong>应用某一对象的一个方法，用另一个对象替换当前对象</strong>。<br>说明：<br>1、如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。<br>2、如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。<br>3、argArray是待传入调用函数的参数组成的数组</p>
-<h3 id="关于apply-的奇淫巧计"><a href="#关于apply-的奇淫巧计" class="headerlink" title="关于apply()的奇淫巧计"></a>关于apply()的奇淫巧计</h3><h4 id="apply-用来求数组中最大元素"><a href="#apply-用来求数组中最大元素" class="headerlink" title="apply()用来求数组中最大元素"></a>apply()用来求数组中最大元素</h4><p>由于Math.max()只能传入逗号分隔的参数，而apply()的第二个参数恰好可以传入数组或类数组元素。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> bigest=<span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, array_of_numbers)</div></pre></td></tr></table></figure></p>
-<h4 id="Array-prototype-push-可以实现两个数组合并"><a href="#Array-prototype-push-可以实现两个数组合并" class="headerlink" title="Array.prototype.push 可以实现两个数组合并"></a>Array.prototype.push 可以实现两个数组合并</h4><p>push方法没有提供push一个数组,但是它提供了push(param1,param,…paramN) 所以同样也可以通过apply来使用数组作为参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arr1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr2=[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line"><span class="built_in">Array</span>.prototype.push.apply(arr1,arr2);</div></pre></td></tr></table></figure></p>
-<h2 id="常用实例"><a href="#常用实例" class="headerlink" title="常用实例"></a>常用实例</h2><h3 id="将某个对象的方法临时借给另一个对象调用"><a href="#将某个对象的方法临时借给另一个对象调用" class="headerlink" title="将某个对象的方法临时借给另一个对象调用"></a>将某个对象的方法临时借给另一个对象调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">    <span class="keyword">this</span>.name = <span class="string">"Animal"</span>;    </div><div class="line">    <span class="keyword">this</span>.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">        alert(<span class="keyword">this</span>.name);    </div><div class="line">    &#125;    </div><div class="line">&#125;    </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>)</span>&#123;    </div><div class="line">    <span class="keyword">this</span>.name = <span class="string">"Cat"</span>;    </div><div class="line">&#125;    </div><div class="line"><span class="keyword">var</span> animal = <span class="keyword">new</span> Animal();    </div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat();    </div><div class="line"><span class="comment">//通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。    </span></div><div class="line"><span class="comment">//输入结果为"Cat"    </span></div><div class="line">animal.showName.call(cat,<span class="string">","</span>);    </div><div class="line"><span class="comment">//animal.showName.apply(cat,[]);</span></div></pre></td></tr></table></figure>
-<h3 id="实现继承"><a href="#实现继承" class="headerlink" title="实现继承"></a>实现继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>)</span>&#123;      </div><div class="line">    <span class="keyword">this</span>.name = name;      </div><div class="line">    <span class="keyword">this</span>.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;      </div><div class="line">        alert(<span class="keyword">this</span>.name);      </div><div class="line">    &#125;      </div><div class="line">&#125;      </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>)</span>&#123;    </div><div class="line">    Animal.call(<span class="keyword">this</span>, name);      <span class="comment">//将Anima函数临时作为this的方法进行调用，并且传入Cat方法的参数name</span></div><div class="line">&#125;           </div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat(<span class="string">"Black Cat"</span>);   <span class="comment">//使用new调用Cat函数之后，this指向实例出来的对象cat；如果不使用new调用，则this指向全局对象。</span></div><div class="line">cat.showName();       <span class="comment">//"Black Cat"</span></div></pre></td></tr></table></figure>
-<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Class1</span>(<span class="params"></span>)  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">this</span>.showSub = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)  </span></div><div class="line">    &#123;  </div><div class="line">        alert(a-b);  </div><div class="line">    &#125;  </div><div class="line">&#125;;   </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Class2</span>(<span class="params"></span>)  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">this</span>.showAdd = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)  </span></div><div class="line">    &#123;  </div><div class="line">        alert(a+b);  </div><div class="line">    &#125;  </div><div class="line">&#125;;   </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Class3</span>(<span class="params"></span>)  </span></div><div class="line">&#123;  </div><div class="line">    Class1.call(<span class="keyword">this</span>);  </div><div class="line">    Class2.call(<span class="keyword">this</span>);  </div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> Class3();   <span class="comment">//此时obj就多了showSub和showAdd的方法</span></div></pre></td></tr></table></figure>
           
         
       
@@ -1650,7 +1966,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
