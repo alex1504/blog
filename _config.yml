@@ -111,5 +111,5 @@ baidu_analytics: 1e11d2f2589bccbdb30499db84c40bfe
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://__GITHUB_TOKEN__@github.com/user/blog.git
+  repo: https://Travis_Token@github.com/user/blog.git
   branch: gh-pages
