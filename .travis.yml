@@ -23,7 +23,7 @@ after_script:
     - git remote add hexo "github.com/alex1504/blog.git"
     - git add ./
     - git commit -m "Travis CI Auto Builder"
-    - git push hexo --force --quiet "https://${Travis_Token}@${GH_REF}" gh-pages
+    - git push hexo gh-pages --force --quiet "https://${Travis_Token}@${GH_REF}" 
 
 branches:
     only:
