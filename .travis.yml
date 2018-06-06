@@ -9,7 +9,7 @@ install: npm install
 before_script:
 - git config --global user.name "alex1504"
 - git config --global user.email "alex1504@163.com"
-- sed -i "s/__GITHUB_TOKEN__/${__GITHUB_TOKEN__}/" _config.yml
+- sed -i "s/Travis_Token/${Travis_Token}/" _config.yml
 
 script:
     - hexo clean # 清除
