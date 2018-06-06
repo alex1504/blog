@@ -2,11 +2,16 @@ language: node_js  #设置语言
 
 node_js: stable  #设置相应的版本
 
+cache:
+    apt: true
+    directories:
+        - node_modules # 缓存不经常更改的内容
+
 install:
   - npm install  #安装hexo及插件
 
 script:
-  - hexo cl  #清除
+  - hexo clean  #清除
   - hexo g  #生成
 
 after_script:
@@ -14,7 +19,7 @@ after_script:
   - git init
   - git config --global user.name "alex1504"  #修改name
   - git config --global user.email "alex1504@163.com"  #修改email
-  - git add .
+  - git add ./
   - git commit -m "update"
   - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:gh-pages  #GH_TOKEN是在Travis中配置token的名称
 
