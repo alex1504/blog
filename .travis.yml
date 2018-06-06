@@ -1,34 +1,17 @@
 language: node_js # 设置语言
-
 node_js: stable # 设置相应版本
+branches:
+  only:
+  - master
 
-cache:
-    apt: true
-    directories:
-        - node_modules # 缓存不经常更改的内容
+install: npm install
 
-before_install:
-    - npm install hexo-cli -g
-
-install:
-    - npm install # 安装hexo及插件
+before_script:
+- git config --global user.name "alex1504"
+- git config --global user.email "alex1504@163.com"
+- sed -i "s/__GITHUB_TOKEN__/${__GITHUB_TOKEN__}/" _config.yml
 
 script:
     - hexo clean # 清除
     - hexo g # 生成
-
-after_script:
-    - cd ./public
-    - git init
-    - git remote add hexo "github.com/alex1504/blog.git"
-    - git add ./
-    - git commit -m "Travis CI Auto Builder"
-    - git push hexo gh-pages --force --quiet "https://${Travis_Token}@${GH_REF}" 
-
-branches:
-    only:
-        - master # 只监测master分支
-
-env:
-    global:
-        - GH_REF: github.com/alex1504/blog.git #设置GH_REF，注意更改成自己的仓库地址
+    - hexo d # 部署
