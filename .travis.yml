@@ -20,7 +20,7 @@ script:
 after_script:
     - git clone https://${GH_REF} .deploy_git
     - cd .deploy_git
-    - git checkout gh-pages
+    - git checkout master
     - cd ../
     - mv .deploy_git/.git/ ./public/
     - cd ./public
@@ -28,11 +28,11 @@ after_script:
     - git config user.email "alex1504@163.com"
     - git add .
     - git commit -m "Travis CI Auto Builder"
-    - git push --force --quiet "https://${Travis_Token}@${GH_REF}" gh-pages:gh-pages
+    - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master
 
 branches:
     only:
-        - master # 只监测master分支
+        - source # 只监测master分支
 
 env:
     global:
