@@ -4,6 +4,7 @@ date: 2018-05-01 15:12:19
 categories: 前端
 tags: [移动端,H5,javascript]
 ---
+
 ![H5多页][https://segmentfault.com/img/remote/1460000015405042?w=800&h=600]
 两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸取前辈的经验分享，感谢热衷于分享的开发者为前端社区带来欣欣向上的生命力。本文结合先前写的文章和开发经验分享给大家，希望也能帮助刚步入移动端开发的新人解惑。以下会以其中一个以**公积金页面**开发项目作为例子，介绍移动端的一些**常见问题**和使**用Vuejs作为lib进行多页开发**的经验。
 
@@ -364,7 +365,7 @@ tunnels:
 
 > - 邮箱：me@huzerui.com
 > - 知乎：[晚风轻拂](https://www.zhihu.com/people/huzerui/activities)
-> - [掘金首发](https://juejin.im/post/5b03b2ee5188254284525e87)
+> - [掘金](https://juejin.im/post/5b03b2ee5188254284525e87)
 
 
   [1]: //img.mukewang.com/5b33381a0001c12808000600.png
