@@ -363,9 +363,8 @@ tunnels:
 感谢阅读，欢迎任何形式的技术提问和交流！
 
 > - 邮箱：me@huzerui.com
-> - 主页：huzerui.com
 > - 知乎：[晚风轻拂](https://www.zhihu.com/people/huzerui/activities)
-> - 原文：[掘金](https://juejin.im/post/5b03b2ee5188254284525e87)
+> - [掘金首发](https://juejin.im/post/5b03b2ee5188254284525e87)
 
 
   [1]: //img.mukewang.com/5b33381a0001c12808000600.png
