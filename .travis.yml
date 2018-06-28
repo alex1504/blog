@@ -1,6 +1,6 @@
 language: node_js  #设置语言
 
-node_js: stable  #设置相应的版本
+node_js: stable    #设置相应的版本
 
 cache:
     apt: true
@@ -12,20 +12,20 @@ install:
 
 script:
   - hexo clean  #清除
-  - hexo g  #生成
+  - hexo g      #生成
 
 after_script:
   - cd ./public
   - git init
-  - git config --global user.name "alex1504"  #修改name
+  - git config --global user.name "alex1504"           #修改name
   - git config --global user.email "alex1504@163.com"  #修改email
   - git add ./
   - git commit -m "update"
-  - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:gh-pages  #GH_TOKEN是在Travis中配置token的名称
+  - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:gh-pages  #Travis_Token是在Travis中配置token的名称
 
 branches:
   only:
     - master  #只监测master分支，master是我的分支的名称，可根据自己情况设置
 env:
   global:
-    - GH_REF: github.com/alex1504/blog.git  #设置GH_REF，注意更改yourname
+    - GH_REF: github.com/alex1504/blog.git  #设置GH_REF，仓库地址
