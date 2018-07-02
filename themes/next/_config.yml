@@ -123,11 +123,12 @@ font:
 social:
   #LinkLabel: Link
   GitHub: https://github.com/alex1504
-  简书: http://www.jianshu.com/users/e2a1d411595b/latest_articles
-  微博: https://weibo.com/alex1504
   知乎: https://www.zhihu.com/people/huzerui/activities
-  Lofter: http://huzerui.lofter.com/
+  掘金: https://juejin.im/user/58cb7ee5ac502e00588d9d40/posts
+  简书: http://www.jianshu.com/users/e2a1d411595b/latest_articles
   Segmentfault: https://segmentfault.com/u/alex1504
+  微博: https://weibo.com/alex1504
+  Lofter: http://huzerui.lofter.com/
   微信公众号: /blog/wechat-public
 
 
