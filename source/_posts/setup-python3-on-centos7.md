@@ -142,4 +142,4 @@ source my_env/bin/activate
 (my_env) [root@localhost myproject]# deactivate
 ```
 
-> 原文链接：https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7
+> 参考链接：https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7
