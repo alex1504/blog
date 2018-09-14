@@ -29,7 +29,8 @@ tags: [js,Vuejs]
 可复用组件，高内聚、低耦合。
 
 那么，什么构成了组件呢。以浏览器的原生组件 video 为例，分析一下组件的组成部分。
-```
+
+```html
 <video
   src="example.mp4"
   width="320"
@@ -49,7 +50,7 @@ tags: [js,Vuejs]
 - Slots 允许外部环境将额外的内容组合在组件中。
 - 使用 vue 对 video 组件做拓展，构造出一个支持播放列表的组件 myVideo：
 
-```
+```html
 <my-video
   :playlist="playlist"
   width="320"
@@ -103,7 +104,7 @@ myVideo 组件有着清晰的接口，接收播放列表、播放器宽高等状
 ## 命名空间
 可复用组件除了定义一个清晰的公开接口外，还需要有命名空间。命名空间可以避免与浏览器保留标签和其他组件的冲突。特别是当项目引用外部 UI 组件或组件迁移到其他项目时，命名空间可以避免很多命名冲突的问题。
 
-```
+```html
 <xl-button></xl-button>
 <xl-table></xl-table>
 <xl-dialog></xl-dialog>
@@ -111,7 +112,7 @@ myVideo 组件有着清晰的接口，接收播放列表、播放器宽高等状
 ```
 业务组件也可以有命令空间，跟通用组件区分开。这里用 st (section) 来代表业务组件。
 
-```
+```html
 <st-recommend></st-recommend>
 <st-qq-movie></st-qq-movie>
 <st-sohu-series></st-sohu-series>
@@ -120,7 +121,7 @@ myVideo 组件有着清晰的接口，接收播放列表、播放器宽高等状
 ## 上下文无关
 还是上面那句话，可复用组件应尽量减少对外部条件的依赖。没有特别需求且单个组件不至于过重的的前提下，不要把一个有独立功能的组件拆分成若干个小组件。
 
-```
+```html
 <table-wrapper>         
   <table-header slot="header" :headers="exampleHeader"></table-header>          
   <table-body slot="body" :body-content="exampleContents"></table-body>       
@@ -129,7 +130,7 @@ myVideo 组件有着清晰的接口，接收播放列表、播放器宽高等状
 
 TableHeader 组件和 TableBody 组件依赖当前的上下文，即 TableWrapper 组件嵌套的环境下。你可以有更好的解决办法：
 
-```
+```html
 <xl-table :headers="exampleHeader" :body-content="exampleContents"></xl-table>
 ```
 
@@ -139,7 +140,7 @@ TableHeader 组件和 TableBody 组件依赖当前的上下文，即 TableWrappe
 
 定义组件接口时，尽量不要将整个对象作为一个 prop 传进来。
 
-```
+```html
 <!-- 反例 -->
 <card :item="{ title: item.name, description: item.desc, poster: item.img }></card>
 ```
@@ -150,7 +151,7 @@ TableHeader 组件和 TableBody 组件依赖当前的上下文，即 TableWrappe
 - props 校验方便
 - 当服务端返回的对象中的 key 名称与组件接口不一样时，不需要重新构造一个对象
 
-```
+```html
 <card
   :title="item.name"
   :description="item.desc"
@@ -165,10 +166,10 @@ TableHeader 组件和 TableBody 组件依赖当前的上下文，即 TableWrappe
 
 例如，模态框的显示和隐藏，父组件可以初始化模态框的显示，模态框组件内部的关闭按钮可以让其隐藏。一个好的办法是，使用自定义事件改变父组件中的值：
 
-```
+```html
 <modal :show="show" @showchange="show = argument[0]"></modal>
 ```
-```
+```html
 <!-- Modal.vue -->
 
 <template>
@@ -197,13 +198,13 @@ TableHeader 组件和 TableBody 组件依赖当前的上下文，即 TableWrappe
 
 特别地，当状态名称为 value，事件名称为 input 时，可以使用 v-model 指令语法糖：
 
-```
+```html
 <modal :value="show" @input="show = argument[0]"></modal>
 ```
 
 等价于
 
-```
+```html
 <modal v-model="show"></model>
 ```
 
@@ -214,7 +215,7 @@ TableHeader 组件和 TableBody 组件依赖当前的上下文，即 TableWrappe
 
 **注意：**由于每个组件的 input 事件只能用来对一个数据进行双向绑定，所以当存在多个需要向上同步的数据时，请不要使用 v-model，请使用多个自定义事件，并在父组件中同步新的值。
 
-```
+```html
 <modal
   :show="show" @showchange="show = argument[0]"
   :content="content" @contentchange="content = argument[0]">
@@ -224,7 +225,7 @@ TableHeader 组件和 TableBody 组件依赖当前的上下文，即 TableWrappe
 ## 使用自定义 watcher 优化 DOM 操作
 在开发中，有些逻辑无法使用数据绑定，无法避免需要对 DOM 的操作。例如，视频的播放需要同步 Video 对象的播放操作及组件内的播放状态。可以使用自定义 watcher 来优化 DOM 的操作。
 
-```
+```html
 <!-- MyVideo.vue -->
 
 <template>
