@@ -122,13 +122,9 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
   #LinkLabel: Link
+  掘金: https://juejin.im/user/58cb7ee5ac502e00588d9d40/posts
   GitHub: https://github.com/alex1504
   知乎: https://www.zhihu.com/people/huzerui/activities
-  掘金: https://juejin.im/user/58cb7ee5ac502e00588d9d40/posts
-  简书: http://www.jianshu.com/users/e2a1d411595b/latest_articles
-  Segmentfault: https://segmentfault.com/u/alex1504
-  Lofter: http://huzerui.lofter.com/
-
 
 # Social Links Icons
 # Icon Mapping:
@@ -420,8 +416,8 @@ images: images
 version: 5.0.2
 
 # 畅言评论
-changyan_appid: cytgoM6C4
-changyan_appkey: 3e9f363226ab272321da45201977e436
+# changyan_appid: cytgoM6C4
+# changyan_appkey: 3e9f363226ab272321da45201977e436
 
 
 

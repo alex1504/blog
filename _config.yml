@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 前端攻城狮
-subtitle: A passionate frontend developer
-description: 按照自己的喜好去做，得不到别人的赞赏也没关系
-author: hzr
+title: TeaCoder
+subtitle: 生命不息，代码不止
+description: 写精致代码，过简单生活
+author: TeaCoder
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.huzerui.com
-root: /blog/
+url: http://blog.huzerui.com
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
