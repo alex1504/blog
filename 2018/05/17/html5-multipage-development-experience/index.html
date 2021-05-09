@@ -1,0 +1,892 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="description" content="前端开发博客，专注前端技术/资源分享，记载关于电影/旅行/生活等轶事，记录经验总结/人生思考；借笔墨纸砚，成铭悦之轩，伴余生之梦。">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5zegIGyHLF9Qs-4RGG3VU8CKUML9omsUu7OOsQRJhbY" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,移动端,H5," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TeaCoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸取前辈的经验分享，感谢热衷于分享的开发者为前端社区带来欣欣向上的生命力。本文结合先前写的文章和开发经验分享给大家，希望也能帮助刚步入移动端开发的新人解惑。以下会以其中一个以公积金页面开发项目作为例子，介绍移动端的一些常见问题和使用Vuejs作为lib进行多页开发的经验。 移动端自适应布局在项目中移动端最常用的自适应布局方案就">
+<meta name="keywords" content="javascript,移动端,H5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端H5多页开发拍门砖经验">
+<meta property="og:url" content="http://blog.huzerui.com/2018/05/17/html5-multipage-development-experience/index.html">
+<meta property="og:site_name" content="TeaCoder">
+<meta property="og:description" content="两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸取前辈的经验分享，感谢热衷于分享的开发者为前端社区带来欣欣向上的生命力。本文结合先前写的文章和开发经验分享给大家，希望也能帮助刚步入移动端开发的新人解惑。以下会以其中一个以公积金页面开发项目作为例子，介绍移动端的一些常见问题和使用Vuejs作为lib进行多页开发的经验。 移动端自适应布局在项目中移动端最常用的自适应布局方案就">
+<meta property="og:image" content="http://qiniu.huzerui.com/image/2018-05-17-mobile-h5-experience-poster.png">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/22/1638672eb1471718?w=400&h=150&f=gif&s=341881">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/22/1638672eb14e93b0?w=467&h=243&f=gif&s=260047">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/22/16386a027d874cad?w=1280&h=1108&f=png&s=405886">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/22/163869f629a7588e?w=640&h=1137&f=jpeg&s=200233">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/22/163869f94a367bea?w=640&h=1137&f=jpeg&s=206900">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/22/1638698584d70582?w=1692&h=685&f=png&s=57366">
+<meta property="og:updated_time" content="2019-12-25T14:53:28.889Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端H5多页开发拍门砖经验">
+<meta name="twitter:description" content="两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸取前辈的经验分享，感谢热衷于分享的开发者为前端社区带来欣欣向上的生命力。本文结合先前写的文章和开发经验分享给大家，希望也能帮助刚步入移动端开发的新人解惑。以下会以其中一个以公积金页面开发项目作为例子，介绍移动端的一些常见问题和使用Vuejs作为lib进行多页开发的经验。 移动端自适应布局在项目中移动端最常用的自适应布局方案就">
+<meta name="twitter:image" content="http://qiniu.huzerui.com/image/2018-05-17-mobile-h5-experience-poster.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.huzerui.com/2018/05/17/html5-multipage-development-experience/"/>
+
+
+  <title> 移动端H5多页开发拍门砖经验 | TeaCoder </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85595036-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?1e11d2f2589bccbdb30499db84c40bfe";
+      hm.defer = "1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58945240";
+      hm.defer = '1'
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TeaCoder</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">生命不息，代码不止</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动端H5多页开发拍门砖经验
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-17T19:12:19+08:00" content="2018-05-17">
+              2018-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/05/17/html5-multipage-development-experience/" class="leancloud_visitors" data-flag-title="移动端H5多页开发拍门砖经验">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://qiniu.huzerui.com/image/2018-05-17-mobile-h5-experience-poster.png" alt="H5多页"><br>两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸取前辈的经验分享，感谢热衷于分享的开发者为前端社区带来欣欣向上的生命力。本文结合先前写的文章和开发经验分享给大家，希望也能帮助刚步入移动端开发的新人解惑。以下会以其中一个以<strong>公积金页面</strong>开发项目作为例子，介绍移动端的一些<strong>常见问题</strong>和使<strong>用Vuejs作为lib进行多页开发</strong>的经验。</p>
+<h1 id="移动端自适应布局"><a href="#移动端自适应布局" class="headerlink" title="移动端自适应布局"></a>移动端自适应布局</h1><p>在项目中移动端最常用的自适应布局方案就是flexbox结合rem。规范的分栏式使用flexbox，其他大部分不规则视图使用rem，对于rem最常用的方案就是淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>。</p>
+<p>根据设备设备像素比设置scale的值（scale = 1 / deviceRatio），这样可以<strong>保持视口device-width始终等于设备物理像素</strong>，接着根据屏幕大小动态计算根字体大小，具体是将屏幕划分为100等分，每份为a，1rem就等于10a。</p>
+<h2 id="标注"><a href="#标注" class="headerlink" title="标注"></a>标注</h2><p>通常我们会拿到750宽的设计稿，这是基于iPhone6的物理分辨率。有的设计师也许会偷懒，设计图上面没有任何的标注，如果我们边开发边量尺寸，无疑效率是比较低的。要么让设计师标注上，要么自食其力。</p>
+<p>如果设计师实在没有时间，推荐使用<a href="http://www.getmarkman.com/" target="_blank" rel="external">markman</a>进行标注，免费版阉割了一些功能（比如无法保存本地）不过基本满足了我们的需求了。</p>
+<p>后来我发现比markman更好的标注工具<a href="http://www.fancynode.com.cn/pxcook" target="_blank" rel="external">PxCook</a>，该工具可以显示<strong>PSD设计图</strong>中的图层的样式代码，对于前端来说简直方便极了。</p>
+<p>标注完成后开始写我们的样式，使用了淘宝的<strong>lib-flexible</strong>库之后，我们的根字体基准值就为750/100*10 = 75px。此时我们从图中若某个标注为100px，那么css中就应该设置为100/75 = 1.333333rem。所以为了提高开发效率，可以使用px转化为rem的插件。下面是sublimeText和Vscode的转换插件：</p>
+<h2 id="px转rem插件"><a href="#px转rem插件" class="headerlink" title="px转rem插件"></a>px转rem插件</h2><ul>
+<li><p>sublimeText插件：<a href="https://packagecontrol.io/packages/rem-unit" target="_blank" rel="external">rem-unit</a><br><img src="https://user-gold-cdn.xitu.io/2018/5/22/1638672eb1471718?w=400&amp;h=150&amp;f=gif&amp;s=341881" alt="rem-unit"></p>
+</li>
+<li><p>Vscode插件： <a href="https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem" target="_blank" rel="external">cssrem</a><br><img src="https://user-gold-cdn.xitu.io/2018/5/22/1638672eb14e93b0?w=467&amp;h=243&amp;f=gif&amp;s=260047" alt="pxtorem"></p>
+</li>
+</ul>
+<h2 id="使用rem的几点总结"><a href="#使用rem的几点总结" class="headerlink" title="使用rem的几点总结"></a>使用rem的几点总结</h2><ul>
+<li>在所有的单位中，font-size推荐使用px，然后结合媒体查询进行重要节点的控制，这样可以满足<strong>突出或者弱化</strong>某些字体的需求，而非整体调整。</li>
+<li><strong>众向的单位可以全部使用px，横向的使用rem</strong>，因为移动设备宽度有限，而高度可以无限向下滑动。但这也有<strong>特例</strong>，比如对于一些活动注册页面，需要在一屏幕内完全显示，没有下拉，这时候所有众向或者横向都应该使用rem作为单位。如图：</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/22/16386a027d874cad?w=1280&amp;h=1108&amp;f=png&amp;s=405886" alt="shili"></p>
+<p>左图的表单高度单位由于下边空距较大，使用px在不同屏幕显示更加；而右边的活动注册页由于不能出现滚动条，所有的众向高度、margin、padding都应该使用rem。</p>
+<ul>
+<li><strong>border、box-shadow、border-radius</strong>等一些效果应该使用px作为单位。</li>
+</ul>
+<h2 id="手机状态栏和浏览器导航栏的影响"><a href="#手机状态栏和浏览器导航栏的影响" class="headerlink" title="手机状态栏和浏览器导航栏的影响"></a>手机状态栏和浏览器导航栏的影响</h2><p>之前发布的文章中，有个SF的前端小伙伴提出的问题：<br>文中作者有重点强调布局全部铺满，和下方与很多空隙的处理方案是不同的，在工作中我遇到这种情况，设计师的设计稿宽度为750×1334,但实际的展示高度并没有那么多，因为上方有导航栏还包括手机自己的状态栏展示，所以整体高度就达不到750，但是设计师设计稿是严格按照750进行设计的，这种情况下使用rem，严格按照设计师尺寸进行还原就会出现屏幕出现滚动条情况，请问针对这种情况您是怎么处理的？是从设计稿上规范，还是从开发上有相应的措施</p>
+<p>依旧以我的分享界面为例：<br>展示高度不同通常发生在微信及浏览器端，因为前者没有地址栏和工具栏，这样显示高度通常会和设计师设计的视图吻合。那如果按照纯padding，margin即使全部使用rem，在浏览器端依旧会超出一屏高度，对于分享页面这种不是我们想要看到的。这时候就要做出取舍，我对<strong>主体区域采用绝对定位</strong>，这样上面间隙虽然小，不过仍能保持在一个屏幕高度显示。若采用margin padding在设置，必然已出现滚动条。当然这样的前提是依赖设计图的，通常设计师会为了空间感有保留一定的间隙，也不会将主要对象高度设的过高，否则太撑满也不好看，开发上如果设计图宽高没有在一定界限之内，超出也无法避免，不过我们这种分享界面通常是通过微信分享好友，通过浏览器打开的视图效果出现滚动条其实也不怎么影响不是么？<br>下面附上微信端和浏览器端的效果图：</p>
+<p>微信端：<img src="https://user-gold-cdn.xitu.io/2018/5/22/163869f629a7588e?w=640&amp;h=1137&amp;f=jpeg&amp;s=200233" alt="微信端"></p>
+<p>浏览器端： <img src="https://user-gold-cdn.xitu.io/2018/5/22/163869f94a367bea?w=640&amp;h=1137&amp;f=jpeg&amp;s=206900" alt="浏览器端"></p>
+<h1 id="Vuejs作为lib开发移动端页面"><a href="#Vuejs作为lib开发移动端页面" class="headerlink" title="Vuejs作为lib开发移动端页面"></a>Vuejs作为lib开发移动端页面</h1><h2 id="为何不使用SPA模式"><a href="#为何不使用SPA模式" class="headerlink" title="为何不使用SPA模式"></a>为何不使用SPA模式</h2><p>一般移动端使用vue是为了数据交互频繁而且快速开发的页面，为什么不使用单页SPA开发模式，原因大概几点。</p>
+<ul>
+<li>为了快速开发，快速上线</li>
+<li>项目其他成员不熟悉SPA，不熟悉webpack</li>
+<li>参与项目时项目已使用多页开发，短时间无法重构</li>
+</ul>
+<p>抛开使用单页的架构，开发多页应用时，一个页面交互逻辑与一个Vue实例对应。</p>
+<h2 id="基于接口返回数据的属性注入"><a href="#基于接口返回数据的属性注入" class="headerlink" title="基于接口返回数据的属性注入"></a>基于接口返回数据的属性注入</h2><p>“基于接口返回数据的属性注入”是个人创建的话术，抛开此概念，先说一下表单数据的绑定方式。</p>
+<h3 id="表单的数据绑定"><a href="#表单的数据绑定" class="headerlink" title="表单的数据绑定"></a>表单的数据绑定</h3><p>一个重要的点是<strong>有几份表单就分开几个表单对象进行数据绑定</strong>。</p>
+<p>以上图公积金查询为例，由于不同城市会有不同的查询要素，可能登陆方式只有一种，也可能有几种。比如上图有三种登陆方式，在使用vue布局时，有两种方案。</p>
+<ul>
+<li>1、 只建立一个表单用于数据绑定，点击按钮触发判断</li>
+<li>2、有几种登陆方式建立几个表单，用一个字段标识当前显示的表单</li>
+</ul>
+<p>由于使用第三方的接口，一开始也没有先进行接口返回数据结构的查看，采用了第一种错误的方式，错误一是每种登陆方式下面的登陆要素的数量也不同，错误二是数据绑定在同一个表单data下，当用户在用户名登陆方式输入用户名密码后，切换到客户号登陆方式，就会出现数据错乱的情况。</p>
+<p>解决完布局问题后，我们需要根据设计图定义一些状态，比如当前登陆方式的切换、同意授权状态的切换、按钮是否可以点击的状态、是否处于请求中的状态。当然还有一些app穿过来的数据，这里就忽略了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">    <span class="attr">tags</span>: &#123;</div><div class="line">        <span class="attr">arr</span>: [<span class="string">''</span>],</div><div class="line">        <span class="attr">activeIndex</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">isAgreeProxy</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">isLoading</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接着审查一下接口返回的数据，推荐使用chrome插件postman，比如呼和浩特的登陆要素如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"code"</span>: <span class="number">2005</span>,</div><div class="line">    <span class="string">"data"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="string">"name"</span>: <span class="string">"login_type"</span>,</div><div class="line">            <span class="string">"label"</span>: <span class="string">"身份证号"</span>,</div><div class="line">            <span class="string">"fields"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_name"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"身份证号"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_pass"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"密码"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"password"</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="string">"value"</span>: <span class="string">"1"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="string">"name"</span>: <span class="string">" login_type"</span>,</div><div class="line">            <span class="string">"label"</span>: <span class="string">"公积金账号"</span>,</div><div class="line">            <span class="string">"fields"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_name"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"公积金账号"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_pass"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"密码"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"password"</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="string">"value"</span>: <span class="string">"0"</span></div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    <span class="string">"message"</span>: <span class="string">"登录要素请求成功"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到呼和浩特有两种授权登陆方式，我们在data中定义了一个loginWays，初始为空数组，接着methods中定义一个请求接口的函数，里面就是基于返回数据的基础上为上面fields对象注入一个input字段用于绑定，这就是所谓的基于接口返回数据的属性注入。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">methods: &#123;</div><div class="line">    <span class="attr">queryloginWays</span>: <span class="function"><span class="keyword">function</span>(<span class="params">channel_type, channel_code</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> params = <span class="keyword">new</span> URLSearchParams();</div><div class="line">        params.append(<span class="string">'channel_type'</span>, channel_type);</div><div class="line">        params.append(<span class="string">'channel_code'</span>, channel_code);</div><div class="line">        axios.post(<span class="keyword">this</span>.loginParamsProxy, params)</div><div class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(res);</div><div class="line">                <span class="keyword">var</span> code = res.code || res.data.code;</div><div class="line">                <span class="keyword">var</span> msg = res.message || res.data.message;</div><div class="line">                <span class="keyword">var</span> loginWays = res.data.data ? res.data.data : res.data;</div><div class="line">                <span class="comment">// 查询失败</span></div><div class="line">                <span class="keyword">if</span> (code != <span class="number">2005</span>) &#123;</div><div class="line">                    alert(msg);</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 添加input字段用于v-model绑定</span></div><div class="line">                loginWays.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">loginWay</span>) </span>&#123;</div><div class="line">                    loginWay.fields.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">field</span>) </span>&#123;</div><div class="line">                        field.input = <span class="string">''</span>;</div><div class="line">                    &#125;)</div><div class="line">                &#125;)</div><div class="line">                <span class="keyword">this</span>.loginWays = loginWays;</div><div class="line">                <span class="keyword">this</span>.tags.arr = loginWays.map(<span class="function"><span class="keyword">function</span>(<span class="params">loginWay</span>) </span>&#123;</div><div class="line">                    <span class="keyword">return</span> loginWay.label;</div><div class="line">                &#125;)</div><div class="line">            &#125;.bind(<span class="keyword">this</span>))</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>即使返回的数据有我们不需要的数据也没有关系，这样保证我们不会遗失进行下一步登陆所需要的数据。</p>
+<p>这样多个表单绑定数据问题解决了，那么怎么进行页面间数据传递？如果是app传过来，那么通常使用URL拼接的方式，使用window.location.search获得queryString后再进行截取；如果通过页面套入javaWeb中，那么直接使用”${字段名}”就能获取，注意要js中获取java字段需要加双引号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">        <span class="comment">// 真实姓名</span></div><div class="line">        realName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getQueryVariable(<span class="string">'name'</span>) || <span class="string">''</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// 身份证</span></div><div class="line">        identity: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.getQueryVariable(<span class="string">'identity'</span>)) || <span class="string">''</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/*If javaWeb</span></div><div class="line">        realName: function() &#123;</div><div class="line">            return this.getQueryVariable('name') || ''</div><div class="line">        &#125;,</div><div class="line">        identity: function() &#123;</div><div class="line">            return parseInt(this.getQueryVariable('identity')) || ''</div><div class="line">        &#125;*/</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        <span class="attr">getQueryVariable</span>: <span class="function"><span class="keyword">function</span>(<span class="params">variable</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> query = <span class="built_in">window</span>.location.search.substring(<span class="number">1</span>);</div><div class="line">            <span class="keyword">var</span> vars = query.split(<span class="string">'&amp;'</span>);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; vars.length; i++) &#123;</div><div class="line">                <span class="keyword">var</span> pair = vars[i].split(<span class="string">'='</span>);</div><div class="line">                <span class="keyword">if</span> (<span class="built_in">decodeURIComponent</span>(pair[<span class="number">0</span>]) == variable) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(pair[<span class="number">1</span>]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'Query variable %s not found'</span>, variable);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="关于前端跨域调试"><a href="#关于前端跨域调试" class="headerlink" title="关于前端跨域调试"></a>关于前端跨域调试</h1><p>在进行接口请求时，我们的页面通常是在sublime的本地服务器或者vscode本地服务器预览，所以请求接口会遇到跨域的问题，如果使用Gulp进行打包，可以使用插件http-proxy-middleware，或者使用nginx。</p>
+<h2 id="使用Gulp"><a href="#使用Gulp" class="headerlink" title="使用Gulp"></a>使用Gulp</h2><p>在项目构建的时候通常我们源代码会放在src文件夹下，然后使用gulp进行代码的压缩、合并、图片的优化（根据需要）等等，我们会使用gulp。</p>
+<p>解决跨域的问题可以用<a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">gulp-connect</a>结合<a href="https://www.npmjs.com/package/http-proxy-middleware" target="_blank" rel="external">http-proxy-middleware</a>，此时我们在gulp-connect中的本地服务器进行预览调试。</p>
+<p>gulpfile.js如下： 开发过程使用<code>gulp server:dev</code>命令，监听文件改动并使用livereload刷新，并且代理src目录；使用<code>gulp</code>命令进行打包；使用<code>gulp server:dist</code>代理dist生产目录。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);</div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"><span class="keyword">var</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>);</div><div class="line"><span class="keyword">var</span> useref = <span class="built_in">require</span>(<span class="string">'gulp-useref'</span>);</div><div class="line"><span class="keyword">var</span> connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>);</div><div class="line"><span class="keyword">var</span> proxyMiddleware = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 开发跨域代理  将localhost:8088/api 映射到 https://api.xxxxx.com/</span></div><div class="line">gulp.task(<span class="string">'server:dev'</span>, [<span class="string">'listen'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> middleware = proxyMiddleware([<span class="string">'/api'</span>], &#123;</div><div class="line">        <span class="attr">target</span>: <span class="string">'https://api.xxxxx.com/'</span>,</div><div class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">pathRewrite</span>: &#123;</div><div class="line">            <span class="string">'^/api'</span>: <span class="string">'/'</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    connect.server(&#123;</div><div class="line">        <span class="attr">root</span>: env == <span class="string">'dev'</span> ? <span class="string">'./src'</span> : <span class="string">'./dist'</span>,</div><div class="line">        <span class="attr">port</span>: <span class="number">8088</span>,</div><div class="line">        <span class="attr">livereload</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">middleware</span>: <span class="function"><span class="keyword">function</span>(<span class="params">connect, opt</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> [middleware]</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 打包后跨域代理</span></div><div class="line">gulp.task(<span class="string">'server:dist'</span>, [<span class="string">'listen'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> middleware = proxyMiddleware([<span class="string">'/api'</span>], &#123;</div><div class="line">        <span class="attr">target</span>: <span class="string">'https://api.xxxxx.com/'</span>,</div><div class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">pathRewrite</span>: &#123;</div><div class="line">            <span class="string">'^/api'</span>: <span class="string">'/'</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    connect.server(&#123;</div><div class="line">        <span class="attr">root</span>: <span class="string">'./dist'</span>,</div><div class="line">        <span class="attr">port</span>: <span class="number">8088</span>,</div><div class="line">        <span class="attr">livereload</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">middleware</span>: <span class="function"><span class="keyword">function</span>(<span class="params">connect, opt</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> [middleware]</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/*.html'</span>)</div><div class="line">        .pipe(useref())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/css/main.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'main.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css/'</span>));</div><div class="line"></div><div class="line">    gulp.src(<span class="string">'src/css/share.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'share.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css/'</span>));</div><div class="line"></div><div class="line">    gulp.src(<span class="string">'src/vendors/css/*.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'vendors.min.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/vendors/css'</span>));</div><div class="line">    <span class="keyword">return</span> gulp</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'js'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'src/vendors/js/*.js'</span>)</div><div class="line">        .pipe(concat(<span class="string">'vendors.min.js'</span>))</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/vendors/js'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'img'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/imgs/*'</span>)</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/imgs'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'listen'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.watch(<span class="string">'./src/css/*.css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/css/*.css'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(<span class="string">'./src/js/*.js'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/js/*.js'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(<span class="string">'./src/*.html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/*.html'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>, <span class="string">'js'</span>, <span class="string">'img'</span>]);</div></pre></td></tr></table></figure></p>
+<h2 id="使用nginx"><a href="#使用nginx" class="headerlink" title="使用nginx"></a>使用nginx</h2><p>在nginx配置使用proxy_pass，需要注意一点：<br>如果在proxy_pass后面的url加/，表示绝对根路径；如果没有/，表示相对路径，把匹配的路径部分也给代理走。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen 80;</div><div class="line">	server_name  localhost;</div><div class="line">	root   [Your project root];</div><div class="line">	index  index.html index.htm default.html default.htm;</div><div class="line">	</div><div class="line">    location ^~/api &#123; </div><div class="line">      proxy_pass https://api.xxxxx.com/;</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="公众号网页的调试"><a href="#公众号网页的调试" class="headerlink" title="公众号网页的调试"></a>公众号网页的调试</h1><p>如果你开发的H5基于微信jsSDK，你一定接触过微信授权域名，微信会将授权数据传给一个回调页面，而回调页面必须在你配置的域名下（含子域名）。比如我们获取用户的openid操作。而微信配置域名回去该域名根目录下检测一个<code>xxx_verify_xxx.txt</code>文件，确保该域名是属于你的。</p>
+<p>所以要想在微信开发调试工具中获取openid，我们需要使用一种叫做内网穿透的工具。下面是自己比较常用的两个工具：</p>
+<ul>
+<li><a href="https://ngrok.com/" target="_blank" rel="external">ngrok</a></li>
+<li><a href="https://hsk.oray.com/" target="_blank" rel="external">花生壳</a></li>
+</ul>
+<h2 id="ngrok"><a href="#ngrok" class="headerlink" title="ngrok"></a>ngrok</h2><p>ngrok执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ngrok -config ngrok.cfg start web</div></pre></td></tr></table></figure></p>
+<p>在ngrok.exe目录需要一个配置文件<code>ngrok.cfg</code><br>以下是配置示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server_addr: &quot;tunnel.cn:4443&quot;</div><div class="line">trust_host_root_certs: false</div><div class="line">tunnels:</div><div class="line">  web:</div><div class="line">   subdomain: &quot;xxx&quot; </div><div class="line">   proto:</div><div class="line">    http: 8086</div><div class="line">    https: 8086</div></pre></td></tr></table></figure></p>
+<p>启动后xxx.tunnel.cn:4443会指向你本地的8086端口，将<code>xxx_verify_xxx.txt</code>文件放到8086端口根目录即可配置授权域名成功。</p>
+<h2 id="花生壳"><a href="#花生壳" class="headerlink" title="花生壳"></a>花生壳</h2><p>花生壳免费版对于个人开通仅需6元，然后每月会提供给你1G的流量，免费版不支持80端口，最多支持两个域名，需要下载桌面客户端。</p>
+<p>添加域名映射很简单，免费版无法配置自定义域名，由花生壳自动生成。<br><img src="https://user-gold-cdn.xitu.io/2018/5/22/1638698584d70582?w=1692&amp;h=685&amp;f=png&amp;s=57366" alt="花生壳"><br>配置成功后启动客户端可查看当前的状态</p>
+<p>感谢阅读，欢迎任何形式的技术提问和交流！</p>
+<blockquote>
+<ul>
+<li>邮箱：me@huzerui.com</li>
+<li>知乎：<a href="https://www.zhihu.com/people/huzerui/activities" target="_blank" rel="external">晚风轻拂</a></li>
+<li><a href="https://juejin.im/post/5b03b2ee5188254284525e87" target="_blank" rel="external">掘金</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/移动端/" rel="tag">#移动端</a>
+          
+            <a href="/tags/H5/" rel="tag">#H5</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/15/color-formula/" rel="next" title="前端都了解的配色策略">
+                <i class="fa fa-chevron-left"></i> 前端都了解的配色策略
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/08/setup-python3-on-centos7/" rel="prev" title="如何在CentOS7上安装Python3并设置本地编程环境">
+                如何在CentOS7上安装Python3并设置本地编程环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="TeaCoder" />
+          <p class="site-author-name" itemprop="name">TeaCoder</p>
+          <p class="site-description motion-element" itemprop="description">写精致代码，过简单生活</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/58cb7ee5ac502e00588d9d40/posts" title="掘金">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  掘金
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alex1504" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/huzerui/activities" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#移动端自适应布局"><span class="nav-number">1.</span> <span class="nav-text">移动端自适应布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标注"><span class="nav-number">1.1.</span> <span class="nav-text">标注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#px转rem插件"><span class="nav-number">1.2.</span> <span class="nav-text">px转rem插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用rem的几点总结"><span class="nav-number">1.3.</span> <span class="nav-text">使用rem的几点总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手机状态栏和浏览器导航栏的影响"><span class="nav-number">1.4.</span> <span class="nav-text">手机状态栏和浏览器导航栏的影响</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuejs作为lib开发移动端页面"><span class="nav-number">2.</span> <span class="nav-text">Vuejs作为lib开发移动端页面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为何不使用SPA模式"><span class="nav-number">2.1.</span> <span class="nav-text">为何不使用SPA模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于接口返回数据的属性注入"><span class="nav-number">2.2.</span> <span class="nav-text">基于接口返回数据的属性注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表单的数据绑定"><span class="nav-number">2.2.1.</span> <span class="nav-text">表单的数据绑定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于前端跨域调试"><span class="nav-number">3.</span> <span class="nav-text">关于前端跨域调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Gulp"><span class="nav-number">3.1.</span> <span class="nav-text">使用Gulp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nginx"><span class="nav-number">3.2.</span> <span class="nav-text">使用nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公众号网页的调试"><span class="nav-number">4.</span> <span class="nav-text">公众号网页的调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ngrok"><span class="nav-number">4.1.</span> <span class="nav-text">ngrok</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#花生壳"><span class="nav-number">4.2.</span> <span class="nav-text">花生壳</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TeaCoder</span>
+</div>
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div> -->
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/libs/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libs/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz", "v6hzlSojKgLf2oDjC1gNPuf8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

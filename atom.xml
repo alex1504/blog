@@ -1,236 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>晚晴铭悦轩</title>
-  <subtitle>听食茗赏，山土月日</subtitle>
-  <link href="/blog/atom.xml" rel="self"/>
+  <title>TeaCoder</title>
+  <subtitle>生命不息，代码不止</subtitle>
+  <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.huzerui.com/"/>
-  <updated>2018-05-16T14:14:37.699Z</updated>
-  <id>http://www.huzerui.com/</id>
+  <link href="http://blog.huzerui.com/"/>
+  <updated>2019-12-25T14:53:28.892Z</updated>
+  <id>http://blog.huzerui.com/</id>
   
   <author>
-    <name>前端空城师</name>
+    <name>TeaCoder</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>构建一个使用 Virtual-DOM 的前端模版引擎【转载】</title>
-    <link href="http://www.huzerui.com/2018/05/16/make-a-visual-dom-template-engine/"/>
-    <id>http://www.huzerui.com/2018/05/16/make-a-visual-dom-template-engine/</id>
-    <published>2018-05-16T06:46:26.000Z</published>
-    <updated>2018-05-16T14:14:37.699Z</updated>
+    <title>如何在CentOS7上安装Python3并设置本地编程环境</title>
+    <link href="http://blog.huzerui.com/2018/07/08/setup-python3-on-centos7/"/>
+    <id>http://blog.huzerui.com/2018/07/08/setup-python3-on-centos7/</id>
+    <published>2018-07-08T07:12:19.000Z</published>
+    <updated>2019-12-25T14:53:28.892Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>本文转载自：<a href="https://github.com/livoras/blog/issues/14" target="_blank" rel="external">https://github.com/livoras/blog/issues/14</a></p>
-</blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li>前言</li>
-<li>问题的提出</li>
-<li>模板引擎和 Virtual-DOM 结合 —— Virtual-Template</li>
-<li>Virtual-Template 的实现<ul>
-<li>编译原理相关</li>
-<li>模版引擎的EBNF</li>
-<li>词法分析</li>
-<li>语法分析与抽象语法树</li>
-<li>代码生成</li>
+    <content type="html"><![CDATA[<p>本文基于引用文章（见尾部）和个人搭建python3.7.0环境的过程进行总结和分享。</p>
+<h2 id="安装环境说明"><a href="#安装环境说明" class="headerlink" title="安装环境说明"></a>安装环境说明</h2><ul>
+<li>主机：centos7</li>
+<li>安装python版本：3.7.0</li>
 </ul>
+<h2 id="安装依赖环境"><a href="#安装依赖环境" class="headerlink" title="安装依赖环境"></a>安装依赖环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</div></pre></td></tr></table></figure>
+<p>-y参数：自动选择，不弹出选择对话，默认yes</p>
+<p>若不先安装依赖环境，在后面编译的步骤会报错缺少依赖，如：找不到zlib包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zipimport.ZipImportError: can&apos;t decompress data; zlib not available</div></pre></td></tr></table></figure></p>
+<p>注意：上面尾部的包libffi-devel，是python3.7版本的新依赖，若此包没安装，编译时会报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ModuleNotFoundError: No module named &apos;_ctypes&apos;</div></pre></td></tr></table></figure></p>
+<h2 id="获取python源文件"><a href="#获取python源文件" class="headerlink" title="获取python源文件"></a>获取python源文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz</div></pre></td></tr></table></figure>
+<h2 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf Python-3.7.0.tgz</div></pre></td></tr></table></figure>
+<h2 id="执行configure检测安装平台特征"><a href="#执行configure检测安装平台特征" class="headerlink" title="执行configure检测安装平台特征"></a>执行configure检测安装平台特征</h2><p>./configure是用来检测你的安装平台的目标特征的。比如它会检测你是不是有CC或GCC，并不是需要CC或GCC，它是个shell脚本。</p>
+<p>这一步一般用来生成 Makefile，为下一步的编译做准备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd Python-3.7.0</div><div class="line">./configure</div></pre></td></tr></table></figure>
+<p>不出意外，会提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">configure: error: no acceptable C compiler found in $PATH</div></pre></td></tr></table></figure></p>
+<p>原因是没有安装gcc，因为python是用C写的，所以需要用gcc进行编译，所以需要先安装gcc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 顺道把c++编译器也安装了</div><div class="line">yum install gcc gcc-c++</div></pre></td></tr></table></figure>
+<h2 id="再次执行-configure"><a href="#再次执行-configure" class="headerlink" title="再次执行./configure"></a>再次执行./configure</h2><p>几分钟之内发现一系列的checking日志被打出（觉得检测时间太久此步可忽略）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">checking linux/tipc.h presence... yes</div><div class="line">checking for linux/tipc.h... yes</div><div class="line">checking linux/random.h usability... yes</div><div class="line">checking linux/random.h presence... yes</div><div class="line">checking for linux/random.h... yes</div><div class="line">checking spawn.h usability... yes</div><div class="line">checking spawn.h presence... yes</div><div class="line">checking for spawn.h... yes</div><div class="line">checking util.h usability... no</div><div class="line">checking util.h presence... no</div><div class="line">checking for util.h... no</div><div class="line">checking alloca.h usability... yes</div><div class="line">checking alloca.h presence... yes</div><div class="line">checking for alloca.h... yes</div><div class="line">checking endian.h usability... yes     ....</div></pre></td></tr></table></figure></p>
+<p>ok，没有报错进入下一步编译</p>
+<h2 id="执行make进行编译，执行make-install进行安装"><a href="#执行make进行编译，执行make-install进行安装" class="headerlink" title="执行make进行编译，执行make install进行安装"></a>执行make进行编译，执行make install进行安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># (注：make install足够的权限)</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<ul>
+<li><p>make：编译，可能遇到的错误：make <em>*</em> 没有指明目标并且找不到 makefile。 没有Makefile，解决方法是要先./configure 一下生成Makefile。</p>
 </li>
-<li>完整的 Virtual-Template</li>
-<li>结语</li>
+<li><p>make install：将程序安装至系统中。如果原始码编译无误，且执行结果正确，便可以把程序安装至系统预设的可执行文件存放路径。如果用bin_PROGRAMS宏的话，程序会被安装至/usr/local/bin这个目录。</p>
+</li>
 </ul>
-<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>本文尝试构建一个 Web 前端模板引擎，并且把这个引擎和 Virtual-DOM 进行结合。把传统模板引擎编译成 HTML 字符串的方式改进为编译成 Virtual-DOM 的 render 函数，可以有效地结合模板引擎的便利性和 Virtual-DOM 的性能。类似 ReactJS 中的 JSX。</p>
-<p>阅读本文需要一些关于 ReactJS 实现原理或者 Virtual-DOM 的相关知识，可以先阅读这篇博客：深度剖析：如何实现一个 Virtual DOM 算法 ， 进行相关知识的了解。</p>
-<p>同时还需要对编译原理相关知识有基本的了解，包括 EBNF，LL(1)，递归下降的方法等。</p>
-<h2 id="2-问题的提出"><a href="#2-问题的提出" class="headerlink" title="2 问题的提出"></a>2 问题的提出</h2><p>本人在就职的公司维护一个比较朴素的系统，前端渲染有两种方式：</p>
-<ol>
-<li>后台直接根据模板和数据直接把页面吐到前端。</li>
-<li>后台只吐数据，前端用前端模板引擎渲染数据，动态塞到页面。</li>
-</ol>
-<p>当数据状态变更的时候，前端用 jQuery 修改页面元素状态，或者把局部界面用模板引擎重新渲染一遍。当页面状态很多的时候，用 jQuery 代码中会就混杂着很多的 DOM 操作，编码复杂且不便于维护；而重新渲染虽然省事，但是会导致一些性能、焦点消失的问题（具体可以看这篇博客介绍）。</p>
-<p>因为习惯了 MVVM 数据绑定的编码方式，对于用 jQuery 选择器修改 wordings 等细枝末节的劳力操作个人感觉不甚习惯。于是就构思能否在这种朴素的编码方式上做一些改进，解放双手，提升开发效率。其实只要加入数据状态 -&gt; 视图的 one-way data-binding 开发效率就会有较大的提升。</p>
-<p>而这种已经在运作多年的多人维护系统，引入新的 MVVM 框架并不是一个非常好的选择，在兼容性和风险规避上大家都有诸多的考虑。于是就构思了一个方案，在前端模板引擎上做手脚。可以在几乎零学习成本的情况下，做到 one-way data-binding，大量减少 jQuery DOM 操作，提升开发效率。</p>
-<h2 id="3-模板引擎和-Virtual-DOM-结合-——-Virtual-Template"><a href="#3-模板引擎和-Virtual-DOM-结合-——-Virtual-Template" class="headerlink" title="3 模板引擎和 Virtual-DOM 结合 —— Virtual-Template"></a>3 模板引擎和 Virtual-DOM 结合 —— Virtual-Template</h2><p>考虑以下模板语法：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;title&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    &#123;each users as user i&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/&#123;user.id&#125;"</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.&#123;i + 1&#125; - &#123;user.name&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">      &#123;if user.isAdmin&#125;</div><div class="line">        I am admin</div><div class="line">      &#123;elseif user.isAuthor&#125;</div><div class="line">        I am author</div><div class="line">      &#123;else&#125;</div><div class="line">        I am nobody</div><div class="line">      &#123;/if&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    &#123;/each&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>这只一个普通的模板引擎语法（类似 artTemplate），支持循环语句（each）、条件语句（if elseif else ..）、和文本填充（{…}）， 应该比较容易看懂，这里就不解释。当用下面数据渲染该模板的时候：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = &#123;</div><div class="line">  <span class="attr">title</span>: <span class="string">'Users List'</span>,</div><div class="line">  <span class="attr">users</span>: [</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user0'</span>, <span class="attr">name</span>: <span class="string">'Jerry'</span>, <span class="attr">isAdmin</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user1'</span>, <span class="attr">name</span>: <span class="string">'Lucy'</span>, <span class="attr">isAuthor</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user2'</span>, <span class="attr">name</span>: <span class="string">'Tomy'</span>&#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>会得到下面的 HTML 字符串：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Users List<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/user0"</span> /&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.1 - Jerry<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">       I am admin</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/user1"</span> /&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.2 - Lucy<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">       I am author</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"user-item"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/avatars/user2"</span> /&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">span</span>&gt;</span>NO.3 - Tomy<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">       I am nobody</div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>把这个字符串塞入文档当中就可以生成 DOM 。但是问题是如果数据变更了，例如data.title由Users List修改成Users，你只能用 jQuery 修改 DOM 或者直接重新渲染一个新的字符串塞入文档当中。</p>
-<p>然而我们可以参考 ReactJS 的 JSX 的做法，不把模板编译成 HTML， 而是把模板编译成一个返回 Virtual-DOM 的 render 函数。render 函数会根据传入的 state 不同返回不一样的 Virtual-DOM ，然后就可以根据 Virtual-DOM 算法进行 diff 和 patch：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// setup codes</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> render = template(tplString) <span class="comment">// template 把模板编译成 render 函数而不是 HTML 字符串</span></div><div class="line"><span class="keyword">var</span> root1 = render(state1) <span class="comment">// 根据初始状态返回的 virtual-dom</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> dom = root.render() <span class="comment">// 根据 virtual-dom 构建一个真正的 dom 元素</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(dom)</div><div class="line"></div><div class="line"><span class="keyword">var</span> root2 = render(state2) <span class="comment">// 状态变更，重新渲染另外一个 virtual-dom</span></div><div class="line"><span class="keyword">var</span> patches = diff(root1, root2) <span class="comment">// virtual-dom 的 diff 算法</span></div><div class="line">patch(dom, patches) <span class="comment">// 更新真正的 dom 元素</span></div></pre></td></tr></table></figure></p>
-<p>这样做好处就是：既保留了原来模板引擎的语法，又结合了 Virtual-DOM 特性：当状态改变的时候不再需要 jQuery 了，而是跑一遍 Virtual-DOM 算法把真正的 DOM 给patch了，达到了 one-way data-binding 的效果，总结流程就是：</p>
-<ol>
-<li>先把模板编译成一个 render 函数，这个函数会根据数据状态返回 Virtual-DOM</li>
-<li>用 render 函数构建 Virtual-DOM；并根据这个 Virtual-DOM 构建真正的 DOM 元素，塞入文档当中</li>
-<li>当数据变更的时候，再用 render 函数渲染一个新的 Virtual-DOM</li>
-<li>新旧的 Virtual-DOM 进行 diff，然后 patch 已经在文档中的 DOM 元素</li>
-</ol>
-<p>（恩，其实就是一个类似于 JSX 的东西）</p>
-<p>这里重点就是，如何能把模板语法编译成一个能够返回 Virtual-DOM 的 render 函数？例如上面的模板引擎，不再返回 HTML 字符串了，而是返回一个像下面那样的 render 函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span> (<span class="params">state</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> el(<span class="string">'div'</span>, &#123;&#125;, [</div><div class="line">    el(<span class="string">'h1'</span>, &#123;&#125;, [state.title]),</div><div class="line">    el(<span class="string">'ul'</span>, &#123;&#125;, state.users.map(<span class="function"><span class="keyword">function</span> (<span class="params">user, i</span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> el(<span class="string">'li'</span>, &#123;<span class="string">"class"</span>: <span class="string">"user-item"</span>&#125;, [</div><div class="line">         el(<span class="string">'img'</span>, &#123;<span class="string">"src"</span>: <span class="string">"/avatars/"</span> + user.id&#125;, []),</div><div class="line">         el(<span class="string">'span'</span>, &#123;&#125;, [<span class="string">'No.'</span> + (i + <span class="number">1</span>) + <span class="string">' - '</span> + user.name],</div><div class="line">         (user.isAdmin</div><div class="line">           ? <span class="string">'I am admin'</span></div><div class="line">           : uesr.isAuthor</div><div class="line">             ? <span class="string">'I am author'</span></div><div class="line">             : <span class="string">''</span>)</div><div class="line">       ])</div><div class="line">    &#125;))</div><div class="line">  ])</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>前面的模板和这个 render 函数在语义上是一样的，只要能够实现“模板 -&gt; render 函数”这个转换，就可以跑上面所说的 Virtual-DOM 的算法流程，这样就把模板引擎和 Virtual-DOM结合起来。为了方便起见，这里把这个结合体称为 Virtual-Template 。</p>
-<h2 id="4-Virtual-Template-的实现"><a href="#4-Virtual-Template-的实现" class="headerlink" title="4 Virtual-Template 的实现"></a>4 Virtual-Template 的实现</h2><p>网上关于模板引擎的实现原理介绍非常多。如果语法不是太复杂的话，可以直接通过对语法标签和代码片段进行分割，识别语法标签内的内容（循环、条件语句）然后拼装代码，具体可以参考这篇博客。其实就是正则表达式使用和字符串的操作，不需要对语法标签以外的内容做识别。</p>
-<p>但是对于和 HTML 语法已经差别较大的模板语法（例如 Jade ），单纯的正则和字符串操作已经不够用了，因为其语法标签以外的代码片段根本不是合法的 HTML 。这种情况下一般需要编译器相关知识发挥用途：模板引擎本质上就是把一种语言编译成另外一种语言。</p>
-<p>而对于 Virtual-Template 的情况，虽然其除了语法标签以外的代码都是合法的 HTML 字符串，但是我们的目的是把它编译成返回 Virtual-DOM 的 render 函数，在构建 Virtual-DOM 的时候，你需要知道元素的 tagName、属性等信息，所以就需要对 HTML 元素本身做识别。</p>
-<p>因此 Virtual-Template 也需要借助编译原理（编译器前端）相关的知识，把一种语言（模板语法）编译成另外一种语言（一个叫 render 的 JavaScript 函数）。</p>
-<h3 id="4-1-编译原理相关"><a href="#4-1-编译原理相关" class="headerlink" title="4.1 编译原理相关"></a>4.1 编译原理相关</h3><p>CS 本科都教过编译原理，本文会用到编译器前端的一些概念。在实现模板到 render 函数的过程中，要经过几个步骤：</p>
-<ol>
-<li>词法分析：把输入的模板分割成词法单元（tokens stream）</li>
-<li>语法分析：读入 tokens stream ，根据文法规则转化成抽象语法树（Abstract Syntax Tree）</li>
-<li>代码生成：遍历 AST，生成 render 函数体代码</li>
-</ol>
-<p><a href="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast.png" target="_blank" rel="external"><img src="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast.png" alt="ast"></a></p>
-<p>所以这个过程可以分成几个主要模块：tokenizer（词法分析器），parser（语法分析器），codegen（代码生成）。在此之前，还需要对模板的语法做文法定义，这是构建词法分析和语法分析的基础。</p>
-<h3 id="4-2-模板引擎的-EBNF"><a href="#4-2-模板引擎的-EBNF" class="headerlink" title="4.2 模板引擎的 EBNF"></a>4.2 模板引擎的 EBNF</h3><p>在计算机领域，对某种语言进行语法定义的时候，几乎都会用到 EBNF（扩展的巴科斯范式）。在定义模板引擎的语法的时候，也可以用到 EBNF。Virtual-Template 拥有非常简单的语法规则，支持上面所提到的 each、if 等语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;each users as user i &#125;</div><div class="line"> &lt;div&gt; &#123;user.name&#125; &lt;/div&gt;</div><div class="line"> ...</div><div class="line">&#123;/each&#125;</div><div class="line"></div><div class="line">&#123;if user.isAdmin&#125;</div><div class="line"> ...</div><div class="line">&#123;elseif user.isAuthor&#125;</div><div class="line"> ...</div><div class="line">&#123;elseif user.isXXX&#125;</div><div class="line"> ...</div><div class="line">&#123;/if&#125;</div></pre></td></tr></table></figure></p>
-<p>对于 {user.name} 这样的表达式插入，可以简单地看成是字符串，在代码生成的时候再做处理。这样我们的词法和语法分析就会简化很多，基本只需要对 each、if、HTML 元素进行处理。</p>
-<p>Virtual-Template 的 EBNF：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Stat -&gt; Frag Stat | ε</div><div class="line">Frag -&gt; IfStat | EachStat | Node | text</div><div class="line"></div><div class="line">IfStat -&gt; &apos;&#123;if ...&#125;&apos; Stat &#123;ElseIf&#125; [Else] &apos;&#123;/if&#125;&apos;</div><div class="line">ElseIf -&gt; &apos;&#123;elseif ...&#125;&apos; Stat</div><div class="line">Else -&gt; &apos;&#123;else&#125;&apos; Stat|e</div><div class="line"></div><div class="line">EachStat -&gt; &apos;&#123;each ...&#125;&apos; Stat &apos;&#123;/each&#125;&apos;</div><div class="line"></div><div class="line">Node -&gt; OpenTag NodeTail</div><div class="line">OpenTag -&gt; &apos;/[\w\-\d]+/&apos; &#123;Attr&#125;</div><div class="line">NodeTail -&gt; &apos;&gt;&apos; Stat &apos;/\&lt;[\w\d]+\&gt;/&apos; | &apos;/&gt;&apos;</div><div class="line"></div><div class="line">Attr -&gt; &apos;/[\w\-\d]/+&apos; Value</div><div class="line">Value -&gt; &apos;=&apos; &apos;/&quot;[\s\S]+&quot;/&apos; | ε</div></pre></td></tr></table></figure></p>
-<p>可以把该文法转换成 LL(1) 文法，方便我们写递归下降的 parser。这个语法还是比较简单的，没有出现复杂的左递归情况。简单进行展开和提取左公因子消除冲突获得下面的 LL(1) 文法。</p>
-<p>LL(1) 文法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Stat -&gt; Frag Stat | ε</div><div class="line">Frag -&gt; IfStat | EachStat | Node | text</div><div class="line"></div><div class="line">IfStat -&gt; &apos;&#123;if ...&#125;&apos; Stat ElseIfs Else &apos;&#123;/if&#125;&apos;</div><div class="line">ElseIfs -&gt; ElseIf ElseIfs | ε</div><div class="line">ElseIf -&gt; &apos;&#123;elseif ...&#125;&apos; Stat</div><div class="line">Else -&gt; &apos;&#123;else&#125;&apos; Stat | ε</div><div class="line"></div><div class="line">EachStat -&gt; &apos;&#123;each ...&#125;&apos; Stat &apos;&#123;/each&#125;&apos;</div><div class="line"></div><div class="line">Node -&gt; OpenTag NodeTail</div><div class="line">OpenTag -&gt; &apos;/[\w\-\d]+/&apos; Attrs</div><div class="line">NodeTail -&gt; &apos;&gt;&apos; Stat &apos;/\&lt;[\w\d]+\&gt;/&apos; | &apos;/&gt;&apos;</div><div class="line"></div><div class="line">Attrs -&gt; Attr Attrs | ε</div><div class="line">Attr -&gt; &apos;/[\w\-\d]/+&apos; Value</div><div class="line">Value -&gt; &apos;=&apos; &apos;/&quot;[\s\S]+&quot;/&apos; | ε</div></pre></td></tr></table></figure></p>
-<h3 id="4-3-词法分析"><a href="#4-3-词法分析" class="headerlink" title="4.3 词法分析"></a>4.3 词法分析</h3><p>根据上面获得的 EBNF ，单引号包含的都是非终结符，可以知道有以下几种词法单元：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">TK_TEXT</span>: <span class="number">1</span>, <span class="comment">// 文本节点</span></div><div class="line">  TK_IF: <span class="number">2</span>, <span class="comment">// &#123;if ...&#125;</span></div><div class="line">  TK_END_IF: <span class="number">3</span>, <span class="comment">// &#123;/if&#125;</span></div><div class="line">  TK_ELSE_IF: <span class="number">4</span>, <span class="comment">// &#123;elseif ...&#125;</span></div><div class="line">  TK_ELSE: <span class="number">5</span>, <span class="comment">// &#123;else&#125;</span></div><div class="line">  TK_EACH: <span class="number">6</span>, <span class="comment">// &#123;each ...&#125;</span></div><div class="line">  TK_END_EACH: <span class="number">7</span>, <span class="comment">// &#123;/each&#125;</span></div><div class="line">  TK_GT: <span class="number">8</span>, <span class="comment">// &gt;</span></div><div class="line">  TK_SLASH_GT: <span class="number">9</span>, <span class="comment">// /&gt;</span></div><div class="line">  TK_TAG_NAME: <span class="number">10</span>, <span class="comment">// &lt;div|&lt;span|&lt;img|...</span></div><div class="line">  TK_ATTR_NAME: <span class="number">11</span>, <span class="comment">// 属性名</span></div><div class="line">  TK_ATTR_EQUAL: <span class="number">12</span>, <span class="comment">// =</span></div><div class="line">  TK_ATTR_STRING: <span class="number">13</span>, <span class="comment">// "string"</span></div><div class="line">  TK_CLOSE_TAG: <span class="number">13</span>, <span class="comment">// &lt;/div&gt;|&lt;/span&gt;|&lt;/a&gt;|...</span></div><div class="line">  TK_EOF: <span class="number">100</span> <span class="comment">// end of file</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>使用 JavaScript 自带的正则表达式引擎编写 tokenizer 很方便，把输入的模板字符串从左到右进行扫描，按照上面的 token 的类型进行分割：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tokenizer</span> (<span class="params">input</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.input = input</div><div class="line">  <span class="keyword">this</span>.index = <span class="number">0</span></div><div class="line">  <span class="keyword">this</span>.eof = <span class="literal">false</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> pp = Tokenizer.prototype</div><div class="line"></div><div class="line">pp.nextToken = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.eatSpaces()</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="keyword">this</span>.readCloseTag() ||</div><div class="line">    <span class="keyword">this</span>.readTagName() ||</div><div class="line">    <span class="keyword">this</span>.readAttrName() ||</div><div class="line">    <span class="keyword">this</span>.readAttrEqual() ||</div><div class="line">    <span class="keyword">this</span>.readAttrString() ||</div><div class="line">    <span class="keyword">this</span>.readGT() ||</div><div class="line">    <span class="keyword">this</span>.readSlashGT() ||</div><div class="line">    <span class="keyword">this</span>.readIF() ||</div><div class="line">    <span class="keyword">this</span>.readElseIf() ||</div><div class="line">    <span class="keyword">this</span>.readElse() ||</div><div class="line">    <span class="keyword">this</span>.readEndIf() ||</div><div class="line">    <span class="keyword">this</span>.readEach() ||</div><div class="line">    <span class="keyword">this</span>.readEndEach() ||</div><div class="line">    <span class="keyword">this</span>.readText() ||</div><div class="line">    <span class="keyword">this</span>.readEOF() ||</div><div class="line">    <span class="keyword">this</span>.error()</div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// read token methods</span></div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
-<p>Tokenizer 会存储一个 index，标记当前识别到哪个字符位置。每次调用 nextToken 会先跳过所有的空白字符，然后尝试某一种类型的 token ，识别失败就会尝试下一种，如果成功就直接返回，并且把 index 往前移；所有类型都试过都无法识别那么就是语法错误，直接抛出异常。</p>
-<p>具体每个识别的函数其实就是正则表达式的使用，这里就不详细展开，有兴趣可以阅读源码 tokenizer.js</p>
-<p>最后会把这样的文章开头的模板例子转换成下面的 tokens stream：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'div'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'h1'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'&#123;title&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/h1&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'ul'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">6</span>, <span class="attr">label</span>: <span class="string">'&#123;each users as user i&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'li'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">11</span>, <span class="attr">label</span>: <span class="string">'class'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">12</span>, <span class="attr">label</span>: <span class="string">'='</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'user-item'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'img'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">11</span>, <span class="attr">label</span>: <span class="string">'src'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">12</span>, <span class="attr">label</span>: <span class="string">'='</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'/avatars/&#123;user.id&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">9</span>, <span class="attr">label</span>: <span class="string">'/&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">10</span>, <span class="attr">label</span>: <span class="string">'span'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">8</span>, <span class="attr">label</span>: <span class="string">'&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'NO.'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'&#123;i + 1&#125; - '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'&#123;user.name&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/span&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">2</span>, <span class="attr">label</span>: <span class="string">'&#123;if user.isAdmin&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'I am admin\r\n        '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">4</span>, <span class="attr">label</span>: <span class="string">'&#123;elseif user.isAuthor&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'I am author\r\n        '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">5</span>, <span class="attr">label</span>: <span class="string">'&#123;else&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">1</span>, <span class="attr">label</span>: <span class="string">'I am nobody\r\n        '</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">3</span>, <span class="attr">label</span>: <span class="string">'&#123;/if&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/li&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">7</span>, <span class="attr">label</span>: <span class="string">'&#123;/each&#125;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/ul&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">13</span>, <span class="attr">label</span>: <span class="string">'&lt;/div&gt;'</span> &#125;</div><div class="line">&#123; <span class="attr">type</span>: <span class="number">100</span>, <span class="attr">label</span>: <span class="string">'$'</span> &#125;</div></pre></td></tr></table></figure></p>
-<h3 id="4-4-语法分析与抽象语法树"><a href="#4-4-语法分析与抽象语法树" class="headerlink" title="4.4 语法分析与抽象语法树"></a>4.4 语法分析与抽象语法树</h3><p>拿到 tokens 以后就可以就可以按顺序读取 token，根据模板的 LL(1) 文法进行语法分析。语法分析器，也就是 parser，一般可以采取递归下降的方式来进行编写。LL(1) 不允许语法中有冲突（ conflicts )，需要对文法中的产生式求解 FIRST 和 FOLLOW 集。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">FIRST(Stat) = &#123;TK_IF, TK_EACH, TK_TAG_NAME, TK_TEXT&#125;</div><div class="line">FOLLOW(Stat) = &#123;TK_ELSE_IF, TK_END_IF, TK_ELSE, TK_END_EACH, TK_CLOSE_TAG, TK_EOF&#125;</div><div class="line">FIRST(Frag) = &#123;TK_IF, TK_EACH, TK_TAG_NAME, TK_TEXT&#125;</div><div class="line">FIRST(IfStat) = &#123;TK_IF&#125;</div><div class="line">FIRST(ElseIfs) = &#123;TK_ELSE_IF&#125;</div><div class="line">FOLLOW(ElseIfs) = &#123;TK_ELSE, TK_ELSE&#125;</div><div class="line">FIRST(ElseIf) = &#123;TK_ELSE_IF&#125;</div><div class="line">FIRST(Else) = &#123;TK_ELSE&#125;</div><div class="line">FOLLOW(Else) = &#123;TK_END_IF&#125;</div><div class="line">FIRST(EachStat) = &#123;TK_EACH&#125;</div><div class="line">FIRST(OpenTag) = &#123;TK_TAG_NAME&#125;</div><div class="line">FIRST(NodeTail) = &#123;TK_GT, TK_SLASH_GT&#125;</div><div class="line">FIRST(Attrs) = &#123;TK_ATTR_NAME&#125;</div><div class="line">FOLLOW(Attrs) = &#123;TK_GT, TK_SLASH_GT&#125;</div><div class="line">FIRST(Value) = &#123;TK_ATTR_EQUAL&#125;</div><div class="line">FOLLOW(Value) = &#123;TK_ATTR_NAME, TK_GT, TK_SLASH_GT&#125;</div></pre></td></tr></table></figure></p>
-<p>上面只求出了一些必要的 FIRST 和 FOLLOW 集，对于一些不需要预测的产生式就省略求解了。有了 FIRST 和 FOLLOW 集，剩下的编写递归下降的 parser 只是填空式的体力活。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Tokenizer = <span class="built_in">require</span>(<span class="string">'./tokenizer'</span>)</div><div class="line"><span class="keyword">var</span> types = <span class="built_in">require</span>(<span class="string">'./tokentypes'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parser</span> (<span class="params">input</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.tokens = <span class="keyword">new</span> Tokenizer(input)</div><div class="line">  <span class="keyword">this</span>.parse()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> pp = Parser.prototype</div><div class="line"></div><div class="line">pp.is = <span class="function"><span class="keyword">function</span> (<span class="params">type</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (<span class="keyword">this</span>.tokens.peekToken().type === type)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.parse = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.tokens.index = <span class="number">0</span></div><div class="line">  <span class="keyword">this</span>.parseStat()</div><div class="line">  <span class="keyword">this</span>.eat(types.TK_EOF)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.parseStat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (</div><div class="line">    <span class="keyword">this</span>.is(types.TK_IF) ||</div><div class="line">    <span class="keyword">this</span>.is(types.TK_EACH) ||</div><div class="line">    <span class="keyword">this</span>.is(types.TK_TAG_NAME) ||</div><div class="line">    <span class="keyword">this</span>.is(types.TK_TEXT)</div><div class="line">  ) &#123;</div><div class="line">    <span class="keyword">this</span>.parseFrag()</div><div class="line">    <span class="keyword">this</span>.parseStat()</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// end</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.parseFrag = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_IF)) <span class="keyword">return</span> <span class="keyword">this</span>.parseIfStat()</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_EACH)) <span class="keyword">return</span> <span class="keyword">this</span>.parseEachStat()</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_TAG_NAME)) <span class="keyword">return</span> <span class="keyword">this</span>.parseNode()</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.is(types.TK_TEXT)) &#123;</div><div class="line">    <span class="keyword">var</span> token = <span class="keyword">this</span>.eat(types.TK_TEXT)</div><div class="line">    <span class="keyword">return</span> token.label</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">this</span>.parseError(<span class="string">'parseFrag'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
-<p>完整的 parser 可以查看 parser.js。</p>
-<p>抽象语法树（Abstract Syntax Tree）</p>
-<p>递归下降进行语法分析的时候，可以同时构建模版语法的树状表示结构——抽象语法树，模板语法有以下的抽象语法树的节点类型：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Stat: &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'Stat'</span></div><div class="line">    members: [IfStat | EachStat | Node | text, ...]</div><div class="line">&#125;</div><div class="line"></div><div class="line">IfStat: &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'IfStat'</span></div><div class="line">    label: &lt;string&gt;,</div><div class="line">    body: Stat</div><div class="line">    elifs: [ElseIf, ...]</div><div class="line">    elsebody: Stat</div><div class="line">&#125;</div><div class="line"></div><div class="line">ElseIf: &#123;</div><div class="line">    type: 'ElseIf'</div><div class="line">    label: &lt;string&gt;,</div><div class="line">    body: Stat</div><div class="line">&#125;</div><div class="line"></div><div class="line">EachStat: &#123;</div><div class="line">    type: 'EachStat'</div><div class="line">    label: &lt;string&gt;,</div><div class="line">    body: Stat</div><div class="line">&#125;</div><div class="line"></div><div class="line">Node: &#123;</div><div class="line">    type: 'Node'</div><div class="line">    name: &lt;string&gt;,</div><div class="line">    attributes: &lt;object&gt;,</div><div class="line">    body: Stat</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>因为 JavaScript 语法的灵活性，可以用字面量的 JavaScript 对象和数组直接表示语法树的树状结构。语法树构的建过程可以在语法分析阶段同时进行。最后，可以获取到如下图的语法树结构：</p>
-<p><a href="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast3.png" target="_blank" rel="external"><img src="https://raw.githubusercontent.com/livoras/blog/gh-pages/virtual-template/ast3.png" alt="ast2"></a></p>
-<p>完整的语法树构建过程，可以查看 parser.js 。</p>
-<p>从模版字符串到 tokens stream 再到 AST ，这个过程只需要对文本进行一次扫描，整个算法的时间复杂度为 O(n)。</p>
-<p>至此，Virtual-Template 的编译器前端已经完成了。</p>
-<h3 id="4-5-代码生成"><a href="#4-5-代码生成" class="headerlink" title="4.5 代码生成"></a>4.5 代码生成</h3><p>JavaScript 从字符串中构建一个新的函数可以直接用 new Function 即可。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newFunc = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a + b'</span>)</div><div class="line">newFunc(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// =&gt; 3</span></div></pre></td></tr></table></figure></p>
-<p>这里需要通过语法树来还原 render 函数的函数体的内容，也就是 new Function 的第三个参数。</p>
-<p>拿到模版语法的抽象语法树以后，生成相应的 JavaScript 函数代码就很好办了。只需要地对生成的 AST 进行深度优先遍历，遍历的同时维护一个数组，这个数组保存着 render 函数的每一行的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CodeGen</span> (<span class="params">ast</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.lines = []</div><div class="line">  <span class="keyword">this</span>.walk(ast)</div><div class="line">  <span class="keyword">this</span>.body = <span class="keyword">this</span>.lines.join(<span class="string">'\n'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> pp = CodeGen.prototype</div><div class="line"></div><div class="line">pp.walk = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (node.type === <span class="string">'IfStat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.genIfStat(node)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node.type === <span class="string">'Stat'</span>) &#123;</div><div class="line">    <span class="keyword">this</span>.genStat(node)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node.type === <span class="string">'EachStat'</span>) &#123;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">pp.genIfStat = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> expr = node.label.replace(<span class="regexp">/(^\&#123;\s*if\s*)|(\s*\&#125;$)/g</span>, <span class="string">''</span>)</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'if ('</span> + expr + <span class="string">') &#123;'</span>)</div><div class="line">  <span class="keyword">if</span> (node.body) &#123;</div><div class="line">    <span class="keyword">this</span>.walk(node.body)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (node.elseifs) &#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span></div><div class="line">    _.each(node.elseifs, <span class="function"><span class="keyword">function</span> (<span class="params">elseif</span>) </span>&#123;</div><div class="line">      self.walk(elseif)</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (node.elsebody) &#123;</div><div class="line">    <span class="keyword">this</span>.lines.push(indent + <span class="string">'&#125; else &#123;'</span>)</div><div class="line">    <span class="keyword">this</span>.walk(node.elsebody)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'&#125;'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ...</span></div></pre></td></tr></table></figure></p>
-<p>CodeGen 类接受已经生成的 AST 的根节点，然后 this.walk(ast) 会对不同的节点类型进行解析。例如对于 IfStat 类型的节点：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'IfStat'</span>,</div><div class="line">  <span class="attr">label</span>: <span class="string">'&#123;if user.isAdmin&#125;'</span></div><div class="line">  body: &#123;...&#125;</div><div class="line">  elseifs: [&#123;...&#125;, &#123;...&#125;, &#123;...&#125;],</div><div class="line">  <span class="attr">elsebody</span>: &#123;...&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>genIfStat 会把 ‘{if user.isAdmin}’ 中的 user.isAdmin 抽离出来，然后拼接 JavaScript 的 if 语句，push 到 this.lines 中：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expr = node.label.replace(<span class="regexp">/(^\&#123;\s*if\s*)|(\s*\&#125;$)/g</span>, <span class="string">''</span>)</div><div class="line"><span class="keyword">this</span>.lines.push(<span class="string">'if ('</span> + expr + <span class="string">') &#123;'</span>)</div></pre></td></tr></table></figure></p>
-<p>然后会递归的对 elseifs 和 elsebody 进行遍历和解析，最后给 if 语句补上 }。所以如果 elseifs和 elsebody 都不存在，this.lines 上就会有：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'if (user.isAdmin) &#123;'</span>, &lt;body&gt;, <span class="string">'&#125;'</span>]</div></pre></td></tr></table></figure></p>
-<p>其它的结构和 IfStat 同理的解析和拼接方式，例如 EachStat:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">pp.genEachStat = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> expr = node.label.replace(<span class="regexp">/(^\&#123;\s*each\s*)|(\s*\&#125;$)/g</span>, <span class="string">''</span>)</div><div class="line">  <span class="keyword">var</span> tokens = expr.split(<span class="regexp">/\s+/</span>)</div><div class="line">  <span class="keyword">var</span> list = tokens[<span class="number">0</span>]</div><div class="line">  <span class="keyword">var</span> item = tokens[<span class="number">2</span>]</div><div class="line">  <span class="keyword">var</span> key = tokens[<span class="number">3</span>]</div><div class="line">  <span class="keyword">this</span>.lines.push(</div><div class="line">    <span class="string">'for (var '</span> + key + <span class="string">' = 0, len = '</span> + list + <span class="string">'.length; '</span> + key + <span class="string">' &lt; len; '</span> + key + <span class="string">'++) &#123;'</span></div><div class="line">  )</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'var '</span> + item + <span class="string">' = '</span> + list + <span class="string">'['</span> + key + <span class="string">'];'</span>)</div><div class="line">  <span class="keyword">if</span> (node.body) &#123;</div><div class="line">    <span class="keyword">this</span>.walk(node.body)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">this</span>.lines.push(<span class="string">'&#125;'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>最后递归构造完成以后，this.lines.join(‘\n’) 就把整个函数的体构建起来：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (user.isAdmin) &#123;</div><div class="line">...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> ...) &#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这时候 render 函数的函数体就有了，直接通过 new Function 构建 render 函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> code = <span class="keyword">new</span> CodeGen(ast)</div><div class="line"><span class="keyword">var</span> render = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'el'</span>, <span class="string">'data'</span>, code.body)</div></pre></td></tr></table></figure></p>
-<p>el 是需要注入的构建 Virtual-DOM 的构建函数，data 需要渲染的数据状态：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> svd = <span class="built_in">require</span>(<span class="string">'simple-virtual-dom'</span>)</div><div class="line"><span class="keyword">var</span> root = render(svd.el, &#123;<span class="attr">users</span>: [&#123;<span class="attr">isAdmin</span>: <span class="literal">true</span>&#125;]&#125;)</div></pre></td></tr></table></figure></p>
-<p>从模版 -&gt; Virtual-DOM 的 render 函数 -&gt; Virtual-DOM 的过程就完成了。完整的代码生成的过程可以参考：codegen.js</p>
-<h2 id="5-完整的-Virtual-Template"><a href="#5-完整的-Virtual-Template" class="headerlink" title="5 完整的 Virtual-Template"></a>5 完整的 Virtual-Template</h2><p>其实拿到 render 函数以后，每次手动进行 diff 和 patch 都是重复操作。可以把 diff 和 patch 也封装起来，只暴露一个 setData 的 API 。每次数据变更的时候，只需要 setData 就可以更新到 DOM 元素上（就像 ReactJS 的 setState）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// vTemplate.compile 编译模版字符串，返回一个函数</span></div><div class="line"><span class="keyword">var</span> usersListTpl = vTemplate.compile(tplStr)</div><div class="line"></div><div class="line"><span class="comment">// userListTpl 传入初始数据状态，返回一个实例</span></div><div class="line"><span class="keyword">var</span> usersList = usersListTpl(&#123;</div><div class="line">  <span class="attr">title</span>: <span class="string">'Users List'</span>,</div><div class="line">  <span class="attr">users</span>: [</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user0'</span>, <span class="attr">name</span>: <span class="string">'Jerry'</span>, <span class="attr">isAdmin</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user1'</span>, <span class="attr">name</span>: <span class="string">'Lucy'</span>, <span class="attr">isAuthor</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user2'</span>, <span class="attr">name</span>: <span class="string">'Tomy'</span>&#125;</div><div class="line">  ]</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 返回的实例有 dom 元素和一个 setData 的 API</span></div><div class="line"><span class="built_in">document</span>.appendChild(usersList.dom)</div><div class="line"></div><div class="line"><span class="comment">// 需要变更数据的时候，setData 一下即可</span></div><div class="line">usersList.setData(&#123;</div><div class="line">  <span class="attr">title</span>: <span class="string">'Users'</span>,</div><div class="line">  <span class="attr">users</span>: [</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user1'</span>, <span class="attr">name</span>: <span class="string">'Lucy'</span>, <span class="attr">isAuthor</span>: <span class="literal">true</span>&#125;,</div><div class="line">    &#123;<span class="attr">id</span>: <span class="string">'user2'</span>, <span class="attr">name</span>: <span class="string">'Tomy'</span>&#125;</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>完整的 Virtual-Template 源码托管在 github 。</p>
-<h2 id="6-结语"><a href="#6-结语" class="headerlink" title="6 结语"></a>6 结语</h2><p>这个过程其实和 ReactJS 的 JSX 差不多。就拿 Babel 的 JSX 语法实现而言，它的 parser 叫 babylon。而 babylon 基于一个叫 acorn 的 JavaScript 编写的 JavaScript 解释器和它的 JSX 插件 acorn-jsx。其实就是利用 acorn 把文本分割成 tokens，而 JSX 语法分析部分由 acorn-jsx 完成。</p>
-<p>Virtual-Template 还不能应用于实际的生产环境，需要完善的东西还有很多。本文记录基本的分析和实现的过程，也有助于更好地理解和学习 ReactJS 的实现。</p>
-<p>（全文完）</p>
+<p>查看是否安装成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python3 -V    // 输出 Python3.7.0</div><div class="line">python -V     // 输出 python2.7.6</div></pre></td></tr></table></figure></p>
+<h2 id="设置虚拟环境"><a href="#设置虚拟环境" class="headerlink" title="设置虚拟环境"></a>设置虚拟环境</h2><p>成功安装python后，我们需要为python项目创建虚拟环境。</p>
+<p>虚拟环境为Python项目创建一个隔离空间，确保每个项目都有自己的一组依赖项，这些依赖项不会破坏任何其他项目。</p>
+<p>设置编程环境使我们能够更好地控制Python项目以及如何处理不同版本的包。在使用第三方软件包时，这一点尤为重要。</p>
+<p>新建项目目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd ~</div><div class="line">mkdir myproject</div><div class="line">cd myproject</div></pre></td></tr></table></figure></p>
+<p>运行以下命令来创建独立环境：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python3 -m venv my_env</div></pre></td></tr></table></figure></p>
+<p>本质上，此命令创建一个新目录（在本例中称为my_env），其中包含我们可以使用以下ls命令查看的一些项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin  include  lib  lib64  pyvenv.cfg</div></pre></td></tr></table></figure></p>
+<p>到此为止，环境创建完成，要使用该虚拟环境，还需要执行激活虚拟环境命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source my_env/bin/activate</div></pre></td></tr></table></figure></p>
+<p>可以看到linux操作提示符前缀变为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(my_env) [root@localhost myproject]#</div></pre></td></tr></table></figure></p>
+<p>这个前缀让我们知道环境my_env当前是活动的，这意味着当我们在这里创建程序时，它们将只使用这个特定环境的设置和包。</p>
+<p>注意：我们使用python3创建的虚拟环境，在虚拟环境类，我们的python版本默认为python3.7.0，退出虚拟环境后python默认版本仍为2.7版本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(my_env) [root@localhost bin]# python -V   // 输出Python 3.7.0</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# python -V         // 输出Python 2.7.5</div></pre></td></tr></table></figure>
+<p>想退出python虚拟环境，只需执行deactivate命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(my_env) [root@localhost myproject]# deactivate</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参考链接：<a href="https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7" target="_blank" rel="external">https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7</a></p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;本文转载自：&lt;a href=&quot;https://github.com/livoras/blog/issues/14&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/livoras/blog/iss
+      &lt;p&gt;本文基于引用文章（见尾部）和个人搭建python3.7.0环境的过程进行总结和分享。&lt;/p&gt;
+&lt;h2 id=&quot;安装环境说明&quot;&gt;&lt;a href=&quot;#安装环境说明&quot; class=&quot;headerlink&quot; title=&quot;安装环境说明&quot;&gt;&lt;/a&gt;安装环境说明&lt;/h2&gt;&lt;ul&gt;
+&lt;l
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="后端" scheme="http://blog.huzerui.com/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
-      <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
-    
-      <category term="转载" scheme="http://www.huzerui.com/tags/%E8%BD%AC%E8%BD%BD/"/>
+      <category term="python" scheme="http://blog.huzerui.com/tags/python/"/>
     
   </entry>
   
   <entry>
-    <title>JavaScript深入之从原型到原型链【转载】</title>
-    <link href="http://www.huzerui.com/2017/10/31/javascript-from-prototype-to-prototype-chain/"/>
-    <id>http://www.huzerui.com/2017/10/31/javascript-from-prototype-to-prototype-chain/</id>
-    <published>2017-10-31T06:46:26.000Z</published>
-    <updated>2018-03-17T12:22:55.433Z</updated>
+    <title>移动端H5多页开发拍门砖经验</title>
+    <link href="http://blog.huzerui.com/2018/05/17/html5-multipage-development-experience/"/>
+    <id>http://blog.huzerui.com/2018/05/17/html5-multipage-development-experience/</id>
+    <published>2018-05-17T11:12:19.000Z</published>
+    <updated>2019-12-25T14:53:28.889Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>本文转载自冴羽博客<a href="https://github.com/mqyqingfeng/Blog/issues/17" target="_blank" rel="external">javascript深入系列</a>，清楚解释了js原型继承的机制，以图片清晰描述出构造函数、实例、原型、prototype、__proto__、constructor之间的关系。另外也推荐冴羽大大的另一个系列<a href="https://github.com/mqyqingfeng/Blog/issues/53" target="_blank" rel="external">javascript专题系列</a>，相信会给研读的小伙伴柳暗花明之感。</p>
-</blockquote>
-<h1 id="JavaScript深入之从原型到原型链"><a href="#JavaScript深入之从原型到原型链" class="headerlink" title="JavaScript深入之从原型到原型链"></a>JavaScript深入之从原型到原型链</h1><blockquote>
-<p>JavaScript深入系列的第一篇，从原型与原型链开始讲起，如果你想知道构造函数的实例的原型，原型的原型，原型的原型的原型是什么，就来看看这篇文章吧。</p>
-</blockquote>
-<h2 id="构造函数创建对象"><a href="#构造函数创建对象" class="headerlink" title="构造函数创建对象"></a>构造函数创建对象</h2><p>我们先使用构造函数创建一个对象：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line">person.name = <span class="string">'Kevin'</span>;</div><div class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
-<p>在这个例子中，Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person。</p>
-<p>很简单吧，接下来进入正题：</p>
-<h2 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h2><p>每个函数都有一个 prototype 属性，就是我们经常在各种例子中看到的那个 prototype ，比如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="comment">// 虽然写在注释里，但是你要注意：</span></div><div class="line"><span class="comment">// prototype是函数才会有的属性</span></div><div class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</div><div class="line"><span class="built_in">console</span>.log(person1.name) <span class="comment">// Kevin</span></div><div class="line"><span class="built_in">console</span>.log(person2.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
-<p>那这个函数的 prototype 属性到底指向的是什么呢？是这个函数的原型吗？</p>
-<p>其实，函数的 prototype 属性指向了一个对象，这个对象正是调用该构造函数而创建的<strong>实例</strong>的原型，也就是这个例子中的 person1 和 person2 的原型。</p>
-<p>那什么是原型呢？你可以这样理解：每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
-<p>让我们用一张图表示构造函数和实例原型之间的关系：</p>
-<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype1.png" alt="构造函数和实例原型的关系图"></p>
-<p>在这张图中我们用 Object.prototype 表示实例原型。</p>
-<p>那么我们该怎么表示实例与实例原型，也就是 person 和 Person.prototype 之间的关系呢，这时候我们就要讲到第二个属性：</p>
-<h2 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a>__proto__</h2><p>这是每一个JavaScript对象(除了 null )都具有的一个属性，叫__proto__，这个属性会指向该对象的原型。</p>
-<p>为了证明这一点,我们可以在火狐或者谷歌中输入：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"><span class="built_in">console</span>.log(person.__proto__ === Person.prototype); <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>于是我们更新下关系图：</p>
-<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype2.png" alt="实例与实例原型的关系图"></p>
-<p>既然实例对象和构造函数都可以指向原型，那么原型是否有属性指向构造函数或者实例呢？</p>
-<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><p>指向实例倒是没有，因为一个构造函数可以生成多个实例，但是原型指向构造函数倒是有的，这就要讲到第三个属性：constructor﻿，每个原型都有一个 constructor 属性指向关联的构造函数。</p>
-<p>为了验证这一点，我们可以尝试：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(Person === Person.prototype.constructor); <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>所以再更新下关系图：</p>
-<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype3.png" alt="实例原型与构造函数的关系图"></p>
-<p>综上我们已经得出：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person.__proto__ == Person.prototype) <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(Person.prototype.constructor == Person) <span class="comment">// true</span></div><div class="line"><span class="comment">// 顺便学习一个ES5的方法,可以获得对象的原型</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(person) === Person.prototype) <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>了解了构造函数、实例原型、和实例之间的关系，接下来我们讲讲实例和原型的关系：</p>
-<h2 id="实例与原型"><a href="#实例与原型" class="headerlink" title="实例与原型"></a>实例与原型</h2><p>当读取实例的属性时，如果找不到，就会查找与对象关联的原型中的属性，如果还查不到，就去找原型的原型，一直找到最顶层为止。</p>
-<p>举个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.name = <span class="string">'Kevin'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"></div><div class="line">person.name = <span class="string">'Daisy'</span>;</div><div class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Daisy</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> person.name;</div><div class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
-<p>在这个例子中，我们给实例对象 person 添加了 name 属性，当我们打印 person.name 的时候，结果自然为 Daisy。</p>
-<p>但是当我们删除了 person 的 name 属性时，读取 person.name，从 person 对象中找不到 name 属性就会从 person 的原型也就是 person.__proto__ ，也就是 Person.prototype中查找，幸运的是我们找到了  name 属性，结果为 Kevin。</p>
-<p>但是万一还没有找到呢？原型的原型又是什么呢？</p>
-<h2 id="原型的原型"><a href="#原型的原型" class="headerlink" title="原型的原型"></a>原型的原型</h2><p>在前面，我们已经讲了原型也是一个对象，既然是对象，我们就可以用最原始的方式创建它，那就是：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">obj.name = <span class="string">'Kevin'</span></div><div class="line"><span class="built_in">console</span>.log(obj.name) <span class="comment">// Kevin</span></div></pre></td></tr></table></figure>
-<p>所以原型对象是通过 Object 构造函数生成的，结合之前所讲，实例的 __proto__ 指向构造函数的 prototype ，所以我们再更新下关系图：</p>
-<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype4.png" alt="原型的原型关系图"></p>
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>那 Object.prototype 的原型呢？</p>
-<p>null，我们可以打印：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span>) <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>然而 null 究竟代表了什么呢？</p>
-<p>引用阮一峰老师的 <a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="external">《undefined与null的区别》</a> 就是：</p>
+    <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2018-05-17-mobile-h5-experience-poster.png" alt="H5多页"><br>两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸取前辈的经验分享，感谢热衷于分享的开发者为前端社区带来欣欣向上的生命力。本文结合先前写的文章和开发经验分享给大家，希望也能帮助刚步入移动端开发的新人解惑。以下会以其中一个以<strong>公积金页面</strong>开发项目作为例子，介绍移动端的一些<strong>常见问题</strong>和使<strong>用Vuejs作为lib进行多页开发</strong>的经验。</p>
+<h1 id="移动端自适应布局"><a href="#移动端自适应布局" class="headerlink" title="移动端自适应布局"></a>移动端自适应布局</h1><p>在项目中移动端最常用的自适应布局方案就是flexbox结合rem。规范的分栏式使用flexbox，其他大部分不规则视图使用rem，对于rem最常用的方案就是淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>。</p>
+<p>根据设备设备像素比设置scale的值（scale = 1 / deviceRatio），这样可以<strong>保持视口device-width始终等于设备物理像素</strong>，接着根据屏幕大小动态计算根字体大小，具体是将屏幕划分为100等分，每份为a，1rem就等于10a。</p>
+<h2 id="标注"><a href="#标注" class="headerlink" title="标注"></a>标注</h2><p>通常我们会拿到750宽的设计稿，这是基于iPhone6的物理分辨率。有的设计师也许会偷懒，设计图上面没有任何的标注，如果我们边开发边量尺寸，无疑效率是比较低的。要么让设计师标注上，要么自食其力。</p>
+<p>如果设计师实在没有时间，推荐使用<a href="http://www.getmarkman.com/" target="_blank" rel="external">markman</a>进行标注，免费版阉割了一些功能（比如无法保存本地）不过基本满足了我们的需求了。</p>
+<p>后来我发现比markman更好的标注工具<a href="http://www.fancynode.com.cn/pxcook" target="_blank" rel="external">PxCook</a>，该工具可以显示<strong>PSD设计图</strong>中的图层的样式代码，对于前端来说简直方便极了。</p>
+<p>标注完成后开始写我们的样式，使用了淘宝的<strong>lib-flexible</strong>库之后，我们的根字体基准值就为750/100*10 = 75px。此时我们从图中若某个标注为100px，那么css中就应该设置为100/75 = 1.333333rem。所以为了提高开发效率，可以使用px转化为rem的插件。下面是sublimeText和Vscode的转换插件：</p>
+<h2 id="px转rem插件"><a href="#px转rem插件" class="headerlink" title="px转rem插件"></a>px转rem插件</h2><ul>
+<li><p>sublimeText插件：<a href="https://packagecontrol.io/packages/rem-unit" target="_blank" rel="external">rem-unit</a><br><img src="https://user-gold-cdn.xitu.io/2018/5/22/1638672eb1471718?w=400&amp;h=150&amp;f=gif&amp;s=341881" alt="rem-unit"></p>
+</li>
+<li><p>Vscode插件： <a href="https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem" target="_blank" rel="external">cssrem</a><br><img src="https://user-gold-cdn.xitu.io/2018/5/22/1638672eb14e93b0?w=467&amp;h=243&amp;f=gif&amp;s=260047" alt="pxtorem"></p>
+</li>
+</ul>
+<h2 id="使用rem的几点总结"><a href="#使用rem的几点总结" class="headerlink" title="使用rem的几点总结"></a>使用rem的几点总结</h2><ul>
+<li>在所有的单位中，font-size推荐使用px，然后结合媒体查询进行重要节点的控制，这样可以满足<strong>突出或者弱化</strong>某些字体的需求，而非整体调整。</li>
+<li><strong>众向的单位可以全部使用px，横向的使用rem</strong>，因为移动设备宽度有限，而高度可以无限向下滑动。但这也有<strong>特例</strong>，比如对于一些活动注册页面，需要在一屏幕内完全显示，没有下拉，这时候所有众向或者横向都应该使用rem作为单位。如图：</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/22/16386a027d874cad?w=1280&amp;h=1108&amp;f=png&amp;s=405886" alt="shili"></p>
+<p>左图的表单高度单位由于下边空距较大，使用px在不同屏幕显示更加；而右边的活动注册页由于不能出现滚动条，所有的众向高度、margin、padding都应该使用rem。</p>
+<ul>
+<li><strong>border、box-shadow、border-radius</strong>等一些效果应该使用px作为单位。</li>
+</ul>
+<h2 id="手机状态栏和浏览器导航栏的影响"><a href="#手机状态栏和浏览器导航栏的影响" class="headerlink" title="手机状态栏和浏览器导航栏的影响"></a>手机状态栏和浏览器导航栏的影响</h2><p>之前发布的文章中，有个SF的前端小伙伴提出的问题：<br>文中作者有重点强调布局全部铺满，和下方与很多空隙的处理方案是不同的，在工作中我遇到这种情况，设计师的设计稿宽度为750×1334,但实际的展示高度并没有那么多，因为上方有导航栏还包括手机自己的状态栏展示，所以整体高度就达不到750，但是设计师设计稿是严格按照750进行设计的，这种情况下使用rem，严格按照设计师尺寸进行还原就会出现屏幕出现滚动条情况，请问针对这种情况您是怎么处理的？是从设计稿上规范，还是从开发上有相应的措施</p>
+<p>依旧以我的分享界面为例：<br>展示高度不同通常发生在微信及浏览器端，因为前者没有地址栏和工具栏，这样显示高度通常会和设计师设计的视图吻合。那如果按照纯padding，margin即使全部使用rem，在浏览器端依旧会超出一屏高度，对于分享页面这种不是我们想要看到的。这时候就要做出取舍，我对<strong>主体区域采用绝对定位</strong>，这样上面间隙虽然小，不过仍能保持在一个屏幕高度显示。若采用margin padding在设置，必然已出现滚动条。当然这样的前提是依赖设计图的，通常设计师会为了空间感有保留一定的间隙，也不会将主要对象高度设的过高，否则太撑满也不好看，开发上如果设计图宽高没有在一定界限之内，超出也无法避免，不过我们这种分享界面通常是通过微信分享好友，通过浏览器打开的视图效果出现滚动条其实也不怎么影响不是么？<br>下面附上微信端和浏览器端的效果图：</p>
+<p>微信端：<img src="https://user-gold-cdn.xitu.io/2018/5/22/163869f629a7588e?w=640&amp;h=1137&amp;f=jpeg&amp;s=200233" alt="微信端"></p>
+<p>浏览器端： <img src="https://user-gold-cdn.xitu.io/2018/5/22/163869f94a367bea?w=640&amp;h=1137&amp;f=jpeg&amp;s=206900" alt="浏览器端"></p>
+<h1 id="Vuejs作为lib开发移动端页面"><a href="#Vuejs作为lib开发移动端页面" class="headerlink" title="Vuejs作为lib开发移动端页面"></a>Vuejs作为lib开发移动端页面</h1><h2 id="为何不使用SPA模式"><a href="#为何不使用SPA模式" class="headerlink" title="为何不使用SPA模式"></a>为何不使用SPA模式</h2><p>一般移动端使用vue是为了数据交互频繁而且快速开发的页面，为什么不使用单页SPA开发模式，原因大概几点。</p>
+<ul>
+<li>为了快速开发，快速上线</li>
+<li>项目其他成员不熟悉SPA，不熟悉webpack</li>
+<li>参与项目时项目已使用多页开发，短时间无法重构</li>
+</ul>
+<p>抛开使用单页的架构，开发多页应用时，一个页面交互逻辑与一个Vue实例对应。</p>
+<h2 id="基于接口返回数据的属性注入"><a href="#基于接口返回数据的属性注入" class="headerlink" title="基于接口返回数据的属性注入"></a>基于接口返回数据的属性注入</h2><p>“基于接口返回数据的属性注入”是个人创建的话术，抛开此概念，先说一下表单数据的绑定方式。</p>
+<h3 id="表单的数据绑定"><a href="#表单的数据绑定" class="headerlink" title="表单的数据绑定"></a>表单的数据绑定</h3><p>一个重要的点是<strong>有几份表单就分开几个表单对象进行数据绑定</strong>。</p>
+<p>以上图公积金查询为例，由于不同城市会有不同的查询要素，可能登陆方式只有一种，也可能有几种。比如上图有三种登陆方式，在使用vue布局时，有两种方案。</p>
+<ul>
+<li>1、 只建立一个表单用于数据绑定，点击按钮触发判断</li>
+<li>2、有几种登陆方式建立几个表单，用一个字段标识当前显示的表单</li>
+</ul>
+<p>由于使用第三方的接口，一开始也没有先进行接口返回数据结构的查看，采用了第一种错误的方式，错误一是每种登陆方式下面的登陆要素的数量也不同，错误二是数据绑定在同一个表单data下，当用户在用户名登陆方式输入用户名密码后，切换到客户号登陆方式，就会出现数据错乱的情况。</p>
+<p>解决完布局问题后，我们需要根据设计图定义一些状态，比如当前登陆方式的切换、同意授权状态的切换、按钮是否可以点击的状态、是否处于请求中的状态。当然还有一些app穿过来的数据，这里就忽略了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">    <span class="attr">tags</span>: &#123;</div><div class="line">        <span class="attr">arr</span>: [<span class="string">''</span>],</div><div class="line">        <span class="attr">activeIndex</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">isAgreeProxy</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">isLoading</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接着审查一下接口返回的数据，推荐使用chrome插件postman，比如呼和浩特的登陆要素如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"code"</span>: <span class="number">2005</span>,</div><div class="line">    <span class="string">"data"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="string">"name"</span>: <span class="string">"login_type"</span>,</div><div class="line">            <span class="string">"label"</span>: <span class="string">"身份证号"</span>,</div><div class="line">            <span class="string">"fields"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_name"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"身份证号"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_pass"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"密码"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"password"</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="string">"value"</span>: <span class="string">"1"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="string">"name"</span>: <span class="string">" login_type"</span>,</div><div class="line">            <span class="string">"label"</span>: <span class="string">"公积金账号"</span>,</div><div class="line">            <span class="string">"fields"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_name"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"公积金账号"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"text"</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="string">"name"</span>: <span class="string">"user_pass"</span>,</div><div class="line">                    <span class="string">"label"</span>: <span class="string">"密码"</span>,</div><div class="line">                    <span class="string">"type"</span>: <span class="string">"password"</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="string">"value"</span>: <span class="string">"0"</span></div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    <span class="string">"message"</span>: <span class="string">"登录要素请求成功"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到呼和浩特有两种授权登陆方式，我们在data中定义了一个loginWays，初始为空数组，接着methods中定义一个请求接口的函数，里面就是基于返回数据的基础上为上面fields对象注入一个input字段用于绑定，这就是所谓的基于接口返回数据的属性注入。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">methods: &#123;</div><div class="line">    <span class="attr">queryloginWays</span>: <span class="function"><span class="keyword">function</span>(<span class="params">channel_type, channel_code</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> params = <span class="keyword">new</span> URLSearchParams();</div><div class="line">        params.append(<span class="string">'channel_type'</span>, channel_type);</div><div class="line">        params.append(<span class="string">'channel_code'</span>, channel_code);</div><div class="line">        axios.post(<span class="keyword">this</span>.loginParamsProxy, params)</div><div class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(res);</div><div class="line">                <span class="keyword">var</span> code = res.code || res.data.code;</div><div class="line">                <span class="keyword">var</span> msg = res.message || res.data.message;</div><div class="line">                <span class="keyword">var</span> loginWays = res.data.data ? res.data.data : res.data;</div><div class="line">                <span class="comment">// 查询失败</span></div><div class="line">                <span class="keyword">if</span> (code != <span class="number">2005</span>) &#123;</div><div class="line">                    alert(msg);</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 添加input字段用于v-model绑定</span></div><div class="line">                loginWays.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">loginWay</span>) </span>&#123;</div><div class="line">                    loginWay.fields.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">field</span>) </span>&#123;</div><div class="line">                        field.input = <span class="string">''</span>;</div><div class="line">                    &#125;)</div><div class="line">                &#125;)</div><div class="line">                <span class="keyword">this</span>.loginWays = loginWays;</div><div class="line">                <span class="keyword">this</span>.tags.arr = loginWays.map(<span class="function"><span class="keyword">function</span>(<span class="params">loginWay</span>) </span>&#123;</div><div class="line">                    <span class="keyword">return</span> loginWay.label;</div><div class="line">                &#125;)</div><div class="line">            &#125;.bind(<span class="keyword">this</span>))</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>即使返回的数据有我们不需要的数据也没有关系，这样保证我们不会遗失进行下一步登陆所需要的数据。</p>
+<p>这样多个表单绑定数据问题解决了，那么怎么进行页面间数据传递？如果是app传过来，那么通常使用URL拼接的方式，使用window.location.search获得queryString后再进行截取；如果通过页面套入javaWeb中，那么直接使用”${字段名}”就能获取，注意要js中获取java字段需要加双引号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">computed: &#123;</div><div class="line">        <span class="comment">// 真实姓名</span></div><div class="line">        realName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.getQueryVariable(<span class="string">'name'</span>) || <span class="string">''</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// 身份证</span></div><div class="line">        identity: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">this</span>.getQueryVariable(<span class="string">'identity'</span>)) || <span class="string">''</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">/*If javaWeb</span></div><div class="line">        realName: function() &#123;</div><div class="line">            return this.getQueryVariable('name') || ''</div><div class="line">        &#125;,</div><div class="line">        identity: function() &#123;</div><div class="line">            return parseInt(this.getQueryVariable('identity')) || ''</div><div class="line">        &#125;*/</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        <span class="attr">getQueryVariable</span>: <span class="function"><span class="keyword">function</span>(<span class="params">variable</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> query = <span class="built_in">window</span>.location.search.substring(<span class="number">1</span>);</div><div class="line">            <span class="keyword">var</span> vars = query.split(<span class="string">'&amp;'</span>);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; vars.length; i++) &#123;</div><div class="line">                <span class="keyword">var</span> pair = vars[i].split(<span class="string">'='</span>);</div><div class="line">                <span class="keyword">if</span> (<span class="built_in">decodeURIComponent</span>(pair[<span class="number">0</span>]) == variable) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(pair[<span class="number">1</span>]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'Query variable %s not found'</span>, variable);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="关于前端跨域调试"><a href="#关于前端跨域调试" class="headerlink" title="关于前端跨域调试"></a>关于前端跨域调试</h1><p>在进行接口请求时，我们的页面通常是在sublime的本地服务器或者vscode本地服务器预览，所以请求接口会遇到跨域的问题，如果使用Gulp进行打包，可以使用插件http-proxy-middleware，或者使用nginx。</p>
+<h2 id="使用Gulp"><a href="#使用Gulp" class="headerlink" title="使用Gulp"></a>使用Gulp</h2><p>在项目构建的时候通常我们源代码会放在src文件夹下，然后使用gulp进行代码的压缩、合并、图片的优化（根据需要）等等，我们会使用gulp。</p>
+<p>解决跨域的问题可以用<a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">gulp-connect</a>结合<a href="https://www.npmjs.com/package/http-proxy-middleware" target="_blank" rel="external">http-proxy-middleware</a>，此时我们在gulp-connect中的本地服务器进行预览调试。</p>
+<p>gulpfile.js如下： 开发过程使用<code>gulp server:dev</code>命令，监听文件改动并使用livereload刷新，并且代理src目录；使用<code>gulp</code>命令进行打包；使用<code>gulp server:dist</code>代理dist生产目录。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);</div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"><span class="keyword">var</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>);</div><div class="line"><span class="keyword">var</span> useref = <span class="built_in">require</span>(<span class="string">'gulp-useref'</span>);</div><div class="line"><span class="keyword">var</span> connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>);</div><div class="line"><span class="keyword">var</span> proxyMiddleware = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 开发跨域代理  将localhost:8088/api 映射到 https://api.xxxxx.com/</span></div><div class="line">gulp.task(<span class="string">'server:dev'</span>, [<span class="string">'listen'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> middleware = proxyMiddleware([<span class="string">'/api'</span>], &#123;</div><div class="line">        <span class="attr">target</span>: <span class="string">'https://api.xxxxx.com/'</span>,</div><div class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">pathRewrite</span>: &#123;</div><div class="line">            <span class="string">'^/api'</span>: <span class="string">'/'</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    connect.server(&#123;</div><div class="line">        <span class="attr">root</span>: env == <span class="string">'dev'</span> ? <span class="string">'./src'</span> : <span class="string">'./dist'</span>,</div><div class="line">        <span class="attr">port</span>: <span class="number">8088</span>,</div><div class="line">        <span class="attr">livereload</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">middleware</span>: <span class="function"><span class="keyword">function</span>(<span class="params">connect, opt</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> [middleware]</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 打包后跨域代理</span></div><div class="line">gulp.task(<span class="string">'server:dist'</span>, [<span class="string">'listen'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> middleware = proxyMiddleware([<span class="string">'/api'</span>], &#123;</div><div class="line">        <span class="attr">target</span>: <span class="string">'https://api.xxxxx.com/'</span>,</div><div class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">pathRewrite</span>: &#123;</div><div class="line">            <span class="string">'^/api'</span>: <span class="string">'/'</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    connect.server(&#123;</div><div class="line">        <span class="attr">root</span>: <span class="string">'./dist'</span>,</div><div class="line">        <span class="attr">port</span>: <span class="number">8088</span>,</div><div class="line">        <span class="attr">livereload</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">middleware</span>: <span class="function"><span class="keyword">function</span>(<span class="params">connect, opt</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> [middleware]</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/*.html'</span>)</div><div class="line">        .pipe(useref())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/css/main.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'main.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css/'</span>));</div><div class="line"></div><div class="line">    gulp.src(<span class="string">'src/css/share.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'share.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css/'</span>));</div><div class="line"></div><div class="line">    gulp.src(<span class="string">'src/vendors/css/*.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'vendors.min.css'</span>))</div><div class="line">        .pipe(autoprefixer(&#123;</div><div class="line">            <span class="attr">browsers</span>: [<span class="string">'last 2 versions'</span>],</div><div class="line">            <span class="attr">cascade</span>: <span class="literal">false</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/vendors/css'</span>));</div><div class="line">    <span class="keyword">return</span> gulp</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'js'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'src/vendors/js/*.js'</span>)</div><div class="line">        .pipe(concat(<span class="string">'vendors.min.js'</span>))</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/vendors/js'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'img'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/imgs/*'</span>)</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/imgs'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'listen'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.watch(<span class="string">'./src/css/*.css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/css/*.css'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(<span class="string">'./src/js/*.js'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/js/*.js'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(<span class="string">'./src/*.html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        gulp.src([<span class="string">'./src/*.html'</span>])</div><div class="line">            .pipe(connect.reload());</div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>, <span class="string">'js'</span>, <span class="string">'img'</span>]);</div></pre></td></tr></table></figure></p>
+<h2 id="使用nginx"><a href="#使用nginx" class="headerlink" title="使用nginx"></a>使用nginx</h2><p>在nginx配置使用proxy_pass，需要注意一点：<br>如果在proxy_pass后面的url加/，表示绝对根路径；如果没有/，表示相对路径，把匹配的路径部分也给代理走。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen 80;</div><div class="line">	server_name  localhost;</div><div class="line">	root   [Your project root];</div><div class="line">	index  index.html index.htm default.html default.htm;</div><div class="line">	</div><div class="line">    location ^~/api &#123; </div><div class="line">      proxy_pass https://api.xxxxx.com/;</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="公众号网页的调试"><a href="#公众号网页的调试" class="headerlink" title="公众号网页的调试"></a>公众号网页的调试</h1><p>如果你开发的H5基于微信jsSDK，你一定接触过微信授权域名，微信会将授权数据传给一个回调页面，而回调页面必须在你配置的域名下（含子域名）。比如我们获取用户的openid操作。而微信配置域名回去该域名根目录下检测一个<code>xxx_verify_xxx.txt</code>文件，确保该域名是属于你的。</p>
+<p>所以要想在微信开发调试工具中获取openid，我们需要使用一种叫做内网穿透的工具。下面是自己比较常用的两个工具：</p>
+<ul>
+<li><a href="https://ngrok.com/" target="_blank" rel="external">ngrok</a></li>
+<li><a href="https://hsk.oray.com/" target="_blank" rel="external">花生壳</a></li>
+</ul>
+<h2 id="ngrok"><a href="#ngrok" class="headerlink" title="ngrok"></a>ngrok</h2><p>ngrok执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ngrok -config ngrok.cfg start web</div></pre></td></tr></table></figure></p>
+<p>在ngrok.exe目录需要一个配置文件<code>ngrok.cfg</code><br>以下是配置示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server_addr: &quot;tunnel.cn:4443&quot;</div><div class="line">trust_host_root_certs: false</div><div class="line">tunnels:</div><div class="line">  web:</div><div class="line">   subdomain: &quot;xxx&quot; </div><div class="line">   proto:</div><div class="line">    http: 8086</div><div class="line">    https: 8086</div></pre></td></tr></table></figure></p>
+<p>启动后xxx.tunnel.cn:4443会指向你本地的8086端口，将<code>xxx_verify_xxx.txt</code>文件放到8086端口根目录即可配置授权域名成功。</p>
+<h2 id="花生壳"><a href="#花生壳" class="headerlink" title="花生壳"></a>花生壳</h2><p>花生壳免费版对于个人开通仅需6元，然后每月会提供给你1G的流量，免费版不支持80端口，最多支持两个域名，需要下载桌面客户端。</p>
+<p>添加域名映射很简单，免费版无法配置自定义域名，由花生壳自动生成。<br><img src="https://user-gold-cdn.xitu.io/2018/5/22/1638698584d70582?w=1692&amp;h=685&amp;f=png&amp;s=57366" alt="花生壳"><br>配置成功后启动客户端可查看当前的状态</p>
+<p>感谢阅读，欢迎任何形式的技术提问和交流！</p>
 <blockquote>
-<p>null 表示“没有对象”，即该处不应该有值。</p>
+<ul>
+<li>邮箱：me@huzerui.com</li>
+<li>知乎：<a href="https://www.zhihu.com/people/huzerui/activities" target="_blank" rel="external">晚风轻拂</a></li>
+<li><a href="https://juejin.im/post/5b03b2ee5188254284525e87" target="_blank" rel="external">掘金</a></li>
+</ul>
 </blockquote>
-<p>所以 Object.prototype.__proto__ 的值为 null 跟 Object.prototype 没有原型，其实表达了一个意思。</p>
-<p>所以查找属性的时候查到 Object.prototype 就可以停止查找了。</p>
-<p>最后一张关系图也可以更新为：</p>
-<p><img src="http://qiniu.huzerui.com/image/2017-10-31-prototype5.png" alt="原型链示意图"></p>
-<p>顺便还要说一下，图中由相互关联的原型组成的链状结构就是原型链，也就是蓝色的这条线。</p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>最后，补充三点大家可能不会注意的地方：</p>
-<h3 id="constructor"><a href="#constructor" class="headerlink" title="constructor"></a>constructor</h3><p>首先是 constructor 属性，我们看个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</div><div class="line"><span class="built_in">console</span>.log(person.constructor === Person); <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>当获取 person.constructor 时，其实 person 中并没有 constructor 属性,当不能读取到constructor 属性时，会从 person 的原型也就是 Person.prototype 中读取，正好原型中有该属性，所以：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">person.constructor === Person.prototype.constructor</div></pre></td></tr></table></figure>
-<h3 id="proto-1"><a href="#proto-1" class="headerlink" title="__proto__"></a>__proto__</h3><p>其次是 __proto__ ，绝大部分浏览器都支持这个非标准的方法访问原型，然而它并不存在于 Person.prototype 中，实际上，它是来自于 Object.prototype ，与其说是一个属性，不如说是一个 getter/setter，当使用 obj.__proto__ 时，可以理解成返回了 Object.getPrototypeOf(obj)。</p>
-<h3 id="真的是继承吗？"><a href="#真的是继承吗？" class="headerlink" title="真的是继承吗？"></a>真的是继承吗？</h3><p>最后是关于继承，前面我们讲到“每一个对象都会从原型‘继承’属性”，实际上，继承是一个十分具有迷惑性的说法，引用《你不知道的JavaScript》中的话，就是：</p>
-<p>继承意味着复制操作，然而 JavaScript 默认并不会复制对象的属性，相反，JavaScript 只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数，所以与其叫继承，委托的说法反而更准确些。</p>
-<h2 id="下一篇文章"><a href="#下一篇文章" class="headerlink" title="下一篇文章"></a>下一篇文章</h2><p><a href="https://github.com/mqyqingfeng/Blog/issues/3" target="_blank" rel="external">JavaScript深入之词法作用域和动态作用域</a></p>
-<h2 id="深入系列"><a href="#深入系列" class="headerlink" title="深入系列"></a>深入系列</h2><p>JavaScript深入系列目录地址：<a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="external">https://github.com/mqyqingfeng/Blog</a>。</p>
-<p>JavaScript深入系列预计写十五篇左右，旨在帮大家捋顺JavaScript底层知识，重点讲解如原型、作用域、执行上下文、变量对象、this、闭包、按值传递、call、apply、bind、new、继承等难点概念。</p>
-<p>如果有错误或者不严谨的地方，请务必给予指正，十分感谢。如果喜欢或者有所启发，欢迎star，对作者也是一种鼓励。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;本文转载自冴羽博客&lt;a href=&quot;https://github.com/mqyqingfeng/Blog/issues/17&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;javascript深入系列&lt;/a&gt;，清楚解释了js原型
+      &lt;p&gt;&lt;img src=&quot;http://qiniu.huzerui.com/image/2018-05-17-mobile-h5-experience-poster.png&quot; alt=&quot;H5多页&quot;&gt;&lt;br&gt;两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
+      <category term="javascript" scheme="http://blog.huzerui.com/tags/javascript/"/>
     
-      <category term="转载" scheme="http://www.huzerui.com/tags/%E8%BD%AC%E8%BD%BD/"/>
+      <category term="移动端" scheme="http://blog.huzerui.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
+      <category term="H5" scheme="http://blog.huzerui.com/tags/H5/"/>
     
   </entry>
   
   <entry>
     <title>前端都了解的配色策略</title>
-    <link href="http://www.huzerui.com/2017/10/15/color-formula/"/>
-    <id>http://www.huzerui.com/2017/10/15/color-formula/</id>
+    <link href="http://blog.huzerui.com/2017/10/15/color-formula/"/>
+    <id>http://blog.huzerui.com/2017/10/15/color-formula/</id>
     <published>2017-10-15T11:18:19.000Z</published>
-    <updated>2017-10-15T13:12:23.560Z</updated>
+    <updated>2021-05-09T02:47:24.370Z</updated>
     
     <content type="html"><![CDATA[<p>在色彩设计应用中，我们对颜色不同程度的理解，影响到设计页面的表现。可是这跟前端有什么联系么？不是设计师的事情么？</p>
 <p>可试想一下如果某些情况下我们需要脱离脱离设计师，比如我们需要做些赏心悦目的示例分享，除了将交互、逻辑做好，没有优雅的配色和设计，可能你的分享会显得苍白无力，下面直入正题。</p>
@@ -265,21 +217,21 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="设计" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/%E8%AE%BE%E8%AE%A1/"/>
+      <category term="设计" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/%E8%AE%BE%E8%AE%A1/"/>
     
     
-      <category term="设计" scheme="http://www.huzerui.com/tags/%E8%AE%BE%E8%AE%A1/"/>
+      <category term="设计" scheme="http://blog.huzerui.com/tags/%E8%AE%BE%E8%AE%A1/"/>
     
-      <category term="配色" scheme="http://www.huzerui.com/tags/%E9%85%8D%E8%89%B2/"/>
+      <category term="配色" scheme="http://blog.huzerui.com/tags/%E9%85%8D%E8%89%B2/"/>
     
   </entry>
   
   <entry>
     <title>基于bmob后端云微信小程序开发</title>
-    <link href="http://www.huzerui.com/2017/10/14/wechat-guita-tabs/"/>
-    <id>http://www.huzerui.com/2017/10/14/wechat-guita-tabs/</id>
+    <link href="http://blog.huzerui.com/2017/10/14/wechat-guita-tabs/"/>
+    <id>http://blog.huzerui.com/2017/10/14/wechat-guita-tabs/</id>
     <published>2017-10-14T10:18:19.000Z</published>
     <updated>2017-10-15T10:23:35.845Z</updated>
     
@@ -359,17 +311,17 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="微信小程序" scheme="http://www.huzerui.com/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <category term="微信小程序" scheme="http://blog.huzerui.com/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   
   <entry>
     <title>关于Blob、FileReader、FormData的那些事</title>
-    <link href="http://www.huzerui.com/2017/07/05/about-blob-filereader-formdata/"/>
-    <id>http://www.huzerui.com/2017/07/05/about-blob-filereader-formdata/</id>
+    <link href="http://blog.huzerui.com/2017/07/05/about-blob-filereader-formdata/"/>
+    <id>http://blog.huzerui.com/2017/07/05/about-blob-filereader-formdata/</id>
     <published>2017-07-05T07:12:19.000Z</published>
     <updated>2017-07-09T06:14:55.706Z</updated>
     
@@ -465,21 +417,21 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="Blob" scheme="http://www.huzerui.com/tags/Blob/"/>
+      <category term="Blob" scheme="http://blog.huzerui.com/tags/Blob/"/>
     
-      <category term="FileReader" scheme="http://www.huzerui.com/tags/FileReader/"/>
+      <category term="FileReader" scheme="http://blog.huzerui.com/tags/FileReader/"/>
     
-      <category term="FormData" scheme="http://www.huzerui.com/tags/FormData/"/>
+      <category term="FormData" scheme="http://blog.huzerui.com/tags/FormData/"/>
     
   </entry>
   
   <entry>
     <title>vuejs开发H5页面总结</title>
-    <link href="http://www.huzerui.com/2017/07/03/vuejs-develop-h5-experience/"/>
-    <id>http://www.huzerui.com/2017/07/03/vuejs-develop-h5-experience/</id>
+    <link href="http://blog.huzerui.com/2017/07/03/vuejs-develop-h5-experience/"/>
+    <id>http://blog.huzerui.com/2017/07/03/vuejs-develop-h5-experience/</id>
     <published>2017-07-03T07:12:19.000Z</published>
     <updated>2017-07-03T09:27:33.325Z</updated>
     
@@ -512,19 +464,19 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vuejs" scheme="http://www.huzerui.com/tags/vuejs/"/>
+      <category term="vuejs" scheme="http://blog.huzerui.com/tags/vuejs/"/>
     
   </entry>
   
   <entry>
     <title>关于异步函数的回调问题</title>
-    <link href="http://www.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/"/>
-    <id>http://www.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/</id>
+    <link href="http://blog.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/"/>
+    <id>http://blog.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/</id>
     <published>2017-03-30T03:37:43.000Z</published>
-    <updated>2017-07-02T10:50:22.747Z</updated>
+    <updated>2017-07-02T10:50:22.748Z</updated>
     
     <content type="html"><![CDATA[<p>我们在项目中经常需要根据异步请求结果进行相关操作，以往常用的方法是callback，但现在如果结合babel编译，用promise或者async会更加优雅。如下是错误的做法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 异步之后进行相关操作的错误做法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncFun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> flag = <span class="literal">false</span>;</div><div class="line">	$.ajax(&#123;</div><div class="line">		<span class="attr">url</span>: <span class="string">'https://api.github.com/'</span>,</div><div class="line">		<span class="attr">type</span>: <span class="string">'get'</span></div><div class="line">	&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(res.code == <span class="number">1</span>)&#123;</div><div class="line">			flag = <span class="literal">true</span></div><div class="line">		&#125;</div><div class="line">	&#125;)</div><div class="line">	<span class="keyword">return</span> flag;    <span class="comment">// 这里始终返回false，因为异步请求不阻塞后面代码执行</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(asyncFun())&#123;</div><div class="line">	<span class="comment">// 由于flag始终为false，很明显这里永远不会执行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -564,21 +516,21 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
+      <category term="js" scheme="http://blog.huzerui.com/tags/js/"/>
     
-      <category term="es6" scheme="http://www.huzerui.com/tags/es6/"/>
+      <category term="es6" scheme="http://blog.huzerui.com/tags/es6/"/>
     
   </entry>
   
   <entry>
     <title>Vuejs2.0 Demo</title>
-    <link href="http://www.huzerui.com/2017/02/04/vuejs-demo/"/>
-    <id>http://www.huzerui.com/2017/02/04/vuejs-demo/</id>
+    <link href="http://blog.huzerui.com/2017/02/04/vuejs-demo/"/>
+    <id>http://blog.huzerui.com/2017/02/04/vuejs-demo/</id>
     <published>2017-02-04T07:12:19.000Z</published>
-    <updated>2018-05-16T14:17:25.123Z</updated>
+    <updated>2018-05-16T14:17:25.124Z</updated>
     
     <content type="html"><![CDATA[<p>前段时间利用闲暇时间学习Vuejs并且做了一个实例，主要使用vue-router实现路由控制，vuex对程序进行状态管理，axios发送http请求。对数据在组件间的传递、webpack打包工具、数据的双向绑定有更深刻的了解和认识。<br><img src="http://qiniu.huzerui.com/image/2017-02-04-vue2.0-demo-poster.gif" alt="预览图"></p>
 <p>项目在线地址：<a href="http://www.huzerui.com/vue2.0-demo/">http://www.huzerui.com/vue2.0-demo/</a><br>Github地址：<a href="https://github.com/alex1504/vue2.0-demo" target="_blank" rel="external">https://github.com/alex1504/vue2.0-demo</a></p>
@@ -610,19 +562,19 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
+      <category term="js" scheme="http://blog.huzerui.com/tags/js/"/>
     
-      <category term="vuejs" scheme="http://www.huzerui.com/tags/vuejs/"/>
+      <category term="vuejs" scheme="http://blog.huzerui.com/tags/vuejs/"/>
     
   </entry>
   
   <entry>
     <title>常用的Lodash方法</title>
-    <link href="http://www.huzerui.com/2017/01/22/lodash-useful-function/"/>
-    <id>http://www.huzerui.com/2017/01/22/lodash-useful-function/</id>
+    <link href="http://blog.huzerui.com/2017/01/22/lodash-useful-function/"/>
+    <id>http://blog.huzerui.com/2017/01/22/lodash-useful-function/</id>
     <published>2017-01-22T14:39:31.000Z</published>
     <updated>2017-05-22T14:45:27.941Z</updated>
     
@@ -706,16 +658,16 @@
     </summary>
     
     
-      <category term="lodash" scheme="http://www.huzerui.com/tags/lodash/"/>
+      <category term="lodash" scheme="http://blog.huzerui.com/tags/lodash/"/>
     
   </entry>
   
   <entry>
     <title>Gulp前端自动化工具笔记</title>
-    <link href="http://www.huzerui.com/2016/11/07/gulp-learning-note/"/>
-    <id>http://www.huzerui.com/2016/11/07/gulp-learning-note/</id>
+    <link href="http://blog.huzerui.com/2016/11/07/gulp-learning-note/"/>
+    <id>http://blog.huzerui.com/2016/11/07/gulp-learning-note/</id>
     <published>2016-11-07T13:42:28.000Z</published>
-    <updated>2018-05-16T14:17:24.797Z</updated>
+    <updated>2018-05-16T14:17:24.798Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2016-11-7-gulp-poster.jpg" alt="gulp"><br>某个深夜独自在房间深造，在不断键盘敲击的“Alt+Tab”和“F5”许久，我开始疲惫了，于是从冰箱抡起一杯可乐。畅饮之余，去Google寻求仙人指路，仙人找到了nodejs为我指点了迷津，并递给我一杯可乐和吸管，原来“她”就在这里，她的名字叫“Gulp”。</p>
 <p>她虽然只是一杯插着吸管的饮料，可却能在烈日炎炎的夏天舒缓你焦灼的身心，在寒冷的冬天给你雪中送炭似的温暖，给你不一样的编码体验。</p>
@@ -768,19 +720,19 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="gulp" scheme="http://www.huzerui.com/tags/gulp/"/>
+      <category term="gulp" scheme="http://blog.huzerui.com/tags/gulp/"/>
     
   </entry>
   
   <entry>
     <title>Javascript开启浏览器全屏模式</title>
-    <link href="http://www.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/"/>
-    <id>http://www.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</id>
+    <link href="http://blog.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/"/>
+    <id>http://blog.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</id>
     <published>2016-11-04T15:38:01.000Z</published>
-    <updated>2017-04-29T07:02:21.907Z</updated>
+    <updated>2017-04-29T07:02:21.908Z</updated>
     
     <content type="html"><![CDATA[<p>通常在某些情况下，我们需要让浏览器开启全屏模式，以便获得更好的视觉体验，先看下全屏模式简单的几个API。</p>
 <h1 id="浏览器默认绑定"><a href="#浏览器默认绑定" class="headerlink" title="浏览器默认绑定"></a>浏览器默认绑定</h1><p>非全屏模式下， document的F11按键绑定开启全屏模式<br>全屏模式下， document的esc和F11 按键绑定关闭全屏模式</p>
@@ -1116,17 +1068,17 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="javascript" scheme="http://www.huzerui.com/tags/javascript/"/>
+      <category term="javascript" scheme="http://blog.huzerui.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>HTML5(Audio)移动音乐播放器</title>
-    <link href="http://www.huzerui.com/2016/10/30/how-to-make-a-html5-player/"/>
-    <id>http://www.huzerui.com/2016/10/30/how-to-make-a-html5-player/</id>
+    <link href="http://blog.huzerui.com/2016/10/30/how-to-make-a-html5-player/"/>
+    <id>http://blog.huzerui.com/2016/10/30/how-to-make-a-html5-player/</id>
     <published>2016-10-30T00:38:01.000Z</published>
     <updated>2018-05-16T14:17:24.936Z</updated>
     
@@ -1188,21 +1140,21 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="html5" scheme="http://www.huzerui.com/tags/html5/"/>
+      <category term="html5" scheme="http://blog.huzerui.com/tags/html5/"/>
     
-      <category term="player" scheme="http://www.huzerui.com/tags/player/"/>
+      <category term="player" scheme="http://blog.huzerui.com/tags/player/"/>
     
   </entry>
   
   <entry>
     <title>2016.10.3长沙之旅</title>
-    <link href="http://www.huzerui.com/2016/10/03/traveling-of-changsha/"/>
-    <id>http://www.huzerui.com/2016/10/03/traveling-of-changsha/</id>
+    <link href="http://blog.huzerui.com/2016/10/03/traveling-of-changsha/"/>
+    <id>http://blog.huzerui.com/2016/10/03/traveling-of-changsha/</id>
     <published>2016-10-03T12:12:19.000Z</published>
-    <updated>2018-05-16T14:17:24.833Z</updated>
+    <updated>2018-05-16T14:17:24.834Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-1.jpg" alt="蓝瘦"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-2.jpg" alt="橘子洲夕阳"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-3.jpg" alt="极致美颜"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-4.jpg" alt="万达"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-5.jpg" alt="湖南大学"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-6.jpg" alt="湖南电视台"></p>
 ]]></content>
@@ -1213,19 +1165,19 @@
     
     </summary>
     
-      <category term="旅行" scheme="http://www.huzerui.com/categories/%E6%97%85%E8%A1%8C/"/>
+      <category term="旅行" scheme="http://blog.huzerui.com/categories/%E6%97%85%E8%A1%8C/"/>
     
     
-      <category term="旅行" scheme="http://www.huzerui.com/tags/%E6%97%85%E8%A1%8C/"/>
+      <category term="旅行" scheme="http://blog.huzerui.com/tags/%E6%97%85%E8%A1%8C/"/>
     
   </entry>
   
   <entry>
     <title>毕业一年，如期而至</title>
-    <link href="http://www.huzerui.com/2016/09/08/graduate-for-one-year/"/>
-    <id>http://www.huzerui.com/2016/09/08/graduate-for-one-year/</id>
+    <link href="http://blog.huzerui.com/2016/09/08/graduate-for-one-year/"/>
+    <id>http://blog.huzerui.com/2016/09/08/graduate-for-one-year/</id>
     <published>2016-09-08T14:51:47.000Z</published>
-    <updated>2018-05-16T14:17:25.164Z</updated>
+    <updated>2018-05-16T14:17:25.165Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2016-09-08-graduration-poster.jpg" alt="poster"></p>
 <iframe frameborder="0" style="max-width: 100%;max-height: 498px;" width="640" height="498" src="http://v.qq.com/iframe/player.html?vid=m03268wqppq&tiny=0&auto=0" allowfullscreen></iframe>
@@ -1240,14 +1192,14 @@
     </summary>
     
     
-      <category term="大学" scheme="http://www.huzerui.com/tags/%E5%A4%A7%E5%AD%A6/"/>
+      <category term="大学" scheme="http://blog.huzerui.com/tags/%E5%A4%A7%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>移动端图片画廊</title>
-    <link href="http://www.huzerui.com/2016/09/04/mobile-gallery/"/>
-    <id>http://www.huzerui.com/2016/09/04/mobile-gallery/</id>
+    <link href="http://blog.huzerui.com/2016/09/04/mobile-gallery/"/>
+    <id>http://blog.huzerui.com/2016/09/04/mobile-gallery/</id>
     <published>2016-09-04T02:55:47.000Z</published>
     <updated>2017-05-18T11:54:03.770Z</updated>
     
@@ -1283,21 +1235,21 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="移动端" scheme="http://www.huzerui.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+      <category term="移动端" scheme="http://blog.huzerui.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
-      <category term="图片画廊" scheme="http://www.huzerui.com/tags/%E5%9B%BE%E7%89%87%E7%94%BB%E5%BB%8A/"/>
+      <category term="图片画廊" scheme="http://blog.huzerui.com/tags/%E5%9B%BE%E7%89%87%E7%94%BB%E5%BB%8A/"/>
     
   </entry>
   
   <entry>
     <title>CSS3变换及CSS3动画</title>
-    <link href="http://www.huzerui.com/2016/06/16/css3-transform-animation/"/>
-    <id>http://www.huzerui.com/2016/06/16/css3-transform-animation/</id>
+    <link href="http://blog.huzerui.com/2016/06/16/css3-transform-animation/"/>
+    <id>http://blog.huzerui.com/2016/06/16/css3-transform-animation/</id>
     <published>2016-06-16T14:21:23.000Z</published>
-    <updated>2017-04-29T07:02:21.907Z</updated>
+    <updated>2017-04-29T07:02:21.908Z</updated>
     
     <content type="html"><![CDATA[<h1 id="CSS3变换动画"><a href="#CSS3变换动画" class="headerlink" title="CSS3变换动画"></a>CSS3变换动画</h1><h2 id="指定三维视角"><a href="#指定三维视角" class="headerlink" title="指定三维视角"></a>指定三维视角</h2><p>perspective 属性定义 3D 元素距视图的距离，以像素计。<br>当为元素定义 perspective 属性时，其子元素会获得透视效果，而不是元素本身。</p>
 <h2 id="三维变形"><a href="#三维变形" class="headerlink" title="三维变形"></a>三维变形</h2><p>三维变形的变形方式：四种方法<br>旋转——缩放——平移——扭曲——指定变形基点</p>
@@ -1367,19 +1319,19 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="css3" scheme="http://www.huzerui.com/tags/css3/"/>
+      <category term="css3" scheme="http://blog.huzerui.com/tags/css3/"/>
     
   </entry>
   
   <entry>
     <title>HTML5新增input类型</title>
-    <link href="http://www.huzerui.com/2016/06/16/h5-tags/"/>
-    <id>http://www.huzerui.com/2016/06/16/h5-tags/</id>
+    <link href="http://blog.huzerui.com/2016/06/16/h5-tags/"/>
+    <id>http://blog.huzerui.com/2016/06/16/h5-tags/</id>
     <published>2016-06-16T13:50:32.000Z</published>
-    <updated>2017-04-29T07:02:21.907Z</updated>
+    <updated>2017-04-29T07:02:21.908Z</updated>
     
     <content type="html"><![CDATA[<h1 id="HTML5表单新增input类型"><a href="#HTML5表单新增input类型" class="headerlink" title="HTML5表单新增input类型"></a>HTML5表单新增input类型</h1><p>在HTML4等早期版本中，input元素已经有了一些type类型，type可取的值有下面这些：<br>text文本类型：<code>&lt;input type=&quot;text&quot;/&gt;</code><br>password密码类型：<code>&lt;input type=&quot;password&quot;/&gt;</code><br>radio 单选类型：<code>&lt;input type=&quot;radio&quot;/&gt;</code>选项<br>checkbox 多选类型：<code>&lt;input type=&quot;checkbox&quot;/&gt;</code>选项<br>file 文件类型：<code>&lt;input type=&quot;file&quot;/&gt;</code><br>submit 提交按钮：<code>&lt;input type=&quot;submit&quot;value=&quot;提交&quot;/&gt;</code><br>reset重置按钮：<code>&lt;input type=&quot;reset&quot;value=重置&quot;/&gt;</code><br>button定义按钮：<code>&lt;input type=&quot;button&quot;value=&quot;按钮1&quot;/&gt;</code><br>image 定义图片按钮：<code>&lt;input type=&quot;image&quot;src=&quot;..&quot;/&gt;</code><br>hidden定义隐藏域：<code>&lt;input type=&quot;hidden&quot;/&gt;</code></p>
 <p><strong>在HTML5中，input元素新增了一些类型，有email邮件类型、number数字类型、range数字滑动条、url地址类型、date日期类型及search搜索类型。下面我们来逐个介绍一下它们。</strong></p>
@@ -1405,19 +1357,19 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="html5" scheme="http://www.huzerui.com/tags/html5/"/>
+      <category term="html5" scheme="http://blog.huzerui.com/tags/html5/"/>
     
   </entry>
   
   <entry>
     <title>移动端自适应布局解决方案——rem</title>
-    <link href="http://www.huzerui.com/2016/06/16/mobile-rem/"/>
-    <id>http://www.huzerui.com/2016/06/16/mobile-rem/</id>
+    <link href="http://blog.huzerui.com/2016/06/16/mobile-rem/"/>
+    <id>http://blog.huzerui.com/2016/06/16/mobile-rem/</id>
     <published>2016-06-16T05:42:29.000Z</published>
-    <updated>2018-05-16T14:17:24.735Z</updated>
+    <updated>2018-05-16T14:17:24.736Z</updated>
     
     <content type="html"><![CDATA[<p>自适应布局方案有<strong>百分比布局、flex布局、弹性flex布局</strong>等，但是都有一些缺点。</p>
 <ul>
@@ -1451,18 +1403,18 @@
     </summary>
     
     
-      <category term="css" scheme="http://www.huzerui.com/tags/css/"/>
+      <category term="css" scheme="http://blog.huzerui.com/tags/css/"/>
     
-      <category term="webapp" scheme="http://www.huzerui.com/tags/webapp/"/>
+      <category term="webapp" scheme="http://blog.huzerui.com/tags/webapp/"/>
     
-      <category term="rem" scheme="http://www.huzerui.com/tags/rem/"/>
+      <category term="rem" scheme="http://blog.huzerui.com/tags/rem/"/>
     
   </entry>
   
   <entry>
     <title>IcoMoon将图标转换成web字体</title>
-    <link href="http://www.huzerui.com/2016/06/16/icoMoon/"/>
-    <id>http://www.huzerui.com/2016/06/16/icoMoon/</id>
+    <link href="http://blog.huzerui.com/2016/06/16/icoMoon/"/>
+    <id>http://blog.huzerui.com/2016/06/16/icoMoon/</id>
     <published>2016-06-16T03:22:52.000Z</published>
     <updated>2018-05-16T14:17:24.888Z</updated>
     
@@ -1491,21 +1443,21 @@
     
     </summary>
     
-      <category term="前端" scheme="http://www.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="css" scheme="http://www.huzerui.com/tags/css/"/>
+      <category term="css" scheme="http://blog.huzerui.com/tags/css/"/>
     
-      <category term="图标" scheme="http://www.huzerui.com/tags/%E5%9B%BE%E6%A0%87/"/>
+      <category term="图标" scheme="http://blog.huzerui.com/tags/%E5%9B%BE%E6%A0%87/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript获取DOM尺寸大小和元素位置</title>
-    <link href="http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/"/>
-    <id>http://www.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</id>
+    <link href="http://blog.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/"/>
+    <id>http://blog.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</id>
     <published>2016-06-15T04:46:43.000Z</published>
-    <updated>2018-05-16T14:17:24.767Z</updated>
+    <updated>2018-05-16T14:17:24.768Z</updated>
     
     <content type="html"><![CDATA[<p>JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：<br><img src="http://qiniu.huzerui.com/image/2016-06-15-js-get-dom-position-and-size-1.jpg" alt="大小、位置属性"><br>这些属性的笼统特征：<br>client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分<br>offset：元素内容+内边距+边框  不包括外边距和滚动条部分<br>scroll：与元素的滚动相关</p>
 <h1 id="尺寸大小"><a href="#尺寸大小" class="headerlink" title="尺寸大小"></a>尺寸大小</h1><p>一张网页的全部面积，就是它的大小。通常情况下，网页的大小由内容和CSS样式表决定。<br>视口是指在浏览器窗口中看到的那部分网页面积。</p>
@@ -1530,9 +1482,9 @@
     </summary>
     
     
-      <category term="js" scheme="http://www.huzerui.com/tags/js/"/>
+      <category term="js" scheme="http://blog.huzerui.com/tags/js/"/>
     
-      <category term="dom" scheme="http://www.huzerui.com/tags/dom/"/>
+      <category term="dom" scheme="http://blog.huzerui.com/tags/dom/"/>
     
   </entry>
   
