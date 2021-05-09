@@ -72,7 +72,7 @@
 <meta property="og:description" content="在当今百花齐放的电影片制作时代，有的人喜欢喜剧片，有的人喜欢科幻片，有的人喜欢充满童真的动画片，更有不少人喜欢恐怖片，可谓众口难调。但好电影能迎合绝大多数人的口味，今天看的正是这样一部去年末上映的电影，弥补了没去影院观看的遗憾。之说以写下这迟来的感受，因为我确实被震撼到了… 怀着看喜剧片的心情看《唐人街探案》，正如当初看《泰囧》《港囧》的感觉，本以为笑笑就过了，但渐渐发现有种看恐怖片的味道。不得不">
 <meta property="og:image" content="http://qiniu.huzerui.com/image/2016-3-13-film-tanrenjie-poster.jpg">
 <meta property="og:image" content="http://qiniu.huzerui.com/image/2016-3-13-film-tanrenjie-screenshot.jpg">
-<meta property="og:updated_time" content="2018-05-16T14:17:24.698Z">
+<meta property="og:updated_time" content="2021-05-09T12:55:49.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="完美的犯罪，触目惊心的微笑">
 <meta name="twitter:description" content="在当今百花齐放的电影片制作时代，有的人喜欢喜剧片，有的人喜欢科幻片，有的人喜欢充满童真的动画片，更有不少人喜欢恐怖片，可谓众口难调。但好电影能迎合绝大多数人的口味，今天看的正是这样一部去年末上映的电影，弥补了没去影院观看的遗憾。之说以写下这迟来的感受，因为我确实被震撼到了… 怀着看喜剧片的心情看《唐人街探案》，正如当初看《泰囧》《港囧》的感觉，本以为笑笑就过了，但渐渐发现有种看恐怖片的味道。不得不">
@@ -130,16 +130,6 @@
   </script>
 
 
-
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=58945240";
-      hm.defer = '1'
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -305,15 +295,6 @@
           
 
           
-          
-             <span id="/2016/03/13/film-review-detective-china-tang/" class="leancloud_visitors" data-flag-title="完美的犯罪，触目惊心的微笑">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
           
@@ -486,7 +467,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -590,22 +571,6 @@
 
         
 
-<div class="busuanzi-count">
-
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
-  
-
-  
-    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
-  
-  
-</div>
-
-
-
         
       </div>
     </footer>
@@ -703,113 +668,6 @@
   
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz", "v6hzlSojKgLf2oDjC1gNPuf8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 <script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">

@@ -126,16 +126,6 @@
 
 
 
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=58945240";
-      hm.defer = '1'
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
 
 
 
@@ -306,15 +296,6 @@
 
           
           
-             <span id="/2018/07/08/setup-python3-on-centos7/" class="leancloud_visitors" data-flag-title="如何在CentOS7上安装Python3并设置本地编程环境">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
 
           
         </div>
@@ -468,15 +449,6 @@
           
 
           
-          
-             <span id="/2018/05/17/html5-multipage-development-experience/" class="leancloud_visitors" data-flag-title="移动端H5多页开发拍门砖经验">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
           
@@ -672,15 +644,6 @@
 
           
           
-             <span id="/2017/10/15/color-formula/" class="leancloud_visitors" data-flag-title="前端都了解的配色策略">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
 
           
         </div>
@@ -817,15 +780,6 @@
 
           
           
-             <span id="/2017/10/14/wechat-guita-tabs/" class="leancloud_visitors" data-flag-title="基于bmob后端云微信小程序开发">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
 
           
         </div>
@@ -844,13 +798,13 @@
             <p>人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。</p>
 <p>程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用<a href="http://www.bmob.cn/" target="_blank" rel="external">bmob后端云</a>提供数据存储服务，除吉他谱图片，其他图片存储在<a href="https://www.qiniu.com/" target="_blank" rel="external">七牛</a>。</p>
 <p>关于bmob小程序开发文档请戳<a href="https://docs.bmob.cn/data/wechatApp/a_faststart/doc/index.html" target="_blank" rel="external">这里</a>，文档详细简练，主要是缩短了开发周期，不过对于复杂的项目，还是推荐使用自己服务器提供数据服务。</p>
-<h1 id="使用微信扫描二维码预览"><a href="#使用微信扫描二维码预览" class="headerlink" title="使用微信扫描二维码预览"></a>使用微信扫描二维码预览</h1><p><img src="http://upload-images.jianshu.io/upload_images/1709462-a09843e9084bcd98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="qrcode"><br>源码地址：<a href="https://github.com/alex1504/wx-guita_tab" target="_blank" rel="external">https://github.com/alex1504/wx-guita_tab</a></p>
+<h1 id="使用微信扫描二维码预览"><a href="#使用微信扫描二维码预览" class="headerlink" title="使用微信扫描二维码预览"></a>使用微信扫描二维码预览</h1><p><img src="http://qiniu.huzerui.com/image/2017-10-14-guita-qrcode.jpg" alt="qrcode"><br>源码地址：<a href="https://github.com/alex1504/wx-guita_tab" target="_blank" rel="external">https://github.com/alex1504/wx-guita_tab</a></p>
 <p>下面分点分享下小程序的开发过程中的关键点及感受，说明：</p>
 <ol>
 <li>小程序标签统称组件，Html标签统称元素。</li>
 <li>部分内容会与vuejs及jQuery作对比</li>
 </ol>
-<h1 id="使用iconfont字体图标"><a href="#使用iconfont字体图标" class="headerlink" title="使用iconfont字体图标"></a>使用iconfont字体图标</h1><p>新建项目并添加图标<br><img src="http://upload-images.jianshu.io/upload_images/1709462-75640d57eb7658e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iconfont"><br>在app.wxss中以unicode方式引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;iconfont&apos;;  /* project id 431644 */</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot&apos;);</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.woff&apos;) format(&apos;woff&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.svg#iconfont&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="使用iconfont字体图标"><a href="#使用iconfont字体图标" class="headerlink" title="使用iconfont字体图标"></a>使用iconfont字体图标</h1><p>新建项目并添加图标<br><img src="http://qiniu.huzerui.com/image/2017-10-14-iconfont.jpg" alt="iconfont"><br>在app.wxss中以unicode方式引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;iconfont&apos;;  /* project id 431644 */</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot&apos;);</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.woff&apos;) format(&apos;woff&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.svg#iconfont&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>定义通用icon样式，定义伪元素<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.icon</span>&#123;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">font-family</span>: <span class="string">'iconfont'</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-home</span><span class="selector-pseudo">::before</span>&#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"\e600"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;view class=&quot;icon icon-home&quot;&lt;/view&gt;</div></pre></td></tr></table></figure></p>
 <h1 id="小程序事件绑定及处理器"><a href="#小程序事件绑定及处理器" class="headerlink" title="小程序事件绑定及处理器"></a>小程序事件绑定及处理器</h1><p>小程序并没有类似vuejs的v-model进行双向绑定，使用bindinput类似jQuery监听input事件在事件处理器中更新数据，通过event对象e.data.value即可获得input的值。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// bindconfirm监听键盘回车事件，focus属性聚焦渲染组件时会自动弹出手机软键盘</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">placeholder</span>=<span class="string">'歌曲名 / 歌手'</span> <span class="attr">bindinput</span>=<span class="string">'bindSearchInput'</span> <span class="attr">bindconfirm</span>=<span class="string">'onSearch'</span> <span class="attr">focus</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div></pre></td></tr></table></figure></p>
@@ -1004,15 +958,6 @@
           
 
           
-          
-             <span id="/2017/07/05/about-blob-filereader-formdata/" class="leancloud_visitors" data-flag-title="关于Blob、FileReader、FormData的那些事">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
           
@@ -1210,15 +1155,6 @@
 
           
           
-             <span id="/2017/07/03/vuejs-develop-h5-experience/" class="leancloud_visitors" data-flag-title="vuejs开发H5页面总结">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
 
           
         </div>
@@ -1235,7 +1171,7 @@
         
           
             <p>最近参与了APP内嵌H5页面的开发，这次使用vuejs替代了jQuery，仅仅把vuejs当做一个库来使用，效率提高之外代码可读性更强，在此分享一下自己的一些开发中总结的经验。</p>
-<h1 id="关于布局方案"><a href="#关于布局方案" class="headerlink" title="关于布局方案"></a>关于布局方案</h1><p>当拿到设计师给的UI设计图，前端的首要任务就是布局和样式，相信这对于大部分前端工程师来说已经不是什么难题了。移动端的布局相对PC较为简单，关键在于<strong>对不同设备的适配</strong>。之前介绍了一篇关于移动端<a href="http://www.huzerui.com/blog/2016/06/16/mobile-rem/">rem布局方案</a>，这大致是网易H5的适配方案。不过实践中发现淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>效果更好且更容易使用。</p>
+<h1 id="关于布局方案"><a href="#关于布局方案" class="headerlink" title="关于布局方案"></a>关于布局方案</h1><p>当拿到设计师给的UI设计图，前端的首要任务就是布局和样式，相信这对于大部分前端工程师来说已经不是什么难题了。移动端的布局相对PC较为简单，关键在于<strong>对不同设备的适配</strong>。之前介绍了一篇关于移动端<a href="http://www.huzerui.com/blog/2016/06/16/mobile-rem/" target="_blank" rel="external">rem布局方案</a>，这大致是网易H5的适配方案。不过实践中发现淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>效果更好且更容易使用。</p>
 <p>网易云的方案总结为：根据<strong>屏幕大小 / 750 = 所求字体 / 基准字体大小</strong>比值相等，动态调节html的font-size大小。</p>
 <p>淘宝的方案总结为：根据设备设备像素比设置scale的值，保持视口device-width始终等于设备物理像素，接着根据屏幕大小动态计算根字体大小，具体是将屏幕划分为10等分，每份为a，1rem就等于10a。</p>
 <p>通常我们会拿到750宽的设计稿，这是基于iPhone6的物理分辨率。有的设计师也许会偷懒，设计图上面没有任何的标注，如果我们边开发边量尺寸，无疑效率是比较低的。要么让设计师标注上，要么自食其力。如果设计师实在没有时间，推荐使用<a href="http://www.getmarkman.com/" target="_blank" rel="external">markman</a>进行标注，免费版阉割了一些功能（比如无法保存本地）不过基本满足了我们的需求了。</p>
@@ -1350,15 +1286,6 @@
           
 
           
-          
-             <span id="/2017/03/30/solve-asyncfun-callback-problem/" class="leancloud_visitors" data-flag-title="关于异步函数的回调问题">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
           
@@ -1501,15 +1428,6 @@
 
           
           
-             <span id="/2017/02/04/vuejs-demo/" class="leancloud_visitors" data-flag-title="Vuejs2.0 Demo">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
 
           
         </div>
@@ -1526,8 +1444,8 @@
         
           
             <p>前段时间利用闲暇时间学习Vuejs并且做了一个实例，主要使用vue-router实现路由控制，vuex对程序进行状态管理，axios发送http请求。对数据在组件间的传递、webpack打包工具、数据的双向绑定有更深刻的了解和认识。<br><img src="http://qiniu.huzerui.com/image/2017-02-04-vue2.0-demo-poster.gif" alt="预览图"></p>
-<p>项目在线地址：<a href="http://www.huzerui.com/vue2.0-demo/">http://www.huzerui.com/vue2.0-demo/</a><br>Github地址：<a href="https://github.com/alex1504/vue2.0-demo" target="_blank" rel="external">https://github.com/alex1504/vue2.0-demo</a></p>
-<p>扫描二维码预览：<br><img src="/blog/img/post/2017-03-04-vuejs-demo-qrcode.png" alt="二维码地址"></p>
+<p>项目在线地址：<a href="http://www.huzerui.com/vue2.0-demo/" target="_blank" rel="external">http://www.huzerui.com/vue2.0-demo/</a><br>Github地址：<a href="https://github.com/alex1504/vue2.0-demo" target="_blank" rel="external">https://github.com/alex1504/vue2.0-demo</a></p>
+<p>扫描二维码预览：<br><img src="/img/post/2017-03-04-vuejs-demo-qrcode.png" alt="二维码地址"></p>
 <h1 id="更新记录："><a href="#更新记录：" class="headerlink" title="更新记录："></a>更新记录：</h1><p>2017.1.13 主导航电影、音乐、图书、图片使用router跳转电影模块使用tab菜单切换各个列表模块下拉滚动加载图片模块使用flex布局实现瀑布流效果<br>2017.1.17 增加了电影详情模块，优化路由跳转<br>2017.1.18 增加了登录、登出模块，使用leancloud数据存储功能<br>2017.1.19 增加了图片详情模块，增加了新的生产依赖vue-touch<br>2017.2.6 新增用户注册模块</p>
 <h1 id="开发依赖："><a href="#开发依赖：" class="headerlink" title="开发依赖："></a>开发依赖：</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="string">"babel-core"</span>: <span class="string">"^6.0.0"</span>,</div><div class="line"><span class="string">"babel-loader"</span>: <span class="string">"^6.0.0"</span>,</div><div class="line"><span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.0.0"</span>,</div><div class="line"><span class="string">"cross-env"</span>: <span class="string">"^3.0.0"</span>,</div><div class="line"><span class="string">"css-loader"</span>: <span class="string">"^0.25.0"</span>,</div><div class="line"><span class="string">"file-loader"</span>: <span class="string">"^0.9.0"</span>,</div><div class="line"><span class="string">"mockjs"</span>: <span class="string">"^1.0.1-beta3"</span>,</div><div class="line"><span class="string">"node-sass"</span>: <span class="string">"^4.2.0"</span>,</div><div class="line"><span class="string">"sass"</span>: <span class="string">"^0.5.0"</span>,</div><div class="line"><span class="string">"sass-loader"</span>: <span class="string">"^4.0.0"</span>,</div><div class="line"><span class="string">"style-loader"</span>: <span class="string">"^0.13.1"</span>,</div><div class="line"><span class="string">"vue-loader"</span>: <span class="string">"^10.0.0"</span>,</div><div class="line"><span class="string">"vue-style-loader"</span>: <span class="string">"^1.0.0"</span>,</div><div class="line"><span class="string">"vue-template-compiler"</span>: <span class="string">"^2.1.0"</span>,</div><div class="line"><span class="string">"webpack"</span>: <span class="string">"^2.1.0-beta.25"</span>,</div><div class="line"><span class="string">"webpack-dev-server"</span>: <span class="string">"^2.1.0-beta.9"</span></div></pre></td></tr></table></figure>
 <h1 id="生产环境依赖："><a href="#生产环境依赖：" class="headerlink" title="生产环境依赖："></a>生产环境依赖：</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"axios"</span>: <span class="string">"^0.15.3"</span>,</div><div class="line"><span class="string">"vue"</span>: <span class="string">"^2.1.0"</span>,</div><div class="line"><span class="string">"vue-material"</span>: <span class="string">"^0.5.2"</span>,</div><div class="line"><span class="string">"vue-router"</span>: <span class="string">"^2.1.1"</span>,</div><div class="line"><span class="string">"vue-swipe"</span>: <span class="string">"^2.0.2"</span>,</div><div class="line"><span class="string">"vue-touch"</span>: <span class="string">"^2.0.0-beta.3"</span>,</div><div class="line"><span class="string">"vuex"</span>: <span class="string">"^2.1.1"</span></div></pre></td></tr></table></figure>
@@ -1538,7 +1456,7 @@
 <li>由于ithub访问速度原因，初次加载需稍等片刻。</li>
 <li>登录及注册使用了Leancloud的后端云服务，关于如何使用你可以点<a href="https://leancloud.cn/docs/demo.html" target="_blank" rel="external">这里</a>查看LeanCloud搭建的各类应用演示。</li>
 </ul>
-<h1 id="关于使用Leancloud接口"><a href="#关于使用Leancloud接口" class="headerlink" title="关于使用Leancloud接口"></a>关于使用Leancloud接口</h1><p>细心的小伙伴应该会发现，使用LN接口必须使用AV.init对接口进行初始化，接收的参数是你的APPID和APPScret，也就是说即使我们的项目不开源，通过前端审查脚本也可以知道你的应用id及密钥，进而可以轻松调取你的接口做坏坏的事情。<br>为此如果你需要纯前后端分离的进行接口调用，LN给予的安全方案是配置web安全域名，也就是只有安全域名才能访问你的接口。<br><img src="/blog/img/post/2017-02-04-leancloud-web-security.png" alt="安全域名"><br>另外更稳妥的做法是传统开发APP的方式，将APPID和APPScret在后台代码中对接口进行初始化，前端就审查不到了，比如koa就可以单独为静态文件设置公开访问的静态目录，对于敏感数据文件可以设置存放在安全的前端无法访问的目录下面。<br>在有后端对接口实现复杂的逻辑封装的时候，推荐LN官方推出的<a href="https://leancloud.cn/docs/leanengine_overview.html" target="_blank" rel="external">LeanEngine</a>运行方案，有Nodejs、Pythod、PHP、Java四个版本。</p>
+<h1 id="关于使用Leancloud接口"><a href="#关于使用Leancloud接口" class="headerlink" title="关于使用Leancloud接口"></a>关于使用Leancloud接口</h1><p>细心的小伙伴应该会发现，使用LN接口必须使用AV.init对接口进行初始化，接收的参数是你的APPID和APPScret，也就是说即使我们的项目不开源，通过前端审查脚本也可以知道你的应用id及密钥，进而可以轻松调取你的接口做坏坏的事情。<br>为此如果你需要纯前后端分离的进行接口调用，LN给予的安全方案是配置web安全域名，也就是只有安全域名才能访问你的接口。<br><img src="/img/post/2017-02-04-leancloud-web-security.png" alt="安全域名"><br>另外更稳妥的做法是传统开发APP的方式，将APPID和APPScret在后台代码中对接口进行初始化，前端就审查不到了，比如koa就可以单独为静态文件设置公开访问的静态目录，对于敏感数据文件可以设置存放在安全的前端无法访问的目录下面。<br>在有后端对接口实现复杂的逻辑封装的时候，推荐LN官方推出的<a href="https://leancloud.cn/docs/leanengine_overview.html" target="_blank" rel="external">LeanEngine</a>运行方案，有Nodejs、Pythod、PHP、Java四个版本。</p>
 <h1 id="感触："><a href="#感触：" class="headerlink" title="感触："></a>感触：</h1><ol>
 <li>MVVM三分天下，如果你希望一个轻巧、易上手、文档详尽的框架，选择<a href="https://cn.vuejs.org/" target="_blank" rel="external">Vuejs</a></li>
 <li>如果你十分熟练jQuery的用法，在Vuejs中你很容易发现一些遗传着“经典”的足迹</li>
@@ -1624,15 +1542,6 @@
           
 
           
-          
-             <span id="/2017/01/22/lodash-useful-function/" class="leancloud_visitors" data-flag-title="常用的Lodash方法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
           
 
           
@@ -1813,15 +1722,6 @@
 
           
           
-             <span id="/2016/11/07/gulp-learning-note/" class="leancloud_visitors" data-flag-title="Gulp前端自动化工具笔记">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
 
           
         </div>
@@ -1972,7 +1872,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2064,22 +1964,6 @@
 </div> -->
 
         
-
-<div class="busuanzi-count">
-
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
-  
-
-  
-    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
-  
-  
-</div>
-
-
 
         
       </div>
@@ -2174,113 +2058,6 @@
   
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("dbNln2TwIbQrGEP4YGEbE6Ia-gzGzoHsz", "v6hzlSojKgLf2oDjC1gNPuf8");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 <script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">

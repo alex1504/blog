@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.huzerui.com/"/>
-  <updated>2019-12-25T14:53:28.892Z</updated>
+  <updated>2021-05-09T12:55:49.107Z</updated>
   <id>http://blog.huzerui.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.huzerui.com/2018/07/08/setup-python3-on-centos7/"/>
     <id>http://blog.huzerui.com/2018/07/08/setup-python3-on-centos7/</id>
     <published>2018-07-08T07:12:19.000Z</published>
-    <updated>2019-12-25T14:53:28.892Z</updated>
+    <updated>2021-05-09T12:55:49.107Z</updated>
     
     <content type="html"><![CDATA[<p>本文基于引用文章（见尾部）和个人搭建python3.7.0环境的过程进行总结和分享。</p>
 <h2 id="安装环境说明"><a href="#安装环境说明" class="headerlink" title="安装环境说明"></a>安装环境说明</h2><ul>
@@ -86,7 +86,7 @@
     <link href="http://blog.huzerui.com/2018/05/17/html5-multipage-development-experience/"/>
     <id>http://blog.huzerui.com/2018/05/17/html5-multipage-development-experience/</id>
     <published>2018-05-17T11:12:19.000Z</published>
-    <updated>2019-12-25T14:53:28.889Z</updated>
+    <updated>2021-05-09T12:55:49.067Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2018-05-17-mobile-h5-experience-poster.png" alt="H5多页"><br>两年前刚接触移动端开发，刚开始比较疑惑，每次遇到问题都是到社区里提问或者吸取前辈的经验分享，感谢热衷于分享的开发者为前端社区带来欣欣向上的生命力。本文结合先前写的文章和开发经验分享给大家，希望也能帮助刚步入移动端开发的新人解惑。以下会以其中一个以<strong>公积金页面</strong>开发项目作为例子，介绍移动端的一些<strong>常见问题</strong>和使<strong>用Vuejs作为lib进行多页开发</strong>的经验。</p>
 <h1 id="移动端自适应布局"><a href="#移动端自适应布局" class="headerlink" title="移动端自适应布局"></a>移动端自适应布局</h1><p>在项目中移动端最常用的自适应布局方案就是flexbox结合rem。规范的分栏式使用flexbox，其他大部分不规则视图使用rem，对于rem最常用的方案就是淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>。</p>
@@ -169,11 +169,11 @@
       <category term="前端" scheme="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="javascript" scheme="http://blog.huzerui.com/tags/javascript/"/>
-    
       <category term="移动端" scheme="http://blog.huzerui.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
       <category term="H5" scheme="http://blog.huzerui.com/tags/H5/"/>
+    
+      <category term="javascript" scheme="http://blog.huzerui.com/tags/javascript/"/>
     
   </entry>
   
@@ -182,7 +182,7 @@
     <link href="http://blog.huzerui.com/2017/10/15/color-formula/"/>
     <id>http://blog.huzerui.com/2017/10/15/color-formula/</id>
     <published>2017-10-15T11:18:19.000Z</published>
-    <updated>2021-05-09T02:47:24.370Z</updated>
+    <updated>2021-05-09T12:55:49.054Z</updated>
     
     <content type="html"><![CDATA[<p>在色彩设计应用中，我们对颜色不同程度的理解，影响到设计页面的表现。可是这跟前端有什么联系么？不是设计师的事情么？</p>
 <p>可试想一下如果某些情况下我们需要脱离脱离设计师，比如我们需要做些赏心悦目的示例分享，除了将交互、逻辑做好，没有优雅的配色和设计，可能你的分享会显得苍白无力，下面直入正题。</p>
@@ -233,18 +233,18 @@
     <link href="http://blog.huzerui.com/2017/10/14/wechat-guita-tabs/"/>
     <id>http://blog.huzerui.com/2017/10/14/wechat-guita-tabs/</id>
     <published>2017-10-14T10:18:19.000Z</published>
-    <updated>2017-10-15T10:23:35.845Z</updated>
+    <updated>2021-05-09T13:12:26.603Z</updated>
     
     <content type="html"><![CDATA[<p>人的一生90%的时间都在做着无聊的事情，社会的发展使得我们的闲暇时间越来越多，我们把除了工作的其他时间放在各种娱乐活动上    。</p>
 <p>程序员有点特殊，他们把敲代码看成娱乐活动的一部分，以此打发时间的不占少数。这不最近无聊搞了一个口袋吉他小程序，使用<a href="http://www.bmob.cn/" target="_blank" rel="external">bmob后端云</a>提供数据存储服务，除吉他谱图片，其他图片存储在<a href="https://www.qiniu.com/" target="_blank" rel="external">七牛</a>。</p>
 <p>关于bmob小程序开发文档请戳<a href="https://docs.bmob.cn/data/wechatApp/a_faststart/doc/index.html" target="_blank" rel="external">这里</a>，文档详细简练，主要是缩短了开发周期，不过对于复杂的项目，还是推荐使用自己服务器提供数据服务。</p>
-<h1 id="使用微信扫描二维码预览"><a href="#使用微信扫描二维码预览" class="headerlink" title="使用微信扫描二维码预览"></a>使用微信扫描二维码预览</h1><p><img src="http://upload-images.jianshu.io/upload_images/1709462-a09843e9084bcd98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="qrcode"><br>源码地址：<a href="https://github.com/alex1504/wx-guita_tab" target="_blank" rel="external">https://github.com/alex1504/wx-guita_tab</a></p>
+<h1 id="使用微信扫描二维码预览"><a href="#使用微信扫描二维码预览" class="headerlink" title="使用微信扫描二维码预览"></a>使用微信扫描二维码预览</h1><p><img src="http://qiniu.huzerui.com/image/2017-10-14-guita-qrcode.jpg" alt="qrcode"><br>源码地址：<a href="https://github.com/alex1504/wx-guita_tab" target="_blank" rel="external">https://github.com/alex1504/wx-guita_tab</a></p>
 <p>下面分点分享下小程序的开发过程中的关键点及感受，说明：</p>
 <ol>
 <li>小程序标签统称组件，Html标签统称元素。</li>
 <li>部分内容会与vuejs及jQuery作对比</li>
 </ol>
-<h1 id="使用iconfont字体图标"><a href="#使用iconfont字体图标" class="headerlink" title="使用iconfont字体图标"></a>使用iconfont字体图标</h1><p>新建项目并添加图标<br><img src="http://upload-images.jianshu.io/upload_images/1709462-75640d57eb7658e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iconfont"><br>在app.wxss中以unicode方式引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;iconfont&apos;;  /* project id 431644 */</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot&apos;);</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.woff&apos;) format(&apos;woff&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.svg#iconfont&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="使用iconfont字体图标"><a href="#使用iconfont字体图标" class="headerlink" title="使用iconfont字体图标"></a>使用iconfont字体图标</h1><p>新建项目并添加图标<br><img src="http://qiniu.huzerui.com/image/2017-10-14-iconfont.jpg" alt="iconfont"><br>在app.wxss中以unicode方式引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@font-face &#123;</div><div class="line">  font-family: &apos;iconfont&apos;;  /* project id 431644 */</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot&apos;);</div><div class="line">  src: url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.woff&apos;) format(&apos;woff&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.ttf&apos;) format(&apos;truetype&apos;),</div><div class="line">  url(&apos;//at.alicdn.com/t/font_431644_aahynh26y6lp7gb9.svg#iconfont&apos;) format(&apos;svg&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>定义通用icon样式，定义伪元素<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.icon</span>&#123;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">font-family</span>: <span class="string">'iconfont'</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-home</span><span class="selector-pseudo">::before</span>&#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"\e600"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;view class=&quot;icon icon-home&quot;&lt;/view&gt;</div></pre></td></tr></table></figure></p>
 <h1 id="小程序事件绑定及处理器"><a href="#小程序事件绑定及处理器" class="headerlink" title="小程序事件绑定及处理器"></a>小程序事件绑定及处理器</h1><p>小程序并没有类似vuejs的v-model进行双向绑定，使用bindinput类似jQuery监听input事件在事件处理器中更新数据，通过event对象e.data.value即可获得input的值。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// bindconfirm监听键盘回车事件，focus属性聚焦渲染组件时会自动弹出手机软键盘</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">placeholder</span>=<span class="string">'歌曲名 / 歌手'</span> <span class="attr">bindinput</span>=<span class="string">'bindSearchInput'</span> <span class="attr">bindconfirm</span>=<span class="string">'onSearch'</span> <span class="attr">focus</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div></pre></td></tr></table></figure></p>
@@ -323,7 +323,7 @@
     <link href="http://blog.huzerui.com/2017/07/05/about-blob-filereader-formdata/"/>
     <id>http://blog.huzerui.com/2017/07/05/about-blob-filereader-formdata/</id>
     <published>2017-07-05T07:12:19.000Z</published>
-    <updated>2017-07-09T06:14:55.706Z</updated>
+    <updated>2021-05-09T12:55:49.047Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Blob对象是什么"><a href="#Blob对象是什么" class="headerlink" title="Blob对象是什么"></a>Blob对象是什么</h1><p>从<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="_blank" rel="external">MDN</a>上有这样一段描述：</p>
 <blockquote>
@@ -433,10 +433,10 @@
     <link href="http://blog.huzerui.com/2017/07/03/vuejs-develop-h5-experience/"/>
     <id>http://blog.huzerui.com/2017/07/03/vuejs-develop-h5-experience/</id>
     <published>2017-07-03T07:12:19.000Z</published>
-    <updated>2017-07-03T09:27:33.325Z</updated>
+    <updated>2021-05-09T12:55:49.137Z</updated>
     
     <content type="html"><![CDATA[<p>最近参与了APP内嵌H5页面的开发，这次使用vuejs替代了jQuery，仅仅把vuejs当做一个库来使用，效率提高之外代码可读性更强，在此分享一下自己的一些开发中总结的经验。</p>
-<h1 id="关于布局方案"><a href="#关于布局方案" class="headerlink" title="关于布局方案"></a>关于布局方案</h1><p>当拿到设计师给的UI设计图，前端的首要任务就是布局和样式，相信这对于大部分前端工程师来说已经不是什么难题了。移动端的布局相对PC较为简单，关键在于<strong>对不同设备的适配</strong>。之前介绍了一篇关于移动端<a href="http://www.huzerui.com/blog/2016/06/16/mobile-rem/">rem布局方案</a>，这大致是网易H5的适配方案。不过实践中发现淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>效果更好且更容易使用。</p>
+<h1 id="关于布局方案"><a href="#关于布局方案" class="headerlink" title="关于布局方案"></a>关于布局方案</h1><p>当拿到设计师给的UI设计图，前端的首要任务就是布局和样式，相信这对于大部分前端工程师来说已经不是什么难题了。移动端的布局相对PC较为简单，关键在于<strong>对不同设备的适配</strong>。之前介绍了一篇关于移动端<a href="http://www.huzerui.com/blog/2016/06/16/mobile-rem/" target="_blank" rel="external">rem布局方案</a>，这大致是网易H5的适配方案。不过实践中发现淘宝开源的<a href="https://github.com/amfe/lib-flexible" target="_blank" rel="external">可伸缩布局方案</a>效果更好且更容易使用。</p>
 <p>网易云的方案总结为：根据<strong>屏幕大小 / 750 = 所求字体 / 基准字体大小</strong>比值相等，动态调节html的font-size大小。</p>
 <p>淘宝的方案总结为：根据设备设备像素比设置scale的值，保持视口device-width始终等于设备物理像素，接着根据屏幕大小动态计算根字体大小，具体是将屏幕划分为10等分，每份为a，1rem就等于10a。</p>
 <p>通常我们会拿到750宽的设计稿，这是基于iPhone6的物理分辨率。有的设计师也许会偷懒，设计图上面没有任何的标注，如果我们边开发边量尺寸，无疑效率是比较低的。要么让设计师标注上，要么自食其力。如果设计师实在没有时间，推荐使用<a href="http://www.getmarkman.com/" target="_blank" rel="external">markman</a>进行标注，免费版阉割了一些功能（比如无法保存本地）不过基本满足了我们的需求了。</p>
@@ -476,7 +476,7 @@
     <link href="http://blog.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/"/>
     <id>http://blog.huzerui.com/2017/03/30/solve-asyncfun-callback-problem/</id>
     <published>2017-03-30T03:37:43.000Z</published>
-    <updated>2017-07-02T10:50:22.748Z</updated>
+    <updated>2021-05-09T12:55:49.122Z</updated>
     
     <content type="html"><![CDATA[<p>我们在项目中经常需要根据异步请求结果进行相关操作，以往常用的方法是callback，但现在如果结合babel编译，用promise或者async会更加优雅。如下是错误的做法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 异步之后进行相关操作的错误做法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncFun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> flag = <span class="literal">false</span>;</div><div class="line">	$.ajax(&#123;</div><div class="line">		<span class="attr">url</span>: <span class="string">'https://api.github.com/'</span>,</div><div class="line">		<span class="attr">type</span>: <span class="string">'get'</span></div><div class="line">	&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(res.code == <span class="number">1</span>)&#123;</div><div class="line">			flag = <span class="literal">true</span></div><div class="line">		&#125;</div><div class="line">	&#125;)</div><div class="line">	<span class="keyword">return</span> flag;    <span class="comment">// 这里始终返回false，因为异步请求不阻塞后面代码执行</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(asyncFun())&#123;</div><div class="line">	<span class="comment">// 由于flag始终为false，很明显这里永远不会执行</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -530,11 +530,11 @@
     <link href="http://blog.huzerui.com/2017/02/04/vuejs-demo/"/>
     <id>http://blog.huzerui.com/2017/02/04/vuejs-demo/</id>
     <published>2017-02-04T07:12:19.000Z</published>
-    <updated>2018-05-16T14:17:25.124Z</updated>
+    <updated>2021-05-09T13:08:18.378Z</updated>
     
     <content type="html"><![CDATA[<p>前段时间利用闲暇时间学习Vuejs并且做了一个实例，主要使用vue-router实现路由控制，vuex对程序进行状态管理，axios发送http请求。对数据在组件间的传递、webpack打包工具、数据的双向绑定有更深刻的了解和认识。<br><img src="http://qiniu.huzerui.com/image/2017-02-04-vue2.0-demo-poster.gif" alt="预览图"></p>
-<p>项目在线地址：<a href="http://www.huzerui.com/vue2.0-demo/">http://www.huzerui.com/vue2.0-demo/</a><br>Github地址：<a href="https://github.com/alex1504/vue2.0-demo" target="_blank" rel="external">https://github.com/alex1504/vue2.0-demo</a></p>
-<p>扫描二维码预览：<br><img src="/blog/img/post/2017-03-04-vuejs-demo-qrcode.png" alt="二维码地址"></p>
+<p>项目在线地址：<a href="http://www.huzerui.com/vue2.0-demo/" target="_blank" rel="external">http://www.huzerui.com/vue2.0-demo/</a><br>Github地址：<a href="https://github.com/alex1504/vue2.0-demo" target="_blank" rel="external">https://github.com/alex1504/vue2.0-demo</a></p>
+<p>扫描二维码预览：<br><img src="/img/post/2017-03-04-vuejs-demo-qrcode.png" alt="二维码地址"></p>
 <h1 id="更新记录："><a href="#更新记录：" class="headerlink" title="更新记录："></a>更新记录：</h1><p>2017.1.13 主导航电影、音乐、图书、图片使用router跳转电影模块使用tab菜单切换各个列表模块下拉滚动加载图片模块使用flex布局实现瀑布流效果<br>2017.1.17 增加了电影详情模块，优化路由跳转<br>2017.1.18 增加了登录、登出模块，使用leancloud数据存储功能<br>2017.1.19 增加了图片详情模块，增加了新的生产依赖vue-touch<br>2017.2.6 新增用户注册模块</p>
 <h1 id="开发依赖："><a href="#开发依赖：" class="headerlink" title="开发依赖："></a>开发依赖：</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="string">"babel-core"</span>: <span class="string">"^6.0.0"</span>,</div><div class="line"><span class="string">"babel-loader"</span>: <span class="string">"^6.0.0"</span>,</div><div class="line"><span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.0.0"</span>,</div><div class="line"><span class="string">"cross-env"</span>: <span class="string">"^3.0.0"</span>,</div><div class="line"><span class="string">"css-loader"</span>: <span class="string">"^0.25.0"</span>,</div><div class="line"><span class="string">"file-loader"</span>: <span class="string">"^0.9.0"</span>,</div><div class="line"><span class="string">"mockjs"</span>: <span class="string">"^1.0.1-beta3"</span>,</div><div class="line"><span class="string">"node-sass"</span>: <span class="string">"^4.2.0"</span>,</div><div class="line"><span class="string">"sass"</span>: <span class="string">"^0.5.0"</span>,</div><div class="line"><span class="string">"sass-loader"</span>: <span class="string">"^4.0.0"</span>,</div><div class="line"><span class="string">"style-loader"</span>: <span class="string">"^0.13.1"</span>,</div><div class="line"><span class="string">"vue-loader"</span>: <span class="string">"^10.0.0"</span>,</div><div class="line"><span class="string">"vue-style-loader"</span>: <span class="string">"^1.0.0"</span>,</div><div class="line"><span class="string">"vue-template-compiler"</span>: <span class="string">"^2.1.0"</span>,</div><div class="line"><span class="string">"webpack"</span>: <span class="string">"^2.1.0-beta.25"</span>,</div><div class="line"><span class="string">"webpack-dev-server"</span>: <span class="string">"^2.1.0-beta.9"</span></div></pre></td></tr></table></figure>
 <h1 id="生产环境依赖："><a href="#生产环境依赖：" class="headerlink" title="生产环境依赖："></a>生产环境依赖：</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"axios"</span>: <span class="string">"^0.15.3"</span>,</div><div class="line"><span class="string">"vue"</span>: <span class="string">"^2.1.0"</span>,</div><div class="line"><span class="string">"vue-material"</span>: <span class="string">"^0.5.2"</span>,</div><div class="line"><span class="string">"vue-router"</span>: <span class="string">"^2.1.1"</span>,</div><div class="line"><span class="string">"vue-swipe"</span>: <span class="string">"^2.0.2"</span>,</div><div class="line"><span class="string">"vue-touch"</span>: <span class="string">"^2.0.0-beta.3"</span>,</div><div class="line"><span class="string">"vuex"</span>: <span class="string">"^2.1.1"</span></div></pre></td></tr></table></figure>
@@ -545,7 +545,7 @@
 <li>由于ithub访问速度原因，初次加载需稍等片刻。</li>
 <li>登录及注册使用了Leancloud的后端云服务，关于如何使用你可以点<a href="https://leancloud.cn/docs/demo.html" target="_blank" rel="external">这里</a>查看LeanCloud搭建的各类应用演示。</li>
 </ul>
-<h1 id="关于使用Leancloud接口"><a href="#关于使用Leancloud接口" class="headerlink" title="关于使用Leancloud接口"></a>关于使用Leancloud接口</h1><p>细心的小伙伴应该会发现，使用LN接口必须使用AV.init对接口进行初始化，接收的参数是你的APPID和APPScret，也就是说即使我们的项目不开源，通过前端审查脚本也可以知道你的应用id及密钥，进而可以轻松调取你的接口做坏坏的事情。<br>为此如果你需要纯前后端分离的进行接口调用，LN给予的安全方案是配置web安全域名，也就是只有安全域名才能访问你的接口。<br><img src="/blog/img/post/2017-02-04-leancloud-web-security.png" alt="安全域名"><br>另外更稳妥的做法是传统开发APP的方式，将APPID和APPScret在后台代码中对接口进行初始化，前端就审查不到了，比如koa就可以单独为静态文件设置公开访问的静态目录，对于敏感数据文件可以设置存放在安全的前端无法访问的目录下面。<br>在有后端对接口实现复杂的逻辑封装的时候，推荐LN官方推出的<a href="https://leancloud.cn/docs/leanengine_overview.html" target="_blank" rel="external">LeanEngine</a>运行方案，有Nodejs、Pythod、PHP、Java四个版本。</p>
+<h1 id="关于使用Leancloud接口"><a href="#关于使用Leancloud接口" class="headerlink" title="关于使用Leancloud接口"></a>关于使用Leancloud接口</h1><p>细心的小伙伴应该会发现，使用LN接口必须使用AV.init对接口进行初始化，接收的参数是你的APPID和APPScret，也就是说即使我们的项目不开源，通过前端审查脚本也可以知道你的应用id及密钥，进而可以轻松调取你的接口做坏坏的事情。<br>为此如果你需要纯前后端分离的进行接口调用，LN给予的安全方案是配置web安全域名，也就是只有安全域名才能访问你的接口。<br><img src="/img/post/2017-02-04-leancloud-web-security.png" alt="安全域名"><br>另外更稳妥的做法是传统开发APP的方式，将APPID和APPScret在后台代码中对接口进行初始化，前端就审查不到了，比如koa就可以单独为静态文件设置公开访问的静态目录，对于敏感数据文件可以设置存放在安全的前端无法访问的目录下面。<br>在有后端对接口实现复杂的逻辑封装的时候，推荐LN官方推出的<a href="https://leancloud.cn/docs/leanengine_overview.html" target="_blank" rel="external">LeanEngine</a>运行方案，有Nodejs、Pythod、PHP、Java四个版本。</p>
 <h1 id="感触："><a href="#感触：" class="headerlink" title="感触："></a>感触：</h1><ol>
 <li>MVVM三分天下，如果你希望一个轻巧、易上手、文档详尽的框架，选择<a href="https://cn.vuejs.org/" target="_blank" rel="external">Vuejs</a></li>
 <li>如果你十分熟练jQuery的用法，在Vuejs中你很容易发现一些遗传着“经典”的足迹</li>
@@ -576,7 +576,7 @@
     <link href="http://blog.huzerui.com/2017/01/22/lodash-useful-function/"/>
     <id>http://blog.huzerui.com/2017/01/22/lodash-useful-function/</id>
     <published>2017-01-22T14:39:31.000Z</published>
-    <updated>2017-05-22T14:45:27.941Z</updated>
+    <updated>2021-05-09T12:55:49.097Z</updated>
     
     <content type="html"><![CDATA[<p>Lodash目前非常流行的JavaScript的工具集合框架，被前端开发者广泛地使用，下面是一些平常开发过程中常用的函数。</p>
 <p>在介绍函数前，对lodash函数名应有如下的了解：</p>
@@ -667,7 +667,7 @@
     <link href="http://blog.huzerui.com/2016/11/07/gulp-learning-note/"/>
     <id>http://blog.huzerui.com/2016/11/07/gulp-learning-note/</id>
     <published>2016-11-07T13:42:28.000Z</published>
-    <updated>2018-05-16T14:17:24.798Z</updated>
+    <updated>2021-05-09T12:55:49.067Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2016-11-7-gulp-poster.jpg" alt="gulp"><br>某个深夜独自在房间深造，在不断键盘敲击的“Alt+Tab”和“F5”许久，我开始疲惫了，于是从冰箱抡起一杯可乐。畅饮之余，去Google寻求仙人指路，仙人找到了nodejs为我指点了迷津，并递给我一杯可乐和吸管，原来“她”就在这里，她的名字叫“Gulp”。</p>
 <p>她虽然只是一杯插着吸管的饮料，可却能在烈日炎炎的夏天舒缓你焦灼的身心，在寒冷的冬天给你雪中送炭似的温暖，给你不一样的编码体验。</p>
@@ -732,7 +732,7 @@
     <link href="http://blog.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/"/>
     <id>http://blog.huzerui.com/2016/11/04/let-your-browser-open-fullscreen-mode/</id>
     <published>2016-11-04T15:38:01.000Z</published>
-    <updated>2017-04-29T07:02:21.908Z</updated>
+    <updated>2021-05-09T12:55:49.092Z</updated>
     
     <content type="html"><![CDATA[<p>通常在某些情况下，我们需要让浏览器开启全屏模式，以便获得更好的视觉体验，先看下全屏模式简单的几个API。</p>
 <h1 id="浏览器默认绑定"><a href="#浏览器默认绑定" class="headerlink" title="浏览器默认绑定"></a>浏览器默认绑定</h1><p>非全屏模式下， document的F11按键绑定开启全屏模式<br>全屏模式下， document的esc和F11 按键绑定关闭全屏模式</p>
@@ -1080,7 +1080,7 @@
     <link href="http://blog.huzerui.com/2016/10/30/how-to-make-a-html5-player/"/>
     <id>http://blog.huzerui.com/2016/10/30/how-to-make-a-html5-player/</id>
     <published>2016-10-30T00:38:01.000Z</published>
-    <updated>2018-05-16T14:17:24.936Z</updated>
+    <updated>2021-05-09T12:55:49.067Z</updated>
     
     <content type="html"><![CDATA[<p>“咳咳咳..在看正文之前，如果客官有兴趣可以轻点播放按钮聆听一下我的<strong>第一首吉他原创歌曲</strong>”。——作于大三下学期</p>
 <p><audio style="width: 100%" src="http://qiniu.huzerui.com/audio/guita-september.mp3" controls></audio><br>“怎么感觉整个人都不好了…还有呜呜呜的声音”</p>
@@ -1154,7 +1154,7 @@
     <link href="http://blog.huzerui.com/2016/10/03/traveling-of-changsha/"/>
     <id>http://blog.huzerui.com/2016/10/03/traveling-of-changsha/</id>
     <published>2016-10-03T12:12:19.000Z</published>
-    <updated>2018-05-16T14:17:24.834Z</updated>
+    <updated>2021-05-09T12:55:49.122Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-1.jpg" alt="蓝瘦"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-2.jpg" alt="橘子洲夕阳"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-3.jpg" alt="极致美颜"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-4.jpg" alt="万达"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-5.jpg" alt="湖南大学"><br><img src="http://qiniu.huzerui.com/image/2016-10-11-travel-of-changsha-6.jpg" alt="湖南电视台"></p>
 ]]></content>
@@ -1177,7 +1177,7 @@
     <link href="http://blog.huzerui.com/2016/09/08/graduate-for-one-year/"/>
     <id>http://blog.huzerui.com/2016/09/08/graduate-for-one-year/</id>
     <published>2016-09-08T14:51:47.000Z</published>
-    <updated>2018-05-16T14:17:25.165Z</updated>
+    <updated>2021-05-09T12:55:49.057Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://qiniu.huzerui.com/image/2016-09-08-graduration-poster.jpg" alt="poster"></p>
 <iframe frameborder="0" style="max-width: 100%;max-height: 498px;" width="640" height="498" src="http://v.qq.com/iframe/player.html?vid=m03268wqppq&tiny=0&auto=0" allowfullscreen></iframe>
@@ -1201,9 +1201,9 @@
     <link href="http://blog.huzerui.com/2016/09/04/mobile-gallery/"/>
     <id>http://blog.huzerui.com/2016/09/04/mobile-gallery/</id>
     <published>2016-09-04T02:55:47.000Z</published>
-    <updated>2017-05-18T11:54:03.770Z</updated>
+    <updated>2021-05-09T13:08:18.378Z</updated>
     
-    <content type="html"><![CDATA[<p>移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果<br><img src="/blog/img/post/2016-09-04-mobile-photo-galleries.gif" alt="demo"><br>你也可以点击<a href="http://alex1504.oschina.io/demo/mobile-gallery/" target="_blank" rel="external">在线地址</a>  查看预览:</p>
+    <content type="html"><![CDATA[<p>移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果<br><img src="/img/post/2016-09-04-mobile-photo-galleries.gif" alt="demo"><br>你也可以点击<a href="http://alex1504.oschina.io/demo/mobile-gallery/" target="_blank" rel="external">在线地址</a>  查看预览:</p>
 <h2 id="关于flex-box布局"><a href="#关于flex-box布局" class="headerlink" title="关于flex-box布局"></a>关于flex-box布局</h2><p>flex布局简直是移动端的神器，因为移动端不存在兼容性问题，几乎所有手机浏览器都采用相同的标准。</p>
 <h2 id="几分钟快速了解flex-box布局"><a href="#几分钟快速了解flex-box布局" class="headerlink" title="几分钟快速了解flex-box布局"></a>几分钟快速了解flex-box布局</h2><h3 id="采用flex布局（作用于容器）"><a href="#采用flex布局（作用于容器）" class="headerlink" title="采用flex布局（作用于容器）"></a>采用flex布局（作用于容器）</h3><p>块状元素：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">    <span class="attribute">display</span>:flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>行内元素：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123; </div><div class="line">    <span class="attribute">display</span>: inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1231,7 +1231,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果&lt;br&gt;&lt;img src=&quot;/blog/img/post/2016-09-04-mobile-photo-galleries.gif&quot; alt=
+      &lt;p&gt;移动端图片画廊，采用css3的flex布局结合object-fit属性，实现类似Google Photo 等高自适应的图片布局效果&lt;br&gt;&lt;img src=&quot;/img/post/2016-09-04-mobile-photo-galleries.gif&quot; alt=&quot;demo
     
     </summary>
     
@@ -1249,7 +1249,7 @@
     <link href="http://blog.huzerui.com/2016/06/16/css3-transform-animation/"/>
     <id>http://blog.huzerui.com/2016/06/16/css3-transform-animation/</id>
     <published>2016-06-16T14:21:23.000Z</published>
-    <updated>2017-04-29T07:02:21.908Z</updated>
+    <updated>2021-05-09T12:55:49.054Z</updated>
     
     <content type="html"><![CDATA[<h1 id="CSS3变换动画"><a href="#CSS3变换动画" class="headerlink" title="CSS3变换动画"></a>CSS3变换动画</h1><h2 id="指定三维视角"><a href="#指定三维视角" class="headerlink" title="指定三维视角"></a>指定三维视角</h2><p>perspective 属性定义 3D 元素距视图的距离，以像素计。<br>当为元素定义 perspective 属性时，其子元素会获得透视效果，而不是元素本身。</p>
 <h2 id="三维变形"><a href="#三维变形" class="headerlink" title="三维变形"></a>三维变形</h2><p>三维变形的变形方式：四种方法<br>旋转——缩放——平移——扭曲——指定变形基点</p>
@@ -1331,7 +1331,7 @@
     <link href="http://blog.huzerui.com/2016/06/16/h5-tags/"/>
     <id>http://blog.huzerui.com/2016/06/16/h5-tags/</id>
     <published>2016-06-16T13:50:32.000Z</published>
-    <updated>2017-04-29T07:02:21.908Z</updated>
+    <updated>2021-05-09T12:55:49.067Z</updated>
     
     <content type="html"><![CDATA[<h1 id="HTML5表单新增input类型"><a href="#HTML5表单新增input类型" class="headerlink" title="HTML5表单新增input类型"></a>HTML5表单新增input类型</h1><p>在HTML4等早期版本中，input元素已经有了一些type类型，type可取的值有下面这些：<br>text文本类型：<code>&lt;input type=&quot;text&quot;/&gt;</code><br>password密码类型：<code>&lt;input type=&quot;password&quot;/&gt;</code><br>radio 单选类型：<code>&lt;input type=&quot;radio&quot;/&gt;</code>选项<br>checkbox 多选类型：<code>&lt;input type=&quot;checkbox&quot;/&gt;</code>选项<br>file 文件类型：<code>&lt;input type=&quot;file&quot;/&gt;</code><br>submit 提交按钮：<code>&lt;input type=&quot;submit&quot;value=&quot;提交&quot;/&gt;</code><br>reset重置按钮：<code>&lt;input type=&quot;reset&quot;value=重置&quot;/&gt;</code><br>button定义按钮：<code>&lt;input type=&quot;button&quot;value=&quot;按钮1&quot;/&gt;</code><br>image 定义图片按钮：<code>&lt;input type=&quot;image&quot;src=&quot;..&quot;/&gt;</code><br>hidden定义隐藏域：<code>&lt;input type=&quot;hidden&quot;/&gt;</code></p>
 <p><strong>在HTML5中，input元素新增了一些类型，有email邮件类型、number数字类型、range数字滑动条、url地址类型、date日期类型及search搜索类型。下面我们来逐个介绍一下它们。</strong></p>
@@ -1369,7 +1369,7 @@
     <link href="http://blog.huzerui.com/2016/06/16/mobile-rem/"/>
     <id>http://blog.huzerui.com/2016/06/16/mobile-rem/</id>
     <published>2016-06-16T05:42:29.000Z</published>
-    <updated>2018-05-16T14:17:24.736Z</updated>
+    <updated>2021-05-09T12:55:49.107Z</updated>
     
     <content type="html"><![CDATA[<p>自适应布局方案有<strong>百分比布局、flex布局、弹性flex布局</strong>等，但是都有一些缺点。</p>
 <ul>
@@ -1416,7 +1416,7 @@
     <link href="http://blog.huzerui.com/2016/06/16/icoMoon/"/>
     <id>http://blog.huzerui.com/2016/06/16/icoMoon/</id>
     <published>2016-06-16T03:22:52.000Z</published>
-    <updated>2018-05-16T14:17:24.888Z</updated>
+    <updated>2021-05-09T12:55:49.077Z</updated>
     
     <content type="html"><![CDATA[<p>本文总结一款免费开源的Web应用程序<a href="https://icomoon.io/app/#/select" target="_blank" rel="external">IcoMoon</a>制作web图标字体。</p>
 <h1 id="使用web字体图标优势"><a href="#使用web字体图标优势" class="headerlink" title="使用web字体图标优势"></a>使用web字体图标优势</h1><p>适用性：一个图标字体比一系列的图像（特别是在Retina屏中使用双倍大小的图像）要小。一旦图标字体加载了，你的图标就会马上渲染出来，不需要下载一个图像。</p>
@@ -1457,7 +1457,7 @@
     <link href="http://blog.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/"/>
     <id>http://blog.huzerui.com/2016/06/15/js-dom-elepos-and-elesize/</id>
     <published>2016-06-15T04:46:43.000Z</published>
-    <updated>2018-05-16T14:17:24.768Z</updated>
+    <updated>2021-05-09T12:55:49.092Z</updated>
     
     <content type="html"><![CDATA[<p>JavaScript处理一些DOM元素的动态效果经常需要一些元素的尺寸大小和位置。body节点主要用于获取页面宽高和滚动条的滚动距离，以下出现body节点可以替换为其他DOM元素表示在该元素下获取或设置这些属性。作为HTML元素，都具有下列属性：<br><img src="http://qiniu.huzerui.com/image/2016-06-15-js-get-dom-position-and-size-1.jpg" alt="大小、位置属性"><br>这些属性的笼统特征：<br>client：元素内容+内边距 大小，不包括边框、外边距、滚动条部分<br>offset：元素内容+内边距+边框  不包括外边距和滚动条部分<br>scroll：与元素的滚动相关</p>
 <h1 id="尺寸大小"><a href="#尺寸大小" class="headerlink" title="尺寸大小"></a>尺寸大小</h1><p>一张网页的全部面积，就是它的大小。通常情况下，网页的大小由内容和CSS样式表决定。<br>视口是指在浏览器窗口中看到的那部分网页面积。</p>
