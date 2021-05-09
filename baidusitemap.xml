@@ -382,14 +382,16 @@
 
     
   <url>
-    <loc>http://blog.huzerui.com/2016/06/15/js-call-and-apply/</loc>
+    <loc>http://blog.huzerui.com/2016/06/14/js-array-method/</loc>
     <lastmod>2021-05-09T12:55:49.077Z</lastmod>
     <data>
         <display>
-        <title>javascript中的call()和apply()方法</title>
-        <pubTime>2016-06-15T01:29:53.000Z</pubTime>
+        <title>Javascript数组方法</title>
+        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
         
         <tag>js</tag>
+         
+        <tag>数组</tag>
          
          
            
@@ -402,16 +404,14 @@
 
     
   <url>
-    <loc>http://blog.huzerui.com/2016/06/14/js-array-method/</loc>
+    <loc>http://blog.huzerui.com/2016/06/15/js-call-and-apply/</loc>
     <lastmod>2021-05-09T12:55:49.077Z</lastmod>
     <data>
         <display>
-        <title>Javascript数组方法</title>
-        <pubTime>2016-06-14T04:00:10.000Z</pubTime>
+        <title>javascript中的call()和apply()方法</title>
+        <pubTime>2016-06-15T01:29:53.000Z</pubTime>
         
         <tag>js</tag>
-         
-        <tag>数组</tag>
          
          
            
@@ -606,6 +606,26 @@
 
     
   <url>
+    <loc>http://blog.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
+    <lastmod>2021-05-09T12:55:49.054Z</lastmod>
+    <data>
+        <display>
+        <title>《百鸟朝凤》观感</title>
+        <pubTime>2016-05-18T15:21:47.000Z</pubTime>
+        
+        <tag>电影</tag>
+         
+         
+           
+             
+              <breadCrumb title="电影" url="http://blog.huzerui.com/categories/%E7%94%B5%E5%BD%B1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.huzerui.com/2017/10/15/color-formula/</loc>
     <lastmod>2021-05-09T12:55:49.054Z</lastmod>
     <data>
@@ -624,26 +644,6 @@
           
              
               <breadCrumb title="设计" url="http://blog.huzerui.com/categories/%E5%89%8D%E7%AB%AF/%E8%AE%BE%E8%AE%A1/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.huzerui.com/2016/05/18/bainiaochaofeng/</loc>
-    <lastmod>2021-05-09T12:55:49.054Z</lastmod>
-    <data>
-        <display>
-        <title>《百鸟朝凤》观感</title>
-        <pubTime>2016-05-18T15:21:47.000Z</pubTime>
-        
-        <tag>电影</tag>
-         
-         
-           
-             
-              <breadCrumb title="电影" url="http://blog.huzerui.com/categories/%E7%94%B5%E5%BD%B1/"/>
           
         </display>
     </data>
