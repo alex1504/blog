@@ -11,7 +11,7 @@ tags: [js,vuejs]
 Github地址：https://github.com/alex1504/vue2.0-demo
 
 扫描二维码预览：
-![二维码地址](/blog/img/post/2017-03-04-vuejs-demo-qrcode.png)
+![二维码地址](/img/post/2017-03-04-vuejs-demo-qrcode.png)
 
 # 更新记录：
 2017.1.13 主导航电影、音乐、图书、图片使用router跳转电影模块使用tab菜单切换各个列表模块下拉滚动加载图片模块使用flex布局实现瀑布流效果
@@ -62,7 +62,7 @@ Github地址：https://github.com/alex1504/vue2.0-demo
 # 关于使用Leancloud接口
 细心的小伙伴应该会发现，使用LN接口必须使用AV.init对接口进行初始化，接收的参数是你的APPID和APPScret，也就是说即使我们的项目不开源，通过前端审查脚本也可以知道你的应用id及密钥，进而可以轻松调取你的接口做坏坏的事情。
 为此如果你需要纯前后端分离的进行接口调用，LN给予的安全方案是配置web安全域名，也就是只有安全域名才能访问你的接口。
-![安全域名](/blog/img/post/2017-02-04-leancloud-web-security.png)
+![安全域名](/img/post/2017-02-04-leancloud-web-security.png)
 另外更稳妥的做法是传统开发APP的方式，将APPID和APPScret在后台代码中对接口进行初始化，前端就审查不到了，比如koa就可以单独为静态文件设置公开访问的静态目录，对于敏感数据文件可以设置存放在安全的前端无法访问的目录下面。
 在有后端对接口实现复杂的逻辑封装的时候，推荐LN官方推出的[LeanEngine](https://leancloud.cn/docs/leanengine_overview.html)运行方案，有Nodejs、Pythod、PHP、Java四个版本。
 

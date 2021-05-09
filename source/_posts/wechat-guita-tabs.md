@@ -11,7 +11,7 @@ categories: 前端
 关于bmob小程序开发文档请戳[这里](https://docs.bmob.cn/data/wechatApp/a_faststart/doc/index.html)，文档详细简练，主要是缩短了开发周期，不过对于复杂的项目，还是推荐使用自己服务器提供数据服务。
 
 # 使用微信扫描二维码预览
-![qrcode](http://upload-images.jianshu.io/upload_images/1709462-a09843e9084bcd98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![qrcode](http://qiniu.huzerui.com/image/2017-10-14-guita-qrcode.jpg)
 源码地址：[https://github.com/alex1504/wx-guita_tab](https://github.com/alex1504/wx-guita_tab)
 
 下面分点分享下小程序的开发过程中的关键点及感受，说明：
@@ -20,7 +20,7 @@ categories: 前端
 
 # 使用iconfont字体图标
 新建项目并添加图标
-![iconfont](http://upload-images.jianshu.io/upload_images/1709462-75640d57eb7658e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![iconfont](http://qiniu.huzerui.com/image/2017-10-14-iconfont.jpg)
 在app.wxss中以unicode方式引入
 ```
 @font-face {
