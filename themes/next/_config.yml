@@ -419,6 +419,8 @@ version: 5.0.2
 # changyan_appid: cytgoM6C4
 # changyan_appkey: 3e9f363226ab272321da45201977e436
 
-
+# 搜索
+local_search:
+  enable: true
 
 
